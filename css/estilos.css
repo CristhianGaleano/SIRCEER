@@ -1,0 +1,723 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+
+body{
+	background-color: rgb(222, 221, 214);
+	/*height: 900px;*/
+	font-family: 'Revalia',Arial;
+	/*font-size: .9em;*/
+	overflow: auto;
+}
+
+
+.caja-menu-side-alianza:hover{
+	background-color: rgb(12,231,208);
+	color: #0F0E0E;
+}
+
+.caja-menu-side-sede:hover{
+	background-color: rgb(196,5,248);
+	color: #0F0E0E;
+}
+
+.caja-menu-side-IES:hover{
+	background-color: rgb(12,231,118);
+	color: #0F0E0E;
+}
+
+.caja-menu-side-programa:hover{
+	background-color: rgb(249,181,13);
+	color: #0F0E0E;
+}
+
+.caja-menu-side-IE:hover{
+	background-color: rgb(6,68,247);
+	color: #0F0E0E;
+}
+
+.caja-menu-side-estudiante:hover{
+	background-color: rgb(247,48,6);
+	color: #0F0E0E;
+}
+
+
+.modal-create-thanks-you
+{
+	
+	background-color:rgba(192,192,192,0.8);
+	/*display: none;*/
+	font-size: 1em;
+	height: 100%;
+	/*left: 0;*/
+	position: fixed;
+	top: 0;
+	width: 100%;
+}
+
+.formulario{
+	width: 80%;
+	height: 420px;
+	padding: 25px;
+	background-color: #1d9d74;
+	border: 1px solid #536DFE;
+	border-radius: 4px;
+	color: black;
+	top: 10%;
+	position: absolute;
+	/*margin-left: 175px;*/
+	
+}
+
+
+.cerrar{
+	
+	font-weight: 900;
+	text-align: right;
+}
+
+.cerrar a{
+	color: white;
+	text-decoration: none;
+}
+
+
+header{
+	background-color: #009E35;
+}
+
+header h1 a{
+	color: white;
+	text-decoration: none;
+	font-size: 1.5em;
+	width: 80%;
+}
+
+.nav-bar{
+	width: 100%;
+}
+
+
+ul{
+	padding: 10px;
+
+}
+
+li{
+	list-style: none;
+}
+
+header h1{
+	width: 80%;
+	display: inline-block;
+}
+
+/****************/
+.user{
+	float: right;
+	font-size: 1.4em;
+
+}
+
+.contenedor{
+	position: absolute;
+	margin: auto;
+	width: 100%;
+	height: 100%;
+	/*font-size: 3em;*/
+}
+
+.contenedor #features{
+	text-align: center;
+}
+
+/*******************/
+.imagenes-bienvenida{
+	margin: auto;
+	text-align: center;
+}
+
+#img-index{
+	padding: 30px;
+}
+
+/*******************/
+.charts{
+	padding: 30px;
+	width: 95%;
+	height: 150px;
+	margin-top: 7px;
+	background-color: rgb(254,254,254);
+	border-radius: 5px 5px;
+}
+
+
+#chartdiv {
+	width		: 100%;
+	height		: 500px;
+	font-size	: 11px;
+}						
+
+.wraper-nav{
+	position: relative;
+	width: 100%;
+	height: 77px;
+	background-color: #0098C9;
+}
+
+.menu-bar{
+	width: 66%;
+	height: 66px;
+	margin: auto;
+}
+
+.menu-bar ul{
+	display: inline-flex;
+
+}
+
+.menu-bar ul li a{
+	font-size: 1.4em;
+	display: inline-block;
+	padding: 4px;
+	color: black;
+}
+
+/*estilos nuevo menu cabecera*/
+div#bodymenu{
+	margin: auto;
+	/*margin-top: 60px;*/
+	width: 100%;
+	height: 50px;
+	border: 1px solid black;
+	overflow: auto;
+	background-color: #0B0A0A;
+
+}
+
+div#bodymenu .itemCero{
+	width: 98px;
+	padding: 14px;
+	background-color: rgb(2,28,52);
+	height: 22px;
+	float: left;
+}
+div#bodymenu .itemCero a{
+	bottom:  15px;
+}
+
+div#bodymenu .itemUno{
+	width: 114px;
+	padding: 15px;
+	/*height: 15px;
+	margin-top: 5px;
+	margin-left: 5px;*/
+	/*background-color: rgb(247,48,6);*/
+	float: left;
+}
+
+div#bodymenu .itemDos{
+	width: 210px;
+	padding: 15px;
+	/*height: 15px;*/
+	/*margin-top: 5px;*/
+	/*margin-left: 5px;*/
+	/*background-color: rgb(6,68,247);*/
+	float: left;
+}
+
+div#bodymenu .itemTres{
+	width: 107px;
+	padding: 15px;
+	/*height: 15px;
+	margin-top: 5px;
+	margin-left: 5px;*/
+	/*background-color: rgb(249,181,13);*/
+	float: left;
+}
+
+div#bodymenu  a{
+	color: white;
+	text-decoration: none;
+}
+
+div#bodymenu .itemCuatro{
+	width: 181px;
+	padding: 15px;
+	/*height: 15px;
+	margin-top: 5px;
+	margin-left: 5px;*/
+	/*background-color: rgb(12,231,118);*/
+	float: left;
+}
+
+div#bodymenu .itemCinco{
+	width: 88px;
+	padding: 15px;
+	/*height: 15px;
+	margin-top: 5px;
+	margin-left: 5px;*/
+	/*background-color: rgb(12,231,208);*/
+	float: left;
+}
+
+
+div#bodymenu .itemSeis{
+	width: 80px;
+	padding: 15px;
+	/*height: 15px;
+	margin-top: 5px;
+	margin-left: 5px;*/
+	/*background-color: rgb(196,5,248);*/
+	float: left;
+}
+
+
+.sessionuser{
+	position: absolute;
+	width: 100%;
+	height: 150px;
+	text-align: center;
+	bottom: 0;
+	font-size: 2em;
+	margin-bottom: 15px;
+}
+
+
+
+/*Mejorar el codigo para estos tres elementos*/
+.users{
+	background-color: #EBBD27;
+	margin-left: 13px;
+	width: 188px;
+	padding: 12px;
+}
+
+
+.students{
+	background-color: #EBBD27;
+	margin-left: 13px;
+	width: 188px;
+	padding: 12px;
+}
+
+
+.chart{
+	background-color: #EBBD27;
+	margin-left: 13px;
+	width: 188px;
+	padding: 12px;
+}
+
+.reports{
+	background-color: #EBBD27;
+	margin-left: 13px;
+}
+
+
+
+
+/********TABLE GENERAL***********/
+table,tr,td{
+	border-collapse: collapse;
+	padding-left: 4px;
+	vertical-align: top;
+	font-size: 12px;
+	line-height: 15px;
+}
+
+#estructura{
+	height: 100%;
+	width: 100%;
+}
+
+#menu{
+	position: relative;
+	width: 10%;
+	height: 100;
+	padding: 1px;
+	background-color: rgb(2,28,52);
+}
+
+#menu ul li a{
+	padding: 5px;
+	color: white;
+	display: inline-block;
+	text-decoration: none;
+}
+
+
+/********formulario estiante nuevo***********/
+.wrap-formulario{
+	width: 90%;
+	margin: auto;
+}
+
+
+form{
+	width: 97%;
+	/*margin: 1px 0;*/
+	padding: 5px;
+	background-color: rgb(255,255,255);
+	overflow: hidden;/*Para el efecto del boton ya que le pusimos loat:left*/
+	border-top: 4px solid rgba(227, 84, 96, 1);
+	box-shadow: 0 2px 3px grey;/*Creamos la sombra: primer parametro:,segundo parametro: grosor abajo,tercer parametro es el grosor*/
+	font-size: 1.1em;
+}
+
+.table-formulario{
+	height: 400px;
+	width: 90%;
+	
+}
+
+.table-formulario td,tr{
+	vertical-align: top;
+
+}
+
+.labels{
+	font-size: .5em;
+	font-weight: bolder;
+}
+
+
+/***********TABLA DE RESULTADOS**************/
+#estructura  .table_estudiantes_th, .table_estudiantes_td{
+	border: 1px solid black;
+	text-align: left;
+	padding: 7px;
+}
+
+.table_estudiantes{
+	border-collapse: collapse;
+	width: 100%;
+}
+
+.table_estudiantes .table_estudiantes_td a{
+	text-decoration: none;
+	font-size: 1.2em;
+}
+
+.table_estudiantes_th{
+	background-color: rgb(2,28,52);
+	height: 90%;
+	color: white;
+}
+
+.table_estudiantes_tr:hover{
+	background-color: #f5f5f5;
+}
+
+.table_estudiantes_tr:nth-child(even){
+	background-color: #f2f2f2
+}
+
+
+
+/**********PAGINACION************/
+.paginacion ul li{
+	display: inline-block;
+	margin-right: 5px;
+}
+
+
+.paginacion ul .active{
+	background-color: #ce7f08;
+}
+
+.paginacion ul .disabled{
+	background-color: #c8c8c8;
+	display: inline-block;
+	font-family: "Oswald" , Arial , helveltica, sans-serif;
+	padding:  15px 25px;
+	cursor:  not-allowed;
+	color: #fff;
+	text-decoration:  none;
+}
+
+.paginacion ul li a{
+	display: inline-block;
+	font-family: "Oswald" , Arial , helveltica, sans-serif;
+	padding:  15px 25px;
+	background-color: #424242;
+	color: #fff;
+	text-decoration:  none;
+}
+
+.paginacion ul li a:hover{
+	text-decoration: none;
+	background-color: #3299bb;
+
+	}
+
+
+/***************ESTILOS WRA TITULO***************/
+.wra_titulo{
+width: 93%;
+margin: 5px 0;
+padding: 27px;
+background-color: rgb(255,255,255);
+overflow: hidden;
+border-top: 4px solid rgba(227, 84, 96, 1);
+box-shadow: 0 2px 3px grey;
+font-size: 1.1em;
+
+}
+
+/*-------estilos input----------*/
+form input[type="date"],
+form input[type="text"],
+form input[type="number"],
+form input[type="email"],
+form input[type="checkbox"],
+form input[type="select"],
+form input[type="button"],
+select{
+	border: 1px solid #536DFE;
+	border-radius: 4px;
+	padding: 11px;
+	display: inline-block;
+	margin-bottom: 9px;
+	font-size: .9em;
+	color: #141938;
+}
+
+.wrap-formulario-new-estudiante, .wrap-formulario-institucion form input[type="date"],
+.wrap-formulario-new-estudiante, .wrap-formulario-institucion form input[type="text"],
+.wrap-formulario-new-estudiante, .wrap-formulario-institucion form input[type="number"],
+.wrap-formulario-new-estudiante, .wrap-formulario-institucion form input[type="email"],
+.wrap-formulario-new-estudiante, .wrap-formulario-institucion form input[type="checkbox"],
+.wrap-formulario-new-estudiante, .wrap-formulario-institucion form input[type="select"],
+.wrap-formulario-new-estudiante, .wrap-formulario-institucion select
+{
+	/*padding: 106%;*/
+	width: 96%;
+	font-size: .9em;
+}
+
+
+.formulario-editar-user form input[type="text"],
+.formulario-editar-user form input[type="number"],
+.formulario-editar-user form input[type="email"],
+.formulario-editar-user form input[type="date"],
+.formulario-editar-user form input[type="select"],
+.formulario-editar-user form input[type="submit"],
+.formulario-editar-user form input[type="reset"],
+.formulario-editar-user form input[type="radio"]{
+ border: 1px solid #536DFE;
+	border-radius: 4px;
+	padding: 10px;
+	width: 54%;
+	display: inline-block;
+	margin-bottom: 9px;
+	font-size: .9em;
+	color: #141938;
+}
+
+form input[type="text"]:focus,
+form input[type="email"]:focus{
+	border: 2px solid rgba(227, 84, 96, 1);
+	padding: 7px;
+}
+
+
+.input-redit{
+	font-size: .4em;
+	font-weight: normal;
+}
+
+.alert{
+	padding: 5px;
+	border-radius: 2px;
+	margin-bottom: 20px;
+	font-size: 1em;
+	color: white;
+}
+
+.alert .error{
+	background: #F2DEDE;
+	border: 1px solid #A94442;
+	color: #A94442;
+}
+
+.alert.success{
+	background: #4CA450;
+}
+
+.btn,
+form input[type="submit"]{
+	padding: 22px;
+	background: #009e35;
+	color: #fff;
+	font-size: 1em;
+	border-radius: 2px;
+	border: none;
+	float: right;
+	cursor: pointer;
+}
+
+form input[type="submit"]:hover{
+	background-color: #2d9e00;
+}
+
+
+form input[type="reset"]{
+	padding: 15px;
+	background: rgb(247,48,6);
+	color: #fff;
+	font-size: 1em;
+	border-radius: 2px;
+	border: none;
+	float: right;
+	cursor: pointer;
+}
+
+form input[type="reset"]:hover{
+	background-color: rgb(227,84,96,1);
+}
+
+/**ESETILOS resultados BUSCAR ALUMNO*/
+
+/*estilos busqueda estudiante*/
+#estructura .contenedor-busqueda{
+	margin: auto;
+	width: 97%;
+}
+
+#busqueda{
+	width: 38%;
+	padding: 15px;
+	background: #ED572A;
+	color: #fff;
+	font-size: 1.5em;
+	border-radius: 2px;
+	border: none;	
+}
+
+#wraper_resultado {
+	width: 100%;
+	/*max-width: 86%;*/
+	margin-bottom: 38px;
+	/*margin-left: 65px;*/
+}
+
+.tabla_resultados{
+	margin: 25px;
+	background-color: #FFF;
+}
+
+
+.row-primary {
+	color: #fff;
+	padding: 4px;
+	background-color: rgb(22,23,61);
+	height: 31px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.row-secundaria{
+	text-align: center;
+}
+
+.cell{
+	padding: 3px;
+}
+
+.links-crud{
+	text-decoration: none;
+	color: black;
+}
+
+.links-crud:hover{
+	background-color: white;
+}
+
+
+.wraper-p form input[type="text"]
+{
+	width: 10%;
+}
+
+/**ESETILOS BUSCAR ALUMNO END*/
+
+/*Estilo contenedor de los charts en principal*/
+.wraper-charts{
+	margin: auto;
+	width: 90%;
+}
+
+
+
+/*odometer*/
+
+.background{
+	display: inline-block;
+	margin: 0px 15px;
+	margin-bottom: 10px;
+	position: absolute;
+	width: 86%;
+	height: initial;
+	background-color: #deddd6;
+}
+
+
+
+.wraper_esta_pri{
+	background-color: #fff;
+	position: relative;
+	padding: 5px;
+	text-align: center;
+	margin: 10px 10px;
+	width: 17%;
+	height: 100px;
+	float: left;
+}
+.wraper_esta_pri .icon{
+	font-size: 2.8em;
+}
+
+
+.wraper-estudiantes{
+	background-color: #D33F3F;
+}
+
+.wraper-programas{
+	background-color: #E5862A;
+}
+
+.wraper-sedes{
+	background-color: #ED099A;
+}
+
+.wraper-alianzas{
+	background-color: #09D7E9;
+}
+
+.wraper-IES{
+	background-color: #13EE70;
+}
+
+.wraper-IEB{
+	background-color: #4664E8;
+}
+
+
+/*******************/
+
+footer{
+
+  position:fixed;
+   left:0px;
+   bottom:0px;
+   /*height:10px;*/
+   width:100%;
+   background-color: #009E35;
+   text-align: center;
+	font-size: .9em;
+	font-family: "Times New Roman", Georgia, Serif;
+	padding: 10px;
+
+}

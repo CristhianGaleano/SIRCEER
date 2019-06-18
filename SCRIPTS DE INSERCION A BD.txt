@@ -1,0 +1,217 @@
+
+/***************************************************************************************************
+***************************************************************************************************
+***************************************************************************************************
+***************************************************************************************************
+/*IMPORNTANTE HACER LAS SIGUIENTES INSERCIONES RESPETANDO SU ORDEN AQUI EXPUESTO*/
+/***************************************************************************************************
+***************************************************************************************************
+***************************************************************************************************
+***************************************************************************************************/
+
+/*ROLES*/
+INSERT INTO roles (nombre,descripcion,estado) VALUES ('ADMINISTRADOR','Administrador del programa',1);
+INSERT INTO roles (nombre,descripcion,estado) VALUES ('REGULAR','Usuario del programa',1);
+INSERT INTO roles (nombre,descripcion,estado) VALUES ('EXTERNO','Usuario externo',1);
+
+
+/*ROLES_OPCIONES*/
+INSERT INTO `roles_opciones`(`opcion`, `estado`, `rol_id`) VALUES (1,1,1);
+INSERT INTO `roles_opciones`(`opcion`, `estado`, `rol_id`) VALUES (2,1,1);
+INSERT INTO `roles_opciones`(`opcion`, `estado`, `rol_id`) VALUES (1,1,2);
+INSERT INTO `roles_opciones`(`opcion`, `estado`, `rol_id`) VALUES (2,1,2);
+INSERT INTO `roles_opciones`(`opcion`, `estado`, `rol_id`) VALUES (1,1,3);
+/*INSERT INTO `roles_opciones`(`opcion`, `estado`, `rol_id`) VALUES (2,1,3);*/
+
+/*USUARIOS*/
+INSERT INTO `usuarios`(`nombre`,`codigo`, `clave`,`img`, `rol_id`) VALUES ('Administrador','admin','123','pordefecto.png',1);
+INSERT INTO `usuarios`(`nombre`,`codigo`, `clave`,`img`, `rol_id`) VALUES ('','invitado','123','pordefecto.png',2);
+INSERT INTO `usuarios`(`nombre`,`codigo`, `clave`,`img`, `rol_id`) VALUES ('','externo','123','pordefecto.png',3);
+
+
+
+/*ALIANZAS*/
+/*INSERT INTO `alianzas`(`nombre`,  `cupos`) VALUES ('NO APLICA',0);*/
+
+/*TIPO DE ESTRATEGIA*/
+INSERT INTO tipos_estrategias( nombre, descripcion) VALUES ('ARTICULADOS','');
+INSERT INTO tipos_estrategias( nombre, descripcion) VALUES ('TECNOLOGOS Y CICLO PROFESIONAL','');
+INSERT INTO tipos_estrategias( nombre, descripcion) VALUES ('EGRESADOS','');
+INSERT INTO tipos_estrategias( nombre, descripcion) VALUES ('OTRA','');
+
+/*TIPOS UNIVERSIDADES*/
+
+INSERT INTO tipos_universidades( nombre, descripcion) VALUES ('FUNDACION UNIVERSITARIA','');
+INSERT INTO tipos_universidades( nombre, descripcion) VALUES ('CENTRO DE INVESTIGACION','');
+INSERT INTO tipos_universidades( nombre, descripcion) VALUES ('UNIVERSIDAD','');
+INSERT INTO tipos_universidades( nombre, descripcion) VALUES ('OTRAS','');
+
+/*UNIVERSIDADES*/
+/*INSERT INTO universidades( nombre, telefono, email, direccion, municipio,tipo_universidad_id) VALUES ('NO APLICA','NO APLICA','NO APLICA','NO APLICA',1,1);*/
+
+/*EPS*/
+/*falta incorporarlos al .sql*/
+INSERT INTO eps(nombre) VALUES ('NO APLICA');
+INSERT INTO eps(nombre) VALUES ('EPS_ESTUDIANTE');
+INSERT INTO eps(nombre) VALUES ('ANAS WAYUU EPS INDIGENA');
+INSERT INTO eps(nombre) VALUES ('ASOCIACION DE CABILDOS DEL RESGUARDO INDIGENA SINU DE SAN ANDRES DE SOTAVENTO CORDOBA');
+INSERT INTO eps(nombre) VALUES ('ASOCIACION DE CABILDOS INDIGENAS DEL CESAR DUSAKAWI EPSI');
+INSERT INTO eps(nombre) VALUES ('ASOCIACION INDIGENA DEL CAUCA AIC');
+INSERT INTO eps(nombre) VALUES ('ASOCIACION MUTUAL BARRIOS UNIDOS DE QUIBDO E.S.S.');
+INSERT INTO eps(nombre) VALUES ('ASOCIACION MUTUAL EMPRESA SOLIDARIA DE SALUD DE NARINO E.S.S. EMSSANAR E.S.S.');
+INSERT INTO eps(nombre) VALUES ('ASOCIACION MUTUAL LA ESPERANZA ASMET SALUD ESS');
+INSERT INTO eps(nombre) VALUES ('ASOCIACION MUTUAL LA SUIZA DE AMERICA EPS INDIGENA');
+INSERT INTO eps(nombre) VALUES ('CAFESALUD E.P.S. S.A.');
+INSERT INTO eps(nombre) VALUES ('CAJANAL EPS');
+INSERT INTO eps(nombre) VALUES ('CALISALUD E.P.S.');
+INSERT INTO eps(nombre) VALUES ('CAPRECOM EPS');
+INSERT INTO eps(nombre) VALUES ('CAPRESOCA EPS');
+INSERT INTO eps(nombre) VALUES ('COMFENALCO VALLE E.P.S.');
+INSERT INTO eps(nombre) VALUES ('COMPENSAR E.P.S.');
+INSERT INTO eps(nombre) VALUES ('COOMEVA E.P.S. S.A.');
+INSERT INTO eps(nombre) VALUES ('COOPERATIVA DE SALUD Y DESARROLLO INTEGRAL DE LA ZONA SUR ORIENTAL DE CARTAGENA LTDA COOSALUD LTDA');
+INSERT INTO eps(nombre) VALUES ('E.P.S. CONDOR S.A.');
+INSERT INTO eps(nombre) VALUES ('E.P.S. FAMISANAR LTDA.');
+INSERT INTO eps(nombre) VALUES ('E.P.S. SALUDCOOP');
+INSERT INTO eps(nombre) VALUES ('E.P.S. SANITAS S.A.');
+INSERT INTO eps(nombre) VALUES ('EMMANUEL EPS INDIGENA');
+INSERT INTO eps(nombre) VALUES ('EMPRESA COOPERATIVA SOLIDARIA DE SALUD ECOOPSOS');
+INSERT INTO eps(nombre) VALUES ('EMPRESA MUTUAL PARA EL DESARROLLO INTEGRAL DE LA SALUD E.S.S.');
+INSERT INTO eps(nombre) VALUES ('ENTIDAD PROMOTORA DE SALUD');
+INSERT INTO eps(nombre) VALUES ('EPS PROGR. COMFENALCO ANTIOQUIA');
+INSERT INTO eps(nombre) VALUES ('EPS SERVICIO OCCIDENTAL DE SALUD S.A. - EPS-S.O.S. S.A.');
+INSERT INTO eps(nombre) VALUES ('HUMANA VIVIR S.A. E.P.S.');
+INSERT INTO eps(nombre) VALUES ('INSTITUTO DE SEGUROS SOCIALES EPS');
+INSERT INTO eps(nombre) VALUES ('ISPONAL');
+INSERT INTO eps(nombre) VALUES ('METROPOLITANA DE SALUD EPS EN LIQUIDACION');
+INSERT INTO eps(nombre) VALUES ('NUEVA EPS');
+INSERT INTO eps(nombre) VALUES ('SALUD COLMENA E.P.S. S.A.');
+INSERT INTO eps(nombre) VALUES ('SALUD COLPATRIA E.P.S.');
+INSERT INTO eps(nombre) VALUES ('SALUD TOTAL S.A. E.P.S.');
+INSERT INTO eps(nombre) VALUES ('SALUDVIDA EPS S.A.');
+INSERT INTO eps(nombre) VALUES ('SELVASALUD S.A. E.P.S.');
+INSERT INTO eps(nombre) VALUES ('SOLSALUD E.P.S. S.A.');
+INSERT INTO eps(nombre) VALUES ('SURA');
+INSERT INTO eps(nombre) VALUES ('SUSALUD EPS');
+INSERT INTO eps(nombre) VALUES ('UNIMEC E.P.S. S.A.');
+INSERT INTO eps(nombre) VALUES ('OTROS');
+
+
+
+/*ESTRATO */	
+/*INSERT INTO `estrato`(`nombre`) VALUES ("ESTRATO 1");
+INSERT INTO `estrato`(`nombre`) VALUES ("ESTRATO 2");
+INSERT INTO `estrato`(`nombre`) VALUES ("ESTRATO 3");
+INSERT INTO `estrato`(`nombre`) VALUES ("ESTRATO 4");
+INSERT INTO `estrato`(`nombre`) VALUES ("ESTRATO 5");
+*/
+
+
+
+
+
+/*JORNADAS*/
+/*INSERT INTO `jornadas`( `nombre`, `descripcion`) VALUES ("NO APLICA","SIN RELACIÓN");*/
+INSERT INTO `jornadas`( `nombre`, `descripcion`) VALUES ("MAÑANA","");
+INSERT INTO `jornadas`( `nombre`, `descripcion`) VALUES ("TARDE","");
+INSERT INTO `jornadas`( `nombre`, `descripcion`) VALUES ("NOCHE","");
+
+
+/*MODELOS*/
+
+INSERT INTO `modelos`(`nombre`, `descripcion`) VALUES ("EDUCACION TRADICIONAL","");
+INSERT INTO `modelos`(`nombre`, `descripcion`) VALUES ("SAT PRESENCIAL","");
+INSERT INTO `modelos`(`nombre`, `descripcion`) VALUES ("POST PRIMARIA","");
+
+
+
+/*SECTORES*/
+
+INSERT INTO `sectores`(`nombre`,`descripcion`) VALUES ("OFICIAL","");
+INSERT INTO `sectores`(`nombre`,`descripcion`) VALUES ("NO OFICIAL","");
+
+
+/*SITUACIONES ACADEMICA*/
+/*INSERT INTO `situaciones_academicas`(`nombre`, `descripcion`) VALUES ("ACTIVO","");
+INSERT INTO `situaciones_academicas`(`nombre`, `descripcion`) VALUES ("INACTIVO","");
+INSERT INTO `situaciones_academicas`(`nombre`, `descripcion`) VALUES ("GRADUADO","");
+*/
+
+/*MOTIVOS*/
+/*INSERT INTO `motivos`(`nombre`, `descripcion`) VALUES ("NO APLICA","NO REQUIERE");
+INSERT INTO `motivos`(`nombre`, `descripcion`) VALUES ("COMPORTAMIENTO DISCIPLINARIO","INFRACCION AL MANUAL DEL ESTUDIANTE");
+INSERT INTO `motivos`(`nombre`, `descripcion`) VALUES ("ECONOMICO","ECONOMICO");
+INSERT INTO `motivos`(`nombre`, `descripcion`) VALUES ("FAMILIAR","FAMILIAR");
+INSERT INTO `motivos`(`nombre`, `descripcion`) VALUES ("CONDICION GEOGRAFICA","CONDICIONES GEOGRAFICAS");
+INSERT INTO `motivos`(`nombre`, `descripcion`) VALUES ("INSUFICIENCIA EN NOTAS","");
+*/
+
+
+
+
+
+/*TIPO DE POBLACION reemplazada por prioritaria aun no se elimina*/
+/*INSERT INTO `tipos_poblacion`(`nombre`, `descripcion`) VALUES ("NO APLICA","SIN RELACION");
+INSERT INTO `tipos_poblacion`(`nombre`, `descripcion`) VALUES ("INDIGENA","PERTENECIENTES A ETNIAS");
+INSERT INTO `tipos_poblacion`(`nombre`, `descripcion`) VALUES ("AFRODESCENDIENTES","PERSONAS MULATAS");*/
+
+
+
+/*ZONAS */
+INSERT INTO `zonas`(`nombre`, `descripcion`) VALUES ("URBANA","METROPOLI");
+INSERT INTO `zonas`(`nombre`, `descripcion`) VALUES ("RURAL","GRANJAS Y EXTENSIONES DE TIERRA");
+
+
+
+
+/*NIVEL ACADEMICO*/
+INSERT INTO nivel_academico( nombre, descripcion) VALUES ('TECNICA PROFESIONAL','');
+INSERT INTO nivel_academico( nombre, descripcion) VALUES ('TECNOLOGIA','');
+INSERT INTO nivel_academico( nombre, descripcion) VALUES ('CICLO PROFESIONAL','');
+INSERT INTO nivel_academico( nombre, descripcion) VALUES ('OTRO','SIN REGISTRO');
+
+
+
+/*INSTITUCIONES*/
+/*INSERT INTO `instituciones`(`nombre`, `calendario`, `DANE`, `sector_id`, `municipio`,'zona_id') VALUES ('NO APLICA',' ',' ',1,1);*/
+
+
+/*SEDES*/
+/*INSERT INTO `sedes`(`nombre`, `codigo_dane_sede`, `consecutivo`, `zona_id`, `modelo_id`, `institucion_id`, `municipio`) VALUES ('NO APLICA',' ',' ','1',1,1,1);*/
+
+/*CONSECUTIVO-FACTURA*/
+INSERT INTO consecutivo_factura VALUES (0,'FACT-');
+
+/*PROGRAMAS (SE REALIZA YA QUE AL IMPORTAR DESDE EL EXCEL LOS ESTUDIANTES NO TIENEN LA RELACION CON EL PROGRAMA)*/
+/*INSERT INTO programas VALUES(NULL,'000000000000000','NO APLICA','0','0.00',1,1,1);*/
+
+/*acudiente*/
+/*INSERT INTO acudiente( documento, nombres, telefono, ocupacion) VALUES ('NO APLICA','NO APLICA','NO APLICA','NO APLICA');*/
+
+
+/*En produccion luego de hacer estos insert, se tiene la opcion de registrar las universidades y programas desde archivo excel igual que el principal que es estudiantes*/
+
+
+/*PARA PRUEBAS SOLAMENTE
+INSERTS*/
+/*
+INSERT INTO `instituciones`( `nombre`,`calendario`,  `municipio`, `sector_id`, `zona_id`) VALUES ("Prueba Institucion 2","PEREIRA",1,1,1);
+INSERT INTO `instituciones`( `nombre`,`calendario`,  `municipio`, `sector_id`, `zona_id`) VALUES ("Prueba Institucion 1","PEREIRA",1,1,1);
+
+INSERT INTO `sedes`(`nombre`, `zona_id`, `modelo_id`, `municipio`, `institucion_id`) VALUES ("Prueba sede 1",1,1,"PEREIRA",1);
+INSERT INTO `sedes`(`nombre`, `zona_id`, `modelo_id`, `municipio`, `institucion_id`) VALUES ("Prueba sede 2",1,1,"PEREIRA",1);
+
+INSERT INTO `universidades`( `nombre`, `municipio`, `tipo_universidad_id`) VALUES ("Prueba IES 1",1,1);
+INSERT INTO `universidades`( `nombre`, `municipio`, `tipo_universidad_id`) VALUES ("Prueba IES 2",1,1);
+
+INSERT INTO `programas`(`snies`, `nombre`, `cantidad_semestre`, `costo_semestre`, `nivel_academico_id`, `universidad_id`, `jornada_id`) VALUES ("123","Prueba Programa 1","2",300000.00,1,1,1);
+INSERT INTO `programas`(`snies`, `nombre`, `cantidad_semestre`, `costo_semestre`, `nivel_academico_id`, `universidad_id`, `jornada_id`) VALUES ("456","Prueba Programa 2","1",600000.00,1,1,1);
+*/
+
+/*DELETE FROM matriculas;
+DELETE FROM estudiante_serviciosocial;
+DELETE FROM estudiantes;
+DELETE FROM programas;
+DELETE FROM universidades;
+DELETE FROM sedes;
+DELETE FROM instituciones*/

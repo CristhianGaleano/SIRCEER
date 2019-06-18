@@ -1,0 +1,165 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+
+header,footer{
+	background-color: #1d9d74;
+	height: 120px;
+}
+
+body{
+	background-color: rgb(230,241,243);
+}
+
+section{
+	margin: auto;
+	width: 90%;
+}
+
+.agregar{
+	margin-left: 123px;
+}
+
+.contenido{
+	width: 100%;
+}
+
+
+
+table{
+	margin: auto;
+	width: 80%;
+	text-align: center;
+}
+
+tbody{
+	border: 1px solid green;
+}
+
+.head{
+	background-color: blue;
+	font-size: 1.2em;
+	color: white;
+
+}
+
+.cuerpo{
+	background-color: rgb(254,254,254);
+}
+
+.ventana
+{
+	
+	background-color:rgba(192,192,192,0.8);
+	display: none;
+	font-size: 1em;
+	height: 100%;
+	left: 0;
+	position: fixed;
+	top: 0;
+	width: 100%;
+}
+
+.formulario{
+	width: 300px;
+	height: 320px;
+	padding: 25px;
+	background-color: #1d9d74;
+	border: 1px solid #536DFE;
+	border-radius: 4px;
+	color: black;
+	top: 50%;
+	left: 50%;
+	position: absolute;
+	margin-left: -175px;
+	margin-top: -175px;
+}
+
+form{
+	margin-top: 10px;
+}
+
+select,
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="submit"]
+{
+	border: 1px solid #536DFE;
+	border-radius: 4px;
+	padding: 10px;
+	width: 65%;
+	display: inline-block;
+	margin-bottom: 3px;
+	font-size: .9em;
+	color: #141938;
+}
+
+input[type="submit"]
+{
+	width: 100%;
+	margin-top: 5px;
+	background-color: rgb(18,155,222);
+	color: white;
+	font-size: 1.0em;
+
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus{
+	border: 2px solid rgba(227, 84, 96, 1);
+	padding: 7px;
+}
+
+.cerrar{
+	
+	font-weight: 900;
+	text-align: right;
+}
+
+.cerrar a{
+	color: white;
+	text-decoration: none;
+}
+
+.descripcion{
+	margin: auto;
+	border: 1px solid green;
+	margin-bottom: 11px;
+	margin-top: 11px;
+	width: 30%;
+	height: 100px;
+	padding: 10px;
+	background-color: rgb(254,254,254);
+	border-radius: 3px 3px;
+}
+
+.descripcion ul li{
+	list-style: none;
+}
+
+.descripcion ul li p{
+	padding: 5px;
+	margin-top: 5px;
+	color: #1d9d74;
+}
+
+.cerrar-sesion{
+	display: block;
+	width: 30%;
+	padding: 10px;
+	height: 71%;
+	float: right;
+	text-align: right;
+	font-size: 1.5em;
+	color: white;
+}
+
+.usuario_sesion{
+	display: block;
+	height: 35%;
+	width: 30%;
+	padding: 10px;
+	float: left;
+}
