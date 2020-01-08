@@ -1,3 +1,10 @@
+function validarNumero(){
+	var numero = $('#promedio_notas').val;
+	if (!numero.match(/^(\d+)(\.\d+)?$/)) {
+		alert('El valor ingresado en el promedio de notas no es un decimal')
+	}
+}
+
 function cargar_snies(val){
 	$("#c_snies").html("Esperando SNIES, un momento...");
 	$.ajax({

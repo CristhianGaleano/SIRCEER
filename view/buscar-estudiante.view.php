@@ -58,7 +58,7 @@
 				<a <?php if ($value['estado'] == 'GRADUADO' || $value['estado'] == 'MATRICULADO' || getMatricula( $value['doc_estudiante'],$cn ) > 0 &&  $value['estado'] == 'ACTIVO' || getMatricula( $value['doc_estudiante'],$cn ) > 0 &&  $value['estado'] == 'INACTIVO'):
 					echo "href='' title='No es posible matricular'><span class='icon-folder-plus'></span></a>";
 				else:?>
-					href="<?php echo URL ?>gestion/matricular-estudiante.php?docu=<?php echo urlencode($value['doc_estudiante'])?>&select=e" title="Matricular"><span class="icon-folder-plus"></span></a>
+					href="<?php echo URL ?>gestion/matricular-estudiante.php?docu=<?php echo urlencode($value['doc_estudiante'])?>" title="Matricular"><span class="icon-folder-plus"></span></a>
 				<?php endif ?> 
 				
 			</td>
@@ -68,11 +68,11 @@
 					echo "href='' title='No es posible gestionar'><span class='icon-cogs'></span></a>" ;
 				else:?>
 					
-				    href="<?php echo URL ?>gestion/gestionar-estudiante.php?id=<?php echo urlencode($value['doc_estudiante'])?>&select=e" title="Administrar" ><span class="icon-cogs"></span></a>
+				    href="<?php echo URL ?>gestion/gestionar-estudiante.php?id=<?php echo urlencode($value['doc_estudiante'])?>" title="Administrar" ><span class="icon-cogs"></span></a>
 				    <?php endif ?> 
 			</td>
 			<td class="table_estudiantes_td">
-				<a href="<?php echo URL ?>gestion/editar-estudiante.php?id=<?php echo urlencode($value['doc_estudiante'])?>&select=e" title="Editar"><span class="icon-pencil2"></span></a>
+				<a href="<?php echo URL ?>gestion/editar-estudiante.php?id=<?php echo urlencode($value['doc_estudiante'])?>" title="Editar"><span class="icon-pencil2"></span></a>
 			</td>
 			<td class="table_estudiantes_td">
 				<a href="<?php echo URL ?>php/eliminarEstudiante.php?id=<?php echo urlencode($value['doc_estudiante'])?>" title="Eliminar"><span class="icon-bin"></span></a>

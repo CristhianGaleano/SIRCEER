@@ -123,7 +123,7 @@ header h1{
 .contenedor{
 	position: absolute;
 	margin: auto;
-	width: 100%;
+	width: 95%;
 	height: 100%;
 	/*font-size: 3em;*/
 }
@@ -215,6 +215,30 @@ div#bodymenu .itemUno{
 	margin-left: 5px;*/
 	/*background-color: rgb(247,48,6);*/
 	float: left;
+}
+
+div#bodymenu .itemUno:hover{
+	background-color:  #F52236;
+}
+
+div#bodymenu .itemDos:hover{
+	background-color:  #F52236;
+}
+
+div#bodymenu .itemTres:hover{
+	background-color:  #F52236;
+}
+
+div#bodymenu .itemCuatro:hover{
+	background-color:  #F52236;
+}
+
+div#bodymenu .itemCinco:hover{
+	background-color:  #F52236;
+}
+
+div#bodymenu .itemSeis:hover{
+	background-color:  #F52236;
 }
 
 div#bodymenu .itemDos{

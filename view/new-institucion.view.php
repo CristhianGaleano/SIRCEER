@@ -23,7 +23,7 @@
 			<td><label for="calendario">Calendario:</label></td>
 			<td>
 				<select name="calendario" id="" required>
-					<option value="">Sin selccionar</option>
+					<option value="">Seleccione una opción</option>
 					<option value="A">A</option>
 					<option value="B">B</option>
 				</select>
@@ -36,7 +36,7 @@
 			<td><label for="sector">Sector</label></td>
 			<td>
 				<select name="sector" id="" required="">
-					<option value="">Sin seleccionar</option>
+					<option value="">Seleccione una opción</option>
 				<?php foreach ($sectores as $value): ?>
 					<option value="<?php echo $value['id'] ?>"><?php echo $value['nombre'] ?></option>
 				<?php endforeach ?>
@@ -44,7 +44,7 @@
 			<td><label for="municipio">Municipio</label></td>
 			<td>
 				<select name="municipio" id="" required="">
-					<option value="">seleccione una opción</option>
+					<option value="">Seleccione una opción</option>
 				<option value="APIA">APIA</option>
 	<option value="BALBOA">BALBOA</option>
 	<option value="BELEN DE UMBRIA">BELEN</option>
@@ -70,7 +70,7 @@
 			<td><label for="zona">Zona</label></td>
 			<td>
 				<select name="zona" id="" required="">
-					<option value="">Sin seleccionar</option>
+					<option value="">Seleccione una opción</option>
 				<?php foreach ($zonas as $value): ?>
 					<option value="<?php echo $value['id'] ?>"><?php echo $value['nombre'] ?></option>
 				<?php endforeach ?>

@@ -6,12 +6,17 @@
 ___________________________________________________________
 
 
+Corecciones:
+Cambiar en la BD tabla Estudiantes el campo media_notas a 1 (entero) y 1 (decimal)
+Igualmente en esta tabla el campo 'puntaje_sisben' a decimal de 4 enteros y 3 decimales
 
 
 
 
-
-
+----------------------
+Update:
+styles.css
+new-institucion.view
 
 
 

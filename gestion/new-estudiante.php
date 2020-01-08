@@ -155,7 +155,7 @@ if ($_SESSION['usuario']['perfil'] == 'REGULAR') {
 		?>
 		<script type="text/javascript">
 			alert('Ocurrio, por favor verifique sus datos...');
-			window.location="<?php echo URL ?>gestion/buscar-estudiantes.php?select=e"; 
+			//window.location="<?php echo URL ?>gestion/buscar-estudiantes.php?select=e"; 
 		</script>
 		<?php
 }

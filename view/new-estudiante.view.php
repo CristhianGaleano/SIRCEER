@@ -87,7 +87,7 @@
 			</select>
 			</td>		
 			<td><label for="promedio_notas">Promedio de notas</label></td>
-			<td><input type="text" name="promedio_notas" placeholder="Media notas"></td>
+			<td><input type="text" name="promedio_notas" placeholder="Media notas" pattern="[0-9]" title="Ingrese una expresión como esta: 4.5" id="promedio_notas" onchange="validarNumero()"></td>
 			<td><label for="servicio_social">Servicio social</label></td>
 			<td>
 				<select  style="width: 200px" required="" name="servicio_social" id="">
@@ -255,7 +255,7 @@
 
 		<tr>
 			<td><label for="puntage_sisben">Puntaje sisben</label></td>
-			<td><input type="number" min="0" max="900" name="puntage_sisben"></td>
+			<td><input type="number" min="0" max="900" name="puntage_sisben" pattern="[0-9]" title="Ingrese solo numeros y decimales"></td>
 			<td><label for="observacion:">Observación:</label></td>
 			<td><textarea name="observacion" placeholder="Observaciones para el estudiante..." id="observacion" cols="30" rows="3" maxlength="110"></textarea></td>
 		</tr>
@@ -289,7 +289,7 @@
 			<td></td>
 			<td><input type="reset" name=""></td>
 			<td></td>
-			<td><input type="submit" name="submit" class="btn btn-primary" value="Guardar"></td>
+			<td><input type="submit" name="submit"  class="btn btn-primary" value="Guardar"></td>
 		</tr>
 		
 		
