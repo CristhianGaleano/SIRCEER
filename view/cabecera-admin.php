@@ -7,12 +7,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="<?php echo URL; ?>css/estilos.css">
 	<link rel="icon" href="<?php echo URL; ?>imagenes/favicon.png">
-	<script src="../sweetalert2.js"></script>
+	<!--<script src="../sweetalert2.js"></script>-->
 
+	
 	<!-- Bootstrap CSS -->
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
     <!-- CSS personalizado --> 
-    <!---<link rel="stylesheet" href="main.css">  -->
+    <link rel="stylesheet" href="../main.css">  
       
       
     <!--datables CSS básico-->
@@ -22,12 +23,10 @@
 
 	<link rel="stylesheet" href="<?php echo URL; ?>libs/icomoon/style.css">
 	
-	<!--La sgte libreria es inprescidinble para el buscador-->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	
-	<script src="<?php echo URL; ?>js/jquery.js"></script>
-	<script src="<?php echo URL; ?>js/javascript.js"></script>
-	<script src="../js/jquery.js"></script>
+	
+	<!--<script src="<?php echo URL; ?>js/javascript.js"></script>-->
+	<!--<script src="../js/jquery.js"></script>-->
 	<!--<link href="https://fonts.googleapis.com/css?family=Revalia" rel="stylesheet">-->
 </head>
 <body>
