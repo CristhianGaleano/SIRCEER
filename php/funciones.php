@@ -422,7 +422,7 @@ function obtener_estudiante($estudiante_por_pagina,$cn){
 
 
 	$ps = $cn->prepare(
-		"SELECT  SQL_CALC_FOUND_ROWS estudiantes.id,estudiantes.documento AS doc_estudiante,estudiantes.primer_nombre,estudiantes.segundo_nombre,estudiantes.primer_apellido,estudiantes.segundo_apellido,estudiantes.edad, estudiantes.genero,estudiantes.grado, zonas.nombre AS zona, estudiantes.estado,estudiantes.muni_naci,estudiantes.muni_resi, sedes.nombre AS sede, tipos_estrategias.nombre AS estrategia
+		"SELECT  SQL_CALC_FOUND_ROWS estudiantes.id,estudiantes.documento AS doc_estudiante,estudiantes.primer_nombre,estudiantes.segundo_nombre,estudiantes.primer_apellido,estudiantes.segundo_apellido,estudiantes.edad, estudiantes.genero,estudiantes.grado,estudiantes.siben, estudiantes.estrato, estudiantes.telefono_contacto, zonas.nombre AS zona, estudiantes.estado,estudiantes.muni_naci,estudiantes.muni_resi, sedes.nombre AS sede, tipos_estrategias.nombre AS estrategia
 		FROM estudiantes 
 		LEFT JOIN zonas ON estudiantes.zona_id=zonas.id 
 		LEFT JOIN sedes ON estudiantes.sede_id=sedes.id 
