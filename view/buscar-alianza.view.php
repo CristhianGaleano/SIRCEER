@@ -1,35 +1,45 @@
 <?php require("cabecera-admin.php") ?>
-<?php include_once 'template-parts/menu-alianzas.php' ?>			
-
-
-<section class="contenedor-busqueda">
-	<form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="POST">
-		<input type="text" name="busqueda" id="busqueda" placeholder="Buscar...">
-		<input type="submit" name="buscar" value="Buscar">
-	</form>
-</section>
 
 
 
-<div style="overflow-x:auto; padding: 17px;">
-	<!-- AQUI SE DESPLEGARA NUESTRA TABLA DE CONSULTA -->
-	<table class="table_estudiantes">
-		<tr>
-			<th class="table_estudiantes_th">COD.</th>
-			<th class="table_estudiantes_th">NOMBRE</th>
-			<th class="table_estudiantes_th">FECHA INICIO</th>
-			<th class="table_estudiantes_th">FECHA FIN</th>
-			<th class="table_estudiantes_th">CUPOS</th>
-		</tr>
 
+<!--Fila para +-->
+
+<div class="row main_wraper">
+    <div class="col-lg-12">
+            <a class="btn btn-success" href="<?php echo URL; ?>gestion/new-alianza.php">Agregar</a>
+    </div>
+</div>
+
+<!---fila para table-->
+                <div class="row main_wraper">
+<!--Ejemplo tabla con DataTables-->
+    
+                <div class="col-md-10 mt-3">
+                    <div class="table-responsive-md">        
+                        <table id="example" class="table  table-bordered table-hover">
+                        <thead class="thead-light"> 
+                            <tr>
+                            	<th>Id</th>
+                                <th>Alianza</th>
+                                <th>Fecha Ini.</th>
+                                <th>Fecha Fin</th>
+                                <th>Cupos</th>
+                                <th>Estado</th>
+                                <th>-</th>
+                                <th>Acciones</th>
+                                <th>-</th>
+                            </tr>
+                        </thead>
+                        <tbody >
 	<?php foreach ($rows as $value) {?>
 		<tr class="table_estudiantes_tr">
 			
-			<td class="table_estudiantes_td"><?php echo $value['id_alianza'] ?></td>
-			<td class="table_estudiantes_td"><?php echo $value['nombre'] ?></td>
-			<td class="table_estudiantes_td"><?php echo $value['fecha_inicio'] ?></td>
-			<td class="table_estudiantes_td"><?php echo $value['fecha_final'] ?></td>
-			<td class="table_estudiantes_td"><?php echo $value['cupos'] ?></td>
+			<td><?php echo $value['id_alianza'] ?></td>
+			<td><?php echo $value['nombre'] ?></td>
+			<td><?php echo $value['fecha_inicio'] ?></td>
+			<td><?php echo $value['fecha_final'] ?></td>
+			<td><?php echo $value['cupos'] ?></td>
 			
 				<!--
 			<td class="table_estudiantes_td">
@@ -53,21 +63,10 @@
 		<?php
 	}
 	 ?>
-
-	</table>
-</div>
-
-
-
-
-
-<div>
-<?php require 'paginacion.view.php' ?>
-</div>
-
-<?php require("footer-menu.view.php") ?>	
-<?php #require 'piedepagina-admin.php' ?>
-
-
-
-
+</tbody>        
+                       </table>                  
+                    </div>
+                </div>
+      
+</div><!--row -->
+<?php require 'piedepagina-admin.php' ?>

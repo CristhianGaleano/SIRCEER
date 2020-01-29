@@ -8,23 +8,25 @@ $cn = getConexion($bd_config);
 comprobarConexion($cn);
 
 
+#Crear funcion para limpiar id
+	$doc_estu = $_GET['id'];
+	
+
+	$result = getSubjectByValue("estudiantes",$doc_estu,'documento',$cn);
+	$instituciones = getSedes($cn);
+	// $situacion_social = getSituacionSocial($cn);
+	$zonas = getZona($cn);
+	$eps = getAllSubject('eps',$cn);
+
 $tipos_estrategias = getAllSubject('tipos_estrategias',$cn);
 $estados_civiles = getAllSubject('estado_civil',$cn);
 
-$enviado = false;
+
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') 
 {
 
-	if($_SESSION['usuario']['perfil'] != 'REGULAR'){
-
-		
-		?>
-		<script type="text/javascript">
-			alert('Uste no puede editar un estudiante.');
-			window.location="<?php echo URL ?>gestion/buscar-estudiantes.php?select=e"; 
-		</script>
-		<?php
-	}else{
+header('Content-Type: application/json');
 
 
 	#print_r($_POST);
@@ -43,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 	$EPS = cleanData($_POST['eps']);
 	$fecha_inicio = cleanData($_POST['fecha_inicio']);
 	$fecha_fin = cleanData($_POST['fecha_fin']);
-	$media_notas = cleanData($_POST['media_notas']);
+#	$media_notas = cleanData($_POST['media_notas']);
 	$condonacion_credito = cleanData($_POST['condonacion_credito']);
 	$sisben = cleanData($_POST['sisben']);
 	$puntage_sisben = cleanData($_POST['puntage_sisben']);
@@ -151,49 +153,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 	// var_dump($stm);
 	$resultE = $stm->execute();
 	// echo "<br>Mostrando <br>";
-	// var_dump($resultE);
-
-
-
-
-
-
-
+	#var_dump($resultE);
+	#
 	
-	if ($resultE != false) {
-		?>
-            <script type="text/javascript"> 
-            alert('Registro actualizado....');
-                window.location="<?php echo URL ?>gestion/buscar-estudiantes.php?select=e"; 
-            </script> 
-            <?php //lo abro de nuevo
-    $enviado = true;
-	}else{
-		?>
-            <script type="text/javascript"> 
-                alert('Ocurrio un error...');
-            </script> 
-            <?php //lo abro de nuevo
-	}
-}//Fin de la validacion permiso usuario
+if($resultE) {
+#echo 'entro';
+	$respuesta = array("estado" => "true");
+	return print( json_encode( $respuesta )) ;
 
-}else
-{
-	#Crear funcion para limpiar id
-	$doc_estu = $_GET['id'];
-	if (empty($doc_estu)) {
-		?>
-            <script type="text/javascript"> 
-                window.location="<?php echo URL ?>principal-admin.php"; 
-            </script> 
-            <?php //lo abro de nuevo
-	}
-	$result = getSubjectByValue("estudiantes",$doc_estu,'documento',$cn);
-	$instituciones = getSedes($cn);
-	// $situacion_social = getSituacionSocial($cn);
-	$zonas = getZona($cn);
-	$epss = getAllSubject('eps',$cn);
+}else {
+	#echo 'es false';
+	$respuesta = array("estado" => "false");
+	return print( json_encode( $respuesta )) ;
 	
+}
+
+
+
+
+
+
+
+
 }
 ?>
 

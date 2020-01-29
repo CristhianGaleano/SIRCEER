@@ -22,7 +22,7 @@
         $result = searchUserLogin($usuario,$pass,$cn);
         // var_dump($result);
 
-        #Sy hay coincidencia se guardan datos y se verfica perfil
+        #SI hay coincidencia se guardan datos y se verfica perfil
         if ($result != false) {
             $_SESSION['usuario']['user'] = $usuario;
 

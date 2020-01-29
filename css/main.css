@@ -1,0 +1,277 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+
+body{
+	background-color: #f2f2f2;
+	font-size: 16px;
+	font-family: 'Open Sans', sans-serif;
+}
+
+/*BARRA LATERAL*/
+ .barra-lateral{
+ 	background: #262a34;
+ 	color: #fff;
+ 	min-width: 100px;
+ 	min-height: 100vh;
+ 	padding: 0;
+ }
+
+ .barra-lateral a{
+ 	color: #fff;
+ }
+
+ /*LOGO*/
+ .barra-lateral .logo{
+ 	background: #0275db;
+ 	margin-bottom: 2px;
+ }
+
+
+ .barra-lateral .logo h2{
+ 	font-size: 30px;
+ 	font-family: 'Roboto', sans-serif;
+	padding: 20px 0;
+	text-align: center;
+	font-weight: 300;
+	margin: 0;
+ }
+
+
+ .barra-lateral .menu a{
+ 	display: block;
+ 	padding: 15px;
+ 	font-family: 'Roboto', sans-serif;
+ 	font-weight: 500;
+ 	border-bottom: 1px solid rgba(255,255,255,.1);
+ }
+
+ .barra-lateral .menu a:hover{
+ 	background: #35ae6b;
+ 	text-decoration: none;
+ }
+
+ .barra-lateral .menu a i{
+ 	margin-right: 5px;
+ 	font-weight: normal;
+ }
+
+
+/*MAIN*/
+
+.main .columna{
+	padding-left: 10px;
+	padding-right: 40px; 
+}
+
+.main .titulo{
+	color: #262a34;
+	font-size: 25px;
+	font-weight: 500;
+	font-family: 'Roboto', sasn-serif;
+	margin-bottom: 20px;
+}
+
+.main .widget{
+	margin-bottom: 10px;
+}
+
+/*WIDGET NUEVA ENTRADA*/
+.main .widget form input[type="text"],
+.main .widget form textarea{
+	width: 100%;
+	padding: 10px;
+	margin-bottom: 20px;
+	font-family: 'Open sans', sans-serif;
+}
+
+.main .widget form input[type="text"] {
+	font-weight: 400;
+}
+
+.main .widget form textarea{
+	height: 400px;
+	min-height: 200px;
+	max-width: 100%;
+	min-width:  100%;
+}
+
+.main .widget form button{
+	background: #0275d8;
+	cursor: pointer;
+	color: #fff;
+	font-family: 'Roboto', sans-serif;
+	font-size: 18px;
+	font-weight: 500;
+	border: none;
+	/*Por defecto: inline*/
+	display: inline-block;
+	padding: 10px;
+	width: 200px;
+	border-radius: 3px;
+	transition: all .3s ease;
+}
+
+.main .widget form button:hover{
+	background: #025aa5;
+}
+
+/*WIDGET ESTADISTICAS*/
+.main .estadisticas .contenedor{
+	box-shadow: 0 1px 1px 0 rgba(0,0,0,.2);
+}
+
+.main .estadisticas .caja{
+	background: #fff;
+	border: 1px solid #e3e3e3;
+	padding: 40px 20px;
+	/*Para que todos tengan el mismo tamaño*/
+	flex: 1;
+	text-align: center;
+	font-family: 'Roboto', sans-serif;
+}
+
+
+.main .estadisticas .caja h3{
+	margin-top: 10px;
+	color: #ae6b;
+}
+
+.main .estadisticas .caja {
+	color: #a8a8a8;
+}
+
+.main .estadisticas .caja:first-child{
+	border-right: 0;
+}
+
+.main .estadisticas .caja:last-child{
+	border-left: 0;
+}
+
+/*widget comentarios*/
+.main .comentarios .contenedor{
+	box-shadow: 0px 2px 0px rgba(0,0,0,0.2);
+}
+
+.main .comentarios .comentario{
+	background: #fff;
+	padding: 20px;
+	border-bottom: 1px solid #dfdfdf;
+}
+
+.main .comentarios .comentario .foto{
+	width: 65px;
+	height: 60px;
+	/*Si la imagen tuviera algun espacio sobrante se ocultara*/
+	overflow: hidden;
+	margin-right: 20px;
+	border-radius: 100px;
+}
+
+
+
+.main .comentarios .comentario .foto a{
+	display: inline-block;
+}
+.main .comentarios .comentario .foto img{
+	width: 100%; 
+}
+
+
+.main  .comentarios .comentario .texto{
+	/*Para que el texto abarque lo que pueda*/
+	flex: 1;
+}
+
+.main  .comentarios .comentario .texto-comentario{
+	font-size: 14px;
+	font-family: 'Open Sans', sans-serif;
+}
+
+.main  .comentarios .comentario .botones button{
+	background: none;
+	cursor: pointer;
+	color: white;
+	font-family: 'Roboto', sans-serif;
+	font-size: 14px;
+	font-weight: 500;
+	border: none;
+	display: inline-block;
+	padding: 5px 10px;
+	border-radius: 3px;
+	transition: all .3s;
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+
+
+.main .comentarios .comentario .botones .aprobar{
+	background: #35ae6b;
+}
+
+.main .comentarios .comentario .botones .eliminar{
+	background: #b74848;
+}
+
+.main .comentarios .comentario .botones .bloquear{
+	color: #acacac;
+}
+
+
+.main .comentarios .comentario .botones .aprobar:hover{
+	background: #449d44;
+}
+
+.main .comentarios .comentario .botones .eliminar:hover{
+	background: #c9302c;
+}
+
+.main .comentarios .comentario .botones .bloquear:hover{
+	background: #acacac;
+	color: #fff;
+}
+
+/**/
+.columna form input[type="email"],
+.columna form input[type="number"]{
+	width: 100%;
+}
+
+.matricula {
+	/*height: 450px;*/
+	border: 1px solid #D8E3E3;
+	margin: auto;
+}
+
+
+
+
+.m-buscar .row {
+	height: 130px;
+}
+
+
+
+/*NUEVO ESTUDIANTE*/
+.main_wraper {
+	background: #fff;
+	padding: 13px;
+	margin-bottom: 10px;
+	margin-left: 3px;
+}
+
+/*DATABLE TABLAS*/
+.table tbody tr td{
+	font-size: .8em;
+}
+
+.table tbody tr td a{
+	font-size: 1em;	
+	color: #fff;
+}
+
+ .table thead th{
+ 	font-size: .9em;
+ }

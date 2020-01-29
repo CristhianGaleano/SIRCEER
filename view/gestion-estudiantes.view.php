@@ -1,6 +1,6 @@
 <?php require 'cabecera-admin.php';
 require_once '../admin/config.php'; ?>      
-<?php include_once "template-parts/menu-estudiantes.php" ?>    
+
       
 
 <script src="https://code.highcharts.com/highcharts.js"></script>

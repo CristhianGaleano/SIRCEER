@@ -5,39 +5,36 @@ include '../admin/config.php';
 validateSession();
 $cn = getConexion($bd_config);
 comprobarConexion($cn);
-$snies = cleanData($_GET['snies']);
-#echo "$snies";
-if (empty($snies)) {
-	?>
-		<script type="text/javascript">
-			window.location="<?php echo URL ?>gestion/errorIn.php";
-		</script>
-	
-	<?php
-		}else{
-$sql = "DELETE FROM programas WHERE snies=:snies";
 
-$ps = $cn->prepare($sql);
-$ps->bindParam(':snies',$snies);
-$result = $ps->execute();
-var_dump($result);
-if (!$result) {
-	?>
+
+
+header('Content-Type: application/json');
+
+
+$id_programa = cleanData($_GET['id']);
+#echo "$id_programa";
+
+
+$estado = deletePrograma($id_programa,$cn);
+#$estado = prueba();
+#var_dump($estado);
+
+#$respuesta = array();
+
+if($estado == true) {
+#echo 'entro';
+	$respuesta = array("estado" => "true");
+	return print( json_encode( $respuesta )) ;
+
+}else {
+	#echo 'es false';
+	$respuesta = array("estado" => "false");
+	return print( json_encode( $respuesta )) ;
 	
-		<script type="text/javascript">
-			alert("Ocurrio un error al eliminar el programa.");
-			window.location="<?php echo URL ?>gestion/buscar-programa.php?select=p";
-		</script>
-	
-	<?php
-}else{
-	?>
-		<script type="text/javascript">
-			alert('El programa ha sido eliminado...');
-			window.location="<?php echo URL ?>gestion/buscar-programa.php?select=p";
-		</script>
-	<?php
 }
+
+#var_dump($estado);
+
 	
-}
+
 ?>

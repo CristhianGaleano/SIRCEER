@@ -1,9 +1,3 @@
-1. Al matricular debe cambiarse el estado a uno mas descriptivo para la busqueda dinamica.
-2. Manipular excel desde php con PHPExcel.
-3. Ver el tema de cuando pasamos el estado del estu a inacivo
-
-
-___________________________________________________________
 
 
 Corecciones:
@@ -11,94 +5,71 @@ Cambiar en la BD tabla Estudiantes el campo media_notas a 1 (entero) y 1 (decima
 Igualmente en esta tabla el campo 'puntaje_sisben' a decimal de 4 enteros y 3 decimales
 
 
-
-
-----------------------
-Update:
-styles.css
-new-institucion.view
+Quitar en editar estudiante: Situacion acedemica
 
 
 
+--------------
+JPGRAP INTERESANTE:
+https://programacion8253.wordpress.com/
 
 ----------------------------
+Correcciones para la nueva version
+
+Antes de actualizar a traves de consultas verificar estos estado, y que sean congruentes, es importante antes que nada hacer copia de seguridad.
+
+Actualmente la matricula cambia de estado, a aprobado y no aprobado, lo ideal debe ser que el estado del estudiante cambie a INACTIVO, listo para volver a matricularse y volver a tomar el estado de MATRICULADO
+
+
+Es muy importante al migrar en produccion manejar este estado, es decir actualizar respectivamente a los estudiantes segun como esten en matricula, en este orden de ideas, los casos a encontrar seran:
+
+1. Estudiante con estado MATRICULADO y matricila en estado aprobado o no aprobado
+
+------------------------------
 
 
 
-<!--<div style="overflow-x:auto; padding: 17px;">-->
-	<!-- AQUI SE DESPLEGARA NUESTRA TABLA DE CONSULTA -->
-	<!--<table class="table_estudiantes">-->
-		<!--<tr>-->
-			<!--<th class="table_estudiantes_th">Id</th>-->
-			<!--<th class="table_estudiantes_th">Documento</th>
-			<th class="table_estudiantes_th">Nombres</th>
-			<th class="table_estudiantes_th">Apellidos</th>
-			<th class="table_estudiantes_th">Edad</th>
-			<th class="table_estudiantes_th">Grado</th>
-			<th class="table_estudiantes_th">Municipio</th>
-			<th class="table_estudiantes_th">Zona</th>
-			<th class="table_estudiantes_th">Sede(Instituto)</th>
-			<th class="table_estudiantes_th">Genero</th>
-			<th class="table_estudiantes_th">Estrategia</th>
-			<th class="table_estudiantes_th">Estado</th>
+		
+		
+
+		<!---->
+
+		
 			
-		</tr>-->
-
-	<?php #foreach ($rows as $value) {?>
-		<tr class="table_estudiantes_tr" <?php if ( empty( getMatricula($value['doc_estudiante'],$cn )) || getMatricula($value['doc_estudiante'],$cn ) == null || $value['estado'] == 'ACTIVO' || getMatricula($value['doc_estudiante'],$cn ) == 0 ):?> 
-			<?php echo 'style="background: #E5AF9F;"';?> 
-			<?php elseif ( getMatricula($value['doc_estudiante'],$cn ) >= 0 && $value['estado'] == 'MATRICULADO' ):
-				 echo 'style="background: #44B266;"';?>
-				 <?php elseif ( getMatricula($value['doc_estudiante'],$cn ) >= 0 && $value['estado'] == 'GRADUADO' ): ?>
-				 	<?php echo 'style="background: #99CCF7;"';?>
-				 		<?php elseif ( getMatricula($value['doc_estudiante'],$cn ) >= 0 && $value['estado'] == 'INACTIVO' ): ?>
-				 	<?php echo 'style="background: #CC6767;"';?>
-				<?php endif ?> >
-			<!--<td class="table_estudiantes_td"><?php echo $value['id'] ?></td>-->
-			<td class="table_estudiantes_td"><?php echo $value['doc_estudiante'] ?></td>
-			<td class="table_estudiantes_td"><?php echo $value['primer_nombre'] . " " .$value['segundo_nombre']?></td>
-			<td class="table_estudiantes_td"><?php echo $value['primer_apellido'] . " " .$value['segundo_apellido']?></td>
-			<td class="table_estudiantes_td"><?php echo $value['edad'] ?></td>
-			<td class="table_estudiantes_td"><?php echo $value['grado'] ?></td>
-			<td class="table_estudiantes_td"><?php echo $value['muni_resi'] ?></td>
-			<td class="table_estudiantes_td"><?php echo $value['zona'] ?></td>
-			<td class="table_estudiantes_td"><?php echo $value['sede'] ?></td>
-			<td class="table_estudiantes_td"><?php echo $value['genero'] ?></td>
-			<td class="table_estudiantes_td"><?php echo $value['estrategia'] ?></td>
-			<td class="table_estudiantes_td"><?php echo $value['estado'] ?></td>
-			<td class="table_estudiantes_td">
-				<!-- Si es diferente de activo y ya esta matriculado -->
-				<?php #echo  getMatricula( $value['doc_estudiante'],$cn ); ?> 
-				<a <?php if ($value['estado'] == 'GRADUADO' || $value['estado'] == 'MATRICULADO' || getMatricula( $value['doc_estudiante'],$cn ) > 0 &&  $value['estado'] == 'ACTIVO' || getMatricula( $value['doc_estudiante'],$cn ) > 0 &&  $value['estado'] == 'INACTIVO'):
-					echo "href='' title='No es posible matricular'><span class='icon-folder-plus'></span></a>";
-				else:?>
-					href="<?php echo URL ?>gestion/matricular-estudiante.php?docu=<?php echo urlencode($value['doc_estudiante'])?>" title="Matricular"><span class="icon-folder-plus"></span></a>
-				<?php endif ?> 
-				
-			</td>
-
-			<td class="table_estudiantes_td">
-				<a <?php if (getMatricula( $value['doc_estudiante'],$cn ) == 0 &&  $value['estado'] == 'ACTIVO' || $value['estado'] == 'GRADUADO'):
-					echo "href='' title='No es posible gestionar'><span class='icon-cogs'></span></a>" ;
-				else:?>
-					
-				    href="<?php echo URL ?>gestion/gestionar-estudiante.php?id=<?php echo urlencode($value['doc_estudiante'])?>" title="Administrar" ><span class="icon-cogs"></span></a>
-				    <?php endif ?> 
-			</td>
-			<td class="table_estudiantes_td">
-				<a href="<?php echo URL ?>gestion/editar-estudiante.php?id=<?php echo urlencode($value['doc_estudiante'])?>" title="Editar"><span class="icon-pencil2"></span></a>
-			</td>
-			<td class="table_estudiantes_td">
-				<a href="<?php echo URL ?>php/eliminarEstudiante.php?id=<?php echo urlencode($value['doc_estudiante'])?>" title="Eliminar"><span class="icon-bin"></span></a>
-			</td>
-			<td class="table_estudiantes_td">
-				<a href="<?php echo URL ?>gestion/ver-estudiante.php?id=<?php echo urlencode($value['doc_estudiante'])?>" title="Ver"><span class="icon-eye-plus"></span></a>
-			</td>
-		<?php
-	}
-	 ?>
+			<input type="reset" name="">
+			
+			<input type="submit" name="submit"  class="btn btn-primary" value="Guardar">
+		
+		
+		
 
 	</table>
-</div>
+
+		
+
+_________________
 
 
+INSERT INTO `estudiantes` (`id`, `documento`, `primer_nombre`, `segundo_nombre`, `primer_apellido`, `segundo_apellido`, `telefono_contacto`, `email`, `fecha_nacimiento`, `edad`, `direccion_residencia`, `estrato`, `fecha_inicio`, `fecha_fin`, `observacion`, `foto`, `media_notas`, `condonacion_credito`, `siben`, `puntaje_sisben`, `num_acta_grado`, `lugar_servicio_social`, `estado`, `tipo_doc`, `genero`, `estado_civil`, `grado`, `servicio_social`, `muni_naci`, `muni_resi`, `fecha_grado`, `prioritaria`, `eps_id`, `zona_id`, `sede_id`, `tipo_estrategia_id`, `acudiente_id`, `fecha_sistema`) VALUES (NULL, '1087454', 'Cristhian', 'Alexis', 'Galeano', 'Ruiz', '3406243', NULL, '1989-01-07 00:00:00', '.9', NULL, '1', '2020-01-08 00:00:00', '2020-01-16 00:00:00', NULL, 'pordefecto.png', '3.5', 'SI', 'SI', '300', '4546', NULL, 'INACTIVO', 'C.C: Cedula de Ciudadania', 'Masculino', 'Soltero', '9', 'NO', 'Pereira', 'Pereira', '2020-01-07', '', '18', '2', '1', '4', '1', current_timestamp());
+
+INSERT INTO `estudiantes` (`id`, `documento`, `primer_nombre`, `segundo_nombre`, `primer_apellido`, `segundo_apellido`, `telefono_contacto`, `email`, `fecha_nacimiento`, `edad`, `direccion_residencia`, `estrato`, `fecha_inicio`, `fecha_fin`, `observacion`, `foto`, `media_notas`, `condonacion_credito`, `siben`, `puntaje_sisben`, `num_acta_grado`, `lugar_servicio_social`, `estado`, `tipo_doc`, `genero`, `estado_civil`, `grado`, `servicio_social`, `muni_naci`, `muni_resi`, `fecha_grado`, `prioritaria`, `eps_id`, `zona_id`, `sede_id`, `tipo_estrategia_id`, `acudiente_id`, `fecha_sistema`) VALUES (NULL, '10874548', 'Cristhian', 'Alexis', 'Galeano', 'Ruiz', '3406243', NULL, '1989-01-07 00:00:00', '.9', NULL, '1', '2020-01-08 00:00:00', '2020-01-16 00:00:00', NULL, 'pordefecto.png', '3.5', 'SI', 'SI', '300', '4546', NULL, 'INACTIVO', 'C.C: Cedula de Ciudadania', 'Masculino', 'Soltero', '9', 'NO', 'Pereira', 'Pereira', '2020-01-07', '', '18', '2', '1', '4', '1', current_timestamp());
+
+INSERT INTO `estudiantes` (`id`, `documento`, `primer_nombre`, `segundo_nombre`, `primer_apellido`, `segundo_apellido`, `telefono_contacto`, `email`, `fecha_nacimiento`, `edad`, `direccion_residencia`, `estrato`, `fecha_inicio`, `fecha_fin`, `observacion`, `foto`, `media_notas`, `condonacion_credito`, `siben`, `puntaje_sisben`, `num_acta_grado`, `lugar_servicio_social`, `estado`, `tipo_doc`, `genero`, `estado_civil`, `grado`, `servicio_social`, `muni_naci`, `muni_resi`, `fecha_grado`, `prioritaria`, `eps_id`, `zona_id`, `sede_id`, `tipo_estrategia_id`, `acudiente_id`, `fecha_sistema`) VALUES (NULL, '10784454', 'Cristhian', 'Alexis', 'Galeano', 'Ruiz', '3406243', NULL, '1989-01-07 00:00:00', '.9', NULL, '1', '2020-01-08 00:00:00', '2020-01-16 00:00:00', NULL, 'pordefecto.png', '3.5', 'SI', 'SI', '300', '4546', NULL, 'INACTIVO', 'C.C: Cedula de Ciudadania', 'Masculino', 'Soltero', '9', 'NO', 'Pereira', 'Pereira', '2020-01-07', '', '18', '2', '1', '4', '1', current_timestamp());
+
+INSERT INTO `estudiantes` (`id`, `documento`, `primer_nombre`, `segundo_nombre`, `primer_apellido`, `segundo_apellido`, `telefono_contacto`, `email`, `fecha_nacimiento`, `edad`, `direccion_residencia`, `estrato`, `fecha_inicio`, `fecha_fin`, `observacion`, `foto`, `media_notas`, `condonacion_credito`, `siben`, `puntaje_sisben`, `num_acta_grado`, `lugar_servicio_social`, `estado`, `tipo_doc`, `genero`, `estado_civil`, `grado`, `servicio_social`, `muni_naci`, `muni_resi`, `fecha_grado`, `prioritaria`, `eps_id`, `zona_id`, `sede_id`, `tipo_estrategia_id`, `acudiente_id`, `fecha_sistema`) VALUES (NULL, '1087454654454', 'Cristhian', 'Alexis', 'Galeano', 'Ruiz', '3406243', NULL, '1989-01-07 00:00:00', '.9', NULL, '1', '2020-01-08 00:00:00', '2020-01-16 00:00:00', NULL, 'pordefecto.png', '3.5', 'SI', 'SI', '300', '4546', NULL, 'INACTIVO', 'C.C: Cedula de Ciudadania', 'Masculino', 'Soltero', '9', 'NO', 'Pereira', 'Pereira', '2020-01-07', '', '18', '2', '1', '4', '1', current_timestamp());
+
+INSERT INTO `estudiantes` (`id`, `documento`, `primer_nombre`, `segundo_nombre`, `primer_apellido`, `segundo_apellido`, `telefono_contacto`, `email`, `fecha_nacimiento`, `edad`, `direccion_residencia`, `estrato`, `fecha_inicio`, `fecha_fin`, `observacion`, `foto`, `media_notas`, `condonacion_credito`, `siben`, `puntaje_sisben`, `num_acta_grado`, `lugar_servicio_social`, `estado`, `tipo_doc`, `genero`, `estado_civil`, `grado`, `servicio_social`, `muni_naci`, `muni_resi`, `fecha_grado`, `prioritaria`, `eps_id`, `zona_id`, `sede_id`, `tipo_estrategia_id`, `acudiente_id`, `fecha_sistema`) VALUES (NULL, '10874888854', 'Cristhian', 'Alexis', 'Galeano', 'Ruiz', '3406243', NULL, '1989-01-07 00:00:00', '.9', NULL, '1', '2020-01-08 00:00:00', '2020-01-16 00:00:00', NULL, 'pordefecto.png', '3.5', 'SI', 'SI', '300', '4546', NULL, 'INACTIVO', 'C.C: Cedula de Ciudadania', 'Masculino', 'Soltero', '9', 'NO', 'Pereira', 'Pereira', '2020-01-07', '', '18', '2', '1', '4', '1', current_timestamp());
+
+INSERT INTO `estudiantes` (`id`, `documento`, `primer_nombre`, `segundo_nombre`, `primer_apellido`, `segundo_apellido`, `telefono_contacto`, `email`, `fecha_nacimiento`, `edad`, `direccion_residencia`, `estrato`, `fecha_inicio`, `fecha_fin`, `observacion`, `foto`, `media_notas`, `condonacion_credito`, `siben`, `puntaje_sisben`, `num_acta_grado`, `lugar_servicio_social`, `estado`, `tipo_doc`, `genero`, `estado_civil`, `grado`, `servicio_social`, `muni_naci`, `muni_resi`, `fecha_grado`, `prioritaria`, `eps_id`, `zona_id`, `sede_id`, `tipo_estrategia_id`, `acudiente_id`, `fecha_sistema`) VALUES (NULL, '1087422254', 'Cristhian', 'Alexis', 'Galeano', 'Ruiz', '3406243', NULL, '1989-01-07 00:00:00', '.9', NULL, '1', '2020-01-08 00:00:00', '2020-01-16 00:00:00', NULL, 'pordefecto.png', '3.5', 'SI', 'SI', '300', '4546', NULL, 'INACTIVO', 'C.C: Cedula de Ciudadania', 'Masculino', 'Soltero', '9', 'NO', 'Pereira', 'Pereira', '2020-01-07', '', '18', '2', '1', '4', '1', current_timestamp());
+
+
+INSERT INTO `estudiantes` (`id`, `documento`, `primer_nombre`, `segundo_nombre`, `primer_apellido`, `segundo_apellido`, `telefono_contacto`, `email`, `fecha_nacimiento`, `edad`, `direccion_residencia`, `estrato`, `fecha_inicio`, `fecha_fin`, `observacion`, `foto`, `media_notas`, `condonacion_credito`, `siben`, `puntaje_sisben`, `num_acta_grado`, `lugar_servicio_social`, `estado`, `tipo_doc`, `genero`, `estado_civil`, `grado`, `servicio_social`, `muni_naci`, `muni_resi`, `fecha_grado`, `prioritaria`, `eps_id`, `zona_id`, `sede_id`, `tipo_estrategia_id`, `acudiente_id`, `fecha_sistema`) VALUES (NULL, '10873333454', 'Cristhian', 'Alexis', 'Galeano', 'Ruiz', '3406243', NULL, '1989-01-07 00:00:00', '.9', NULL, '1', '2020-01-08 00:00:00', '2020-01-16 00:00:00', NULL, 'pordefecto.png', '3.5', 'SI', 'SI', '300', '4546', NULL, 'INACTIVO', 'C.C: Cedula de Ciudadania', 'Masculino', 'Soltero', '9', 'NO', 'Pereira', 'Pereira', '2020-01-07', '', '18', '2', '1', '4', '1', current_timestamp());
+
+
+
+INSERT INTO `programas` (`id`, `snies`, `nombre`, `cantidad_semestre`, `costo_semestre`, `nivel_academico_id`, `universidad_id`, `jornada_id`) VALUES (NULL, '12378745', 'Prueba0', '3', '1154.00', '4', '1', '3');
+
+
+INSERT INTO `programas` (`id`, `snies`, `nombre`, `cantidad_semestre`, `costo_semestre`, `nivel_academico_id`, `universidad_id`, `jornada_id`) VALUES (NULL, '12375445', 'Prueba0', '3', '1154.00', '4', '1', '3');
+
+INSERT INTO `programas` (`id`, `snies`, `nombre`, `cantidad_semestre`, `costo_semestre`, `nivel_academico_id`, `universidad_id`, `jornada_id`) VALUES (NULL, '1235455745', 'Prueba0', '3', '1154.00', '4', '1', '3');

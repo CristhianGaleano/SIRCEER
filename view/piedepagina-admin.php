@@ -1,17 +1,21 @@
-</div>
 
+				
+			</main>
+		</div><!--row--->
+	</div><!--Container-->
 
-<!-- jQuery, Popper.js, Bootstrap JS -->
-    <script src="../bootstrap/js/jquery-3.3.1.min.js"></script>
-    <script src="../bootstrap/js/popper.min.js"></script>
-    <script src="../bootstrap/js/bootstrap.min.js"></script>
-      
-    <!-- datatables JS -->
-    <script type="text/javascript" src="../datatables/datatables.min.js"></script>    
-     
-    <script type="text/javascript" src="../main.js"></script>  
-</body>
-	<footer>
-	
-	</footer>
-</html>
+ 
+     <!-- Optional JavaScript -->
+     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+     <script src="<?php echo URL; ?>js/jquery-3.4.1.min.js"></script>
+     <!--<script src="<?php #echo URL; ?>js/jquery-3.3.1.min.js"></script>-->
+     <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>-->
+     <script src="<?php echo URL; ?>js/bootstrap.min.js"></script>
+     <script src="<?php echo URL; ?>datatables/datatables.min.js"></script>
+     <script type="text/javascript" src="<?php echo URL; ?>/js/overhang.min.js"></script>
+     <script type="text/javascript" src="<?php echo URL; ?>js/ajxjquery-ui.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+     <!--<script src="<?php echo URL; ?>js/popper.min.js"></script>-->
+     <script src="<?php echo URL; ?>main.js"></script>
+   </body>
+ </html>

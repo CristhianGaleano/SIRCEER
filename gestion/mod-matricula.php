@@ -3,17 +3,15 @@
 require_once '../admin/config.php';
 require_once '../php/funciones.php';
 require_once '../php/Conexion.php';
-
-
 validateSession();
+?>
+<?php 
 $cn = getConexion($bd_config);
 comprobarConexion($cn);
 
+$rs=paraMatricular($cn);
 
-#Declaracion variable global 
-$rows = obtener_estudiante($config_global['result_por_pagina'],$cn);
-#var_dump($rows);
 
 ?>
-<?php require "../view/buscar-estudiante.view.php" ?>
 
+<?php require '../view/mod-matricula.view.php'?>

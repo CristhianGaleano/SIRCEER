@@ -2,14 +2,6 @@
 
 
 
-<!--Fila para +-->
-
-<div class="row main_wraper">
-    <div class="col-lg-12">
-            <a class="btn btn-success" href="<?php echo URL; ?>gestion/new-estudiante.php">Agregar</a>
-    </div>
-</div>
-
 <!---fila para table-->
                 <div class="row main_wraper">
 <!--Ejemplo tabla con DataTables-->
@@ -26,7 +18,6 @@
                                 <!--<th>Contacto</th>-->
                                 <th>Edad</th>
                                 <th>Sisben</th>
-                                <th>Estado</th>
                                 <th>Genero</th>
                                 <th></th>
                                 <th>Acciones</th>
@@ -34,26 +25,23 @@
                             </tr>
                         </thead>
                         <tbody >
-                        	<?php foreach ($rows as $value) {?>
+                        	<?php foreach ($rs as $value) {?>
                            <tr>
 								<td><?php echo $value['id'] ?></td>	
-								<td><?php echo $value['doc_estudiante'] ?></td>
+								<td><?php echo $value['documento'] ?></td>
 								<td><?php echo $value['primer_nombre']. " " .$value['segundo_nombre'] ?></td>
 								<td><?php echo $value['primer_apellido']. " " .$value['segundo_apellido'] ?></td>
 								<!--<td><?php echo $value['telefono_contacto'] ?></td>-->
 								<td><?php echo $value['edad'] ?></td>
 								<td><?php echo $value['siben'] ?></td>
-								<td><?php echo $value['estado'] ?></td>
 								<td><?php echo $value['genero'] ?></td>
-								<td><a class="btn btn-warning btn-sm" href="<?php echo URL ?>gestion/editar-estudiante.php?id=<?php echo urlencode($value['doc_estudiante'])?>" title="Editar">Editar</a></td>
+								<td><input class="btn btn-info btn-sm" type="button" name="deleteEstudiante" value="Matricular" id="<?php echo urlencode($value['id'])?>"></td>
 
 								<td>
-                                    <input class="btn btn-danger btn-sm" type="button" name="deleteEstudiante" value="Eliminar" id="<?php echo urlencode($value['id'])?>">
-
-                                <!--    <a class="btn btn-danger btn-sm" id="btndeleteestu" href="<?php #echo URL ?>php/eliminarEstudiante.php?id=<?php #echo urlencode($value['doc_estudiante'])?>">Eliminar</a>-->
+                                    <input class="btn btn-light btn-sm" type="button" name="deleteEstudiante" value="Subir nota" id="<?php echo urlencode($value['id'])?>">
                                 </td>
                                 
-								<td><a class="btn btn-success btn-sm" href="<?php echo URL ?>gestion/ver-estudiante.php?id=<?php echo urlencode($value['doc_estudiante'])?>" title="Ver">Ver</a></td>
+								<td><a class="btn btn-success btn-sm" href="<?php echo URL ?>gestion/ver-estudiante.php?id=<?php echo urlencode($value['doc_estudiante'])?>" title="Ver">Descargar</a></td>
                             </tr>
                         <?php } ?>
                         </tbody>        

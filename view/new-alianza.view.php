@@ -1,12 +1,17 @@
 <?php require("cabecera-admin.php") ?>
-<?php include_once 'template-parts/menu-alianzas.php' ?>			
+
 <!--CONTENIDO-->
 
-<div class="wrap-formulario-new-estudiante">
-	<div class="wra_titulo">
-		<h1>INGRESAR NUEVA ALIANZA</h1>
+
+	<div class="row main_wraper">
+		<div class="col-md-12">
+			<h3>Nuevo estudiante</h3>
+		</div>
 	</div>
-		
+
+	<div class="row main_wraper">
+		<div class="col-12">
+
 	<form  action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="POST">
 	<table width="100%">
 		<tr>
