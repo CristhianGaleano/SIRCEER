@@ -5,10 +5,10 @@
 <!--Fila para +-->
 
 <div class="row main_wraper">
-    <div class="col-lg-12">
-            <a class="btn btn-success" href="<?php echo URL; ?>gestion/new-institucion.php">Agregar</a>
+        <div class="col-md-12">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Nuevo</button>
+        </div>
     </div>
-</div>
 
 <!---fila para table-->
                 <div class="row main_wraper">
@@ -74,6 +74,111 @@
 
 <!--
 </div>-->
+
+
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Nueva institución</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!--<?php #echo htmlspecialchars($_SERVER['PHP_SELF']) ?>-->
+
+        <form method="POST" id="formulario-programa" role="form" action="../php/nuevo-programa.php">
+
+
+            <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input class="form-control" type="text" size="20" name="nombre" placeholder="Nombre" required>
+            </div>
+
+
+            <div class="form-group">
+                <label for="telefono">Telefono:</label>
+                <input class="form-control" type="text" size="12" name="telefono" placeholder="Telefono de contacto">
+            </div>
+
+
+            <div class="form-group">
+                <label for="calendario">Calendario:</label>
+            
+                <select class="form-control" name="calendario" id="" required>
+                    <option value="">Seleccione una opción</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                </select>
+            </div>
+
+
+            <div class="form-group">
+                <label for="dane">DANE</label>
+                <input class="form-control" type="text" name="dane" placeholder="DANE">
+            </div>
+
+
+            <div class="form-group">
+                <label for="sector">Sector</label>
+                <select class="form-control" name="sector" id="" required="">
+                    <option value="">Seleccione una opción</option>
+                <?php foreach ($sectores as $value): ?>
+                    <option value="<?php echo $value['id'] ?>"><?php echo $value['nombre'] ?></option>
+                <?php endforeach ?>
+                </select>
+            </div>
+
+
+            <div class="form-group">
+                <label for="municipio">Municipio</label>
+                <select class="form-control" name="municipio" id="" required="">
+                    <option value="">Seleccione una opción</option>
+                    <option value="APIA">APIA</option>
+                    <option value="BALBOA">BALBOA</option>
+                    <option value="BELEN DE UMBRIA">BELEN</option>
+                    <option value="DOSQUEBRADAS">DOSQUEBRADAS</option>
+                    <option value="GUATICA">GUATICA</option>
+                    <option value="LA CELIA">LA CELIA</option>
+                    <option value="LA VIRGINIA">LA VIRGINIA</option>
+                    <option value="MARSELLA">MARSELLA</option>
+                    <option value="MISTRATO">MISTRATO</option>
+                    <option value="PEREIRA">PEREIRA</option>
+                    <option value="PUEBLO RICO">PUEBLO RICO</option>
+                    <option value="QUINCHIA">QUINCHIA</option>
+                    <option value="SANTA ROSA DE CABAL">SANTA ROSA DE CABAL</option>
+                    <option value="SANTUARIO">SANTUARIO</option>
+                    <option value="NUCLEO 21">NUCLEO 21</option>
+                    
+                </select>
+            </div>
+
+
+          <div class="form-group">
+              <label for="zona">Zona</label>
+                <select class="form-control" name="zona" id="" required="">
+                    <option value="">Seleccione una opción</option>
+                <?php foreach ($zonas as $value): ?>
+                    <option value="<?php echo $value['id'] ?>"><?php echo $value['nombre'] ?></option>
+                <?php endforeach ?>
+                </select>
+          </div>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" id="btn-registrar_programa" name="submit" class="btn btn-primary">Enviar</button>
+        <!--<input class="btn btn-primary" type="submit" name="submit" value="Enviar">-->
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 <?php require 'piedepagina-admin.php' ?>

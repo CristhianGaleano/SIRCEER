@@ -16,20 +16,8 @@ $alianzas = getAllSubject('alianzas',$cn);
 $enviado = "";
 if (isset($_POST['submit'])) {
 
-	if ($_SESSION['usuario']['perfil'] == 'REGULAR') {
 
-	#echo "entro post";
-	#var_dump($_POST);
-	$errores = "";
-	$parameters = array(
-		"nombre","zona","modelo","institucion","municipio"
-		);
-	#var_dump($parameters);
-	#echo "string";
-	$errores = validarErrores($parameters,$errores);
-	#var_dump($errores);
-	if (empty($errores)) {
-		$enviado = true;
+
 		#Obtenemos los valores de los campos en el formulario
 		$nombre = strtoupper( $_POST['nombre']);
 		$codigo_dane = $_POST['codigo_dane'];
@@ -46,37 +34,9 @@ $estado_sede = saveSede(
 	$nombre,$codigo_dane,$consecutivo,$zona,$modelo,$institucion,$municipio,$cn
 	);
 
-	if ($estado_sede) {
-		?>
-			<script type="text/javascript">
-				alert('Sede agregada...');
-				window.location = "<?php echo URL ?>gestion/new-sede.php?select=s";
-			</script>
-		<?php
-	}else{
-		?>
-		<script type="text/javascript">
-				alert('Ha ocurrido un error...');
-				window.location = "<?php echo URL ?>gestion/errorIn.php";
-		</script>
-
-		<?php
-	}
+	
 	
 
-}
-
-}
-	else{
-		
-		?>
-		<script type="text/javascript">
-			alert('Uste no puede ingresar una nueva sede.');
-			window.location="<?php echo URL ?>gestion/buscar-sede.php?select=s"; 
-		</script>
-		<?php
-
-	}
 
 
 } //Cierre if post

@@ -373,11 +373,11 @@
 	}
 
 
-	function obtener_sedes($sedes_por_pagina,$cn){
-		$inicio = (pagina_actual() > 1) ? pagina_actual() * $sedes_por_pagina - $sedes_por_pagina : 0;
+	function obtener_sedes($cn){
+		
 
 
-		$ps = $cn->prepare("SELECT sedes.id AS id_sede, sedes.nombre AS sede, sedes.codigo_dane_sede,sedes.consecutivo AS consecutivo_sede, zonas.nombre AS zona, modelos.nombre AS modelo, instituciones.nombre AS institucion, sedes.municipio FROM sedes LEFT JOIN zonas ON sedes.zona_id=zonas.id LEFT JOIN modelos ON sedes.modelo_id=modelos.id LEFT JOIN instituciones ON sedes.institucion_id=instituciones.id LIMIT $inicio, $sedes_por_pagina");
+		$ps = $cn->prepare("SELECT sedes.id AS id_sede, sedes.nombre AS sede, sedes.codigo_dane_sede,sedes.consecutivo AS consecutivo_sede, zonas.nombre AS zona, modelos.nombre AS modelo, instituciones.nombre AS institucion, sedes.municipio FROM sedes LEFT JOIN zonas ON sedes.zona_id=zonas.id LEFT JOIN modelos ON sedes.modelo_id=modelos.id LEFT JOIN instituciones ON sedes.institucion_id=instituciones.id");
 
 		$ps->execute();
 

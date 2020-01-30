@@ -88,6 +88,7 @@
         <!--<?php #echo htmlspecialchars($_SERVER['PHP_SELF']) ?>-->
 
         <form method="POST" id="formulario-programa" role="form" action="../php/nuevo-programa.php">
+          
           <div class="form-group">
             <label for="nombre" class="col-form-label">Nombre:</label>
             <input type="text" class="form-control" name="nombre" id="nombre">
