@@ -56,7 +56,8 @@
 				<a class="btn btn-warning btn-sm"  href="<?php echo URL ?>gestion/editar-institucion.php?id=<?php echo urlencode($value['id_institucion'])?>">Editar</a>
 			</td>
 			<td>
-				<a class="btn btn-danger btn-sm"href="<?php echo URL ?>php/eliminarInstitucion.php?id=<?php echo urlencode($value['id_institucion'])?>">Eliminar</a>
+
+				<input class="btn btn-danger btn-sm" type="button" name="deleteInstitucion" value="Eliminar" id="<?php echo urlencode($value['id_institucion'])?>">
 			</td>
 			<td>
 				<a class="btn btn-info btn-sm"href="<?php echo URL ?>gestion/ver-institucion.php?id=<?php echo urlencode($value['id_institucion'])?>">Ver</a>
@@ -91,7 +92,7 @@
       <div class="modal-body">
         <!--<?php #echo htmlspecialchars($_SERVER['PHP_SELF']) ?>-->
 
-        <form method="POST" id="formulario-programa" role="form" action="../php/nuevo-programa.php">
+        <form method="POST" id="formulario-institucion" role="form" action="<?php htmlspecialchars($_SERVER['PHP_SELF']) ?>">
 
 
             <div class="form-group">

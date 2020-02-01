@@ -1,6 +1,24 @@
 	<?php 
 
 
+
+	function deleteInstitucion($id,$cn){
+
+
+#Y finalmente institucion
+$sql = "DELETE FROM instituciones WHERE id=:id";
+$ps = $cn->prepare($sql);
+$ps->bindParam(':id',$id);
+$rs = $ps->execute();
+#var_dump($rs);
+	
+	if ($rs) {
+		return true;
+	}
+		return false;
+	}
+
+
 	/**
 	 * [paraMatricular description]
 	 * @param  $cn:conexion

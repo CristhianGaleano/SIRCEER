@@ -77,6 +77,68 @@
 
 
 
+/********************************** NUEVA INSTITUCION ************************************************************/
+
+ //Cuando se envie el form del login
+        //bin(evento que ejecuta una funcion): captura el evento- en este caso cuando haga el form submit, podria ser tambien 'clik etc.'
+        $('#formulario-institucion').bind("submit", function() {
+           
+            $.ajax({
+                
+                type: $(this).attr("method"),
+                url: $(this).attr("action"),
+                data: $(this).serialize(),
+                beforeSend: function(){
+                    $("#formulario-institucion button[type=submit]").html("Enviando...");
+                },
+                //Recibe la respuesta: response
+                success: function(response){
+                    console.log(response);
+                                    if (response.estado == 'true') {
+                                        console.log("It's true");
+    
+    $("body").overhang({
+      type: "success",
+      message: "Registro exitoso! en segundos seras redirigido",
+      callback: function(){
+        window.location.href="buscar-institucion.php";
+      }
+    });
+    //En caso de fallar el insert
+                    }else{
+                        console.log("It's false");
+    
+    $("body").overhang({
+      type: "error",
+      message: "Lo siento ha ocurrido un error! Es posible que haya incrongruencia de los datos...",
+      //closeConfirm: true
+    });
+    $("#formulario-institucion button[type=submit]").html("Enviando...");
+    
+                    }
+    $("#formulario-institucion button[type=submit]").html("Ingresar");
+
+                },
+                error: function(){
+                    alert("Error");
+
+
+                }
+            });
+
+
+            //Impide el envio del formulario
+            return false; 
+        });
+
+
+
+
+
+
+
+
+
 /********************************** NUEVA SEDE ************************************************************/
 
  //Cuando se envie el form del login
@@ -411,12 +473,12 @@
 
 
  /*DELETE IEB*/
-         $(document).on('click', 'input[name="deleteEstudiante"]', function(event){
+         $(document).on('click', 'input[name="deleteInstitucion"]', function(event){
             var id = this.id;
             //var id = this.name;
             //var url = this.name + this.id;
 
-                console.log("Deleting estudiante:" + id);
+                console.log("Deleting Institución:" + id);
                 //console.log("name:");
                 //console.log($(this).attr("name"));
 
@@ -436,12 +498,12 @@
 
                 type: "GET",
                 //url: url,
-                url: '../php/eliminarEstudiante.php?id='+id,
+                url: '../php/eliminarInstitucion.php?id='+id,
                 data: $(this).serialize(),
                 dataType: 'json',
                 //Respuesta satisfactoria del servidor
                 beforeSend: function(){
-                    $("input[name=deleteEstudiante]").html("Eliminando");
+                    $("input[name=deleteInstitucion]").html("Eliminando");
                 },
                 success: function(response){
 
@@ -456,7 +518,7 @@
                       type: "success",
                       message: "Registro eliminado! en segundos seras redirigido",
                       callback: function(){
-                        window.location.href="buscar-estudiantes.php";
+                        window.location.href="buscar-institucion.php";
                       }
                     });
                     }else {
