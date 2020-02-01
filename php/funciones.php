@@ -465,13 +465,13 @@ $rs = $ps->execute();
 		return $ps->fetchAll();
 	}
 
-	function obtener_instituciones($instituciones_por_pagina,$cn){
-		$inicio = (pagina_actual() > 1) ? pagina_actual() * $instituciones_por_pagina - $instituciones_por_pagina : 0;
+	function obtener_instituciones($cn){
+		
 
 
 		$ps = $cn->prepare("SELECT instituciones.id AS id_institucion,instituciones.nombre AS name_institucion,instituciones.telefono,instituciones.calendario,instituciones.DANE,sectores.nombre AS sector,instituciones.municipio,zonas.nombre AS zona  FROM instituciones  
 			LEFT JOIN sectores ON sectores.id=instituciones.sector_id 
-			LEFT JOIN zonas ON zonas.id=instituciones.zona_id LIMIT $inicio, $instituciones_por_pagina");
+			LEFT JOIN zonas ON zonas.id=instituciones.zona_id");
 
 		$ps->execute();
 		// var_dump($ps);

@@ -14,7 +14,12 @@ $sectores = getAllSubject("sectores",$cn);
 $zonas = getAllSubject("zonas",$cn);
 
 #Declaracion variable global 
-$rows = obtener_instituciones($config_global['result_por_pagina'],$cn);
+$rows = obtener_instituciones($cn);
+
+
+if (isset($institucion_selected)) {
+	echo "Hola";
+}
 
 
 #
