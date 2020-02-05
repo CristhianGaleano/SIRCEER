@@ -1,8 +1,9 @@
 <?php session_start(); ?>
-<?php $titulo = " ESTUDIANTES" ?>
+
 <?php require_once '../admin/config.php';
 require_once '../php/funciones.php';
 require_once '../php/Conexion.php';
+
 validateSession();
 $cn = getConexion($bd_config);
 comprobarConexion($cn);
@@ -20,12 +21,16 @@ $tipos_estrategia = getAllSubject('tipos_estrategias',$cn);
 
 
 
-#$programas = getAllSubject("programa",$cn);
+
 $errores = null;
 // var_dump($errores);
 $enviado = "";
-if (isset($_POST['submit'])) {
-	#var_dump($_POST);
+if ( $_SERVER["REQUEST_METHOD"] == "POST" ) {
+
+header('Content-Type: application/json');
+$response = array("estado" => "false");
+
+	// var_dump($_POST);
 	#print_r($_FILES);
 	$parameters = array(
 		"tipo_documento","documento","primer_nombre","primer_apellido","fecha_naci","edad","estrato","zona","eps","servicio_social","colegio","genero","prioritaria","situacion_academica","grado","ciudad","muni_naci","documento_attendant","first_name_attendant","last_name_attendant"
@@ -50,7 +55,7 @@ if (isset($_POST['submit'])) {
 		$fecha_inicio = date("Y-m-d");#analizar si mejor se coloca un calendario
 		$fecha_fin = "0000-00-00";
 		$observacion = strtoupper( $_POST['observacion']);
-		$promedio_notas = $_POST['promedio_notas'];
+		$promedio_notas = 0.0;
 		$condonacion_credito = $_POST['condonacion_credito'];
 		$sisben = $_POST['sisben'];
 		$puntage_sisben = $_POST['puntage_sisben'];
@@ -99,7 +104,7 @@ if (isset($_POST['submit'])) {
 		}
 		
 
-if ($_SESSION['usuario']['perfil'] == 'REGULAR') {
+
 	# code...
 	$estado = saveStudent(
 		$documento ,
@@ -143,69 +148,20 @@ if ($_SESSION['usuario']['perfil'] == 'REGULAR') {
 	);
 
 
-	if ($estado) {
-		?>
-            <script type="text/javascript"> 
-            	alert('Datos ingresados correctamente.');
-                window.location="<?php echo URL ?>gestion/new-estudiante.php?select=e"; 
-            </script> 
-            <?php //lo abro de nuevo
-            $enviado = true;
-	}else{
-		?>
-		<script type="text/javascript">
-			alert('Ocurrio, por favor verifique sus datos...');
-			//window.location="<?php echo URL ?>gestion/buscar-estudiantes.php?select=e"; 
-		</script>
-		<?php
-}
-	}
-	else{
-		
-		?>
-		<script type="text/javascript">
-			alert('Uste no puede ingresar un nuevo estudiante.');
-			window.location="<?php echo URL ?>gestion/buscar-estudiantes.php?select=e"; 
-		</script>
-		<?php
+		if ($estado) {
+			$response = array('estado' => "true" );
+			return print( json_encode( $response ) );
+		}
 
-	}
-}
+		return print( json_encode( $response ) );
+
+		}//end errores
+
 
 }//End post
+
+
 ?>
-<script type=text/javascript>
 
-		function ejecutar(str)
-		{
-		//Creacion de una variable de tipo XMLHttpRequest - Es un objeto javascript para obtener informacion de la url sin actualizar la pagina
-		var conexion;
-		
 
-		/*Añadiendo ajax para versiones antiguas de IE*/
-		if (window.XMLHttpRequest) 
-			//Es una version actual
-		{
-			conexion = new XMLHttpRequest();
-		}else
-		{
-			//Es una version antigua
-			conexion = new ActiveXObject("Microsoft.XMLHTTP");
-		}
-
-		conexion.onreadystatechange= function(){
-			if (conexion.readyState == 4 && conexion.status == 200) 
-			{
-				document.getElementById("snies").innerHTML=conexion.responseText;
-			}
-		}
-
-		//Realizamos una peticion de apertura con un metodo que puede ser GET o POST y Asincrona 
-		//El valor por defecto es true es decir asincrona
-		//Asiyn: permite varias conexiones sin choques entre el servidor y el navegador
-
-		conexion.open("GET","../php/traer-institucion.php?id="+str,true);
-		conexion.send();
-		}
-	</script>
 <?php require("../view/new-estudiante.view.php") ?>

@@ -479,8 +479,8 @@ $rs = $ps->execute();
 		return $ps->fetchAll();
 	}
 
-	function obtener_estudiante($estudiante_por_pagina,$cn){
-		$inicio = (pagina_actual() > 1) ? pagina_actual() * $estudiante_por_pagina - $estudiante_por_pagina : 0;
+	function obtener_estudiante($cn){
+		
 
 
 		$ps = $cn->prepare(
@@ -489,8 +489,7 @@ $rs = $ps->execute();
 			LEFT JOIN zonas ON estudiantes.zona_id=zonas.id 
 			LEFT JOIN sedes ON estudiantes.sede_id=sedes.id 
 			LEFT JOIN tipos_estrategias ON estudiantes.tipo_estrategia_id=tipos_estrategias.id
-			ORDER BY fecha_inicio DESC
-			LIMIT $inicio, $estudiante_por_pagina"
+			ORDER BY fecha_inicio DESC"
 		);
 
 		$ps->execute();
@@ -1762,16 +1761,16 @@ $rs = $ps->execute();
 		// echo "<br> Mostrando sql: <br>";
 		// var_dump($st);
 
-		$resultE = $st->execute();
+		$rs = $st->execute();
 		// echo "<br>RESULTADO INSERCION ESTUDIANTE <br>";
-		// var_dump($resultE);
+		// var_dump($rs);
 
 
-			if ($resultE != false) {
-					$estado = true;
+			if ($rs) {
+					return true;
 				}
 			
-			return $estado;
+			return false;
 		}//End method	
 
 

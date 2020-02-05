@@ -11,7 +11,7 @@ comprobarConexion($cn);
 
 
 #Declaracion variable global 
-$rows = obtener_estudiante($config_global['result_por_pagina'],$cn);
+$rows = obtener_estudiante($cn);
 #var_dump($rows);
 
 ?>

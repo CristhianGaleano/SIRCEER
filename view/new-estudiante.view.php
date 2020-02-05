@@ -15,7 +15,7 @@
 			
 		
 	
-	<form name="formulario_new_estu" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="POST" enctype="multipart/form-data" >
+	<form name="formulario_new_estu" id="formulario_new_estu" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="POST" enctype="multipart/form-data" >
 	
 		<div class="row">
 	    	<div class="col-md-3">
@@ -348,13 +348,13 @@
 	   <div class="row">
 	   	<div class="col-md-3">
 	   		<label class="form-group" >Ocupación:</label>
-			<input class="form-group" type="text" name="ocupation_attendant" placeholder="Ocupación" id="last_nameattendant" placeholder="Dirección"/>
+			<input class="form-control" type="text" name="ocupation_attendant" placeholder="Ocupación" id="last_nameattendant" placeholder="Dirección"/>
 	   	</div>
 	   </div>
 		
 		<div class="row justify-content-end">
 			<div class="col-2">
-				<button class="btn btn-dark btn-lg">Enviar</button>
+				<button class="btn btn-success" id="btn_nuevo_estudiante" type="submit" name="submit">Agregar</button>
 			</div>
 		</div>
 
@@ -367,8 +367,8 @@
 
 
 <!--END CONTENIDO-->
-<?php require("footer-menu.view.php") ?>					
-<?php #require("piedepagina-admin.php") ?>
+
+<?php require("piedepagina-admin.php") ?>
 
 <script type=text/javascript>
 	function validarForm(formulario)
@@ -381,4 +381,51 @@
 		}
 		return true;
 	}
+
+	
+
+function calcular_edad(){
+
+		var fecha_actual = new Date();
+		var anio_actual = fecha_actual.getFullYear();
+		var fecha_antes = document.getElementById('fecha_naci').value;
+		console.log(anio_actual);
+		console.log(fecha_antes);
+		
+		var anio_antes = fecha_antes.substr(0,4);
+		console.log(anio_antes);
+		var anios = anio_actual-anio_antes;
+		console.log(anios);
+		document.formulario_new_estu.edad.value=anios;
+}
+
+	
+
+
+
+	function sugerencias(str){
+			var xmlhttp;
+			if (str.length==0)
+			{ 
+				document.getElementById("miDiv").innerHTML="";
+				return;
+			}
+			if (window.XMLHttpRequest)
+			{
+				xmlhttp=new XMLHttpRequest();
+			}
+			else
+			{
+				xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			xmlhttp.onreadystatechange=function()
+			{
+				if (xmlhttp.readyState==4 && xmlhttp.status==200)
+				{
+					document.getElementById("miDiv").innerHTML=xmlhttp.responseText;
+				}
+			}
+			xmlhttp.open("GET","../php/validarEstudiante.php?d="+str,true);
+			xmlhttp.send();
+		}
 </script>
