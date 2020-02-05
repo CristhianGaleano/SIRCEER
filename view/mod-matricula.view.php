@@ -38,7 +38,7 @@
 								<td><?php echo $value['documento'] ?></td>
 								<td><?php echo $value['primer_nombre']. " " .$value['segundo_nombre'] ?></td>
 								<td><?php echo $value['primer_apellido']. " " .$value['segundo_apellido'] ?></td>
-								<!--<td><?php echo $value['telefono_contacto'] ?></td>-->
+								<!--<td><?php #echo $value['telefono_contacto'] ?></td>-->
 								<td><?php echo $value['edad'] ?></td>
 								<td><?php echo $value['siben'] ?></td>
 								<td><?php echo $value['genero'] ?></td>

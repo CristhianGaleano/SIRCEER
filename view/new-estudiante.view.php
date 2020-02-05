@@ -228,7 +228,7 @@
 	   			<label class="form-group" >Situacion academica:</label>
 			
 				<select  class="form-control" required="" name="situacion_academica" id="">
-						<option value="ACTIVO">ACTIVO</option>
+						<option value="INACTIVO">INACTIVO</option>
 						<!-- <option value="">Seleccione una opción</option>
 						<option value="GRADUADO">GRADUADO</option>
 						<option value="INACTIVO">INACTIVO</option> -->
