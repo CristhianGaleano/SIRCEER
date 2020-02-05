@@ -88,7 +88,7 @@
       <div class="modal-body">
         <!--<?php #echo htmlspecialchars($_SERVER['PHP_SELF']) ?>-->
 
-        <form method="POST" id="formulario-programa" role="form" action="../php/nuevo-universidad.php">
+        <form method="POST" id="formulario-programa" role="form" action="<?php echo htmlspecialchars( $_SERVER['PHP_SELF'] ) ?>">
 
 
 			<div class="form-group">

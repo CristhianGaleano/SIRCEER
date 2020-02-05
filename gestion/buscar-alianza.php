@@ -4,7 +4,7 @@ require_once '../admin/config.php';
 require_once '../php/funciones.php';
 require_once '../php/Conexion.php';
 
-$pagina = isset($_GET['p']) ? (int)$_GET['p'] : 1;
+
 validateSession();
 $cn = getConexion($bd_config);
 comprobarConexion($cn);
@@ -14,7 +14,7 @@ comprobarConexion($cn);
 $name_bd = "alianzas";
 
 #Declaracion variable global 
-$rows = obtener_alianzas($config_global['result_por_pagina'],$cn);
+$rows = obtener_alianzas($cn);
 // var_dump($rows);
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 	#var_dump($_POST);

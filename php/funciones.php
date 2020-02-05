@@ -383,14 +383,14 @@ $rs = $ps->execute();
 		$ps->execute();
 		return $ps->fetchAll();
 	}
-
+/*
 	function pagina_actual(){
 		#echo "Pagina actual:";
 		#var_dump($_GET);
 		return isset($_GET['p']) ? (int)$_GET['p'] : 1;
 	}
 
-
+*/
 	function obtener_sedes($cn){
 		
 
@@ -404,15 +404,10 @@ $rs = $ps->execute();
 	}
 
 
-	function obtener_alianzas($alianzas_por_pagina,$cn){
-		$inicio = (pagina_actual() > 1) ? pagina_actual() * $alianzas_por_pagina - $alianzas_por_pagina : 0;
-
-
-		$ps = $cn->prepare("SELECT alianzas.id AS id_alianza,alianzas.nombre, alianzas.fecha_inicio,alianzas.fecha_final,alianzas.cupos FROM alianzas LIMIT $inicio, $alianzas_por_pagina");
-
+	function obtener_alianzas($cn){
+		
+		$ps = $cn->prepare("SELECT alianzas.id AS id_alianza,alianzas.nombre, alianzas.fecha_inicio,alianzas.fecha_final,alianzas.cupos FROM alianzas");
 		$ps->execute();
-
-
 		return $ps->fetchAll();
 	}
 
@@ -428,8 +423,8 @@ $rs = $ps->execute();
 		return $ps->fetchAll();
 	}
 
-	function obtener_universidades($universidades_por_pagina,$cn){
-		$inicio = (pagina_actual() > 1) ? pagina_actual() * $universidades_por_pagina - $universidades_por_pagina : 0;
+	function obtener_universidades($cn){
+		
 
 
 		$ps = $cn->prepare("SELECT universidades.id AS id_universidad,universidades.nombre AS universidad, universidades.telefono,universidades.email,universidades.direccion, universidades.municipio, tipos_universidades.nombre AS tipo_uni  
@@ -598,12 +593,12 @@ $rs = $ps->execute();
 	 MATRICULADO: Para matricular debe estar activo.
 	 INACTIVO: Luego de estar matriculado se graduo o esta cancelado
 	 */
-	function saveMatricula($anio,$semestre,$periodo,$estudiante_id,$programa_id,$cn){
+	function saveMatricula($anio,$semestre,$periodo,$estudiante_id,$programa_id,$fecha,$cn){
 		#fecha del ssitema
 		#echo "Entro a saveMatricula<br>";
 		#echo "variables recibidads: <br> $anio,$semestre,$estudiante_id,$programa_id";
 		$estado = "ACTIVO";
-		$fecha = Date("Y-m-d");
+		
 		
 
 		$sql = "INSERT INTO matriculas( fecha, anio, semestre, periodo, estado,estudiante_id, programa_id) VALUES (:fecha,:anio,:semestre,:periodo,:estado,:estudiante_id,:programa_id)";

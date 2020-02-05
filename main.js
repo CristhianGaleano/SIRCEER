@@ -229,7 +229,7 @@
       type: "success",
       message: "Registro exitoso! en segundos seras redirigido",
       callback: function(){
-        window.location.href="buscar-institucion.php";
+        window.location.href="mod-matricula.php";
       }
     });
     //En caso de fallar el insert

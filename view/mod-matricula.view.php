@@ -43,7 +43,9 @@
 								<td><?php echo $value['siben'] ?></td>
 								<td><?php echo $value['genero'] ?></td>
 
-								<td><input class="btn btn-info btn-sm" type="button" name="matricular" value="Matricular"   data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"  id="<?php echo urlencode($value['id'])?>"></td>
+								<td>
+                  <button class="btn btn-info btn-sm" type="button" name="matricular" value="<?php echo urlencode($value['id'])?>" onclick="capturar_id()"   data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"  id="matricular">Matricular</button>
+                </td>
 
 								<td>
                                     <input class="btn btn-light btn-sm" type="button" name="deleteEstudiante" value="Subir nota" id="<?php echo urlencode($value['id'])?>">
@@ -81,7 +83,7 @@
         <form method="POST" id="formulario-m-matricular" role="form" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>">
           
           <div class="form-group">
-            <input type="hidden" name="id_estudiante">
+            <input type="hidden" name="id_estudiante" id="id_estudiante">
 
             <label for="nombre" class="col-form-label">Nombre:</label>
             <input type="text" class="form-control" readonly="" name="nombre_estudiante" id="nombre_estudiante">
@@ -159,5 +161,14 @@
 <?php require 'piedepagina-admin.php' ?>
 
 
+<script type="text/javascript">
+  
+  function capturar_id(){
 
+    var id = document.getElementById("matricular").value;
+    document.getElementById("nombre_estudiante").value = "<?php echo urlencode($value['primer_nombre'] . " " . $value['primer_apellido']) ?>";
+    document.getElementById("id_estudiante").value = id;
+  }
+
+</script>
 
