@@ -40,7 +40,7 @@
 		</div>
 		<div class="form-group col-lg-3 float-lg-left">
 			<label>Fecha de nacimiento</label>
-			<input class="form-control" type="date" <select style="width:220px" name="fecha_naci" step="1" min="1980-01-01" max="2025-12-31" value="<?php echo strstr($result['fecha_nacimiento']," ",true)?>" placeholder="Fecha de nacimiento">
+			<input class="form-control" type="date" name="fecha_naci" step="1" min="1980-01-01" max="2025-12-31" value="<?php echo strstr($result['fecha_nacimiento']," ",true)?>" placeholder="Fecha de nacimiento">
 		</div>
 		<div class="form-group col-lg-3 float-lg-left">
 			<label>Edad</label>

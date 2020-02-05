@@ -9,6 +9,10 @@ validateSession();
 $cn = getConexion($bd_config);
 comprobarConexion($cn);
 
+
+
+$programas = getAllSubject('programas',$cn);
+
 $rs=paraMatricular($cn);
 
 

@@ -47,11 +47,11 @@
 						
 					<a href="#"><i class="icon-home"></i><span>Inicio</span></a>
 					<a href="<?php echo URL ?>gestion/buscar-estudiantes.php"><i class="icon-doc-text"></i><span>Estudiantes</span></a>
-					<a href="<?php echo URL ?>gestion/buscar-programa.php"><i class="icon-cog-alt"></i><span>Programas</span></a>
 					<a href="<?php echo URL ?>gestion/mod-matricula.php"><i class="icon-users"></i><span>Matriculas</span></a>
+					<a href="<?php echo URL ?>gestion/buscar-programa.php"><i class="icon-cog-alt"></i><span>Programas</span></a>
 					<a href="<?php echo URL ?>gestion/buscar-institucion.php"><i class="icon-cog-alt"></i><span>Institución EB</span></a>
-					<a href="<?php echo URL ?>gestion/buscar-universidad.php"><i class="icon-cog-alt"></i><span>Institución ES</span></a>
 					<a href="<?php echo URL ?>gestion/buscar-sede.php"><i class="icon-cog-alt"></i><span>Sedes</span></a>
+					<a href="<?php echo URL ?>gestion/buscar-universidad.php"><i class="icon-cog-alt"></i><span>Institución ES</span></a>
 					<a href="<?php echo URL ?>gestion/buscar-alianza.php"><i class="icon-cog-alt"></i><span>Alianza</span></a>
 					<?php }else {?>
 						<a href="#"><i class="icon-cog-alt"></i><span>Configuracion</span></a>
