@@ -10,7 +10,7 @@ $cn = getConexion($bd_config);
 comprobarConexion($cn);
 
 
-
+$matriculas = getAllMatriculas($cn);
 $programas = getAllSubject('programas',$cn);
 #var_dump($programas);
 $rs=paraMatricular($cn);

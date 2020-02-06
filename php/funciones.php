@@ -862,6 +862,24 @@ $rs = $ps->execute();
 
 
 
+	function getAllMatriculas($cn)
+	{
+		// echo "Entro";
+		// echo "Doc: $documento";
+		$sql = "SELECT matriculas.id ,matriculas.fecha,matriculas.semestre, estudiantes.documento,estudiantes.primer_nombre,estudiantes.primer_apellido,programas.nombre as programa_nombre ,matriculas.periodo,matriculas.promedio,matriculas.estado 
+FROM 
+matriculas
+LEFT JOIN estudiantes ON matriculas.estudiante_id=estudiantes.id 
+LEFT JOIN programas ON matriculas.programa_id=programas.id";
+		#var_dump($sql);
+		$ps = $cn->prepare($sql);
+		$ps->execute();
+		$resul = $ps->fetchAll();
+		
+		return  $resul;
+
+	}
+
 	function getMatricula($documento,$cn)
 	{
 		// echo "Entro";

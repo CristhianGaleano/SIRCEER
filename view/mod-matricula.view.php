@@ -9,13 +9,67 @@
 </nav>
 
 
+
+<!---fila para table-->
+                <div class="row main_wraper">
+<!--Ejemplo tabla con DataTables-->
+    
+                <div class="col-md-9 mt-3">
+                    <div class="table-responsive-md">        
+                        <table id="table_matriculas" class="table display table-bordered table-hover">
+                        <thead class="thead-light"> 
+                            <tr>
+                              <th>Id</th>
+                                <th>Fecha</th>
+                                <th>Semestre</th>
+                                <th>Periodo</th>
+                                <th>Nota</th>
+                                <th>Estado</th>
+                                <th>Documento</th>
+                                <th>Estudiante</th>
+                                <!-- <th>Programa</th> -->
+                                <th>-</th>
+                                <th>-</th>
+                            </tr>
+                        </thead>
+                        <tbody >
+                          <?php foreach ($matriculas as $value): ?>
+                            <tr>
+                              <td><?php echo $value['id'] ?></td>
+                              <td><?php echo $value['fecha'] ?></td>
+                              <td><?php echo $value['semestre'] ?></td>
+                              <td><?php echo $value['periodo'] ?></td>
+                              <td><?php echo $value['promedio'] ?></td>
+                              <td><?php echo $value['estado'] ?></td>
+                              <td><?php echo $value['documento'] ?></td>
+                              <td><?php echo $value['primer_nombre'] ?></td>
+                              <!-- <td><?php echo $value['programa_nombre'] ?></td> -->
+                              <td>
+                                <button class="btn btn-warning btn-sm">Nota</button>
+                              </td>
+                              <td>
+                                <button class="btn btn-warning btn-sm">Ver</button>
+                              </td>
+                            </tr>
+                          <?php endforeach ?>
+                        </tbody>
+                       </table>
+                    </div>
+                </div>
+
+
+                
+      
+</div><!--row -->
+
+
 <!---fila para table-->
                 <div class="row main_wraper">
 <!--Ejemplo tabla con DataTables-->
     
                 <div class="col-md-6 mt-3">
                     <div class="table-responsive-md">        
-                        <table id="example" class="table  table-bordered table-hover">
+                        <table id="example" class="table table-bordered table-hover">
                         <thead class="thead-light"> 
                             <tr>
                             	<th>Id</th>
@@ -41,6 +95,9 @@
                        </table>
                     </div>
                 </div>
+
+
+
       
 </div><!--row -->
 

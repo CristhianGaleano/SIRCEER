@@ -4,6 +4,11 @@
 
     $(document).ready(function() {
 
+
+
+
+        $('table.display').DataTable();
+
         $('#example').DataTable({
         //para cambiar el lenguaje a español
             "language": {
@@ -22,6 +27,10 @@
                      "sProcessing":"Procesando...",
                 }
         });     
+
+
+
+
 
     //Cuando se envie el form del login
         //bin(evento que ejecuta una funcion): captura el evento- en este caso cuando haga el form submit, podria ser tambien 'clik etc.'
