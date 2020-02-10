@@ -1,8 +1,23 @@
 	<?php 
 
 
+function asignar_nota($id_matricula,$promedio,$estado,$cn){
 
-	function deleteInstitucion($id,$cn){
+		$sql = "UPDATE matriculas SET promedio=:promedio, estado=:estado WHERE id=:id";
+		$ps = $cn->prepare($sql);
+		$ps->bindParam(':promedio',$promedio);
+		$ps->bindParam(':estado',$estado);
+		$ps->bindParam(':id',$id);
+		$rs = $ps->execute();
+		#var_dump($rs);
+	
+	if ($rs) {
+		return true;
+	}
+		return false;	
+}
+
+function deleteInstitucion($id,$cn){
 
 
 #Y finalmente institucion

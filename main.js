@@ -274,6 +274,66 @@
 
 
 
+/********************************** ASIGNAR NOTA SEMESTRE ************************************************************/
+
+ //Cuando se envie el form del login
+        //bin(evento que ejecuta una funcion): captura el evento- en este caso cuando haga el form submit, podria ser tambien 'clik etc.'
+        $('#formulario-m-asignar-nota').bind("submit", function() {
+           
+            $.ajax({
+                
+                type: $(this).attr("method"),
+                url: $(this).attr("action"),
+                data: $(this).serialize(),
+                beforeSend: function(){
+                    $("#formulario-m-asignar-nota button[type=submit]").html("Actualizando...");
+                },
+                //Recibe la respuesta: response
+                success: function(response){
+                    console.log(response);
+                                    if (response.estado == 'true') {
+                                        console.log("It's true");
+    
+    $("body").overhang({
+      type: "success",
+      message: "Registro exitoso! en segundos seras redirigido",
+      callback: function(){
+        window.location.href="mod-matricula.php";
+      }
+    });
+    //En caso de fallar el insert
+                    }else{
+                        console.log("It's false");
+    
+    $("body").overhang({
+      type: "error",
+      message: "Lo siento ha ocurrido un error! Es posible que haya incrongruencia de los datos...",
+      //closeConfirm: true
+    });
+    $("#formulario-m-asignar-nota button[type=submit]").html("Actualizando...");
+    
+                    }
+    $("#formulario-m-asignar-nota button[type=submit]").html("Actualizar");
+
+                },
+                error: function(){
+                    alert("Error");
+
+
+                }
+            });
+
+
+            //Impide el envio del formulario
+            return false; 
+        });
+
+
+
+
+
+
+
 
 
 /********************************** NUEVA SEDE ************************************************************/

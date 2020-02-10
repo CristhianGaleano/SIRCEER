@@ -3,7 +3,7 @@
 
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item active" aria-current="page">Modulo matriculas</li>
+        <li class="breadcrumb-item active" aria-current="page">Matriculas</li>
         <!--<li class="breadcrumb-item active" aria-current="page">Matricular</li>-->
     </ol>
 </nav>
@@ -45,7 +45,7 @@
                               <td><?php echo $value['primer_nombre'] ?></td>
                               <!-- <td><?php echo $value['programa_nombre'] ?></td> -->
                               <td>
-                                <button class="btn btn-warning btn-sm">Nota</button>
+                                <button class="btn btn-info btn-sm" type="button" name="asignarNota" value="<?php echo urlencode($value['id'])?>" onclick="capturar_id()"   data-toggle="modal" data-target="#actualizarNota" data-whatever="@mdo"  id="asignarNota">Nota</button>
                               </td>
                               <td>
                                 <button class="btn btn-warning btn-sm">Ver</button>
@@ -62,6 +62,12 @@
       
 </div><!--row -->
 
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page">Matriculas pendientes</li>
+        <!--<li class="breadcrumb-item active" aria-current="page">Matricular</li>-->
+    </ol>
+</nav>
 
 <!---fila para table-->
                 <div class="row main_wraper">
@@ -202,11 +208,11 @@
 
 
 
-<div class="modal fade" id="atualizarNota" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="actualizarNota" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Realizando matricula</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Asignando nota, semestre en curso</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -214,76 +220,30 @@
       <div class="modal-body">
         <!--<?php #echo htmlspecialchars($_SERVER['PHP_SELF']) ?>-->
 
-        <form method="POST" id="formulario-m-matricular" role="form" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>">
+        <form method="POST" id="formulario-m-asignar-nota" role="form" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>">
           
           <div class="form-group">
-            <input type="hidden" name="id_estudiante" id="id_estudiante">
+            <input type="hidden" name="id_matricula" id="id_matricula">
 
-            <label for="nombre" class="col-form-label">Nombre:</label>
-            <input type="text" class="form-control" readonly="" name="nombre_estudiante" id="nombre_estudiante">
+            <label for="Nota" class="col-form-label">Nota</label>
+            <input type="text" class="form-control" required="" name="nota" id="nota">
           </div>
 
           <div class="form-group">
-            <label class="col-form-label" for="semestre">Semestre</label>
-                <select class="form-control" name="semestre" id="semestre" required="">
-                    <option value="">Seleccione una opción</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-            
+            <label class="col-form-label" for="estado_semestre">Estado semestre</label>
+                <select class="form-control" name="estado_semestre" id="estado_semestre" required="">
+                    <option value="#">Seleccione una opción</option>
+                    <option value="Aprobado">Aprobado</option>
+                    <option value="No aprobado">No aprobado</option>
         </select>
           </div>
 
-          <div class="form-group">
-            <label class="col-form-label" for="periodo">Periodo</label>
-            <select class="form-control" name="periodo" id="periodo" required="" >
-                <option value="">Seleccione una opción</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-        </select>
-          </div>
-
-
-
-          <div class="form-group">
-            <label class="col-form-label" for="fecha">Fecha</label>
-            <!--onkeyup="sugerencias_programa(this.value)"-->
-            <input class="form-control" type="date" step="1" min="2005-01-01" max="2030-12-31"  name="fecha" placeholder="Fecha" id="fecha" required="">
-          </div>
-
-          <div class="form-group">
-            <label class="col-form-label" for="anio">Año</label>
-            <!--onkeyup="sugerencias_programa(this.value)"-->
-            <input class="form-control" type="text"  name="anio" placeholder="Ej: 2020" id="anio" required="">
-          </div>
-
-
-
-          <div class="form-group">
-            <label class="col-form-label" for="programa">Programa</label>
-                <select class="form-control" name="programa" id="programa" required="">
-                    <option value="">Seleccione una opción</option>
-            <?php foreach ($programas as $valor): ?>
-                <option value="<?php echo $valor['id'] ?>"><?php echo "snies: ".$valor['snies'] ." - " .$valor['nombre'] ?></option>
-            <?php endforeach ?>
-        </select>
-          </div>
-
-
-
+          
 
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" id="btn-registrar_programa" name="submit" class="btn btn-primary">Enviar</button>
+        <button type="submit" id="btn-asignar-nota-semestre" name="asignar-nota" class="btn btn-primary">Asignar nota</button>
         <!--<input class="btn btn-primary" type="submit" name="submit" value="Enviar">-->
         </form>
       </div>

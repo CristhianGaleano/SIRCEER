@@ -17,8 +17,10 @@ $rs=paraMatricular($cn);
 
 $response = array('estado' => "false" );
 
-if ($_SERVER['REQUEST_METHOD'] == "POST") {
+#var_dump( $_SERVER );
 
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+#	var_dump($_POST);
 	header('Content-Type: application/json');
 
 	
