@@ -286,7 +286,7 @@
                 url: $(this).attr("action"),
                 data: $(this).serialize(),
                 beforeSend: function(){
-                    $("#formulario-m-asignar-nota button[type=submit]").html("Actualizando...");
+                    $("#formulario-m-asignar-nota button[type=submit]").html("Asignando...");
                 },
                 //Recibe la respuesta: response
                 success: function(response){
@@ -307,10 +307,10 @@
     
     $("body").overhang({
       type: "error",
-      message: "Lo siento ha ocurrido un error! Es posible que haya incrongruencia de los datos...",
+      message: "Ha ocurrido un error! Es posible que haya incrongruencia en los datos...",
       //closeConfirm: true
     });
-    $("#formulario-m-asignar-nota button[type=submit]").html("Actualizando...");
+    $("#formulario-m-asignar-nota button[type=submit]").html("Asignando...");
     
                     }
     $("#formulario-m-asignar-nota button[type=submit]").html("Actualizar");

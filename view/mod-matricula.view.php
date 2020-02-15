@@ -3,7 +3,7 @@
 
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item active" aria-current="page">Matriculas</li>
+        <li class="breadcrumb-item active" aria-current="page">Matriculas vigentes</li>
         <!--<li class="breadcrumb-item active" aria-current="page">Matricular</li>-->
     </ol>
 </nav>
@@ -45,7 +45,7 @@
                               <td><?php echo $value['primer_nombre'] ?></td>
                               <!-- <td><?php echo $value['programa_nombre'] ?></td> -->
                               <td>
-                                <button class="btn btn-info btn-sm" type="button" name="asignarNota" value="<?php echo urlencode($value['id'])?>" onclick="capturar_id()"   data-toggle="modal" data-target="#actualizarNota" data-whatever="@mdo"  id="asignarNota">Nota</button>
+                                <button class="btn btn-info btn-sm" type="button" name="asignarNota" value="<?php echo urlencode($value['id'])?>" onclick="capturar_id_matri(<?php echo  $value['id'] ?>)"   data-toggle="modal" data-target="#actualizarNota" data-whatever="@mdo"  id="asignarNota">Nota</button>
                               </td>
                               <td>
                                 <button class="btn btn-warning btn-sm">Ver</button>
@@ -64,7 +64,7 @@
 
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item active" aria-current="page">Matriculas pendientes</li>
+        <li class="breadcrumb-item active" aria-current="page">Para matricular</li>
         <!--<li class="breadcrumb-item active" aria-current="page">Matricular</li>-->
     </ol>
 </nav>
@@ -220,7 +220,7 @@
       <div class="modal-body">
         <!--<?php #echo htmlspecialchars($_SERVER['PHP_SELF']) ?>-->
 
-        <form method="POST" id="formulario-m-asignar-nota" role="form" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>">
+        <form method="POST" id="formulario-m-asignar-nota" role="form" action="<?php echo URL  ?>php/asignar-nota-matricula.php">
           
           <div class="form-group">
             <input type="hidden" name="id_matricula" id="id_matricula">
@@ -257,11 +257,16 @@
 
 <script type="text/javascript">
   
-  function capturar_id(){
+  function capturar_id(id){
 
-    var id = document.getElementById("matricular").value;
     document.getElementById("nombre_estudiante").value = "<?php echo urlencode($value['primer_nombre'] . " " . $value['primer_apellido']) ?>";
     document.getElementById("id_estudiante").value = id;
+  }
+
+
+  function capturar_id_matri(id){
+    //console.log(id);
+    document.getElementById("id_matricula").value = id;
   }
 
 </script>

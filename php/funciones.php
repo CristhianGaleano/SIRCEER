@@ -1,20 +1,30 @@
 	<?php 
 
 
+	function obtener_estado_matricula($id,$cn){
+		$sql = "SELECT estado FROM MATRICULAS WHERE matriculas.id=$id";
+		$ps=$cn->prepare($sql);
+		$ps->execute();
+		$rs=$ps->fetch();
+
+		return estado;
+	}
+
+
 function asignar_nota($id_matricula,$promedio,$estado,$cn){
 
 		$sql = "UPDATE matriculas SET promedio=:promedio, estado=:estado WHERE id=:id";
 		$ps = $cn->prepare($sql);
 		$ps->bindParam(':promedio',$promedio);
 		$ps->bindParam(':estado',$estado);
-		$ps->bindParam(':id',$id);
+		$ps->bindParam(':id',$id_matricula);
 		$rs = $ps->execute();
 		#var_dump($rs);
 	
 	if ($rs) {
 		return true;
 	}
-		return false;	
+		return false;
 }
 
 function deleteInstitucion($id,$cn){
