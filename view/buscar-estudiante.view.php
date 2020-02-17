@@ -53,7 +53,7 @@
                                 <!--    <a class="btn btn-danger btn-sm" id="btndeleteestu" href="<?php #echo URL ?>php/eliminarEstudiante.php?id=<?php #echo urlencode($value['doc_estudiante'])?>">Eliminar</a>-->
                                 </td>
                                 
-								<td><a class="btn btn-success btn-sm" href="<?php echo URL ?>gestion/ver-estudiante.php?id=<?php echo urlencode($value['doc_estudiante'])?>" title="Ver">Ver</a></td>
+								<td><a class="btn btn-success btn-sm" href="<?php echo URL ?>gestion/ver-estudiante.php?id=<?php echo urlencode($value['doc_estudiante'])?>" title="Ver" target="_blank">Ver</a></td>
                             </tr>
                         <?php } ?>
                         </tbody>        

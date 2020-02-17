@@ -14,6 +14,9 @@
 .icon-trash-empty:before { content: '\e80c'; } /* '' */
 .icon-down-bold:before { content: '\e80d'; } /* '' */
 .icon-up-bold:before { content: '\e80e'; } /* '' */
+.icon-th-list:before { content: '\e80f'; } /* '' */
+.icon-list:before { content: '\e810'; } /* '' */
+.icon-menu:before { content: '\f0c9'; } /* '' */
 .icon-download-cloud:before { content: '\f0ed'; } /* '' */
 .icon-upload-cloud:before { content: '\f0ee'; } /* '' */
 .icon-doc-text:before { content: '\f0f6'; } /* '' */

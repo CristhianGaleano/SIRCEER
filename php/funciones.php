@@ -1,30 +1,69 @@
-	<?php 
+	<?php
 
 
-	function obtener_estado_matricula($id,$cn){
-		$sql = "SELECT estado FROM MATRICULAS WHERE matriculas.id=$id";
+	function cambiar_estado_estudiante($id,$cn){
+
+		$sql = "UPDATE estudiantes SET estado='INACTIVO' WHERE estudiantes.id=$id";
+		$ps=$cn->prepare($sql);
+		$ps=$ps->execute();
+		echo 'Resultado change status:';
+		var_dump($ps);
+
+	}
+
+
+	function obtener_estado_estudiante($id,$cn){
+		echo "Id del estudiante: $id <br>";
+		$sql = "SELECT estado  FROM estudiantes WHERE estudiantes.id=$id";
 		$ps=$cn->prepare($sql);
 		$ps->execute();
-		$rs=$ps->fetch();
+		$rs=$ps->fetch()['estado'];
+		echo 'Estado: ';
+		var_dump($rs);
+		if ($rs!="MATRICULADO") {
+			echo 'No matriculado';
+			return false;
+		}
 
-		return estado;
-	}
-
-
-function asignar_nota($id_matricula,$promedio,$estado,$cn){
-
-		$sql = "UPDATE matriculas SET promedio=:promedio, estado=:estado WHERE id=:id";
-		$ps = $cn->prepare($sql);
-		$ps->bindParam(':promedio',$promedio);
-		$ps->bindParam(':estado',$estado);
-		$ps->bindParam(':id',$id_matricula);
-		$rs = $ps->execute();
-		#var_dump($rs);
-	
-	if ($rs) {
 		return true;
 	}
+
+/**
+ * [asignar_nota Despues de asignarse nota debe cambiar su estado a APORBADO O NO APROBADO, igualmente el es
+ * estado del estudiante]
+ * @param  [type] $id_matricula  [description]
+ * @param  [type] $id_estudiante [description]
+ * @param  [type] $promedio      [description]
+ * @param  [type] $estado        [description]
+ * @param  [type] $cn            [description]
+ * @return [type]                [description]
+ */
+function asignar_nota($id_matricula,$id_estudiante,$promedio,$estado,$cn){
+
+
+	echo 'Entra asignar notas';
+
+		if (obtener_estado_estudiante($id_estudiante,$cn))
+		 {
+			echo 'Entra a estado';
+			$sql = "UPDATE matriculas SET promedio=:promedio, estado=:estado WHERE id=:id";
+			$ps = $cn->prepare($sql);
+			$ps->bindParam(':promedio',$promedio);
+			$ps->bindParam(':estado',$estado);
+			$ps->bindParam(':id',$id_matricula);
+			$rs = $ps->execute();
+			var_dump($rs);
+
+			if ($rs) {
+				cambiar_estado_estudiante($id_estudiante,$cn);
+				return true;
+			}
+				return false; 	
+
+		}
+
 		return false;
+
 }
 
 function deleteInstitucion($id,$cn){
@@ -891,11 +930,13 @@ $rs = $ps->execute();
 	{
 		// echo "Entro";
 		// echo "Doc: $documento";
-		$sql = "SELECT matriculas.id ,matriculas.fecha,matriculas.semestre, estudiantes.documento,estudiantes.primer_nombre,estudiantes.primer_apellido,programas.nombre as programa_nombre ,matriculas.periodo,matriculas.promedio,matriculas.estado 
+		// SELECCIONA LAS MATRICULAS QUE NO TENGAN NOTA Y QUE SU ESTADO SEA ACTIVO
+		$sql = "SELECT matriculas.id ,matriculas.fecha,matriculas.semestre,estudiantes.id as id_estudiante, estudiantes.documento,estudiantes.primer_nombre,estudiantes.primer_apellido,programas.nombre as programa_nombre ,matriculas.periodo,matriculas.promedio,matriculas.estado 
 FROM 
 matriculas
 LEFT JOIN estudiantes ON matriculas.estudiante_id=estudiantes.id 
-LEFT JOIN programas ON matriculas.programa_id=programas.id";
+LEFT JOIN programas ON matriculas.programa_id=programas.id 
+WHERE matriculas.estado='ACTIVO'";
 		#var_dump($sql);
 		$ps = $cn->prepare($sql);
 		$ps->execute();

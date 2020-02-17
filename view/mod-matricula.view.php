@@ -1,13 +1,36 @@
 <?php require("cabecera-admin.php") ?>
 
 
+
+
+
+
+
+
+<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Matriculados <span class="badge badge-light">4</span></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Disponibles <span class="badge badge-light">4</span></a>
+  </li>
+   <li class="nav-item">
+    <a class="nav-link" id="pills-history-tab" data-toggle="pill" href="#pills-history" role="tab" aria-controls="pills-history" aria-selected="false">Historial <span class="badge badge-light">4</span></a>
+  </li>
+  
+</ul>
+
+<div class="tab-content" id="pills-tabContent">
+  <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+    
+
+    
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item active" aria-current="page">Matriculas vigentes</li>
         <!--<li class="breadcrumb-item active" aria-current="page">Matricular</li>-->
     </ol>
 </nav>
-
 
 
 <!---fila para table-->
@@ -45,7 +68,7 @@
                               <td><?php echo $value['primer_nombre'] ?></td>
                               <!-- <td><?php echo $value['programa_nombre'] ?></td> -->
                               <td>
-                                <button class="btn btn-info btn-sm" type="button" name="asignarNota" value="<?php echo urlencode($value['id'])?>" onclick="capturar_id_matri(<?php echo  $value['id'] ?>)"   data-toggle="modal" data-target="#actualizarNota" data-whatever="@mdo"  id="asignarNota">Nota</button>
+                                <button class="btn btn-info btn-sm" type="button" name="asignarNota" value="<?php echo urlencode($value['id'])?>" onclick="capturar_id_matri(<?php echo  $value['id'] ?>,<?php echo  $value['id_estudiante'] ?>)"   data-toggle="modal" data-target="#actualizarNota" data-whatever="@mdo"  id="asignarNota">Nota</button>
                               </td>
                               <td>
                                 <button class="btn btn-warning btn-sm">Ver</button>
@@ -61,6 +84,16 @@
                 
       
 </div><!--row -->
+
+ </div>
+ <!--Matriculados end-->
+
+  <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+      
+    
+
+
+
 
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
@@ -78,7 +111,7 @@
                         <table id="example" class="table table-bordered table-hover">
                         <thead class="thead-light"> 
                             <tr>
-                            	<th>Id</th>
+                              <th>Id</th>
                                 <th>Documento</th>
                                 <th>Nombre</th>
                                 <th>Apellidos</th>
@@ -86,14 +119,14 @@
                             </tr>
                         </thead>
                         <tbody >
-                        	<?php foreach ($rs as $value) {?>
+                          <?php foreach ($rs as $value) {?>
                            <tr>
-								<td><?php echo $value['id'] ?></td>	
-								<td><?php echo $value['documento'] ?></td>
-								<td><?php echo $value['primer_nombre']. " " .$value['segundo_nombre'] ?></td>
-								<td><?php echo $value['primer_apellido']. " " .$value['segundo_apellido'] ?></td>
+                <td><?php echo $value['id'] ?></td> 
+                <td><?php echo $value['documento'] ?></td>
+                <td><?php echo $value['primer_nombre']. " " .$value['segundo_nombre'] ?></td>
+                <td><?php echo $value['primer_apellido']. " " .$value['segundo_apellido'] ?></td>
                                 <td>
-                  <button class="btn btn-info btn-sm" type="button" name="matricular" value="<?php echo urlencode($value['id'])?>" onclick="capturar_id()"   data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"  id="matricular">Matricular</button>
+                  <button class="btn btn-info btn-sm" type="button" name="matricular" value="<?php echo urlencode($value['id'])?>" onclick="capturar_id(<?php echo $value['id'] ?>)"   data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"  id="matricular">Matricular</button>
                 </td>
                             </tr>
                         <?php } ?>
@@ -109,6 +142,44 @@
 
 <!--
 </div>-->
+
+
+
+  </div>
+  <!--Disponibles-->
+  
+    <div class="tab-pane fade" id="pills-history" role="tabpanel" aria-labelledby="pills-history-tab">
+      <div class="row main_wraper">
+        <div class="col-12">
+          <form action="<?php echo URL  ?>gestion/historia.php" method="GET" >
+              <div class="form-row align-items-center">
+                <div class="col-auto">
+                  <label class="sr-only" for="inlineFormInput">Name</label>
+                  <input type="text" class="form-control mb-2" id="inlineFormInput" placeholder="Documento">
+                </div>
+
+                 <div class="col-auto">
+                  <button type="submit" class="btn btn-primary mb-2">Buscar</button>
+                </div>
+              </div>
+          </form>
+
+        </div>
+      </div>
+
+      <div class="row main_wraper">
+        <div class="col-12">
+          
+        </div>
+      </div>
+    </div>
+</div><!---End tabs-->
+
+
+
+
+
+
 
 
 
@@ -223,7 +294,8 @@
         <form method="POST" id="formulario-m-asignar-nota" role="form" action="<?php echo URL  ?>php/asignar-nota-matricula.php">
           
           <div class="form-group">
-            <input type="hidden" name="id_matricula" id="id_matricula">
+            <input type="text" name="id_matricula" id="id_matricula">
+            <input type="text" name="id_estudiante_nota" id="id_estudiante_nota">
 
             <label for="Nota" class="col-form-label">Nota</label>
             <input type="text" class="form-control" required="" name="nota" id="nota">
@@ -233,8 +305,8 @@
             <label class="col-form-label" for="estado_semestre">Estado semestre</label>
                 <select class="form-control" name="estado_semestre" id="estado_semestre" required="">
                     <option value="#">Seleccione una opción</option>
-                    <option value="Aprobado">Aprobado</option>
-                    <option value="No aprobado">No aprobado</option>
+                    <option value="APROBADO">Aprobado</option>
+                    <option value="NO APROBADO">No aprobado</option>
         </select>
           </div>
 
@@ -256,17 +328,18 @@
 
 
 <script type="text/javascript">
-  
+  //para realizar matricula
   function capturar_id(id){
-
+    console.log("Id matricula: " + id);
     document.getElementById("nombre_estudiante").value = "<?php echo urlencode($value['primer_nombre'] . " " . $value['primer_apellido']) ?>";
     document.getElementById("id_estudiante").value = id;
   }
 
 
-  function capturar_id_matri(id){
-    //console.log(id);
+  function capturar_id_matri(id,id_estudiante){
+    console.log("Variables enviadas al m-form: "+id_estudiante+" - "+id);
     document.getElementById("id_matricula").value = id;
+    document.getElementById("id_estudiante_nota").value = id_estudiante;
   }
 
 </script>
