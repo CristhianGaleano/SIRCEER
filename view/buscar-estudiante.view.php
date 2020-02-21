@@ -19,15 +19,17 @@
                         <table id="example" class="table  table-bordered table-hover">
                         <thead class="thead-light"> 
                             <tr>
-                            	<th>Id</th>
+                            	<!-- <th>Id</th> -->
                                 <th>Documento</th>
                                 <th>Nombre</th>
                                 <th>Apellidos</th>
+                                
                                 <!--<th>Contacto</th>-->
-                                <th>Edad</th>
-                                <th>Sisben</th>
+                                <!-- <th>Edad</th> -->
+                                <!-- <th>Sisben</th> -->
                                 <th>Estado</th>
                                 <th>Genero</th>
+                                <th>Colegio</th>
                                 <th></th>
                                 <th>Acciones</th>
                                 <th></th>
@@ -36,15 +38,16 @@
                         <tbody >
                         	<?php foreach ($rows as $value) {?>
                            <tr>
-								<td><?php echo $value['id'] ?></td>	
+								<!-- <td><?php #echo $value['id'] ?></td>	 -->
 								<td><?php echo $value['doc_estudiante'] ?></td>
 								<td><?php echo $value['primer_nombre']. " " .$value['segundo_nombre'] ?></td>
 								<td><?php echo $value['primer_apellido']. " " .$value['segundo_apellido'] ?></td>
 								<!--<td><?php echo $value['telefono_contacto'] ?></td>-->
-								<td><?php echo $value['edad'] ?></td>
-								<td><?php echo $value['siben'] ?></td>
+								<!-- <td><?php #echo $value['edad'] ?></td> -->
+								<!-- <td><?php #echo $value['siben'] ?></td> -->
 								<td><?php echo $value['estado'] ?></td>
-								<td><?php echo $value['genero'] ?></td>
+                                <td><?php echo $value['genero'] ?></td>
+                                <td><?php echo $value['sede'] ?></td>
 								<td><a class="btn btn-warning btn-sm" href="<?php echo URL ?>gestion/editar-estudiante.php?id=<?php echo urlencode($value['doc_estudiante'])?>" title="Editar">Editar</a></td>
 
 								<td>
