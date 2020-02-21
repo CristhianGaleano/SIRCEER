@@ -8,18 +8,6 @@ $cn = getConexion($bd_config);
 comprobarConexion($cn);
 
 
-#Crear funcion para limpiar id
-	$doc_estu = $_GET['id'];
-	
-
-	$result = getSubjectByValue("estudiantes",$doc_estu,'documento',$cn);
-	$instituciones = getSedes($cn);
-	// $situacion_social = getSituacionSocial($cn);
-	$zonas = getZona($cn);
-	$eps = getAllSubject('eps',$cn);
-
-$tipos_estrategias = getAllSubject('tipos_estrategias',$cn);
-$estados_civiles = getAllSubject('estado_civil',$cn);
 
 
 
@@ -175,6 +163,20 @@ if($resultE) {
 
 
 
+}else{
+	
+#Crear funcion para limpiar id
+$doc_estu = $_GET['id'];
+	
+
+$result = getSubjectByValue("estudiantes",$doc_estu,'documento',$cn);
+$instituciones = getSedes($cn);
+// $situacion_social = getSituacionSocial($cn);
+$zonas = getZona($cn);
+$eps = getAllSubject('eps',$cn);
+
+$tipos_estrategias = getAllSubject('tipos_estrategias',$cn);
+$estados_civiles = getAllSubject('estado_civil',$cn);
 }
 ?>
 
