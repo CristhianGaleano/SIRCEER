@@ -3,11 +3,11 @@
 
 	function cambiar_estado_estudiante($id,$cn){
 
-		$sql = "UPDATE estudiantes SET estado='INACTIVO' WHERE estudiantes.id=$id";
+		$sql = "UPDATE estudiantes SET estado='ACTIVO' WHERE estudiantes.id=$id";
 		$ps=$cn->prepare($sql);
 		$ps=$ps->execute();
-		echo 'Resultado change status:';
-		var_dump($ps);
+		#echo 'Resultado change status:';
+		#var_dump($ps);
 
 	}
 
@@ -18,10 +18,10 @@
 		$ps=$cn->prepare($sql);
 		$ps->execute();
 		$rs=$ps->fetch()['estado'];
-		echo 'Estado: ';
-		var_dump($rs);
+		#echo 'Estado: ';
+		#var_dump($rs);
 		if ($rs!="MATRICULADO") {
-			echo 'No matriculado';
+			#echo 'No matriculado';
 			return false;
 		}
 
@@ -41,18 +41,18 @@
 function asignar_nota($id_matricula,$id_estudiante,$promedio,$estado,$cn){
 
 
-	echo 'Entra asignar notas';
+	#echo 'Entra asignar notas';
 
 		if (obtener_estado_estudiante($id_estudiante,$cn))
 		 {
-			echo 'Entra a estado';
+			#echo 'Entra a estado';
 			$sql = "UPDATE matriculas SET promedio=:promedio, estado=:estado WHERE id=:id";
 			$ps = $cn->prepare($sql);
 			$ps->bindParam(':promedio',$promedio);
 			$ps->bindParam(':estado',$estado);
 			$ps->bindParam(':id',$id_matricula);
 			$rs = $ps->execute();
-			var_dump($rs);
+			#var_dump($rs);
 
 			if ($rs) {
 				cambiar_estado_estudiante($id_estudiante,$cn);
