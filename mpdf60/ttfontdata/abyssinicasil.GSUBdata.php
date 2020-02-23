@@ -1,4 +1,0 @@
-<?php
-$GSLuCoverage = array (
-);
-?>
