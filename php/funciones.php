@@ -1129,31 +1129,31 @@ WHERE matriculas.estado='ACTIVO'";
 		#Trae todos los campos de todas las tablas que tienen relacion con el estudiante con documento = ...
 		#Utilizada por ver-estudiante, gestionar-estudiante
 		$sql="SELECT 
-	estudiantes.id,estudiantes.documento AS documento_estudiante, estudiantes.primer_nombre,estudiantes.segundo_nombre,estudiantes.primer_apellido,estudiantes.segundo_apellido,estudiantes.email, estudiantes.fecha_nacimiento,estudiantes.edad,estudiantes.direccion_residencia, estudiantes.estrato,estudiantes.fecha_inicio,estudiantes.fecha_fin, estudiantes.telefono_contacto, estudiantes.observacion, estudiantes.foto, estudiantes.num_acta_grado, estudiantes.media_notas, estudiantes.condonacion_credito, estudiantes.siben, estudiantes.puntaje_sisben, estudiantes.lugar_servicio_social ,estudiantes.tipo_doc, estudiantes.genero, estudiantes.estado,estudiantes.servicio_social,estudiantes.grado,estudiantes.muni_naci,estudiantes.muni_resi, estudiantes.prioritaria,
-	eps.nombre AS eps,
-	zonas.nombre AS zona,
-	sedes.nombre AS sede,
-	programas.nombre AS nombre_programa,
-	programas.id as id_programa,
-	programas.snies AS snies,
-	matriculas.id AS id_matricula,
-	matriculas.semestre,
-	matriculas.periodo,
-	matriculas.promedio,
-	universidades.nombre AS universidad,
-	tipos_estrategias.nombre AS estrategia,
-	acudiente.nombres,acudiente.documento AS documento_attendant,acudiente.telefono,acudiente.ocupacion
-	FROM estudiantes 
-	LEFT JOIN eps ON estudiantes.eps_id=eps.id
-	LEFT JOIN zonas ON estudiantes.zona_id=zonas.id 
-	LEFT JOIN sedes ON estudiantes.sede_id=sedes.id
-	LEFT JOIN matriculas ON estudiantes.id=matriculas.estudiante_id
-	LEFT JOIN programas ON matriculas.programa_id=programas.id
-	LEFT JOIN universidades ON programas.universidad_id=universidades.id
-	LEFT JOIN tipos_estrategias ON estudiantes.tipo_estrategia_id=tipos_estrategias.id
-	LEFT JOIN acudiente ON estudiantes.acudiente_id=acudiente.id
+		estudiantes.id,estudiantes.documento AS documento_estudiante, estudiantes.primer_nombre,estudiantes.segundo_nombre,estudiantes.primer_apellido,estudiantes.segundo_apellido,estudiantes.email, estudiantes.fecha_nacimiento,estudiantes.edad,estudiantes.direccion_residencia, estudiantes.estrato,estudiantes.fecha_inicio,estudiantes.fecha_fin, estudiantes.telefono_contacto, estudiantes.observacion, estudiantes.foto, estudiantes.num_acta_grado, estudiantes.media_notas, estudiantes.condonacion_credito, estudiantes.siben, estudiantes.puntaje_sisben, estudiantes.lugar_servicio_social ,estudiantes.tipo_doc, estudiantes.genero, estudiantes.estado,estudiantes.servicio_social,estudiantes.grado,estudiantes.muni_naci,estudiantes.muni_resi, estudiantes.prioritaria,
+		eps.nombre AS eps,
+		zonas.nombre AS zona,
+		sedes.nombre AS sede,
+		programas.nombre AS nombre_programa,
+		programas.id as id_programa,
+		programas.snies AS snies,
+		matriculas.id AS id_matricula,
+		matriculas.semestre,
+		matriculas.periodo,
+		matriculas.promedio,
+		universidades.nombre AS universidad,
+		tipos_estrategias.nombre AS estrategia,
+		acudiente.nombres as nombre_acu,acudiente.documento AS documento_attendant,acudiente.telefono,acudiente.ocupacion
+		FROM estudiantes 
+		LEFT JOIN eps ON estudiantes.eps_id=eps.id
+		LEFT JOIN zonas ON estudiantes.zona_id=zonas.id 
+		LEFT JOIN sedes ON estudiantes.sede_id=sedes.id
+		LEFT JOIN matriculas ON estudiantes.id=matriculas.estudiante_id
+		LEFT JOIN programas ON matriculas.programa_id=programas.id
+		LEFT JOIN universidades ON programas.universidad_id=universidades.id
+		LEFT JOIN tipos_estrategias ON estudiantes.tipo_estrategia_id=tipos_estrategias.id
+		LEFT JOIN acudiente ON estudiantes.acudiente_id=acudiente.id
 
-	where estudiantes.documento='".$documento."' ORDER BY matriculas.semestre DESC LIMIT 1";
+		where estudiantes.documento='".$documento."' ORDER BY matriculas.semestre DESC LIMIT 1";
 
 		$ps = $con->prepare($sql);
 		$ps->execute();
