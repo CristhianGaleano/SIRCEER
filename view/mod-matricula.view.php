@@ -15,7 +15,7 @@
     <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Disponibles <span class="badge badge-light">4</span></a>
   </li>
    <li class="nav-item">
-    <a class="nav-link" id="pills-history-tab" data-toggle="pill" href="#pills-history" role="tab" aria-controls="pills-history" aria-selected="false">Historial <span class="badge badge-light">4</span></a>
+    <a class="nav-link" href="../gestion/consultar-historia-aca.php">Historial <span class="badge badge-light">4</span></a>
   </li>
   
 </ul>
