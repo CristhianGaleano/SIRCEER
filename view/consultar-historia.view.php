@@ -36,9 +36,19 @@
       
 
       <div class="row main_wraper">
-        <div class="col-12">
-          
-        </div>
+          <div class="col-4">
+              <p>Documento</p>
+              <p>1088264375</p>
+          </div>
+          <div class="col-4">
+              <p>Nombre</p>
+              <p>Cristhian Alexis </p>
+          </div>
+      </div>
+      <div class="row main_wraper">
+          <div class="col-12">
+            <a href="#" class="btn btn-info">Descargar</a>
+          </div>
       </div>
     </div>
 </div><!---End tabs-->
