@@ -1,6 +1,20 @@
 	<?php
 
 
+function getProgramaAndUniversidadNivelAcaAndJornada($id,$cn)
+{
+	$sql = "SELECT programas.snies,programas.nombre as programa,programas.cantidad_semestre,programas.costo_semestre,nivel_academico.nombre as nivel,jornadas.nombre as jornada,universidades.nombre as universidad
+	FROM programas,nivel_academico,jornadas,universidades 
+	WHERE 
+	programas.id=$id AND nivel_academico.id=programas.nivel_academico_id AND universidades.id=programas.universidad_id AND jornadas.id=programas.jornada_id";
+	$ps = $cn->prepare($sql);
+	$ps -> execute();
+	$rs = $ps->fetch();
+	// var_dump($rs);
+	return $rs;
+	
+}
+
 	function cambiar_estado_estudiante($id,$cn){
 
 		$sql = "UPDATE estudiantes SET estado='ACTIVO' WHERE estudiantes.id=$id";
@@ -501,7 +515,7 @@ $rs = $ps->execute();
 		return $ps->fetchAll();
 	}
 
-
+// Obtiene todas las relaciones del programa
 	function obtener_programa($cn){
 		
 		$ps = $cn->prepare("SELECT programas.id AS id_programa, programas.snies,programas.nombre AS name_programa, programas.cantidad_semestre AS num_semestres, programas.costo_semestre, nivel_academico.nombre AS nivel_academico,universidades.nombre AS name_universidad,jornadas.nombre AS jornada FROM programas LEFT JOIN nivel_academico ON nivel_academico.id=programas.nivel_academico_id LEFT JOIN universidades ON universidades.id=programas.universidad_id LEFT JOIN  jornadas ON jornadas.id=programas.jornada_id");
@@ -512,17 +526,17 @@ $rs = $ps->execute();
 		return $ps->fetchAll();
 	}
 
-	function obtener_programas($programas_por_pagina,$cn){
-		$inicio = (pagina_actual() > 1) ? pagina_actual() * $programas_por_pagina - $programas_por_pagina : 0;
+	// function obtener_programas($programas_por_pagina,$cn){
+	// 	$inicio = (pagina_actual() > 1) ? pagina_actual() * $programas_por_pagina - $programas_por_pagina : 0;
 
 
-		$ps = $cn->prepare("SELECT programas.id AS id_programa, programas.snies,programas.nombre AS name_programa, programas.cantidad_semestre AS num_semestres, programas.costo_semestre, nivel_academico.nombre AS nivel_academico,universidades.nombre AS name_universidad,jornadas.nombre AS jornada FROM programas LEFT JOIN nivel_academico ON nivel_academico.id=programas.nivel_academico_id LEFT JOIN universidades ON universidades.id=programas.universidad_id LEFT JOIN  jornadas ON jornadas.id=programas.jornada_id LIMIT $inicio, $programas_por_pagina");
+	// 	$ps = $cn->prepare("SELECT programas.id AS id_programa, programas.snies,programas.nombre AS name_programa, programas.cantidad_semestre AS num_semestres, programas.costo_semestre, nivel_academico.nombre AS nivel_academico,universidades.nombre AS name_universidad,jornadas.nombre AS jornada FROM programas LEFT JOIN nivel_academico ON nivel_academico.id=programas.nivel_academico_id LEFT JOIN universidades ON universidades.id=programas.universidad_id LEFT JOIN  jornadas ON jornadas.id=programas.jornada_id LIMIT $inicio, $programas_por_pagina");
 
-		$ps->execute();
+	// 	$ps->execute();
 
 
-		return $ps->fetchAll();
-	}
+	// 	return $ps->fetchAll();
+	// }
 
 	function obtener_instituciones($cn){
 		
@@ -962,17 +976,17 @@ WHERE matriculas.estado='ACTIVO'";
 	}
 
 
-	function getProgramaAndInstitute($con)
-	{
-		$sql = "SELECT programa.snies,programa.nombre,programa.num_semestres,programa.num_creditos, institucion.nombre AS nombre_institucion FROM programa, institucion WHERE programa.institucion_id=institucion.id";
-		#var_dump($sql);
-		$ps = $con->prepare($sql);
-		$ps->execute();
-		$resul = $ps->fetchAll();
-		#var_dump($resul);
-		return $resul;
+	// function getProgramaAndInstitute($con)
+	// {
+	// 	$sql = "SELECT programa.snies,programa.nombre,programa.num_semestres,programa.num_creditos, institucion.nombre AS nombre_institucion FROM programa, institucion WHERE programa.institucion_id=institucion.id";
+	// 	#var_dump($sql);
+	// 	$ps = $con->prepare($sql);
+	// 	$ps->execute();
+	// 	$resul = $ps->fetchAll();
+	// 	#var_dump($resul);
+	// 	return $resul;
 
-	}
+	// }
 
 	function getMatriculaEstudiante($documento,$cn)
 	{

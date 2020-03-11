@@ -27,7 +27,7 @@
                                 <th>Valor<br>Semes</th>
                                 <th>Nivel<br>Acade</th>
                                 <th>IES</th>
-                                <th>Jornada</th>
+                                <!-- <th>Jornada</th> -->
                                 <th>-</th>
                                 <th>-</th>
                                 <th>-</th>
@@ -43,7 +43,7 @@
 			<td ><?php echo $value['costo_semestre'] ?></td>
 			<td ><?php echo $value['nivel_academico'] ?></td>
 			<td ><?php echo $value['name_universidad'] ?></td>
-			<td ><?php echo utf8_encode($value['jornada']) ?></td>
+			<!-- <td ><?php #echo utf8_encode($value['jornada']) ?></td> -->
 				<!--
 			<td >
 				<a href="<?php #echo URL ?>gestion/gestionar-programa.php?snies=<?php #echo urlencode($value['id_institucion'])?>&select=p">Gestionar</a>
@@ -60,7 +60,7 @@
 			</td>
 				
 			<td >
-				<a class="btn btn-info" href="<?php echo URL ?>gestion/ver-programa.php?id=<?php echo urlencode($value['id_programa'])?>">Ver</a>
+				<a class="btn btn-info" target="_blank" href="<?php echo URL ?>view/ver-programa.view.php?id=<?php echo urlencode($value['id_programa'])?>">Ver</a>
 			</td>
 		<?php
 	}
