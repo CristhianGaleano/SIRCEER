@@ -60,7 +60,7 @@
 				<input class="btn btn-danger btn-sm" type="button" name="deleteInstitucion" value="Eliminar" id="<?php echo urlencode($value['id_institucion'])?>">
 			</td>
 			<td>
-				<a class="btn btn-info btn-sm"href="<?php echo URL ?>gestion/ver-institucion.php?id=<?php echo urlencode($value['id_institucion'])?>">Ver</a>
+				<a class="btn btn-info btn-sm"href="<?php echo URL ?>view/ver-institucion.view.php?id=<?php echo urlencode($value['id_institucion'])?>">Ver</a>
 			</td>
 				</tr>
 		<?php

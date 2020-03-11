@@ -56,7 +56,7 @@
 			</td>
 		
 			<td class="table_estudiantes_td">
-				<a href="<?php echo URL ?>gestion/ver-alianza.php?id=<?php echo urlencode($value['id_alianza'])?>">Ver</a>
+				<a href="<?php echo URL ?>view/ver-alianza.view.php?id=<?php echo urlencode($value['id_alianza'])?>">Ver</a>
 			</td>
 			
 		<?php

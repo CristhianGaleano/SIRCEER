@@ -1,46 +1,70 @@
 <?php 
-$html = '
+  // require '../libs/fpdf/fpdf.php';
+  require 'template-reporte.php';
 
-<div style="margin-top:10px; width:100%;">
-      <div style=" width:100%; background: white; margin-top: 12px; text-align:center; font-size: .1em;">
-          <p style="font-size: 1.5em; font-family: Arial;">GOBERNACIÓN DE RISARALDA</p>
-          <hr>
-      <div style="width:90;float:right;">
-          <img style="80%;" src="../imagenes/gobernacion.png">
-      </div>
+  require_once '../admin/config.php';
+  require_once '../php/Conexion.php';
+  require_once '../php/funciones.php';
+  
 
-      </div>
+  $cn = getConexion($bd_config);
+  comprobarConexion($cn);
+  
+  $id = $_GET['id'];
+  
+  $colegio=getProgramaAndUniversidadNivelAcaAndJornada($id,$cn);
 
-
-
-
-      <div style="background-color: white; width: 100%;">
-            <p style="font-size: 1.5em; font-family: Arial;">INSTITUCIONES REGISTRADAS</p>
-            <table style="font-size:11px">
-
-            <tr>
-              <td>ID</td>
-              <td><strong>NOMBRE</strong></td>
-              <td><strong>TELEFONO</strong></td>
-              <td><strong>CALENDARIO</strong></td>
-              <td><strong>DANE</strong></td>
-            </tr>
-            <tr>
-            <td>'.$institucion['id'].'</td>
-            <td>'.$institucion['nombre'].'</td>
-            <td>'.$institucion['telefono'].'</td>
-            <td>'.$institucion['calendario'].'</td>
-            <td>'.$institucion['DANE'].'</td>
-            </tr>
-
-            </table>
-  </div>    
-</div>';
-
-$mpdf = new mPDF('c','A4');
-#$css = file_get_contents('../css/estilos.css');
-#$mpdf->writeHTML($css);
-$html = mb_convert_encoding($html, 'UTF-8', 'UTF-8');
-$mpdf->writeHTML($html,2);
-$mpdf->Output('ReporteUniversidad.pdf','I');
+  // Creacion object FPDF: 
+  // Este constructor recibe parametros para establecer propiedades de la impresion: 
+  //Primer paramtro: Vertical: P; Horizontal: L.
+  // Segundo parametro: Sistema de medicion: Milimetrtos: mm, ctmts: cm, pulgadas: in y punto: pt 
+  // Tercero: Tamaño de papel: Legal(legal), letter(Carta),   
+  $pdf = new PDF();//'L','mm','letter'
+  // Add new page, size paper, rotacion, etc
+  //Parameters: Orientacion (L:Horizontal-P:Portrai, Formato: letter, angulo: Multiplos de 90)
+  $pdf->AddPage();//'P', 'letter'
+  $pdf->AliasNbPages();
+  $pdf->SetFillColor(232,232,230);
+  // font family: type,style(por defecto regular,B,I,U) and size(por defecto 12)
+  $pdf->SetFont('Arial','',9);
+  $pdf->Cell(0,6,'INFORME DE PROGRAMA',1,1,'C',1);
+  // print: cell(witdth, height, text, borde(0-1, tambien(L,R,B,T)), nextline,aling(L,R,C),color(0,1))
+  // $pdf->Image('../assets/fotos/'.$estudiante['foto'],10,40,20,0,'','');
+  // $pdf->Ln(15);
+  // $pdf->SetFont('Arial','B',8);
+  // $pdf->Cell(20,6,'Nombre',1,0,'L',1);
+  // $pdf->SetFont('Arial','',7);
+  // $pdf->Cell(0,6, utf8_decode( $programa['programa']),1,1,'C',0);
+  // $pdf->SetFont('Arial','B',8);
+  // $pdf->Cell(20,6,'SNIES',1,0,'L',1);
+  // $pdf->SetFont('Arial','',7);
+  // $pdf->Cell(20,6,$programa['snies'],1,1,'L',0);
+  // $pdf->SetFont('Arial','B',8);
+  // $pdf->Cell(40,6,'Cantidad de semestres',1,0,'L',1);
+  // $pdf->SetFont('Arial','',7);
+  // $pdf->Cell(20,6, utf8_decode( $programa['cantidad_semestre']),1,1,'L',0);
+  // $pdf->SetFont('Arial','B',8);
+  // $pdf->Cell(30,6,'Valor matricula',1,0,'L',1);
+  // $pdf->SetFont('Arial','',7);
+  // $pdf->Cell(20,6, utf8_decode( $programa['costo_semestre']),1,1,'L',0);
+  // $pdf->SetFont('Arial','B',8);
+  // $pdf->Cell(30,6, utf8_decode('Nivel académico'),1,0,'L',1);
+  // $pdf->SetFont('Arial','',7);
+  // $pdf->Cell(20,6, utf8_decode( $programa['nivel']),1,1,'L',0);
+  // $pdf->SetFont('Arial','B',8);
+  // $pdf->Cell(30,6, utf8_decode('Jornada'),1,0,'L',1);
+  // $pdf->SetFont('Arial','',7);
+  // $pdf->Cell(20,6, utf8_decode( $programa['jornada']),1,1,'L',0);
+  // $pdf->SetFont('Arial','B',8);
+  // $pdf->Cell(30,6, utf8_decode('IES'),1,0,'L',1);
+  // $pdf->SetFont('Arial','',7);
+  // $pdf->Cell(80,6, utf8_decode( $programa['universidad']),1,0,'L',0);
+  
+  
+  // Envio del fichero
+  // I: Envia el fichero al navegador usando la extension plugin
+  // D: Envia el ficheroal navegador y fuerza su descarga
+  // F: Guarda el fichero en uno local de nombre name
+  // S: Devuelve el documento como una cadena
+  $pdf->Output('I',$estudiante['documento_estudiante'].'.pdf');
 ?>
