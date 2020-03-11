@@ -17,10 +17,10 @@
     
                 <div class="col-md-10 mt-3">
                     <div class="table-responsive-md">        
-                        <table id="example" class="table  table-bordered table-hover">
+                        <table id="example" class="table  table-bordered table-hover" style="font-size: .9em;">
                         <thead class="thead-light"> 
                             <tr>
-                            	<th>Id</th>
+                            	<!-- <th>Id</th> -->
                                 <th>Nombre</th>
                                 <th>Telefono</th>
                                 <!--<th>Contacto</th>-->
@@ -36,14 +36,14 @@
                         <tbody >
 
 	<?php foreach ($rows as $value) {?>
-		<tr class="table_estudiantes_tr">
+		<tr>
 
 			
-			<td ><?php echo $value['id_universidad'] ?></td>	
-			<td ><?php echo $value['universidad'] ?></td>
+			<!-- <td ><?php #echo $value['id_universidad'] ?></td>	 -->
+			<td ><?php echo utf8_decode( $value['universidad']) ?></td>
 			<td ><?php echo $value['telefono'] ?></td>
 			<td ><?php echo $value['email'] ?></td>
-			<td ><?php echo $value['direccion'] ?></td>
+			<td ><?php echo utf8_decode( $value['direccion']) ?></td>
 			<td ><?php echo $value['tipo_uni'] ?></td>
 			<td ><?php echo $value['municipio'] ?></td>
 			<!--<td ><?php #echo $value['alianza'] ?></td>-->
