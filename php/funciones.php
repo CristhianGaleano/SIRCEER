@@ -960,18 +960,18 @@ WHERE matriculas.estado='ACTIVO'";
 
 	}
 
-	function getMatricula($documento,$cn)
+	function getMatriculaAndEstudiante($id,$cn)
 	{
 		// echo "Entro";
-		// echo "Doc: $documento";
-		$sql = "SELECT matriculas.id AS matricula FROM matriculas,estudiantes WHERE matriculas.estudiante_id=estudiantes.id and estudiantes.documento='".$documento."'";
+		// echo "Doc: $id";
+		$sql = "SELECT matriculas.id AS matricula_id,matriculas.fecha,matriculas.anio,matriculas.semestre,matriculas.periodo,matriculas.promedio,matriculas.estado,matriculas.fecha_modificacion,estudiantes.documento,estudiantes.primer_nombre,estudiantes.segundo_nombre,estudiantes.primer_apellido,estudiantes.segundo_apellido,estudiantes.fecha_inicio,estudiantes.grado FROM matriculas,estudiantes WHERE matriculas.estudiante_id=estudiantes.id and matriculas.id=$id";
 		#var_dump($sql);
 		$ps = $cn->prepare($sql);
 		$ps->execute();
-		$resul = $ps->fetch()['matricula'];
+		$resul = $ps->fetch();
 		// echo "<br>Dato de buscar matricula:<br>";
 		// var_dump($resul);
-		return (int) $resul;
+		return  $resul;
 
 	}
 

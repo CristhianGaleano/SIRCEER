@@ -42,7 +42,7 @@
                         <table id="table_matriculas" class="table display table-bordered table-hover">
                         <thead class="thead-light"> 
                             <tr>
-                              <th>Id</th>
+                                <!-- <th>Id</th> -->
                                 <th>Fecha</th>
                                 <th>Semestre</th>
                                 <th>Periodo</th>
@@ -58,7 +58,7 @@
                         <tbody >
                           <?php foreach ($matriculas as $value): ?>
                             <tr>
-                              <td><?php echo $value['id'] ?></td>
+                              <!-- <td><?php #echo $value['id'] ?></td> -->
                               <td><?php echo $value['fecha'] ?></td>
                               <td><?php echo $value['semestre'] ?></td>
                               <td><?php echo $value['periodo'] ?></td>
@@ -71,7 +71,7 @@
                                 <button class="btn btn-info btn-sm" type="button" name="asignarNota" value="<?php echo urlencode($value['id'])?>" onclick="capturar_id_matri(<?php echo  $value['id'] ?>,<?php echo  $value['id_estudiante'] ?>)"   data-toggle="modal" data-target="#actualizarNota" data-whatever="@mdo"  id="asignarNota">Nota</button>
                               </td>
                               <td>
-                                <button class="btn btn-warning btn-sm">Ver</button>
+                                <a href="<?php echo URL ?>view/ver-matricula.view.php?id=<?php echo $value['id'] ?>"  class="btn btn-warning btn-sm" target="_blank">Ver</a>
                               </td>
                             </tr>
                           <?php endforeach ?>

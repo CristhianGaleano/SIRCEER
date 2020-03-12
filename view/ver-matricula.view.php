@@ -12,7 +12,7 @@
   
   $id = $_GET['id'];
   
-  $colegio=getProgramaAndUniversidadNivelAcaAndJornada($id,$cn);
+  $datos_matricula=getMatriculaAndEstudiante($id,$cn);
 
   // Creacion object FPDF: 
   // Este constructor recibe parametros para establecer propiedades de la impresion: 
@@ -27,38 +27,40 @@
   $pdf->SetFillColor(232,232,230);
   // font family: type,style(por defecto regular,B,I,U) and size(por defecto 12)
   $pdf->SetFont('Arial','',9);
-  $pdf->Cell(0,6,'INFORME DE INSTITUCIÓN',1,1,'C',1);
+  $pdf->Cell(0,6,'INFORME DE MATRICULA',1,1,'C',1);
   // print: cell(witdth, height, text, borde(0-1, tambien(L,R,B,T)), nextline,aling(L,R,C),color(0,1))
   // $pdf->Image('../assets/fotos/'.$estudiante['foto'],10,40,20,0,'','');
-  // $pdf->Ln(15);
-  // $pdf->SetFont('Arial','B',8);
-  // $pdf->Cell(20,6,'Nombre',1,0,'L',1);
-  // $pdf->SetFont('Arial','',7);
-  // $pdf->Cell(0,6, utf8_decode( $programa['programa']),1,1,'C',0);
-  // $pdf->SetFont('Arial','B',8);
-  // $pdf->Cell(20,6,'SNIES',1,0,'L',1);
-  // $pdf->SetFont('Arial','',7);
-  // $pdf->Cell(20,6,$programa['snies'],1,1,'L',0);
-  // $pdf->SetFont('Arial','B',8);
-  // $pdf->Cell(40,6,'Cantidad de semestres',1,0,'L',1);
-  // $pdf->SetFont('Arial','',7);
-  // $pdf->Cell(20,6, utf8_decode( $programa['cantidad_semestre']),1,1,'L',0);
-  // $pdf->SetFont('Arial','B',8);
-  // $pdf->Cell(30,6,'Valor matricula',1,0,'L',1);
-  // $pdf->SetFont('Arial','',7);
-  // $pdf->Cell(20,6, utf8_decode( $programa['costo_semestre']),1,1,'L',0);
-  // $pdf->SetFont('Arial','B',8);
-  // $pdf->Cell(30,6, utf8_decode('Nivel académico'),1,0,'L',1);
-  // $pdf->SetFont('Arial','',7);
-  // $pdf->Cell(20,6, utf8_decode( $programa['nivel']),1,1,'L',0);
+  $pdf->Ln(10);
+  $pdf->SetFont('Arial','B',8);
+  $pdf->Cell(20,6,'Estudiante',1,0,'L',1);
+  $pdf->SetFont('Arial','',7);
+  $pdf->Cell(0,6, utf8_decode( $datos_matricula['primer_nombre']." ".$datos_matricula['segundo_nombre']." ".$datos_matricula['primer_apellido']." ".$datos_matricula['segundo_apellido']),1,1,'C',0);
+  $pdf->SetFont('Arial','B',8);
+  $pdf->Cell(60,6,'Se encuentra actualmente matriculado en: ',1,0,'L',1);
+  $pdf->SetFont('Arial','',7);
+  $pdf->Cell(10,6,$datos_matricula['semestre'],1,0,'C',0);
+  $pdf->SetFont('Arial','B',8);
+  $pdf->Cell(30,6,' semestre, periodo: ',1,0,'L',1);
+  $pdf->SetFont('Arial','',7);
+  $pdf->Cell(10,6, utf8_decode( $datos_matricula['periodo']),1,1,'C',0);
+  $pdf->SetFont('Arial','B',8);
+  $pdf->Cell(35,6,'Su fecha de inicio es: ',1,0,'L',1);
+  $pdf->SetFont('Arial','',7);
+  $pdf->Cell(30,6, utf8_decode( $datos_matricula['fecha_inicio']),1,1,'L',0);
+
+  $pdf->Ln(40);
+  $pdf->SetFont('Arial','B',8);
+  $pdf->Cell(30,6, utf8_decode('Ultima actualización'),1,0,'L',1);
+  $pdf->SetFont('Arial','',7);
+  $pdf->Cell(40,6, utf8_decode( $datos_matricula['fecha_modificacion']),1,1,'L',0);
   // $pdf->SetFont('Arial','B',8);
   // $pdf->Cell(30,6, utf8_decode('Jornada'),1,0,'L',1);
   // $pdf->SetFont('Arial','',7);
-  // $pdf->Cell(20,6, utf8_decode( $programa['jornada']),1,1,'L',0);
+  // $pdf->Cell(20,6, utf8_decode( $datos_matricula['jornada']),1,1,'L',0);
   // $pdf->SetFont('Arial','B',8);
   // $pdf->Cell(30,6, utf8_decode('IES'),1,0,'L',1);
   // $pdf->SetFont('Arial','',7);
-  // $pdf->Cell(80,6, utf8_decode( $programa['universidad']),1,0,'L',0);
+  // $pdf->Cell(80,6, utf8_decode( $datos_matricula['universidad']),1,0,'L',0);
   
   
   // Envio del fichero
