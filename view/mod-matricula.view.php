@@ -46,8 +46,8 @@
                                 <th>Fecha</th>
                                 <th>Semestre</th>
                                 <th>Periodo</th>
-                                <th>Nota</th>
-                                <th>Estado</th>
+                                <!-- <th>Nota</th> -->
+                                <!-- <th>Estado</th> -->
                                 <th>Documento</th>
                                 <th>Estudiante</th>
                                 <!-- <th>Programa</th> -->
@@ -62,8 +62,8 @@
                               <td><?php echo $value['fecha'] ?></td>
                               <td><?php echo $value['semestre'] ?></td>
                               <td><?php echo $value['periodo'] ?></td>
-                              <td><?php echo $value['promedio'] ?></td>
-                              <td><?php echo $value['estado'] ?></td>
+                              <!-- <td><?php #echo $value['promedio'] ?></td> -->
+                              <!-- <td><?php #echo $value['estado'] ?></td> -->
                               <td><?php echo $value['documento'] ?></td>
                               <td><?php echo $value['primer_nombre'] ?></td>
                               <!-- <td><?php echo $value['programa_nombre'] ?></td> -->

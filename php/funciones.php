@@ -939,7 +939,9 @@ $rs = $ps->execute();
 	}
 
 
-
+	/**
+	 * Description: Muestra el listado de matriculas vigentes, utilizada
+	 */
 	function getAllMatriculas($cn)
 	{
 		// echo "Entro";
@@ -960,11 +962,25 @@ WHERE matriculas.estado='ACTIVO'";
 
 	}
 
-	function getMatriculaAndEstudiante($id,$cn)
+	/**
+	 * Description: Obtiene la matricula actual
+	 */
+	function getAllMatricula($id,$cn)
 	{
 		// echo "Entro";
 		// echo "Doc: $id";
-		$sql = "SELECT matriculas.id AS matricula_id,matriculas.fecha,matriculas.anio,matriculas.semestre,matriculas.periodo,matriculas.promedio,matriculas.estado,matriculas.fecha_modificacion,estudiantes.documento,estudiantes.primer_nombre,estudiantes.segundo_nombre,estudiantes.primer_apellido,estudiantes.segundo_apellido,estudiantes.fecha_inicio,estudiantes.grado FROM matriculas,estudiantes WHERE matriculas.estudiante_id=estudiantes.id and matriculas.id=$id";
+		$sql = "
+		SELECT 
+matriculas.id ,matriculas.fecha,matriculas.fecha_modificacion,matriculas.semestre,estudiantes.id as id_estudiante, estudiantes.documento,estudiantes.fecha_inicio,estudiantes.primer_nombre,estudiantes.segundo_apellido,
+estudiantes.primer_apellido,estudiantes.segundo_apellido,programas.nombre as programa_nombre ,matriculas.periodo,matriculas.promedio,matriculas.estado, sedes.nombre as sede, universidades.nombre as universidad
+		FROM 
+		matriculas
+		LEFT JOIN estudiantes ON matriculas.estudiante_id=estudiantes.id 
+		LEFT JOIN programas ON matriculas.programa_id=programas.id 
+		LEFT JOIN sedes ON estudiantes.sede_id=sedes.id
+        LEFT JOIN universidades ON programas.universidad_id=universidades.id
+		WHERE matriculas.estado='ACTIVO' AND matriculas.id=$id
+		";
 		#var_dump($sql);
 		$ps = $cn->prepare($sql);
 		$ps->execute();

@@ -14,9 +14,9 @@
   
   $estudiante = getAllStudentRelations($documento,$cn);
   // var_dump($estudiante);
-  $matricula = getMatricula($estudiante['id'],$cn);
+  // $matricula = getMatricula($estudiante['id'],$cn);
   // var_dump($matricula);
-  $historial = getHistorialEstudiante($documento,$cn);
+  // $historial = getHistorialEstudiante($documento,$cn);
   // var_dump($historial);
 
   // Creacion object FPDF: 
