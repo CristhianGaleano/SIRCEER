@@ -24,7 +24,7 @@ Actualmente la matricula cambia de estado, a aprobado y no aprobado, lo ideal de
 Es muy importante al migrar en produccion manejar este estado, es decir actualizar respectivamente a los estudiantes segun como esten en matricula, en este orden de ideas, los casos a encontrar seran:
 
 1. Estudiante con estado MATRICULADO y matricila en estado aprobado o no aprobado
-
+2. Verificar que los tipos de doc no tengan la leyenda
 ------------------------------
 
 

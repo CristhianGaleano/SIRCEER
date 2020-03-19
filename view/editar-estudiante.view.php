@@ -99,7 +99,7 @@
 		</div>
 
 		<div class="form-group col-lg-3 float-lg-left">
-			<label for="eps">EPS:</label>
+			<label for="eps">EPS</label>
 			<select class="form-control" name="eps" id="eps">
 					<?php foreach ($eps as $value): ?>
 					<option value="<?php echo $value['id'] ?>" <?php if ($result['eps_id'] == $value['id']): ?>
@@ -234,9 +234,9 @@
 			<label for="situacion_academica">Situacion academica</label>
 			<select class="form-control" name="situacion_academica" id="">
 					<option value="#">Sin seleccionar</option>
-					<option value="ACTIVO" <?php if ($result['estado'] == 'ACTIVO') {
+					<option value="MATRICULADO" <?php if ($result['estado'] == 'MATRICULADO') {
 						echo "selected";
-					} ?> >ACTIVO</option>
+					} ?> >MATRICULADO</option>
 					<option value="INACTIVO" <?php if ($result['estado'] == 'INACTIVO') {
 						echo "selected";
 					} ?> >INACTIVO</option>
@@ -307,12 +307,12 @@
 			
 				<select class="form-control" name="tipo_documento" id="">
 					<option value="#">Sin seleccionar</option>
-					<option value="C.C: CEDULA DE CIUDADANIA" <?php if ($result['tipo_doc'] == 'C.C: CEDULA DE CIUDADANIA') {
+					<option value="C.C" <?php if ($result['tipo_doc'] == 'C.C') {
 						echo "selected";
-					} ?> >CC: CEDULA DE CIUDADANIA</option>
-					<option value="T.I: TARJETA DE IDENTIDAD" <?php if ($result['tipo_doc'] == 'T.I: TARJETA DE IDENTIDAD') {
+					} ?> >CC</option>
+					<option value="T.I" <?php if ($result['tipo_doc'] == 'T.I') {
 						echo "selected";
-					} ?> >T.I: TARJETA DE IDENTIDAD</option>
+					} ?> >T.I</option>
 				</select>
 		</div>
 

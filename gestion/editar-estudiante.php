@@ -14,10 +14,10 @@ comprobarConexion($cn);
 if ($_SERVER['REQUEST_METHOD'] == 'POST') 
 {
 
-header('Content-Type: application/json');
+// header('Content-Type: application/json');
 
 
-	#print_r($_POST);
+	print_r($_POST);
 	$id = cleanData($_POST['id']);
 	$documento = cleanData($_POST['documento']);
 	$primer_nombre = strtoupper( cleanData($_POST['primer_nombre']));
@@ -98,7 +98,7 @@ header('Content-Type: application/json');
 
 
 	$sqlEstu = 
-	"UPDATE estudiantes SET documento=:documento,primer_nombre=:primer_nombre,segundo_nombre=:segundo_nombre,primer_apellido=:primer_apellido,segundo_apellido=:segundo_apellido,telefono_contacto=:telefono_contacto,email=:email,fecha_nacimiento=:fecha_nacimiento,edad=:edad,direccion_residencia=:direccion_residencia,estrato=:estrato ,fecha_inicio=:fecha_inicio,fecha_fin=:fecha_fin,observacion=:observacion, media_notas=:media_notas,condonacion_credito=:condonacion_credito, siben=:sisben, puntaje_sisben=:puntaje_sisben ,num_acta_grado =:num_acta_grado, lugar_servicio_social=:lugar_servicio_social,estado=:estado,tipo_doc=:tipo_doc, genero=:genero, estado_civil=:estado_civil,grado=:grado,servicio_social=:servicio_social ,eps_id=:eps_id ,zona_id=:zona_id  ,prioritaria=:prioritaria ,muni_resi=:muni_resi ,sede_id=:sede_id ,tipo_estrategia_id =:tipo_estrategia_id, muni_naci=:muni_naci WHERE estudiantes.id=:id";
+	"UPDATE estudiantes SET documento=:documento,primer_nombre=:primer_nombre,segundo_nombre=:segundo_nombre,primer_apellido=:primer_apellido,segundo_apellido=:segundo_apellido,telefono_contacto=:telefono_contacto,email=:email,fecha_nacimiento=:fecha_nacimiento,edad=:edad,direccion_residencia=:direccion_residencia,estrato=:estrato ,fecha_inicio=:fecha_inicio,fecha_fin=:fecha_fin,observacion=:observacion,condonacion_credito=:condonacion_credito, siben=:sisben, puntaje_sisben=:puntaje_sisben ,num_acta_grado =:num_acta_grado, lugar_servicio_social=:lugar_servicio_social,estado=:estado,tipo_doc=:tipo_doc, genero=:genero, estado_civil=:estado_civil,grado=:grado,servicio_social=:servicio_social ,eps_id=:eps_id ,zona_id=:zona_id  ,prioritaria=:prioritaria ,muni_resi=:muni_resi ,sede_id=:sede_id ,tipo_estrategia_id =:tipo_estrategia_id, muni_naci=:muni_naci WHERE estudiantes.id=:id";
 
 	$stm=$cn->prepare($sqlEstu);
 
@@ -116,7 +116,7 @@ header('Content-Type: application/json');
 	$stm->bindParam(":fecha_inicio",$fecha_inicio);
 	$stm->bindParam(":fecha_fin",$fecha_fin);
 	$stm->bindParam(":observacion",$observacion);
-	$stm->bindParam(":media_notas",$media_notas);
+	// $stm->bindParam(":media_notas",$media_notas);
 	$stm->bindParam(":condonacion_credito",$condonacion_credito);
 	$stm->bindParam(":sisben",$sisben);
 	$stm->bindParam(":puntaje_sisben",$puntage_sisben);
@@ -141,18 +141,18 @@ header('Content-Type: application/json');
 	// var_dump($stm);
 	$resultE = $stm->execute();
 	// echo "<br>Mostrando <br>";
-	#var_dump($resultE);
+	var_dump($resultE);
 	#
 	
 if($resultE) {
-#echo 'entro';
-	$respuesta = array("estado" => "true");
-	return print( json_encode( $respuesta )) ;
+echo 'entro';
+	// $respuesta = array("estado" => "true");
+	// return print( json_encode( $respuesta )) ;
 
 }else {
-	#echo 'es false';
-	$respuesta = array("estado" => "false");
-	return print( json_encode( $respuesta )) ;
+	echo 'es false';
+	// $respuesta = array("estado" => "false");
+	// return print( json_encode( $respuesta )) ;
 	
 }
 
@@ -166,7 +166,7 @@ if($resultE) {
 }else{
 	
 #Crear funcion para limpiar id
-$doc_estu = $_GET['id'];
+$doc_estu = cleanData( $_GET['id'] );
 	
 
 $result = getSubjectByValue("estudiantes",$doc_estu,'documento',$cn);

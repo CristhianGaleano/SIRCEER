@@ -406,30 +406,30 @@
                 },
                 //Recibe la respuesta: response
                 success: function(response){
-                    console.log(response);
-                                    if (response.estado == 'true') {
-                                        console.log("It's true");
+                console.log(response);
+                if (response.estado == 'true') {
+                console.log("It's true");
     
-    $("body").overhang({
-      type: "success",
-      message: "Registro exitoso! en segundos seras redirigido",
-      callback: function(){
-        window.location.href="buscar-estudiantes.php";
-      }
-    });
+    // $("body").overhang({
+    //   type: "success",
+    //   message: "Registro exitoso! en segundos seras redirigido",
+    //   callback: function(){
+    //     window.location.href="buscar-estudiantes.php";
+    //   }
+    // });
     //En caso de fallar el insert
                     }else{
                         console.log("It's false");
     
-    $("body").overhang({
-      type: "error",
-      message: "Lo siento ha ocurrido un error! Es posible que haya incrongruencia de los datos...",
-      //closeConfirm: true
-    });
-    $("#form-editar-estudiante button[type=submit]").html("Enviando...");
+    // $("body").overhang({
+    //   type: "error",
+    //   message: "Lo siento ha ocurrido un error! Es posible que haya incrongruencia de los datos...",
+    //   //closeConfirm: true
+    // });
+    $("#form-editar-estudiante button[type=submit]").html("Actualizando...");
     
                     }
-    $("#form-editar-estudiante button[type=submit]").html("Ingresar");
+    $("#form-editar-estudiante button[type=submit]").html("Editar");
 
                 },
                 error: function(){
