@@ -6,7 +6,8 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="<?php echo URL ?>">Home</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Agregar estudiante</li>
+	<li class="breadcrumb-item"><a href="<?php echo URL ?>gestion/buscar-estudiantes.php">Listado de Estudiantes</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Agregar 	Estudiante</li>
   </ol>
 </nav>
 	<div class="row main_wraper">
