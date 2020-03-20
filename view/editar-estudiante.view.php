@@ -421,7 +421,7 @@
 		
 		
 									<div class="form-group col-lg-3 float-lg-left">
-										 <button type="submit" class="btn btn-dark"><i class="icon icon-edit"></i>Enviar</button>
+										 <button type="submit" class="btn btn-info"><i class="icon icon-edit"></i>Editar</button>
 									</div>
 	
 		

@@ -14,10 +14,10 @@ comprobarConexion($cn);
 if ($_SERVER['REQUEST_METHOD'] == 'POST') 
 {
 
-// header('Content-Type: application/json');
+ header('Content-Type: application/json');
 
 
-	print_r($_POST);
+	// print_r($_POST);
 	$id = cleanData($_POST['id']);
 	$documento = cleanData($_POST['documento']);
 	$primer_nombre = strtoupper( cleanData($_POST['primer_nombre']));
@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 	$muni_resi = cleanData($_POST['muni_resi']);
 	$EPS = cleanData($_POST['eps']);
 	$fecha_inicio = cleanData($_POST['fecha_inicio']);
-	$fecha_fin = cleanData($_POST['fecha_fin']);
+	$fecha_fin  = ( !empty( $_POST['fecha_fin'])) ? cleanData($_POST['fecha_fin']) : '0000-00-00' ;
 #	$media_notas = cleanData($_POST['media_notas']);
 	$condonacion_credito = cleanData($_POST['condonacion_credito']);
 	$sisben = cleanData($_POST['sisben']);
@@ -60,40 +60,40 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 
 
 
-// echo "<br>*****VARIABLES RECIBIDAS*****<br>";
-// echo "<br>:documento <br>",$documento;
-// 	echo "<br>:primer_nombre <br>",$primer_nombre;
-// 	echo "<br>:segundo_nombre <br>",$segundo_nombre;
-// 	echo "<br>:primer_apellido <br>",$primer_apellido;
-// 	echo "<br>:segundo_apellido <br>",$segundo_apellido;
-// 	echo "<br>:telefono_contacto <br>",$telefono_contacto;
-// 	echo "<br>:email <br>",$email;
-// 	echo "<br>:fecha_nacimiento <br>",$fecha_nacimiento;
-// 	echo "<br>:edad <br>",$edad;
-// 	echo "<br>:direccion_residencia <br>",$direccion_residencia;
-// 	echo "<br>:fecha_inicio <br>",$fecha_inicio;
-// 	echo "<br>:fecha_fin <br>",$fecha_fin;
-// 	echo "<br>:observacion <br>",$observacion;
-// 	echo "<br>:media_notas <br>",$media_notas;
-// 	echo "<br>:condonacion_credito <br>",$condonacion_credito;
-// 	echo "<br>:sisben <br>",$sisben;
-// 	echo "<br>:puntaje_sisben <br>",$puntage_sisben;
-// 	echo "<br>:num_acta_grado <br>",$num_acta_grado;
-// 	echo "<br>:lugar_servicio_social <br>",$lugar_servicio_social;
-// 	echo "<br>:tipo_documento_id <br>",$tipo_documento_id;
-// 	echo "<br>:eps_id <br>",$EPS;
-// 	echo "<br>:zona_id <br>",$zona_id;
-// 	echo "<br>:estrato_id <br>",$estrato_id;
-// 	echo "<br>:genero_id <br>",$genero_id;
-// 	echo "<br>:situacion_academica_id <br>",$situacion_academica_id;
-// 	echo "<br>:prioritaria <br>",$prioritaria;
-// 	echo "<br>:grado_id <br>",$grado_id;
-// 	echo "<br>:muni_resi <br>",$muni_resi;
-// 	echo "<br>:tipo_estrategia <br>",$tipo_estrategia;
-// 	echo "<br>:sede_id <br>",$sede_id;
-// 	echo "<br>:muni_naci <br>",$muni_naci;
-// 	echo "<br>:estado_civil_id <br>",$estado_civil_id;
-// 	echo "<br>:id",$id;
+	// echo "<br>*****VARIABLES RECIBIDAS*****<br>";
+	// echo "<br>:documento <br>",$documento;
+	// 	echo "<br>:primer_nombre <br>",$primer_nombre;
+	// 	echo "<br>:segundo_nombre <br>",$segundo_nombre;
+	// 	echo "<br>:primer_apellido <br>",$primer_apellido;
+	// 	echo "<br>:segundo_apellido <br>",$segundo_apellido;
+	// 	echo "<br>:telefono_contacto <br>",$telefono_contacto;
+	// 	echo "<br>:email <br>",$email;
+	// 	echo "<br>:fecha_nacimiento <br>",$fecha_nacimiento;
+	// 	echo "<br>:edad <br>",$edad;
+	// 	echo "<br>:direccion_residencia <br>",$direccion_residencia;
+	// 	echo "<br>:fecha_inicio <br>",$fecha_inicio;
+	// 	echo "<br>:fecha_fin <br>",$fecha_fin;
+	// 	echo "<br>:observacion <br>",$observacion;
+	// 	echo "<br>:media_notas <br>",$media_notas;
+	// 	echo "<br>:condonacion_credito <br>",$condonacion_credito;
+	// 	echo "<br>:sisben <br>",$sisben;
+	// 	echo "<br>:puntaje_sisben <br>",$puntage_sisben;
+	// 	echo "<br>:num_acta_grado <br>",$num_acta_grado;
+	// 	echo "<br>:lugar_servicio_social <br>",$lugar_servicio_social;
+	// 	echo "<br>:tipo_documento_id <br>",$tipo_documento_id;
+	// 	echo "<br>:eps_id <br>",$EPS;
+	// 	echo "<br>:zona_id <br>",$zona_id;
+	// 	echo "<br>:estrato_id <br>",$estrato_id;
+	// 	echo "<br>:genero_id <br>",$genero_id;
+	// 	echo "<br>:situacion_academica_id <br>",$situacion_academica_id;
+	// 	echo "<br>:prioritaria <br>",$prioritaria;
+	// 	echo "<br>:grado_id <br>",$grado_id;
+	// 	echo "<br>:muni_resi <br>",$muni_resi;
+	// 	echo "<br>:tipo_estrategia <br>",$tipo_estrategia;
+	// 	echo "<br>:sede_id <br>",$sede_id;
+	// 	echo "<br>:muni_naci <br>",$muni_naci;
+	// 	echo "<br>:estado_civil_id <br>",$estado_civil_id;
+	// 	echo "<br>:id",$id;
 
 
 
@@ -141,18 +141,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 	// var_dump($stm);
 	$resultE = $stm->execute();
 	// echo "<br>Mostrando <br>";
-	var_dump($resultE);
+	#var_dump($resultE);
 	#
 	
 if($resultE) {
-echo 'entro';
-	// $respuesta = array("estado" => "true");
-	// return print( json_encode( $respuesta )) ;
+// echo 'entro';
+	$respuesta = array("estado" => "true");
+	return print( json_encode( $respuesta )) ;
 
 }else {
-	echo 'es false';
-	// $respuesta = array("estado" => "false");
-	// return print( json_encode( $respuesta )) ;
+	// echo 'es false';
+	$respuesta = array("estado" => "false");
+	return print( json_encode( $respuesta )) ;
 	
 }
 

@@ -410,22 +410,22 @@
                 if (response.estado == 'true') {
                 console.log("It's true");
     
-    // $("body").overhang({
-    //   type: "success",
-    //   message: "Registro exitoso! en segundos seras redirigido",
-    //   callback: function(){
-    //     window.location.href="buscar-estudiantes.php";
-    //   }
-    // });
-    //En caso de fallar el insert
-                    }else{
+                    $("body").overhang({
+                    type: "success",
+                    message: "Registro exitoso! en segundos seras redirigido",
+                    callback: function(){
+                        window.location.href="buscar-estudiantes.php";
+                    }
+                    });
+                        // En caso de fallar el insert
+                }else{
                         console.log("It's false");
     
-    // $("body").overhang({
-    //   type: "error",
-    //   message: "Lo siento ha ocurrido un error! Es posible que haya incrongruencia de los datos...",
-    //   //closeConfirm: true
-    // });
+                    $("body").overhang({
+                    type: "error",
+                    message: "Lo siento ha ocurrido un error! Es posible que haya incrongruencia de los datos...",
+                    //closeConfirm: true
+                    });
     $("#form-editar-estudiante button[type=submit]").html("Actualizando...");
     
                     }
