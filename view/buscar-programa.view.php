@@ -11,7 +11,7 @@
 
 <div class="row main_wraper">
 		<div class="col-md-12">
-			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Crear programa</button>
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Nuevo</button>
 		</div>
 	</div>
 

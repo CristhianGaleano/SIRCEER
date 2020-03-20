@@ -11,7 +11,7 @@
 </nav>
 <div class="row main_wraper">
     <div class="col-lg-12">
-            <a class="btn btn-primary" href="<?php echo URL; ?>gestion/new-estudiante.php">Agregar</a>
+            <a class="btn btn-primary" href="<?php echo URL; ?>gestion/new-estudiante.php">Nuevo</a>
     </div>
 </div>
 
