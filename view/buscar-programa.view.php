@@ -1,7 +1,12 @@
 <?php require("cabecera-admin.php") ?>
 
 
-
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="<?php echo URL ?>">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Listado programas</li>
+  </ol>
+</nav>
 <!--Fila para +-->
 
 <div class="row main_wraper">

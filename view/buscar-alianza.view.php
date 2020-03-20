@@ -3,7 +3,14 @@
 
 
 
-<!--Fila para +-->
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="<?php echo URL ?>">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Listado Alianzas</li>
+  </ol>
+</nav>
+
+
 <div class="row main_wraper">
 		<div class="col-md-12">
 			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Nuevo</button>

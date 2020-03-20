@@ -1,5 +1,11 @@
 <?php require 'cabecera-admin.php' ?>
-<?php include_once 'template-parts/menu-alianzas.php' ?>			
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="<?php echo URL ?>">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Listado Alianza</li>
+  </ol>
+</nav>
 <div class="formulario-editar-user">
 	<div class="wra_titulo">
 		<h2>Editar alianza</h2>

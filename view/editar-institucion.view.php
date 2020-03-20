@@ -1,5 +1,13 @@
 	<?php require 'cabecera-admin.php' ?>
 
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="<?php echo URL ?>">Home</a></li>
+	<li class="breadcrumb-item"><a href="<?php echo URL ?>gestion/buscar-institucion.php">Listado</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Editar IEB</li>
+  </ol>
+</nav>
+
 	<div class="row main_wraper">
 		<h2>Editando Institución</h2>
 	</div>

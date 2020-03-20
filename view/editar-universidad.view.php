@@ -1,8 +1,16 @@
 <?php require 'cabecera-admin.php';?>
-<?php include_once 'template-parts/menu-ies.php' ?>			
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="<?php echo URL ?>">Home</a></li>
+	<li class="breadcrumb-item"><a href="<?php echo URL ?>gestion/buscar-universidad.php">Listado IES</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Editar IES</li>
+  </ol>
+</nav>
 <div class="contenedor">
 	<div class="wra_titulo">
-		<h1>Editar Institución de Educación Superior</h1>
+		<h1>Editar IES</h1>
 	</div>
 	<!--SEGUNDO FORMULARIO DE RENOVACION SEMESTRE-->	
 	<!--<h2>REALIZAR MATRICULA</h2>-->
@@ -117,5 +125,5 @@
 
 
 </div>
-<?php require("footer-menu.view.php") ?>
-<?php #require'piedepagina-admin.php' ?>
+
+<?php require'piedepagina-admin.php' ?>

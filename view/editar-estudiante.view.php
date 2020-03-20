@@ -1,5 +1,11 @@
 <?php require 'cabecera-admin.php' ?>
-
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="<?php echo URL ?>">Home</a></li>
+    <li class="breadcrumb-item"><a href="<?php echo URL ?>gestion/buscar-estudiantes.php">Listado</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Editar</li>
+  </ol>
+</nav>
 		<div class="row main_wraper">
     <div class="col-lg-12">
 		  	<h3 class="titulo">Editando estudiante</h3>

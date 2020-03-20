@@ -498,11 +498,17 @@
                     });
                     }else {
                         console.log("Respuesta false del servidor");
+                        $("body").overhang({
+                            type: "error",
+                            message: "Lo siento ha ocurrido un error! Es posible que haya incrongruencia de los datos...",
+                            //closeConfirm: true
+                            });
                     }
                 },
                 //Codigo que se ejecuta sim importar la respuesta
                 complete: function(){
                     console.log("Complete");
+                  
                 },
                 error: function(){
                     console.log("Error!");

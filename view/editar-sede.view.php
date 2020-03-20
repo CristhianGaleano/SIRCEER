@@ -1,5 +1,14 @@
 <?php require 'cabecera-admin.php' ?>
-<?php include_once 'template-parts/menu-sedes.php' ?>
+
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="<?php echo URL ?>">Home</a></li>
+	<li class="breadcrumb-item"><a href="<?php echo URL ?>gestion/buscar-sede.php">Listado Sedes</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Editar Sede</li>
+  </ol>
+</nav>
+
 <div class="formulario-editar-user">
 	<div class="wra_titulo">
 		<h2>Editar sede</h2>
