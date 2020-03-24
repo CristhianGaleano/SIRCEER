@@ -27,7 +27,7 @@ function getProgramaAndUniversidadNivelAcaAndJornada($id,$cn)
 
 
 	function obtener_estado_estudiante($id,$cn){
-		echo "Id del estudiante: $id <br>";
+		// echo "Id del estudiante: $id <br>";
 		$sql = "SELECT estado  FROM estudiantes WHERE estudiantes.id=$id";
 		$ps=$cn->prepare($sql);
 		$ps->execute();
@@ -667,9 +667,9 @@ $rs = $ps->execute();
 
 	/**
 	 * Para estado academico existen tres: 
-	 ACTIVO: Se encuentra en el sistema
-	 MATRICULADO: Para matricular debe estar activo.
-	 INACTIVO: Luego de estar matriculado se graduo o esta cancelado
+	 * ACTIVO: Se encuentra en el sistema
+	 * MATRICULADO: Para matricular debe estar activo.
+	 * INACTIVO: Luego de estar matriculado se graduo o esta cancelado
 	 */
 	function saveMatricula($anio,$semestre,$periodo,$estudiante_id,$programa_id,$fecha,$cn){
 		#fecha del ssitema

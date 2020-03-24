@@ -17,8 +17,8 @@ $response = array('estado' => "false" );
 #var_dump( $_SERVER );
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-	var_dump($_POST);
-	#header('Content-Type: application/json');
+	// var_dump($_POST);
+	header('Content-Type: application/json');
 	
 	$id_matricula = $_POST['id_matricula'];
 	$id_estudiante = $_POST['id_estudiante_nota'];

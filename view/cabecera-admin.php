@@ -53,6 +53,7 @@
 					<a href="<?php echo URL ?>gestion/buscar-sede.php"><i class="icon-cog-alt"></i><span>Sedes</span></a>
 					<a href="<?php echo URL ?>gestion/buscar-universidad.php"><i class="icon-cog-alt"></i><span>Institución ES</span></a>
 					<a href="<?php echo URL ?>gestion/buscar-alianza.php"><i class="icon-cog-alt"></i><span>Alianza</span></a>
+					<a href="<?php echo URL ?>gestion/saldos-estudiante.php"><i class="icon-cog-alt"></i><span>Saldos</span></a>
 					<?php }else {?>
 						<a href="#"><i class="icon-cog-alt"></i><span>Configuracion</span></a>
 					<?php } ?>

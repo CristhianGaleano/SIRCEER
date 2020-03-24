@@ -2,11 +2,6 @@
 
 
 
-
-
-
-
-
 <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
   <li class="nav-item">
     <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Matriculados <span class="badge badge-light">4</span></a>
@@ -294,8 +289,8 @@
         <form method="POST" id="formulario-m-asignar-nota" role="form" action="<?php echo URL  ?>php/asignar-nota-matricula.php">
           
           <div class="form-group">
-            <input type="text" name="id_matricula" id="id_matricula">
-            <input type="text" name="id_estudiante_nota" id="id_estudiante_nota">
+            <input type="hidden" name="id_matricula" id="id_matricula">
+            <input type="hidden" name="id_estudiante_nota" id="id_estudiante_nota">
 
             <label for="Nota" class="col-form-label">Nota</label>
             <input type="text" class="form-control" required="" name="nota" id="nota">
