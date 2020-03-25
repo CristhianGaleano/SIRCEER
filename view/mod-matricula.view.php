@@ -7,7 +7,7 @@
     <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Matriculados <span class="badge badge-light">4</span></a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Disponibles <span class="badge badge-light">4</span></a>
+    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Pendientes para matricula <span class="badge badge-light">4</span></a>
   </li>
    <li class="nav-item">
     <a class="nav-link" href="../gestion/consultar-historia-aca.php">Historial <span class="badge badge-light">4</span></a>

@@ -38,7 +38,7 @@
   $pdf->SetFont('Arial','B',8);
   $pdf->Cell(30,6,' Documento ',1,0,'L',1);
   $pdf->SetFont('Arial','',7);
-  $pdf->Cell(0,6, utf8_decode( $datos_matricula['documento']),1,1,'C',0);
+  $pdf->Cell(0,6, utf8_decode( $datos_matricula['documento_estudiante']),1,1,'C',0);
   $pdf->SetFont('Arial','B',8);
   $pdf->Cell(60,6,' Se encuentra actualmente matriculado en ',1,0,'L',1);
   $pdf->SetFont('Arial','',7);
@@ -84,5 +84,5 @@
   // D: Envia el ficheroal navegador y fuerza su descarga
   // F: Guarda el fichero en uno local de nombre name
   // S: Devuelve el documento como una cadena
-  $pdf->Output('I',$estudiante['documento_estudiante'].'.pdf');
+  $pdf->Output('I',$datos_matricula['documento_estudiante'].'.pdf');
 ?>

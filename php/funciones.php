@@ -947,7 +947,7 @@ $rs = $ps->execute();
 		// echo "Entro";
 		// echo "Doc: $documento";
 		// SELECCIONA LAS MATRICULAS QUE NO TENGAN NOTA Y QUE SU ESTADO SEA ACTIVO
-		$sql = "SELECT matriculas.id ,matriculas.fecha,matriculas.semestre,estudiantes.id as id_estudiante, estudiantes.documento,estudiantes.primer_nombre,estudiantes.primer_apellido,programas.nombre as programa_nombre ,matriculas.periodo,matriculas.promedio,matriculas.estado 
+		$sql = "SELECT matriculas.id ,matriculas.fecha,matriculas.semestre,estudiantes.id as id_estudiante, estudiantes.documento,estudiantes.primer_nombre, estudiantes.segundo_nombre,estudiantes.primer_apellido,programas.nombre as programa_nombre ,matriculas.periodo,matriculas.promedio,matriculas.estado 
 FROM 
 matriculas
 LEFT JOIN estudiantes ON matriculas.estudiante_id=estudiantes.id 
@@ -971,8 +971,7 @@ WHERE matriculas.estado='ACTIVO'";
 		// echo "Doc: $id";
 		$sql = "
 		SELECT 
-matriculas.id ,matriculas.fecha,matriculas.fecha_modificacion,matriculas.semestre,estudiantes.id as id_estudiante, estudiantes.documento,estudiantes.fecha_inicio,estudiantes.primer_nombre,estudiantes.segundo_apellido,
-estudiantes.primer_apellido,estudiantes.segundo_apellido,programas.nombre as programa_nombre ,matriculas.periodo,matriculas.promedio,matriculas.estado, sedes.nombre as sede, universidades.nombre as universidad
+matriculas.id ,matriculas.fecha,matriculas.fecha_modificacion,matriculas.semestre,estudiantes.id as id_estudiante, estudiantes.documento as documento_estudiante, estudiantes.fecha_inicio,estudiantes.primer_nombre, estudiantes.segundo_nombre,estudiantes.segundo_apellido, estudiantes.primer_apellido,estudiantes.segundo_apellido,programas.nombre as programa_nombre ,matriculas.periodo,matriculas.promedio,matriculas.estado, sedes.nombre as sede, universidades.nombre as universidad
 		FROM 
 		matriculas
 		LEFT JOIN estudiantes ON matriculas.estudiante_id=estudiantes.id 
