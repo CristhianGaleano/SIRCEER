@@ -2,15 +2,15 @@
 
 
 
-<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+<ul class="nav nav-tabs mb-3" id="pills-tab" role="tablist">
   <li class="nav-item">
-    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Matriculados <span class="badge badge-light">4</span></a>
+    <a class="nav-link active">Matriculados <span class="badge badge-light">4</span></a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Pendientes para matricula <span class="badge badge-light">4</span></a>
+    <a class="nav-link" href="<?php echo URL ?>gestion/mod-matricula-pendientes.php">Pendientes para matricula <span class="badge badge-light">4</span></a>
   </li>
    <li class="nav-item">
-    <a class="nav-link" href="../gestion/consultar-historia-aca.php">Historial <span class="badge badge-light">4</span></a>
+    <a class="nav-link" href="<?php echo URL ?>gestion/consultar-historia-aca.php">Historial <span class="badge badge-light">4</span></a>
   </li>
   
 </ul>
@@ -83,64 +83,7 @@
  </div>
  <!--Matriculados end-->
 
-  <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-      
-    
 
-
-
-
-<nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item active" aria-current="page">Para matricular</li>
-        <!--<li class="breadcrumb-item active" aria-current="page">Matricular</li>-->
-    </ol>
-</nav>
-
-<!---fila para table-->
-                <div class="row main_wraper">
-<!--Ejemplo tabla con DataTables-->
-    
-                <div class="col-md-6 mt-3">
-                    <div class="table-responsive-md">        
-                        <table id="example" class="table table-bordered table-hover">
-                        <thead class="thead-light"> 
-                            <tr>
-                              <th>Id</th>
-                                <th>Documento</th>
-                                <th>Nombre</th>
-                                <th>Apellidos</th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody >
-                          <?php foreach ($rs as $value) {?>
-                           <tr>
-                <td><?php echo $value['id'] ?></td> 
-                <td><?php echo $value['documento'] ?></td>
-                <td><?php echo $value['primer_nombre']. " " .$value['segundo_nombre'] ?></td>
-                <td><?php echo $value['primer_apellido']. " " .$value['segundo_apellido'] ?></td>
-                                <td>
-                  <button class="btn btn-info btn-sm" type="button" name="matricular" value="<?php echo urlencode($value['id'])?>" onclick="capturar_id(<?php echo $value['id'] ?>)"   data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"  id="matricular">Matricular</button>
-                </td>
-                            </tr>
-                        <?php } ?>
-                        </tbody>
-                       </table>
-                    </div>
-                </div>
-
-
-
-      
-</div><!--row -->
-
-<!--
-</div>-->
-
-
-
-  </div>
   <!--Disponibles-->
   
     <div class="tab-pane fade" id="pills-history" role="tabpanel" aria-labelledby="pills-history-tab">

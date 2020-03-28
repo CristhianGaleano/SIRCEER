@@ -1,21 +1,18 @@
 <?php require("cabecera-admin.php") ?>
 
 
-
-
-
-
-
-
-<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
- 
-   <li class="nav-item ">
-    <a class="nav-link active" href="../gestion/consultar-historia-aca.php">Historial <span class="badge badge-light">4</span></a>
+<ul class="nav nav-tabs mb-3" id="pills-tab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link" href="<?php echo URL ?>gestion/mod-matricula.php" >Matriculados <span class="badge badge-light">4</span></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="<?php echo URL ?>gestion/mod-matricula-pendientes.php">Pendientes para matricula <span class="badge badge-light">4</span></a>
+  </li>
+   <li class="nav-item">
+    <a class="nav-link active" href="<?php echo URL ?>gestion/consultar-historia-aca.php">Historial <span class="badge badge-light">4</span></a>
   </li>
   
 </ul>
-
-  
  
       <div class="row main_wraper">
         <div class="col-12">
