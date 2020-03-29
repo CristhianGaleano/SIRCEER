@@ -1,6 +1,18 @@
 	<?php
 
 
+function getDataAndSaldoEstudiante($doc,$cn)
+{
+	$sql = "
+	SELECT estudiantes.documento, estudiantes.primer_nombre,estudiantes.segundo_nombre, estudiantes.primer_apellido, estudiantes.segundo_apellido ,sum(detalle_factura.valor) as saldo FROM estudiantes, matriculas, detalle_factura WHERE estudiantes.id=matriculas.estudiante_id AND matriculas.id=detalle_factura.id_matricula AND estudiantes.documento=$doc;
+	";
+	$ps = $cn->prepare($sql);
+	$ps -> execute();
+	$rs = $ps->fetch();
+	// var_dump($rs);
+	return $rs;
+	
+}
 function getProgramaAndUniversidadNivelAcaAndJornada($id,$cn)
 {
 	$sql = "SELECT programas.snies,programas.nombre as programa,programas.cantidad_semestre,programas.costo_semestre,nivel_academico.nombre as nivel,jornadas.nombre as jornada,universidades.nombre as universidad

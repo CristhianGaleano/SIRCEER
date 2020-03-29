@@ -9,11 +9,18 @@ validateSession();
 $cn = getConexion($bd_config);
 comprobarConexion($cn);
 
+// if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+//     header('Content-Type: application/json');
 
-#Declaracion variable global 
-$rows = obtener_estudiante($cn);
-#var_dump($rows);
+//     if (empty($_POST['documento'])) {
+//          echo json_encode('error');
+//     }else{
+//         echo json_encode('true');
+//     }
+    
+    
+// }
 
 ?>
-<?php require "../view/buscar-estudiante.view.php" ?>
+<?php require "../view/saldos-estudiante.view.php" ?>
 
