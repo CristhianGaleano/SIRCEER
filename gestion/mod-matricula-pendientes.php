@@ -13,6 +13,9 @@ comprobarConexion($cn);
 $matriculas = getAllMatriculas($cn);
 $programas = getAllSubject('programas',$cn);
 #var_dump($programas);
+
+
+// COnsulta matriculas pendientes
 $rs=paraMatricular($cn);
 
 $response = array('estado' => "false" );

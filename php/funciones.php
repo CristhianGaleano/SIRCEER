@@ -110,13 +110,13 @@ $rs = $ps->execute();
 
 
 	/**
-	 * [paraMatricular description]
+	 * Selecciona los estudiantes en los que su situacion academica sea ACTIVO, pues son los estudiantes que al menos ya iniciaron un programa académico.
 	 * @param  $cn:conexion
 	 * @return [type]        [description]
 	 */
 	function paraMatricular($cn)
 	{
-		$sql = "SELECT * FROM estudiantes WHERE estado='INACTIVO'";
+		$sql = "SELECT * FROM estudiantes WHERE estado='ACTIVO'";
 		$ps = $cn->prepare($sql);
 		$ps->execute();
 		$rs=$ps->fetchAll();
