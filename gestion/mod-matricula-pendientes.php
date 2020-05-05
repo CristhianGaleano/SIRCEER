@@ -24,7 +24,7 @@ $response = array('estado' => "false" );
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
 #	var_dump($_POST);
-	header('Content-Type: application/json');
+	// header('Content-Type: application/json');
 
 	
 	$anio = $_POST['anio'];
@@ -39,9 +39,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 	if ($estado) {
 		
 		$response = array('estado' => "true" );
-		return print( json_encode( $response ) );
+		// return print( json_encode( $response ) );
 	}
-		return print( json_encode( $response ) );
+		// return print( json_encode( $response ) );
 
 }//END POST
 

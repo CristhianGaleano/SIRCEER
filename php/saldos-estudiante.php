@@ -9,6 +9,7 @@ validateSession();
 $cn = getConexion($bd_config);
 comprobarConexion($cn);
 
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     header('Content-Type: application/json');
 

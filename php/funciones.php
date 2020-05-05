@@ -4,7 +4,11 @@
 function getDataAndSaldoEstudiante($doc,$cn)
 {
 	$sql = "
-	SELECT estudiantes.documento, estudiantes.primer_nombre,estudiantes.segundo_nombre, estudiantes.primer_apellido, estudiantes.segundo_apellido ,sum(detalle_factura.valor) as saldo FROM estudiantes, matriculas, detalle_factura WHERE estudiantes.id=matriculas.estudiante_id AND matriculas.id=detalle_factura.id_matricula AND estudiantes.documento=$doc;
+	SELECT estudiantes.documento, estudiantes.primer_nombre,estudiantes.segundo_nombre, estudiantes.primer_apellido, estudiantes.segundo_apellido ,sum(detalle_factura.valor) as saldo 
+	FROM 
+	estudiantes, matriculas, detalle_factura 
+	WHERE 
+	estudiantes.id=matriculas.estudiante_id AND matriculas.id=detalle_factura.id_matricula AND estudiantes.documento=$doc;
 	";
 	$ps = $cn->prepare($sql);
 	$ps -> execute();
@@ -337,10 +341,11 @@ $rs = $ps->execute();
 
 	 function consultar_consecutivo($cn){
 	 		
-		$sql = "SELECT * FROM consecutivo_factura";
+		$sql = "SELECT consecutivo, prefijo FROM consecutivo_factura";
 		$ps = $cn->prepare($sql);
 		$ps->execute();
-		$datos = $ps->fetch();
+		$datos = $ps->fetch()['consecutivo'] +1;
+		incrementar_consecutivo($cn);
 
 		return $datos;
 	}
@@ -687,6 +692,7 @@ $rs = $ps->execute();
 		#fecha del ssitema
 		#echo "Entro a saveMatricula<br>";
 		#echo "variables recibidads: <br> $anio,$semestre,$estudiante_id,$programa_id";
+		// Para la matricula o semestre
 		$estado = "ACTIVO";
 		
 		
@@ -714,14 +720,55 @@ $rs = $ps->execute();
 		
 		$result = $ps->execute();
 		// var_dump($result);
+
+		$id_matricula = $cn->lastInsertId();
+		$valor_programa = consultar_valor_programa($programa_id,$cn);
+		$id_factura = saveFactura($cn);
+		// cambia el estado del estudiante a matriculado
 		update_estado_estudiante("MATRICULADO",$estudiante_id,$cn);
+		saveDetalleFactura($id_matricula, $id_factura, $valor_programa,$cn);
+
+		return  ($result) ? true : false ;
+	}
 
 
-		if ($result) {
-			return true;
-		}else{
-			return false;
-		}
+	function consultar_valor_programa($programa,$cn){
+		$sql = "SELECT costo_semestre FROM programas WHERE id=$programa";
+		$ps=$cn->prepare($sql);
+		$ps->execute();
+		$rs=$ps->fetch()['costo_semestre'];
+		return $rs;
+	}
+
+	
+	function saveFactura($cn){
+
+		// quitar consulta prefijo
+		$consecutivo_factura = consultar_consecutivo($cn);
+		$fecha = Date("Y-m-d");
+		echo "<br> $fecha <br> $consecutivo_factura <br>";
+
+		$sql = "INSERT INTO factura (consecutivo, fecha) VALUES (:consecutivo,:fecha)";
+		$ps=$cn->prepare($sql);
+		$ps->bindParam(':consecutivo',$consecutivo_factura);
+		// $ps->bindParam(':cod_cliente',1);
+		$ps->bindParam(':fecha', $fecha);
+		$rs=$ps->execute();
+		var_dump($rs);
+
+		return $cn->lastInsertId();
+
+	}
+
+	function saveDetalleFactura($id_matricula, $id_factura, $valor,$cn){
+		echo "<br>On sadetalle<br>";
+		$sql = "INSERT INTO detalle_factura(id_matricula,id_factura, valor) VALUES (:id_matricula,:id_factura,:valor)";
+		$ps=$cn->prepare($sql);
+		$ps->bindParam(':id_matricula',$id_matricula);
+		$ps->bindParam(':id_factura',$id_factura);
+		$ps->bindParam(':valor', $valor);
+		$rs=$ps->execute();
+
 	}
 
 
@@ -734,24 +781,7 @@ $rs = $ps->execute();
 	// var_dump($ps);
 	}
 
-	// function saveDiscapacidades($discapacidad,$cn){
-		
-	// 	$sql = "INSERT INTO discapacidades(nombre) VALUES (:nombre)";
-
-	// 	$stm = $cn->prepare($sql);
-	// 	$stm->bindParam(':nombre',$discapacidad);
-		
-		
-	// 	$result = $stm->execute();
-
-	// 	if ($result == false) {
-	// 		echo "Error insertando la sede";
-	// 	}
-
-	// 	echo "<br> Id sede insertada <br>";
-	// 	return $cn->lastInsertId();
-
-	// }
+	
 
 	function saveSede($nombre,$codigo_dane,$consecutivo,$zona,$modelo,$institucion,$municipio,$cn){
 
@@ -1271,23 +1301,23 @@ matriculas.id ,matriculas.fecha,matriculas.fecha_modificacion,matriculas.semestr
 	 	return $result;
 	 }
 
-	 function getTipoPoblacion($cn)
-	 {
-	 	$sql = "SELECT * FROM tipos_poblacion";
-	 	$ps = $cn->prepare($sql);
-	 	$ps -> execute();
-	 	$result = $ps->fetchAll();
-	 	return $result;
-	 }
+	//  function getTipoPoblacion($cn)
+	//  {
+	//  	$sql = "SELECT * FROM tipos_poblacion";
+	//  	$ps = $cn->prepare($sql);
+	//  	$ps -> execute();
+	//  	$result = $ps->fetchAll();
+	//  	return $result;
+	//  }
 
-	 function getZona($cn)
-	 {
-	 	$sql = "SELECT * FROM zonas";
-	 	$ps = $cn->prepare($sql);
-	 	$ps -> execute();
-	 	$result = $ps->fetchAll();
-	 	return $result;
-	 }
+	//  function getZona($cn)
+	//  {
+	//  	$sql = "SELECT * FROM zonas";
+	//  	$ps = $cn->prepare($sql);
+	//  	$ps -> execute();
+	//  	$result = $ps->fetchAll();
+	//  	return $result;
+	//  }
 
 	 
 	 function getSituacionSocial($cn)
@@ -1323,19 +1353,6 @@ matriculas.id ,matriculas.fecha,matriculas.fecha_modificacion,matriculas.semestr
 		return $result;
 	}
 
-	//Pendiente de eliminar 
-	#SIMAT
-	function buscarEstudianteSIMAT($documento,$con)
-	{
-
-		$sql="SELECT * FROM estudiante WHERE numero=$documento LIMIT 1";
-		$ps = $con->prepare($sql);
-		$ps->execute();
-		#var_dump($ps);
-		$ps = $ps->fetch();
-		#var_dump($ps);
-		return $ps;
-	}
 
 	function getStudentsInsitutesAndprogramns($con)
 	{
@@ -1558,42 +1575,44 @@ matriculas.id ,matriculas.fecha,matriculas.fecha_modificacion,matriculas.semestr
 	}
 
 
+
 	//Crea la factura del estudiante y pasa el valor a cartera(pasar_a_cartera)
-	function saveFacturaEstudiante($idEstudiante,$programa_id,$id_matricula,$cn){
-		echo "<br>Entro a save factura<br> con las variables: $id_matricula y $idEstudiante, $programa_id<br>";
-		$datos_consecutivo_factura = consultar_consecutivo($cn);
-		$numero =  $datos_consecutivo_factura['prefijo'] . ($datos_consecutivo_factura['consecutivo'] + 1) ;
-		#$fecha_sistema = Date("y-m-d-m:h:m:s");
-		$estado = 1;
+	// function saveFacturaEstudiante($idEstudiante,$programa_id,$id_matricula,$cn){
+	// 	echo "<br>Entro a save factura<br> con las variables: $id_matricula y $idEstudiante, $programa_id<br>";
+	// 	$datos_consecutivo_factura = consultar_consecutivo($cn);
+	// 	$numero =  $datos_consecutivo_factura['prefijo'] . ($datos_consecutivo_factura['consecutivo'] + 1) ;
+	// 	#$fecha_sistema = Date("y-m-d-m:h:m:s");
+	// 	$estado = 1;
 		
 
-		incrementar_consecutivo($cn);
-		$sql_datos = "
-	SELECT estudiantes.documento,estudiantes.primer_nombre,estudiantes.segundo_nombre,estudiantes.primer_apellido,estudiantes.segundo_apellido,programas.nombre AS programa, programas.snies, programas.costo_semestre, matriculas.semestre,matriculas.periodo,matriculas.anio,matriculas.id AS codigo_matricula, universidades.id AS codigo_universidad, universidades.nombre universidad FROM 
-	 estudiantes,matriculas, programas, universidades
-	where estudiantes.id=matriculas.estudiante_id AND
-	programas.id=matriculas.programa_id AND 
-	programas.universidad_id=universidades.id AND
-	matriculas.id=$id_matricula";
+	// 	incrementar_consecutivo($cn);
+	// 	$sql_datos = "
+	// SELECT estudiantes.documento,estudiantes.primer_nombre,estudiantes.segundo_nombre,estudiantes.primer_apellido,estudiantes.segundo_apellido,programas.nombre AS programa, programas.snies, programas.costo_semestre, matriculas.semestre,matriculas.periodo,matriculas.anio,matriculas.id AS codigo_matricula, universidades.id AS codigo_universidad, universidades.nombre universidad 
+	// FROM 
+	// estudiantes,matriculas, programas, universidades
+	// where estudiantes.id=matriculas.estudiante_id AND
+	// programas.id=matriculas.programa_id AND 
+	// programas.universidad_id=universidades.id AND
+	// matriculas.id=$id_matricula";
 
-	$ps1 = $cn->prepare($sql_datos);
-	$ps1->execute();
-	$resul = $ps1->fetch();
+	// $ps1 = $cn->prepare($sql_datos);
+	// $ps1->execute();
+	// $resul = $ps1->fetch();
 
-	echo "<br>SELECT<br>";
-	var_dump($resul);
-	echo "<br>";
-	$id_universidad = $resul['codigo_universidad'];
-	$name_estudiante = $resul['primer_nombre'] . " " .$resul['segundo_nombre'] . " " .$resul['primer_apellido'] . " " .$resul['segundo_apellido'];
-	echo "codigo_universidad: $id_universidad<br>";
-
-
+	// echo "<br>SELECT<br>";
+	// var_dump($resul);
+	// echo "<br>";
+	// $id_universidad = $resul['codigo_universidad'];
+	// $name_estudiante = $resul['primer_nombre'] . " " .$resul['segundo_nombre'] . " " .$resul['primer_apellido'] . " " .$resul['segundo_apellido'];
+	// echo "codigo_universidad: $id_universidad<br>";
 
 
-	$sql_cartera = "SELECT id AS id_cartera FROM cartera_universidades WHERE cartera_universidades.codigo_universdidad=$id_universidad";
-	$ps2 = $cn->prepare($sql_cartera);
-	$ps2->execute();
-	$id_cartera = $ps2->fetch()['id_cartera'];
+
+
+	// $sql_cartera = "SELECT id AS id_cartera FROM cartera_universidades WHERE cartera_universidades.codigo_universdidad=$id_universidad";
+	// $ps2 = $cn->prepare($sql_cartera);
+	// $ps2->execute();
+	// $id_cartera = $ps2->fetch()['id_cartera'];
 	// echo "ID cartera_universidades: $id_cartera <br>";
 	// var_dump($id_cartera);
 
@@ -1612,37 +1631,37 @@ matriculas.id ,matriculas.fecha,matriculas.fecha_modificacion,matriculas.semestr
 	// 			echo  '<br> id_cartera' , $id_cartera . '<br>';
 				
 
-		$sql = "INSERT INTO factura_estudiante(numero, documento, nombre_estudiante, programa, codigo_snies, semestre, valor, anio, periodo, codigo_universidad, universidad, estado, id_cartera)
-		VALUES 
-		(:numero, :documento, :estudiante, :programa, :codigo_snies,:semestre,:valor,:anio,:periodo,:codigo_universidad,:universidad,:estado,
-		:id_cartera)";
+		// $sql = "INSERT INTO factura_estudiante(numero, documento, nombre_estudiante, programa, codigo_snies, semestre, valor, anio, periodo, codigo_universidad, universidad, estado, id_cartera)
+		// VALUES 
+		// (:numero, :documento, :estudiante, :programa, :codigo_snies,:semestre,:valor,:anio,:periodo,:codigo_universidad,:universidad,:estado,
+		// :id_cartera)";
 
-				$stm = $cn->prepare($sql);
+		// 		$stm = $cn->prepare($sql);
 
-				$stm->bindParam( ':numero' , $numero);
-				$stm->bindParam( ':documento' , $resul['documento']);
-				$stm->bindParam( ':estudiante' , $name_estudiante);
-				$stm->bindParam( ':programa' , $resul['programa']);
-				$stm->bindParam( ':codigo_snies' , $resul['snies']);
-				$stm->bindParam( ':semestre' , $resul['semestre']);
-				$stm->bindParam( ':valor' , $resul['costo_semestre']);
-				$stm->bindParam( ':anio' , $resul['anio']);
-				$stm->bindParam( ':periodo' , $resul['periodo']);
-				$stm->bindParam( ':codigo_universidad' , $resul['codigo_universidad']);
-				$stm->bindParam( ':universidad' , $resul['universidad']);
-				$stm->bindParam( ':estado' , $estado);
-				$stm->bindParam( ':id_cartera' , $id_cartera);
+		// 		$stm->bindParam( ':numero' , $numero);
+		// 		$stm->bindParam( ':documento' , $resul['documento']);
+		// 		$stm->bindParam( ':estudiante' , $name_estudiante);
+		// 		$stm->bindParam( ':programa' , $resul['programa']);
+		// 		$stm->bindParam( ':codigo_snies' , $resul['snies']);
+		// 		$stm->bindParam( ':semestre' , $resul['semestre']);
+		// 		$stm->bindParam( ':valor' , $resul['costo_semestre']);
+		// 		$stm->bindParam( ':anio' , $resul['anio']);
+		// 		$stm->bindParam( ':periodo' , $resul['periodo']);
+		// 		$stm->bindParam( ':codigo_universidad' , $resul['codigo_universidad']);
+		// 		$stm->bindParam( ':universidad' , $resul['universidad']);
+		// 		$stm->bindParam( ':estado' , $estado);
+		// 		$stm->bindParam( ':id_cartera' , $id_cartera);
 				// echo "<br>";
 				// var_dump($stm);
-				$result= $stm->execute();
+				// $result= $stm->execute();
 				#echo "<br>Result: ";
 				// echo "<br>";
 				// var_dump($result);
 				//Suma el valor de la factura a cartera
-				pasar_a_cartera($numero,$resul['costo_semestre'],$id_cartera,$cn);
+				// pasar_a_cartera($numero,$resul['costo_semestre'],$id_cartera,$cn);
 			
 				
-	}
+	// }
 
 	function saveCarteraUniversidades($id_universidad,$name_universidad,$cn){
 		$cuenta =  mt_rand();
