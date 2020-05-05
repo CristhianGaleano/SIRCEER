@@ -120,7 +120,7 @@ $rs = $ps->execute();
 	 */
 	function paraMatricular($cn)
 	{
-		$sql = "SELECT * FROM estudiantes WHERE estado='ACTIVO'";
+		$sql = "SELECT * FROM estudiantes WHERE estado='ACTIVO' OR estado='INACTIVO'";
 		$ps = $cn->prepare($sql);
 		$ps->execute();
 		$rs=$ps->fetchAll();
@@ -990,11 +990,12 @@ $rs = $ps->execute();
 		// echo "Doc: $documento";
 		// SELECCIONA LAS MATRICULAS QUE NO TENGAN NOTA Y QUE SU ESTADO SEA ACTIVO
 		$sql = "SELECT matriculas.id ,matriculas.fecha,matriculas.semestre,estudiantes.id as id_estudiante, estudiantes.documento,estudiantes.primer_nombre, estudiantes.segundo_nombre,estudiantes.primer_apellido,programas.nombre as programa_nombre ,matriculas.periodo,matriculas.promedio,matriculas.estado 
-FROM 
-matriculas
-LEFT JOIN estudiantes ON matriculas.estudiante_id=estudiantes.id 
-LEFT JOIN programas ON matriculas.programa_id=programas.id 
-WHERE matriculas.estado='ACTIVO'";
+		FROM 
+		matriculas
+		LEFT JOIN estudiantes ON matriculas.estudiante_id=estudiantes.id 
+		LEFT JOIN programas ON matriculas.programa_id=programas.id 
+		WHERE 
+		matriculas.estado='ACTIVO'";
 		#var_dump($sql);
 		$ps = $cn->prepare($sql);
 		$ps->execute();
