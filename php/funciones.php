@@ -120,7 +120,9 @@ $rs = $ps->execute();
 	 */
 	function paraMatricular($cn)
 	{
-		$sql = "SELECT * FROM estudiantes WHERE estado='ACTIVO' OR estado='INACTIVO'";
+		$sql = "SELECT estudiantes.primer_nombre, estudiantes.segundo_nombre, estudiantes.primer_apellido, estudiantes.segundo_apellido, estudiantes.documento, estudiantes.id, sedes.nombre AS sede
+		 FROM estudiantes, sedes 
+		WHERE estado='ACTIVO' OR estado='INACTIVO' AND estudiantes.sede_id=sedes.id";
 		$ps = $cn->prepare($sql);
 		$ps->execute();
 		$rs=$ps->fetchAll();

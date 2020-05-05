@@ -35,8 +35,9 @@
               <tr>
                               <th>Id</th>
                                 <th>Documento</th>
-                                <th>Nombre</th>
+                                <th>Nombres</th>
                                 <th>Apellidos</th>
+                                <th>Sede</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
@@ -47,8 +48,10 @@
                 <td><?php echo $value['documento'] ?></td>
                 <td><?php echo $value['primer_nombre']. " " .$value['segundo_nombre'] ?></td>
                 <td><?php echo $value['primer_apellido']. " " .$value['segundo_apellido'] ?></td>
+                <td><?php echo $value['sede']?></td>
+
                                 <td>
-                  <button class="btn btn-info btn-sm" type="button" name="matricular" value="<?php echo urlencode($value['id'])?>" onclick="capturar_id(<?php echo $value['id'] ?>)"   data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"  id="matricular">Matricular</button>
+                  <button class="btn btn-info btn-sm" type="button" name="matricular" value="<?php echo urlencode($value['id'])?>" onclick="capturar_id(<?php echo $value['id']?>, <?php $value['primer_nombre'] ?>)"   data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"  id="matricular">Matricular</button>
                 </td>
                             </tr>
                         <?php } ?>
@@ -103,7 +106,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Realizando matricula</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Matriculando</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -116,8 +119,8 @@
           <div class="form-group">
             <input type="hidden" name="id_estudiante" id="id_estudiante">
 
-            <label for="nombre" class="col-form-label">Nombre:</label>
-            <input type="text" class="form-control" readonly="" name="nombre_estudiante" id="nombre_estudiante">
+            <!-- <label for="nombre" class="col-form-label">Estudiante</label>
+            <input type="text" class="form-control" readonly="" name="nombre_estudiante" id="nombre_estudiante"> -->
           </div>
 
           <div class="form-group">
@@ -243,9 +246,9 @@
 
 <script type="text/javascript">
   //para realizar matricula
-  function capturar_id(id){
+  function capturar_id(id,nombre){
     console.log("Id matricula: " + id);
-    document.getElementById("nombre_estudiante").value = "<?php echo urlencode($value['primer_nombre'] . " " . $value['primer_apellido']) ?>";
+    // document.getElementById("nombre_estudiante").value = "<?php #echo urlencode($value['primer_nombre'] . " " . $value['primer_apellido']) ?>";
     document.getElementById("id_estudiante").value = id;
   }
 
