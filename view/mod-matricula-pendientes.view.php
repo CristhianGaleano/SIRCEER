@@ -4,10 +4,10 @@
 
 <ul class="nav nav-tabs mb-3" id="pills-tab" role="tablist">
   <li class="nav-item">
-    <a class="nav-link active" href="<?php echo URL ?>gestion/mod-matricula-pendientes.php">Matriculas pendientes <span class="badge badge-light">4</span></a>
+    <a class="nav-link active" href="<?php echo URL ?>gestion/mod-matricula-pendientes.php">Matriculas pendientes <span class="badge badge-light"><?php echo $num_matri_pendientes; ?></span></a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="<?php echo URL ?>gestion/mod-matricula.php" >Matriculados <span class="badge badge-light">4</span></a>
+    <a class="nav-link" href="<?php echo URL ?>gestion/mod-matricula.php" >Matriculados <span class="badge badge-light"> </span></a>
   </li>
    <li class="nav-item">
     <a class="nav-link" href="<?php echo URL ?>gestion/consultar-historia-aca.php">Historial <span class="badge badge-light">4</span></a>
@@ -28,7 +28,7 @@
 <div class="row main_wraper">
 <!--Ejemplo tabla con DataTables-->
     
-    <div class="col-md-6 mt-3">
+    <div class="col-md-11 mt-3">
       <div class="table-responsive-md">        
          <table id="example" class="table table-bordered table-hover">
             <thead class="thead-light"> 

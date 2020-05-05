@@ -1,6 +1,16 @@
 	<?php
 
 
+function conteoForMatricular($cn){
+
+	$sql = "SELECT COUNT(*) AS total FROM estudiantes WHERE estudiantes.estado='ACTIVO' OR estudiantes.estado='INACTIVO'";
+	$ps=$cn->prepare( $sql );
+	$ps->execute();
+	$rs=$ps->fetch()['total'];
+	return $rs;
+}
+
+
 function getDataAndSaldoEstudiante($doc,$cn)
 {
 	$sql = "
