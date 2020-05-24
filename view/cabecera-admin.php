@@ -25,7 +25,11 @@
     <!--datables estilo bootstrap 4 CSS-->  
     <link rel="stylesheet"  type="text/css" href="<?php echo URL; ?>datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
 
-    <link rel="stylesheet" type="text/css" href="<?php echo URL; ?>/css/overhang.min.css" />
+	<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>/css/overhang.min.css" />
+	
+	<link href="<?php echo URL; ?>assets/fontawesome-free-5.13.0-web/css/fontawesome.css" rel="stylesheet">
+    <link href="<?php echo URL; ?>assets/fontawesome-free-5.13.0-web/css/brands.css" rel="stylesheet">
+    <link href="<?php echo URL; ?>assets/fontawesome-free-5.13.0-web/css/solid.css" rel="stylesheet">
 
 	<link rel="stylesheet" href="<?php echo URL; ?>libs/icomoon/style.css">
 
@@ -45,20 +49,20 @@
 
 					<?php if ($_SESSION['usuario']['perfil'] != 'ADMINISTRADOR') {?>
 						
-					<a href="#"><i class="icon-home"></i><span>Inicio</span></a>
-					<a href="<?php echo URL ?>gestion/buscar-estudiantes.php"><i class="icon-users"></i><span>Estudiantes</span></a>
-					<a href="<?php echo URL ?>gestion/mod-matricula.php"><i class="icon-upload"></i><span>Matriculas</span></a>
-					<a href="<?php echo URL ?>gestion/buscar-programa.php"><i class="icon-th-list"></i><span>Programas</span></a>
-					<a href="<?php echo URL ?>gestion/buscar-institucion.php"><i class="icon-cog-alt"></i><span>Institución EB</span></a>
-					<a href="<?php echo URL ?>gestion/buscar-sede.php"><i class="icon-cog-alt"></i><span>Sedes</span></a>
-					<a href="<?php echo URL ?>gestion/buscar-universidad.php"><i class="icon-cog-alt"></i><span>Institución ES</span></a>
-					<a href="<?php echo URL ?>gestion/buscar-alianza.php"><i class="icon-cog-alt"></i><span>Alianza</span></a>
-					<a href="<?php echo URL ?>gestion/saldos-estudiante.php"><i class="icon-cog-alt"></i><span>Saldos</span></a>
+					<a href="#"><i class="fas fa-home"></i><span>Inicio</span></a>
+					<a href="<?php echo URL ?>gestion/buscar-estudiantes.php"><i class="fas fa-user-graduate"></i><span>Estudiantes</span></a>
+					<a href="<?php echo URL ?>gestion/mod-matricula.php"><i class="fab fa-accusoft"></i><span>Matriculas</span></a>
+					<a href="<?php echo URL ?>gestion/buscar-programa.php"><i class="fas fa-chalkboard-teacher"></i><span>Programas</span></a>
+					<a href="<?php echo URL ?>gestion/buscar-institucion.php"><i class="fas fa-school"></i><span>Institución EB</span></a>
+					<a href="<?php echo URL ?>gestion/buscar-sede.php"><i class="fas fa-school"></i><span>Sedes</span></a>
+					<a href="<?php echo URL ?>gestion/buscar-universidad.php"><i class="fas fa-university"></i><span>Institución ES</span></a>
+					<!-- <a href="<?php echo URL ?>gestion/buscar-alianza.php"><i class="fas fa-handshake"></i><span>Alianza</span></a> -->
+					<a href="<?php echo URL ?>gestion/saldos-estudiante.php"><i class="fas fa-money-check-alt"></i><span>Saldos</span></a>
 					<?php }else {?>
 						<a href="#"><i class="icon-cog-alt"></i><span>Configuracion</span></a>
 					<?php } ?>
 
-					<a href="<?php echo URL ?>php/cerrar-sesion.php"><i class="icon-logout"></i><span>Salir</span></a>
+					<a href="<?php echo URL ?>php/cerrar-sesion.php"><i class="fas fa-sign-out-alt"></i><span>Salir</span></a>
 				</nav>
 			
 			</div>
