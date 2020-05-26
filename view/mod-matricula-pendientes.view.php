@@ -1,4 +1,4 @@
-<?php require("cabecera-admin.php") ?>
+<?php require "cabecera-admin.php" ?>
 
 
 
@@ -7,10 +7,10 @@
     <a class="nav-link active" href="<?php echo URL ?>gestion/mod-matricula-pendientes.php">Matriculas pendientes <span class="badge badge-light"><?php echo $num_matri_pendientes; ?></span></a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="<?php echo URL ?>gestion/mod-matricula.php" >Matriculados <span class="badge badge-light"> </span></a>
+    <a class="nav-link" href="<?php echo URL ?>gestion/mod-matricula.php" >Matriculas <span class="badge badge-light"> <?php echo $num_matritriculas; ?></span></a>
   </li>
    <li class="nav-item">
-    <a class="nav-link" href="<?php echo URL ?>gestion/consultar-historia-aca.php">Historial <span class="badge badge-light">4</span></a>
+    <a class="nav-link" href="<?php echo URL ?>gestion/consultar-historia-aca.php">Historial</a>
   </li>
   
 </ul>

@@ -34,7 +34,7 @@
                                 <!-- <th>Sisben</th> -->
                                 <th>Estado</th>
                                 <th>Genero</th>
-                                <th>Colegio</th>
+                                <th>IEB</th>
                                 <th></th>
                                 <th>Acciones</th>
                                 <th></th>

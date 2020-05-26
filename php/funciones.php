@@ -1,6 +1,14 @@
 	<?php
 
 
+function conteoMatriculas($cn){
+
+	$sql = "SELECT COUNT(*) AS total FROM matriculas WHERE matriculas.estado='ACTIVO' AND matriculas.promedio=0.0";
+	$ps=$cn->prepare( $sql );
+	$ps->execute();
+	$rs=$ps->fetch()['total'];
+	return $rs;
+}
 function conteoForMatricular($cn){
 
 	$sql = "SELECT COUNT(*) AS total FROM estudiantes WHERE estudiantes.estado='ACTIVO' OR estudiantes.estado='INACTIVO'";
@@ -138,6 +146,7 @@ $rs = $ps->execute();
 		$rs=$ps->fetchAll();
 		return $rs;
 	}
+
 
 
 	function deletePrograma($id,$cn){
@@ -500,9 +509,7 @@ $rs = $ps->execute();
 */
 	function obtener_sedes($cn){
 		
-
-
-		$ps = $cn->prepare("SELECT sedes.id AS id_sede, sedes.nombre AS sede, sedes.codigo_dane_sede,sedes.consecutivo AS consecutivo_sede, zonas.nombre AS zona, modelos.nombre AS modelo, instituciones.nombre AS institucion, sedes.municipio FROM sedes LEFT JOIN zonas ON sedes.zona_id=zonas.id LEFT JOIN modelos ON sedes.modelo_id=modelos.id LEFT JOIN instituciones ON sedes.institucion_id=instituciones.id");
+		$ps = $cn->prepare("SELECT sedes.id AS id_sede, sedes.nombre AS sede, sedes.codigo_dane_sede,sedes.consecutivo AS consecutivo_sede, zonas.nombre AS zona, modelos.nombre AS modelo, sedes.municipio FROM sedes LEFT JOIN zonas ON sedes.zona_id=zonas.id LEFT JOIN modelos ON sedes.modelo_id=modelos.id");
 
 		$ps->execute();
 
@@ -601,15 +608,15 @@ $rs = $ps->execute();
 	}
 
 
-	function numero_paginas($estudiantes_por_pagina,$name_bd,$cn){
-		$total_estudiantes = $cn->prepare("SELECT COUNT(*) AS total FROM $name_bd");
-		$total_estudiantes->execute();
-		$total_estudiantes = $total_estudiantes->fetch()['total'];
-		#echo "<br> 1. $total_estudiantes<br>";
-		#echo "<br> 2. $estudiantes_por_pagina<br>";
-		$numero_paginas = ceil($total_estudiantes / $estudiantes_por_pagina);
-		return $numero_paginas;
-	}
+	// function numero_paginas($estudiantes_por_pagina,$name_bd,$cn){
+	// 	$total_estudiantes = $cn->prepare("SELECT COUNT(*) AS total FROM $name_bd");
+	// 	$total_estudiantes->execute();
+	// 	$total_estudiantes = $total_estudiantes->fetch()['total'];
+	// 	#echo "<br> 1. $total_estudiantes<br>";
+	// 	#echo "<br> 2. $estudiantes_por_pagina<br>";
+	// 	$numero_paginas = ceil($total_estudiantes / $estudiantes_por_pagina);
+	// 	return $numero_paginas;
+	// }
 
 	function saveHistorialSemestre($semestre_id,$matricula_id,$estado,$cn)
 	{
@@ -994,7 +1001,7 @@ $rs = $ps->execute();
 
 
 	/**
-	 * Description: Muestra el listado de matriculas vigentes, utilizada
+	 * Description: Muestra el listado de matriculas actuales, es decir las que aun no tengan nota final
 	 */
 	function getAllMatriculas($cn)
 	{

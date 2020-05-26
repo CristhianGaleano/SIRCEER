@@ -4,10 +4,10 @@
 
 <ul class="nav nav-tabs mb-3" id="pills-tab" role="tablist">
   <li class="nav-item">
-    <a class="nav-link" href="<?php echo URL ?>gestion/mod-matricula-pendientes.php">Matriculas pendientes<span class="badge badge-light">4</span></a>
+    <a class="nav-link" href="<?php echo URL ?>gestion/mod-matricula-pendientes.php">Matriculas pendientes<span class="badge badge-light"><?php echo $num_matri_pendientes; ?></span></a>
   </li>
   <li class="nav-item">
-    <a class="nav-link active">Matriculados <span class="badge badge-light">4</span></a>
+    <a class="nav-link active">Matriculas <span class="badge badge-light"> <?php echo $num_matritriculas; ?></span></a>
   </li>
    <li class="nav-item">
     <a class="nav-link" href="<?php echo URL ?>gestion/consultar-historia-aca.php">Historial <span class="badge badge-light">4</span></a>
@@ -112,15 +112,6 @@
       </div>
     </div>
 </div><!---End tabs-->
-
-
-
-
-
-
-
-
-
 
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

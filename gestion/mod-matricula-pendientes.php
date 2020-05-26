@@ -17,7 +17,9 @@ $programas = getAllSubject('programas',$cn);
 
 // COnsulta matriculas pendientes
 $rs=paraMatricular($cn);
+// contador 
 $num_matri_pendientes = conteoForMatricular($cn);
+$num_matritriculas = conteoMatriculas($cn);
 // var_dump($num_matri_pendientes);
 
 $response = array('estado' => "false" );

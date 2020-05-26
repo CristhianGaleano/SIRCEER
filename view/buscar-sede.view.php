@@ -32,7 +32,7 @@
                                 <th>Consec.</th>
                                 <th>Zona</th>
                                 <th>Mode.</th>
-                                <th>IES</th>
+                                <!-- <th>IES</th> -->
                                 <th>Municipio</th>
                                 <th>-</th>
                                 <th>Acciones</th>
@@ -48,7 +48,7 @@
 			<td><?php echo $value['consecutivo_sede'] ?></td>
 			<td><?php echo $value['zona'] ?></td>
 			<td><?php echo $value['modelo'] ?></td>
-			<td><?php echo $value['institucion'] ?></td>
+			<!-- <td><?php #echo $value['institucion'] ?></td> -->
 			<td><?php echo $value['municipio'] ?></td>
 			<!-- <td><?php #echo $value['alianza'] ?></td> -->
 
@@ -100,30 +100,30 @@
 
 
         	<div class="for-group">
-        		<label for="nombre">Nombre:</label>
+        		<!-- <label for="nombre">Nombre:</label> -->
 			<input class="form-control" type="text" size="20" name="nombre" placeholder="Nombre" required="" >
         	</div>
 
 
 
         	<div class="for-group">
-        		<label for="codigo_dane">Codigo DANE:</label>
+        		<!-- <label for="codigo_dane">Codigo DANE:</label> -->
 			<input class="form-control" type="text" size="20" name="codigo_dane" placeholder="Codigo DANE">
         	</div>
 
 
 
         	<div class="for-group">
-        		<label for="consecutivo">Consecutivo</label>
+        		<!-- <label for="consecutivo">Consecutivo</label> -->
 			<input class="form-control" type="text" name="consecutivo" placeholder="Consecutivo">
         	</div>
 
 
 
         	<div class="for-group">
-        		<label for="zona">Zona</label>
+        		<!-- <label for="zona">Zona</label> -->
 				<select class="form-control" name="zona" id="" required="">
-					<option value="">Seleccione una opción</option>
+					<option value="">Seleccione la zona</option>
 				<?php foreach ($zonas as $value): ?>
 					<option value="<?php echo $value['id'] ?>"><?php echo $value['nombre'] ?></option>
 				<?php endforeach ?>
@@ -133,9 +133,9 @@
 
 
         	<div class="for-group">
-        		<label for="modelo">Modelo</label>	
+        		<!-- <label for="modelo">Modelo</label>	 -->
 				<select class="form-control" name="modelo" id="" required="">
-					<option value="">Seleccione una opción</option>
+					<option value="">Seleccione el modelo</option>
 				<?php foreach ($modelos as $value): ?>
 					<option value="<?php echo $value['id'] ?>"><?php echo $value['nombre'] ?></option>
 				<?php endforeach ?>
@@ -145,9 +145,9 @@
 
 
         	<div class="for-group">
-        		<label for="institucion">Institución Educativa(Principal)</label>
+        		<!-- <label for="institucion">Institución Educativa(Principal)</label> -->
 				<select class="form-control" name="institucion" id="" required="">
-					<option value="">Seleccione una opción</option>
+					<option value="">Seleccione la Institución a la que pertenece</option>
 				<?php foreach ($instituciones as $value): ?>
 					<option value="<?php echo $value['id'] ?>"><?php echo $value['nombre'] ?></option>
 				<?php endforeach ?>
@@ -158,9 +158,9 @@
 
 
         	<div class="for-group">
-        		<label for="municipio">Municipio</label>
+        		<!-- <label for="municipio">Municipio</label> -->
 				<select class="form-control"  style="width: 200px" required="" name="municipio" id="">
-						<option value="">Seleccione una opción</option>
+						<option value="">Seleccione el municipio</option>
 						<option value="APIA">APIA</option>
 						<option value="BALBOA">BALBOA</option>
 						<option value="BELEN DE UMBRIA">BELEN</option>

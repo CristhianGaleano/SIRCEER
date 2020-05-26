@@ -9,12 +9,14 @@ validateSession();
 $cn = getConexion($bd_config);
 comprobarConexion($cn);
 
-
+// matrículas
 $matriculas = getAllMatriculas($cn);
 $programas = getAllSubject('programas',$cn);
 #var_dump($programas);
-$rs=paraMatricular($cn);
-
+// $rs=paraMatricular($cn);
+$num_matritriculas = conteoMatriculas($cn);
+// contador matrículas pendientes
+$num_matri_pendientes = conteoForMatricular($cn);
 $response = array('estado' => "false" );
 
 #var_dump( $_SERVER );

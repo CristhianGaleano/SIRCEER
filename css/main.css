@@ -19,9 +19,12 @@ body{
  }
 
  .barra-lateral a{
- 	color: #fff;
- }
-
+	 color: #fff;
+	}
+/* 	
+	.barra-lateral a:visited {
+			background: red;
+		} */
  /*LOGO*/
  .barra-lateral .logo{
  	background: #0275db;
@@ -40,12 +43,14 @@ body{
 
 
  .barra-lateral .menu a{
- 	display: block;
+	 display: block;
  	padding: 15px;
  	font-family: 'Roboto', sans-serif;
  	font-weight: 500;
  	border-bottom: 1px solid rgba(255,255,255,.1);
- }
+}
+
+
 
  .barra-lateral .menu a:hover{
  	background: #35ae6b;
