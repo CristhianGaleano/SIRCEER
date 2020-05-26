@@ -1,10 +1,10 @@
-<?php require("cabecera-admin.php") ?>
+<?php require "cabecera-admin.php" ?>
 
 
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="<?php echo URL ?>">Home</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Listado sedes</li>
+    <li class="breadcrumb-item active" aria-current="page">Listado Instituciones de Educación Básica</li>
   </ol>
 </nav>
 
@@ -26,8 +26,8 @@
                         <table id="example" class="table  table-bordered table-hover">
                         <thead class="thead-light"> 
                             <tr>
-                            	<th>Id</th>
-                                <th>Sede</th>
+                            	<!-- <th>Id</th> -->
+                                <th>Institución</th>
                                 <!--<th>DANE</th>-->
                                 <th>Consec.</th>
                                 <th>Zona</th>
@@ -42,7 +42,7 @@
                         <tbody >
 	<?php foreach ($rows as $value) {?>
 		<tr>
-			<td><?php echo $value['id_sede'] ?></td>
+			<!-- <td><?php #echo $value['id_sede'] ?></td> -->
 			<td><?php echo $value['sede'] ?></td>
 			<!--<td><?php echo $value['codigo_dane_sede'] ?></td>-->
 			<td><?php echo $value['consecutivo_sede'] ?></td>
@@ -144,8 +144,8 @@
 
 
 
-        	<div class="for-group">
-        		<!-- <label for="institucion">Institución Educativa(Principal)</label> -->
+			<!-- <label for="institucion">Institución Educativa(Principal)</label> -->
+        	<!-- <div class="for-group">
 				<select class="form-control" name="institucion" id="" required="">
 					<option value="">Seleccione la Institución a la que pertenece</option>
 				<?php foreach ($instituciones as $value): ?>
@@ -153,7 +153,7 @@
 				<?php endforeach ?>
 				</select>
 			
-        	</div>
+        	</div> -->
 
 
 

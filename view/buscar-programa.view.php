@@ -99,7 +99,7 @@
             <input type="text" class="form-control" name="nombre" id="nombre">
           </div>
           <div class="form-group">
-            <label class="col-form-label" for="nivel_academico">Nivel academico</label>
+            <label class="col-form-label" for="nivel_academico">Nivel académico</label>
 				<select class="form-control" name="nivel_academico" id="nivel-academico" >
 					<option value="">Seleccione una opción</option>
 			<?php foreach ($niveles as $valor): ?>

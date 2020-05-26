@@ -802,11 +802,11 @@ $rs = $ps->execute();
 
 	
 
-	function saveSede($nombre,$codigo_dane,$consecutivo,$zona,$modelo,$institucion,$municipio,$cn){
+	function saveSede($nombre,$codigo_dane,$consecutivo,$zona,$modelo,$municipio,$cn){
 
 		#echo "<br>Guardando sede...<br>";
 
-		$sql = "INSERT INTO sedes(nombre, codigo_dane_sede, consecutivo, zona_id, modelo_id, institucion_id,municipio) VALUES (:nombre,:codigo_dane_sede,:consecutivo,:zona_id,:modelo_id,:institucion_id,:municipio)";
+		$sql = "INSERT INTO sedes(nombre, codigo_dane_sede, consecutivo, zona_id, modelo_id,municipio) VALUES (:nombre,:codigo_dane_sede,:consecutivo,:zona_id,:modelo_id,:municipio)";
 
 		$stm = $cn->prepare($sql);
 
@@ -815,13 +815,13 @@ $rs = $ps->execute();
 		$stm->bindParam(':consecutivo',$consecutivo);
 		$stm->bindParam(':zona_id',$zona);
 		$stm->bindParam(':modelo_id',$modelo);
-		$stm->bindParam(':institucion_id',$institucion);
+		// $stm->bindParam(':institucion_id',$institucion);
 		$stm->bindParam(':municipio',$municipio);
 		
 
 		$result = $stm->execute();
 		$id_sede = $cn->lastInsertId();
-		echo "<br>ID sede desde metodo: $id_sede";
+		// echo "<br>ID sede desde metodo: $id_sede";
 		if ($result != false) {
 			return true;
 		}else{
@@ -1728,12 +1728,12 @@ matriculas.id ,matriculas.fecha,matriculas.fecha_modificacion,matriculas.semestr
 				$result= $statement->execute();
 				#echo "<br>Result: ";
 				#var_dump($result);
-				$id_universidad = $cn->lastInsertId();
+				#$id_universidad = $cn->lastInsertId();
 				
-				saveCarteraUniversidades($id_universidad,$nombre,$cn);
+				// saveCarteraUniversidades($id_universidad,$nombre,$cn);
 			
-				if ($result != false) {
-					return $id_universidad;
+				if ($result) {
+					return true;
 				}else{
 					return false;
 				}
