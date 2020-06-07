@@ -159,6 +159,94 @@
   </div>
 </div>
 
+<!-- modal -->
+
+
+
+<div class="modal fade" id="editarPrograma" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Actualizando datos del programa</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!--<?php #echo htmlspecialchars($_SERVER['PHP_SELF']) ?>-->
+
+        <form method="POST" id="editar-programa" role="form" action="<?php echo URL  ?>php/editar-programa.php">
+          
+          <div class="form-group">
+            <label for="snies" class="col-form-label">SNIES</label>
+            <input type="text" class="form-control" required="" name="snies" id="snies">
+          </div>
+          <div class="form-group">
+            <label for="nombre" class="col-form-label">Programa</label>
+            <input type="text" class="form-control" required="" name="nombre" id="nombre">
+          </div>
+          <div class="form-group">
+            <label for="valor-semestre" class="col-form-label">Matricula</label>
+            <input type="text" class="form-control" required="" name="valor_semestre" id="valor_semestre">
+          </div>
+
+          <div class="form-group">
+            <label class="col-form-label" for="num_semestres">Semestres</label>
+                <select class="form-control" name="num_semestres" id="num_semestres" required="">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+        </select>
+        </div>
+        <div class="form-group">
+            <label class="col-form-label" for="nivel_academico">Nivel Académico</label>
+                <select class="form-control" name="nivel_academico" id="nivel_academico" required="">
+                    <option value="Tecnica Profesional">Tecnica Profesional</option>
+                    <option value="Tecnología">Tecnología</option>
+                    <option value="Ciclo Profesional">Ciclo Profesional</option>
+                    <option value="Otro">Otro</option>
+        </select>
+          </div>
+
+          <div class="form-group">
+            <label class="col-form-label" for="nivel_academico">IES</label>
+                <select class="form-control" name="universidad" id="universidad" required="">
+                    <option value="Tecnica Profesional">Tecnica Profesional</option>
+                    <option value="Tecnología">Tecnología</option>
+                    <option value="Ciclo Profesional">Ciclo Profesional</option>
+                    <option value="Otro">Otro</option>
+                </select>
+          </div>
+
+
+          <div class="form-group">
+            <label class="col-form-label" for="jornada">IES</label>
+                <select class="form-control" name="jornada" id="jornada" required="">
+                    <option value="Tecnica Profesional">Tecnica Profesional</option>
+                    <option value="Tarde">Tarde</option>
+                    <option value="Mañana">Mañana</option>
+                </select>
+          </div>
+
+          
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" id="btn-asignar-nota-semestre" name="asignar-nota" class="btn btn-primary">Asignar nota</button>
+        <!--<input class="btn btn-primary" type="submit" name="submit" value="Enviar">-->
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
 <?php require 'piedepagina-admin.php' ?>
 
