@@ -416,7 +416,7 @@
       type: "success",
       message: "Registro exitoso! en segundos seras redirigido",
       callback: function(){
-        window.location.href="buscar-sede.php";
+        window.location.href="buscar-universidad.php";
       }
     });
     //En caso de fallar el insert

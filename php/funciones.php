@@ -1330,14 +1330,14 @@ matriculas.id ,matriculas.fecha,matriculas.fecha_modificacion,matriculas.semestr
 	//  	return $result;
 	//  }
 
-	//  function getZona($cn)
-	//  {
-	//  	$sql = "SELECT * FROM zonas";
-	//  	$ps = $cn->prepare($sql);
-	//  	$ps -> execute();
-	//  	$result = $ps->fetchAll();
-	//  	return $result;
-	//  }
+	 function getZona($cn)
+	 {
+	 	$sql = "SELECT * FROM zonas";
+	 	$ps = $cn->prepare($sql);
+	 	$ps -> execute();
+	 	$result = $ps->fetchAll();
+	 	return $result;
+	 }
 
 	 
 	 function getSituacionSocial($cn)
