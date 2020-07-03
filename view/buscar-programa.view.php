@@ -49,23 +49,17 @@
 			<td ><?php echo $value['nivel_academico'] ?></td>
 			<td ><?php echo $value['name_universidad'] ?></td>
 			<!-- <td ><?php #echo utf8_encode($value['jornada']) ?></td> -->
-				<!--
-			<td >
-				<a href="<?php #echo URL ?>gestion/gestionar-programa.php?snies=<?php #echo urlencode($value['id_institucion'])?>&select=p">Gestionar</a>
-			</td>
-		-->
+				
 			<td >
       <button type="button" id="btn-editar-programa" onclick="obtenerDataEditarPrograma('<?php echo $value['id_programa'] ?>')" class="btn btn-primary" data-toggle="modal" data-target="#editarPrograma" data-whatever="@mdo"><i class="fas fa-edit"></i></button>
       </td>
 	
-			<td >
-        <input class="btn btn-danger btn-sm" type="button" name="deletePrograma" value="Eliminar" id="<?php echo $value['id_programa']?>">
-
-      <!--  <a id="deletePrograma" name="<?php echo $value['id_programa']?>" class="btn btn-danger" href="<?php #echo URL ?>php/eliminarPrograma.php?id=<?php #echo $value['id_programa']?>">Eliminar</a>-->
-			</td>
 				
 			<td >
-				<a class="btn btn-info" target="_blank" href="<?php echo URL ?>view/ver-programa.view.php?id=<?php echo urlencode($value['id_programa'])?>">Ver</a>
+				<a class="btn btn-secondary" target="_blank" href="<?php echo URL ?>view/ver-programa.view.php?id=<?php echo urlencode($value['id_programa'])?>">Ver</a>
+			</td>
+			<td>
+        <input class="btn btn-light btn-sm" type="button" name="deletePrograma" value="Eliminar" id="<?php echo $value['id_programa']?>">
 			</td>
 		<?php
 	}
@@ -95,57 +89,60 @@
         <form method="POST" id="formulario-programa" role="form" action="../php/nuevo-programa.php">
           
           <div class="form-group">
-            <label for="nombre" class="col-form-label">Nombre:</label>
-            <input type="text" class="form-control" name="nombre" id="nombre">
-          </div>
-          <div class="form-group">
-            <label class="col-form-label" for="nivel_academico">Nivel académico</label>
-				<select class="form-control" name="nivel_academico" id="nivel-academico" >
-					<option value="">Seleccione una opción</option>
-			<?php foreach ($niveles as $valor): ?>
-				<option value="<?php echo $valor['id'] ?>"><?php echo $valor['nombre'] ?></option>
-			<?php endforeach ?>
-		</select>
+          	<label class="col-form-label" for="codigo_snies">SNIES</label>
+            <!--onkeyup="sugerencias_programa(this.value)"-->
+			      <input class="form-control" type="text"  name="codigo_snies" placeholder="SNIES" id="snies"><div id="miDiv">
           </div>
 
           <div class="form-group">
-          	<label class="col-form-label" for="codigo_snies">SNIES</label>
-            <!--onkeyup="sugerencias_programa(this.value)"-->
-			<input class="form-control" type="text"  name="codigo_snies" placeholder="Codigo SNIES*" id="snies"><div id="miDiv">
+            <label for="nombre" class="col-form-label">Nombre</label>
+            <input type="text" class="form-control" name="nombre" placeholder="Nombre del programa" id="nombre">
           </div>
+          <div class="form-group">
+          	<label class="col-form-label" for="semestres">Semestres</label>
+			      <input class="form-control" type="number"  name="semestres" min="1" max="15" placeholder="Semestres" id="semestre">	
+          </div>
+
+          <div class="form-group">
+          	<label class="col-form-label" for="valor_semestre">Costo semestre</label>
+				    <input class="form-control" type="text"  name="valor_semestre" placeholder="Costo semestre" id="valor-semes">
+          </div>
+          <div class="form-group">
+            <label class="col-form-label" for="nivel_academico">Nivel académico</label>
+            <select class="form-control" name="nivel_academico" id="nivel-academico" >
+              <option value="#">Seleccione una opción</option>
+              <option value="Técnica Profesional">Técnica Profesional</option>
+              <option value="Tecnología">Tecnología</option>
+              <option value="Ciclo Profesional">Ciclo Profesional</option>
+              <option value="Otro">Otro</option>    
+            </select>
+          </div>
+
 
 
           <div class="form-group">
           	<label class="col-form-label" for="universidad">IES</label>
 			<select class="form-control" name="universidad" id="universidad" >
-				<option value="">Seleccione una opción</option>
+				<option value="#">Seleccione una opción</option>
 			<?php foreach ($universidades as $valor): ?>
 				<option value="<?php echo $valor['id'] ?>"><?php echo $valor['nombre'] ?></option>
 			<?php endforeach ?>
 		</select>
           </div>
 
-          <div class="form-group">
-          	<label class="col-form-label" for="semestres">Semestres</label>
-			      <input class="form-control" type="number"  name="semestres" min="1" max="15" placeholder="#*" id="semestre">	
-          </div>
 
 
           <div class="form-group">
           	<label class="col-form-label" for="jornada">Jornada</label>
-			<select class="form-control" name="jornada" id="jornada" >
-				<option value="">Seleccione una opción</option>
-			<?php foreach ($jornadas as $valor): ?>
-				<option value="<?php echo $valor['id'] ?>"><?php echo $valor['nombre'] ?></option>
-			<?php endforeach ?>
-		</select>
+			      <select class="form-control" name="jornada" id="jornada" >
+            <option value="#">Seleccione una opción</option>
+              <option value="Mañana">Mañana</option>
+              <option value="Tarde">Tarde</option>
+              <option value="Noche">Noche</option>
+		        </select>
           </div>
 
 
-          <div class="form-group">
-          	<label class="col-form-label" for="valor_semestre">Costo del semestre</label>
-				<input class="form-control" type="text"  name="valor_semestre" placeholder="Valor del semestre*" id="valor-semes">
-          </div>
 
 
       </div>
