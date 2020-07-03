@@ -280,3 +280,56 @@ body{
  .table thead th{
  	font-size: .9em;
  }
+
+
+ /*  */
+
+
+ .form-group input:focus {
+	 border: aliceblue;
+	background-color: #f9f9f9;
+	color: #444444;
+ }
+ .form-group spam {
+	 /* background-color: tomato; */
+	 visibility: hidden;
+	 width: 100%;
+	 margin: 5px 0;
+	 text-align: center;
+	 color: dimgrey;
+	 font-size: .9rem;
+	 display: none;
+	}
+	
+
+	.check-n-success i, .check-success i {
+		visibility: hidden;
+	}
+	
+	.form-group.checked .check-n-success {
+		visibility: visible;
+		color: #c9302c;
+		display: block;
+	}
+	
+	.form-group.checked .check-n-success i {
+		visibility: visible;
+		margin: 5px;
+	}
+	.form-group.checked .check-success {
+		visibility: visible;
+		color: #0275db;
+		margin: 5px;
+		display: block;
+	}
+	
+	.form-group.checked .check-success i {
+		visibility: visible;
+		margin: 5px;
+	}
+
+
+
+
+
+

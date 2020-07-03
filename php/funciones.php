@@ -554,7 +554,7 @@ $rs = $ps->execute();
 // Obtiene todas las relaciones del programa
 	function obtener_programa($cn){
 		
-		$ps = $cn->prepare("SELECT programas.id AS id_programa, programas.snies,programas.nombre AS name_programa, programas.cantidad_semestre AS num_semestres, programas.costo_semestre, nivel_academico.nombre AS nivel_academico,universidades.nombre AS name_universidad,jornadas.nombre AS jornada FROM programas LEFT JOIN nivel_academico ON nivel_academico.id=programas.nivel_academico_id LEFT JOIN universidades ON universidades.id=programas.universidad_id LEFT JOIN  jornadas ON jornadas.id=programas.jornada_id");
+		$ps = $cn->prepare("SELECT programas.id AS id_programa, programas.snies,programas.nombre AS name_programa, programas.cantidad_semestre AS num_semestres, programas.costo_semestre, programas.nivel_academico, universidades.nombre AS name_universidad,programas.jornada FROM programas LEFT JOIN universidades ON universidades.id=programas.universidad_id");
 
 		$ps->execute();
 

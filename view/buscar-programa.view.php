@@ -11,7 +11,7 @@
 
 <div class="row main_wraper">
 		<div class="col-md-12">
-			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Nuevo</button>
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><i class="fas fa-plus-square"></i></button>
 		</div>
 	</div>
 
@@ -24,13 +24,13 @@
                         <table id="example" class="table  table-bordered table-hover">
                         <thead class="thead-light"> 
                             <tr>
-                            	<th>Id</th>
+                            	<!-- <th>Id</th> -->
                                 <th>Nombre</th>
                                 <th>SNIES</th>
                                 <!--<th>Contacto</th>-->
-                                <th># Semes</th>
-                                <th>Valor<br>Semes</th>
-                                <th>Nivel<br>Acade</th>
+                                <th>Semes</th>
+                                <th>Valor</th>
+                                <th>Nivel</th>
                                 <th>IES</th>
                                 <!-- <th>Jornada</th> -->
                                 <th>-</th>
@@ -41,7 +41,7 @@
                         <tbody >
 	<?php foreach ($rows as $value) {?>
 		<tr>
-			<td ><?php echo $value['id_programa'] ?></td>
+			<!-- <td ><?php #echo $value['id_programa'] ?></td> -->
 			<td ><?php echo $value['name_programa'] ?></td>
 			<td ><?php echo $value['snies'] ?></td>
 			<td ><?php echo $value['num_semestres'] ?></td>
@@ -55,8 +55,8 @@
 			</td>
 		-->
 			<td >
-				<a class="btn btn-success" href="<?php echo URL ?>gestion/editar-programa.php?snies=<?php echo urlencode($value['snies'])?>">Editar</a>
-			</td>
+      <button type="button" id="btn-editar-programa" onclick="obtenerDataEditarPrograma('<?php echo $value['id_programa'] ?>')" class="btn btn-primary" data-toggle="modal" data-target="#editarPrograma" data-whatever="@mdo"><i class="fas fa-edit"></i></button>
+      </td>
 	
 			<td >
         <input class="btn btn-danger btn-sm" type="button" name="deletePrograma" value="Eliminar" id="<?php echo $value['id_programa']?>">
@@ -78,7 +78,7 @@
       
 </div><!--row -->
 
-
+<!-- modals -->
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -158,16 +158,15 @@
     </div>
   </div>
 </div>
-
-<!-- modal -->
-
+</div>
 
 
+<!-- modal editar programa -->
 <div class="modal fade" id="editarPrograma" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Actualizando datos del programa</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Editando programa</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -175,78 +174,82 @@
       <div class="modal-body">
         <!--<?php #echo htmlspecialchars($_SERVER['PHP_SELF']) ?>-->
 
-        <form method="POST" id="editar-programa" role="form" action="<?php echo URL  ?>php/editar-programa.php">
+        <form  id="form-editar-programa" role="form" action="">
           
           <div class="form-group">
             <label for="snies" class="col-form-label">SNIES</label>
-            <input type="text" class="form-control" required="" name="snies" id="snies">
+            <input type="text" class="form-control" name="snies" title="No es posible editar esta propiedad" readonly placeholder="SNIES" id="e-pro-snies" value="">
+            <spam class="" id="spam-n-success">No puede dejar el argumento vacio<i id="icon-n-success" class="fas fa-check"></i></spam> 
+            <spam class="" id="spam-success">Argumento validado<i class="fas fa-check-circle"></i></spam> 
           </div>
           <div class="form-group">
             <label for="nombre" class="col-form-label">Programa</label>
-            <input type="text" class="form-control" required="" name="nombre" id="nombre">
-          </div>
-          <div class="form-group">
-            <label for="valor-semestre" class="col-form-label">Matricula</label>
-            <input type="text" class="form-control" required="" name="valor_semestre" id="valor_semestre">
+            <input type="text" class="form-control" name="nombre" id="e-pro-nombre" placeholder="Nombre del programa" value="">
+            <spam class="" id="spam-n-success">No puede dejar el argumento vacio<i id="icon-n-success" class="fas fa-check"></i></spam> 
+            <spam class="" id="spam-success">Argumento validado<i class="fas fa-check-circle"></i></spam> 
           </div>
 
+
+
+          <div class="form-group">
+            <label class="form-label" for="valor_semestre">Valor semestre</label>
+            <input class="form-control" type="text" size="30" name="valor_semestre" id="e-pro-valor_semestre" value=""  placeholder="Valor por semestre" >
+            <spam class="" id="spam-n-success">No puede dejar el argumento vacio<i id="icon-n-success" class="fas fa-check"></i></spam> 
+            <spam class="" id="spam-success">Argumento validado<i class="fas fa-check-circle"></i></spam> 
+        </div>
           <div class="form-group">
             <label class="col-form-label" for="num_semestres">Semestres</label>
-                <select class="form-control" name="num_semestres" id="num_semestres" required="">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-        </select>
+            <input class="form-control" type="number" name="num_semestres" id="e-pro-semestres" value="<?php echo $result['cantidad_semestre']; ?>">
         </div>
         <div class="form-group">
-            <label class="col-form-label" for="nivel_academico">Nivel Académico</label>
-                <select class="form-control" name="nivel_academico" id="nivel_academico" required="">
-                    <option value="Tecnica Profesional">Tecnica Profesional</option>
-                    <option value="Tecnología">Tecnología</option>
-                    <option value="Ciclo Profesional">Ciclo Profesional</option>
-                    <option value="Otro">Otro</option>
-        </select>
+        <label class="form-label" for="nivel_academico">Nivel academico</label>
+						<select  class="form-control" name="nivel_academico" id="e-pro-nivel_academico">
+              <option value="Técnica Profesional">Técnica Profesional</option>
+              <option value="Tecnología">Tecnología</option>
+              <option value="Ciclo Profesional">Ciclo Profesional</option>
+              <option value="Otro">Otro</option>
+						</select>	
           </div>
 
           <div class="form-group">
-            <label class="col-form-label" for="nivel_academico">IES</label>
-                <select class="form-control" name="universidad" id="universidad" required="">
-                    <option value="Tecnica Profesional">Tecnica Profesional</option>
-                    <option value="Tecnología">Tecnología</option>
-                    <option value="Ciclo Profesional">Ciclo Profesional</option>
-                    <option value="Otro">Otro</option>
-                </select>
+            <label class="form-label" for="universidad">Universidad</label>
+					  <select class="form-control" name="universidad" id="e-pro-university">
+						<?php foreach ($universidades as $value): ?>
+					<option value="<?php echo $value['id'] ?>"><?php echo $value['nombre'] ?></option>
+				<?php endforeach ?>
+					</select>
           </div>
 
 
           <div class="form-group">
-            <label class="col-form-label" for="jornada">IES</label>
-                <select class="form-control" name="jornada" id="jornada" required="">
-                    <option value="Tecnica Profesional">Tecnica Profesional</option>
-                    <option value="Tarde">Tarde</option>
-                    <option value="Mañana">Mañana</option>
-                </select>
+            <label class="form-label" for="e-pro-jornada">Jornada</label>
+            <select class="form-control" name="e-pro-jornada" id="e-pro-jornada">
+              <option value="Mañana">Mañana</option>
+              <option value="Tarde" selected>Tarde</option>
+              <option value="Noche">Noche
+              </option>
+          </select>
           </div>
 
-          
+
+
 
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" id="btn-asignar-nota-semestre" name="asignar-nota" class="btn btn-primary">Asignar nota</button>
+        <button type="submit" id="btn-registrar_programa" name="submit" class="btn btn-primary">Enviar</button>
         <!--<input class="btn btn-primary" type="submit" name="submit" value="Enviar">-->
         </form>
       </div>
+
     </div>
   </div>
 </div>
+
+<!-- modal -->
+
+
+
 
 <?php require 'piedepagina-admin.php' ?>
 

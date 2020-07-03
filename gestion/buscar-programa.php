@@ -11,11 +11,11 @@ comprobarConexion($cn);
 
 
 
-$niveles = getAllSubject('nivel_academico',$cn);
+// $niveles = getAllSubject('nivel_academico',$cn);
 $universidades = getAllSubject('universidades',$cn);
 // var_dump($universidades);
 #las anteriores pueden ser reemplazadas por esta
-$jornadas = getAllSubject('jornadas',$cn);
+// $jornadas = getAllSubject('jornadas',$cn);
 
 $rows=obtener_programa($cn);
 

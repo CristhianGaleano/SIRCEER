@@ -16,6 +16,21 @@ https://programacion8253.wordpress.com/
 ----------------------------
 Correcciones para la nueva version
 
+23/06/2020 como se delete table -jornadas y nivel aca.. se debe pasar los registros correctamente
+	una vez sincronice el modelo
+	N-A:
+	UPDATE programas SET nivel_academico='Técnica Profesional' WHERE nivel_academico='Tecnica Profesional';
+	UPDATE programas SET nivel_academico='Tecnología' WHERE nivel_academico='2';
+	(no hay)
+	UPDATE programas SET nivel_academico='Ciclo Profesional' WHERE nivel_academico='3'; 
+	UPDATE programas SET nivel_academico='Otro' WHERE nivel_academico='4';
+	Jornada:
+	UPDATE programas SET jornada='Mañana' WHERE jornada='1';
+	UPDATE programas SET jornada='Tarde' WHERE jornada='2';
+	UPDATE programas SET jornada='Noche' WHERE jornada='3';
+
+	-----------------------------------------------
+
 Antes de actualizar a traves de consultas verificar estos estado, y que sean congruentes, es importante antes que nada hacer copia de seguridad.
 
 Actualmente la matricula cambia de estado, a aprobado y no aprobado, lo ideal debe ser que el estado del estudiante cambie a INACTIVO, listo para volver a matricularse y volver a tomar el estado de MATRICULADO
