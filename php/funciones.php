@@ -37,10 +37,10 @@ function getDataAndSaldoEstudiante($doc,$cn)
 }
 function getProgramaAndUniversidadNivelAcaAndJornada($id,$cn)
 {
-	$sql = "SELECT programas.snies,programas.nombre as programa,programas.cantidad_semestre,programas.costo_semestre,nivel_academico.nombre as nivel,jornadas.nombre as jornada,universidades.nombre as universidad
-	FROM programas,nivel_academico,jornadas,universidades 
+	$sql = "SELECT programas.snies,programas.nombre as programa,programas.cantidad_semestre,programas.costo_semestre,programas.nivel_academico,programas.jornada,universidades.nombre as universidad
+	FROM programas,universidades 
 	WHERE 
-	programas.id=$id AND nivel_academico.id=programas.nivel_academico_id AND universidades.id=programas.universidad_id AND jornadas.id=programas.jornada_id";
+	programas.id=$id AND universidades.id=programas.universidad_id";
 	$ps = $cn->prepare($sql);
 	$ps -> execute();
 	$rs = $ps->fetch();

@@ -32,33 +32,33 @@
   // $pdf->Image('../assets/fotos/'.$estudiante['foto'],10,40,20,0,'','');
   // $pdf->Ln(15);
   $pdf->SetFont('Arial','B',8);
-  $pdf->Cell(20,6,'Nombre',1,0,'L',1);
+  $pdf->Cell(20,6,'Nombre',1,0,'C',1);
   $pdf->SetFont('Arial','',7);
-  $pdf->Cell(0,6, utf8_decode( $programa['programa']),1,1,'C',0);
+  $pdf->Cell(100,6, utf8_decode( $programa['programa']),1,0,'C',0);
   $pdf->SetFont('Arial','B',8);
-  $pdf->Cell(20,6,'SNIES',1,0,'L',1);
+  $pdf->Cell(20,6,'SNIES',1,0,'C',1);
   $pdf->SetFont('Arial','',7);
-  $pdf->Cell(20,6,$programa['snies'],1,1,'L',0);
+  $pdf->Cell(0,6,$programa['snies'],1,1,'C',0);
   $pdf->SetFont('Arial','B',8);
-  $pdf->Cell(40,6,'Cantidad de semestres',1,0,'L',1);
+  $pdf->Cell(40,6,'Semestres',1,0,'C',1);
   $pdf->SetFont('Arial','',7);
-  $pdf->Cell(20,6, utf8_decode( $programa['cantidad_semestre']),1,1,'L',0);
+  $pdf->Cell(10,6, utf8_decode( $programa['cantidad_semestre']),1,0,'C',0);
   $pdf->SetFont('Arial','B',8);
-  $pdf->Cell(30,6,'Valor matricula',1,0,'L',1);
+  $pdf->Cell(30,6,'Valor matricula',1,0,'C',1);
   $pdf->SetFont('Arial','',7);
-  $pdf->Cell(20,6, utf8_decode( $programa['costo_semestre']),1,1,'L',0);
+  $pdf->Cell(25,6, utf8_decode( $programa['costo_semestre']),1,0,'C',0);
   $pdf->SetFont('Arial','B',8);
-  $pdf->Cell(30,6, utf8_decode('Nivel académico'),1,0,'L',1);
+  $pdf->Cell(25,6, utf8_decode('Nivel académico'),1,0,'C',1);
   $pdf->SetFont('Arial','',7);
-  $pdf->Cell(20,6, utf8_decode( $programa['nivel']),1,1,'L',0);
+  $pdf->Cell(0,6, utf8_decode( $programa['nivel_academico']),1,1,'C',0);
   $pdf->SetFont('Arial','B',8);
-  $pdf->Cell(30,6, utf8_decode('Jornada'),1,0,'L',1);
+  $pdf->Cell(20,6, utf8_decode('Jornada'),1,0,'C',1);
   $pdf->SetFont('Arial','',7);
-  $pdf->Cell(20,6, utf8_decode( $programa['jornada']),1,1,'L',0);
+  $pdf->Cell(20,6, utf8_decode( $programa['jornada']),1,0,'C',0);
   $pdf->SetFont('Arial','B',8);
-  $pdf->Cell(30,6, utf8_decode('IES'),1,0,'L',1);
+  $pdf->Cell(30,6, utf8_decode('IES'),1,0,'C',1);
   $pdf->SetFont('Arial','',7);
-  $pdf->Cell(80,6, utf8_decode( $programa['universidad']),1,0,'L',0);
+  $pdf->Cell(0,6, utf8_decode( $programa['universidad']),1,0,'C',0);
   
   
   // Envio del fichero
@@ -66,5 +66,5 @@
   // D: Envia el ficheroal navegador y fuerza su descarga
   // F: Guarda el fichero en uno local de nombre name
   // S: Devuelve el documento como una cadena
-  $pdf->Output('I',$estudiante['documento_estudiante'].'.pdf');
+  $pdf->Output('I',$programa['snies'].'.pdf');
 ?>
