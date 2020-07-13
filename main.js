@@ -12,132 +12,8 @@ const tuniversity = document.querySelector('#e-pro-university')
 const formEditPrograma = document.querySelector('#form-editar-programa')
 
     
-
-selectNAaca = document.getElementById('e-pro-nivel_academico').options
-selectJornada = document.getElementById('e-pro-jornada').options
-// console.log(selectNAaca);
-
-let errors = 0
-formEditPrograma.addEventListener('submit', e => {
-    e.preventDefault();
-
-    var vtsnies = tsnies.value.trim()
-    var vtnombre = tnombre.value.trim()
-    var vtvalor = tvalor.value.trim()
-    var vsemestres = tsemestres.value.trim()
-    var vnaca = tnaca.value.trim()
-    var vjornada = tjornada.value.trim()
-    var vuniversity = tuniversity.value.trim()
-
-    checkInputs( vtsnies,vtnombre,vtvalor,vsemestres,vnaca,vjornada,vuniversity );
-    saveRecordEditoPrograma(vtsnies,vtnombre,vtvalor,vsemestres,vnaca,vjornada,vuniversity)
-    errors = 0
-})
-
-
-function checkInputs( vtsnies,vtnombre,vtvalor,vsemestres,vnaca,vjornada,vuniversity ) {
-    
-
-    if (vtsnies === '' || vtsnies.length <= 2) {
-        // console.log('not success');
-        setErrorFor(vtsnies, 'Error: Campo vacio o inferior a tres caracteres');
-        errors++
-    }else{
-        setSuccessFor(vtsnies, 'Datos validado con exito')
-    }
-
-
-    if (vtnombre === '' || vtnombre.length <= 2) {
-        // console.log('not success');
-        setErrorFor(vtnombre, 'Error: Campo vacio o inferior a tres caracteres');
-        errors++
-    }else{
-        setSuccessFor(vtnombre, 'Datos validado con exito')
-    }
-
-    if (vtvalor === '' || vtvalor.length <= 2) {
-        // console.log('not success');
-        setErrorFor(vtvalor, 'Error: Campo vacio o inferior a tres caracteres');
-        errors++
-    }else{
-        setSuccessFor(vtvalor, 'Datos validado con exito')
-    }
-
-    
-  
-    
-
-    if (errors) {
-        console.log(`Usted tiene ${errors} errores para corregir`);
-    }
-
-}
-
-
-
-
-function saveRecordEditoPrograma(vtsnies,vtnombre,vtvalor,vsemestres,vnaca,vjornada,vuniversity) {
-    
-
-    if(errors == 0) {
-
-        const data = new FormData()
-        data.append('snies',vtsnies)        
-        data.append('programa',vtnombre)        
-        data.append('valor_semestre',vtvalor)        
-        data.append('semestres',vsemestres)        
-        data.append('nivel_aca',vnaca)        
-        data.append('university',vuniversity)        
-        data.append('jornada',vjornada)
-        
-        fetch('../php/editar-programa.php', {
-            method: 'POST',
-            body: data
-        })
-
-            .then( res => res.json() )
-            .then( data => {
-                // console.log(data);  
-
-                $("body").overhang({
-                    type: "success",
-                    message: "Registro exitoso! en segundos seras redirigido",
-                    callback: function(){
-                      window.location.href="buscar-programa.php";
-                    }
-                  });
-            } )
-            .catch(err => {
-                $("body").overhang({
-                    type: "error",
-                    message: "Lo siento ha ocurrido un error! Es posible que haya incrongruencia de los datos...",
-                    //closeConfirm: true
-                  });                
-            })
-
-    }
-}
-
-
-function setErrorFor(input, message) {
-
-    const parent = input.parentElement
-    // console.log(parent);
-    const small = parent.querySelector('#spam-n-success')
-    parent.classList = 'form-group checked'
-    small.classList = 'check-n-success'
-    // const icon = document.querySelector('#icon-n-success')
-    // icon.classList = 'fas fa-check'
-    small.innerText = message
-}
-
-function setSuccessFor(input, message) {
-
-    console.log('success');
-}
-
 function obtenerDataEditarPrograma(id){
-
+        
     // console.log(id);
     fetch('../php/getDataEditarPrograma.php?id='+id)
     .then(res => res.json())
@@ -168,7 +44,6 @@ function obtenerDataEditarPrograma(id){
     })
 }
 
-
 function setOptionNA(object, na,tnaca) {
     // console.log('na:' +na);
     for (const key in object) {
@@ -182,11 +57,7 @@ function setOptionNA(object, na,tnaca) {
     }
 }
 
-    
-
-$(document).ready(function() {
-
-        
+let errors = 0
 
         // 
 
@@ -210,6 +81,179 @@ $(document).ready(function() {
                      "sProcessing":"Procesando...",
                 }
         });     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+$(document).ready(function() {
+
+        
+
+
+
+
+        formEditPrograma.addEventListener('submit', e => {
+            e.preventDefault();
+            selectNAaca = document.getElementById('e-pro-nivel_academico').options
+            selectJornada = document.getElementById('e-pro-jornada').options
+            // console.log(selectNAaca);
+        
+            var vtsnies = tsnies.value.trim()
+            var vtnombre = tnombre.value.trim()
+            var vtvalor = tvalor.value.trim()
+            var vsemestres = tsemestres.value.trim()
+            var vnaca = tnaca.value.trim()
+            var vjornada = tjornada.value.trim()
+            var vuniversity = tuniversity.value.trim()
+        
+            checkInputs( vtsnies,vtnombre,vtvalor,vsemestres,vnaca,vjornada,vuniversity );
+            saveRecordEditoPrograma(vtsnies,vtnombre,vtvalor,vsemestres,vnaca,vjornada,vuniversity)
+            errors = 0
+        })
+        
+        
+        function checkInputs( vtsnies,vtnombre,vtvalor,vsemestres,vnaca,vjornada,vuniversity ) {
+            
+        
+            if (vtsnies === '' || vtsnies.length <= 2) {
+                // console.log('not success');
+                setErrorFor(vtsnies, 'Error: Campo vacio o inferior a tres caracteres');
+                errors++
+            }else{
+                setSuccessFor(vtsnies, 'Datos validado con exito')
+            }
+        
+        
+            if (vtnombre === '' || vtnombre.length <= 2) {
+                // console.log('not success');
+                setErrorFor(vtnombre, 'Error: Campo vacio o inferior a tres caracteres');
+                errors++
+            }else{
+                setSuccessFor(vtnombre, 'Datos validado con exito')
+            }
+        
+            if (vtvalor === '' || vtvalor.length <= 2) {
+                // console.log('not success');
+                setErrorFor(vtvalor, 'Error: Campo vacio o inferior a tres caracteres');
+                errors++
+            }else{
+                setSuccessFor(vtvalor, 'Datos validado con exito')
+            }
+        
+            
+          
+            
+        
+            if (errors) {
+                console.log(`Usted tiene ${errors} errores para corregir`);
+            }
+        
+        }
+        
+        
+        
+        
+        function saveRecordEditoPrograma(vtsnies,vtnombre,vtvalor,vsemestres,vnaca,vjornada,vuniversity) {
+            
+        
+            if(errors == 0) {
+        
+                const data = new FormData()
+                data.append('snies',vtsnies)        
+                data.append('programa',vtnombre)        
+                data.append('valor_semestre',vtvalor)        
+                data.append('semestres',vsemestres)        
+                data.append('nivel_aca',vnaca)        
+                data.append('university',vuniversity)        
+                data.append('jornada',vjornada)
+                
+                fetch('../php/editar-programa.php', {
+                    method: 'POST',
+                    body: data
+                })
+        
+                    .then( res => res.json() )
+                    .then( data => {
+                        // console.log(data);  
+        
+                        $("body").overhang({
+                            type: "success",
+                            message: "Registro exitoso! en segundos seras redirigido",
+                            callback: function(){
+                              window.location.href="buscar-programa.php";
+                            }
+                          });
+                    } )
+                    .catch(err => {
+                        $("body").overhang({
+                            type: "error",
+                            message: "Lo siento ha ocurrido un error! Es posible que haya incrongruencia de los datos...",
+                            //closeConfirm: true
+                          });                
+                    })
+        
+            }
+        }
+        
+        
+        function setErrorFor(input, message) {
+        
+            const parent = input.parentElement
+            // console.log(parent);
+            const small = parent.querySelector('#spam-n-success')
+            parent.classList = 'form-group checked'
+            small.classList = 'check-n-success'
+            // const icon = document.querySelector('#icon-n-success')
+            // icon.classList = 'fas fa-check'
+            small.innerText = message
+        }
+        
+        function setSuccessFor(input, message) {
+        
+            console.log('success');
+        }
+        
+        
+        
+        
+        
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -35,9 +35,9 @@
                                 <th>Estado</th>
                                 <th>Genero</th>
                                 <th>IEB</th>
-                                <th></th>
+                                <th>-</th>
                                 <th>Acciones</th>
-                                <th></th>
+                                <th>-</th>
                             </tr>
                         </thead>
                         <tbody >
@@ -53,15 +53,15 @@
 								<td><?php echo $value['estado'] ?></td>
                                 <td><?php echo $value['genero'] ?></td>
                                 <td><?php echo $value['sede'] ?></td>
-								<td><a class="btn btn-warning btn-sm" href="<?php echo URL ?>gestion/editar-estudiante.php?id=<?php echo urlencode($value['doc_estudiante'])?>" title="Editar">Editar</a></td>
+								<td><a class="btn btn-primary btn-sm" href="<?php echo URL ?>gestion/editar-estudiante.php?id=<?php echo urlencode($value['doc_estudiante'])?>" title="Editar">Editar</a></td>
 
+                                
+								<td><a class="btn btn-secondary btn-sm" href="<?php echo URL ?>view/ver-estudiante.view.php?dc=<?php echo urlencode($value['doc_estudiante'])?>" title="Ver" target="_blank">Ver</a></td>
 								<td>
-                                    <input class="btn btn-danger btn-sm" type="button" name="deleteEstudiante" value="Eliminar" id="<?php echo urlencode($value['id'])?>">
+                                    <input class="btn btn-light btn-sm" type="button" name="deleteEstudiante" value="Eliminar" id="<?php echo urlencode($value['id'])?>">
 
                                 <!--    <a class="btn btn-danger btn-sm" id="btndeleteestu" href="<?php #echo URL ?>php/eliminarEstudiante.php?id=<?php #echo urlencode($value['doc_estudiante'])?>">Eliminar</a>-->
                                 </td>
-                                
-								<td><a class="btn btn-success btn-sm" href="<?php echo URL ?>view/ver-estudiante.view.php?dc=<?php echo urlencode($value['doc_estudiante'])?>" title="Ver" target="_blank">Ver</a></td>
                             </tr>
                         <?php } ?>
                         </tbody>        
