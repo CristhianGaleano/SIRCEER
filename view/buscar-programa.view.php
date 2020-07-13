@@ -171,7 +171,7 @@
       <div class="modal-body">
         <!--<?php #echo htmlspecialchars($_SERVER['PHP_SELF']) ?>-->
 
-        <form  id="form-editar-programa" role="form" action="">
+        <form  id="formEditarPrograma" role="form" action="">
           
           <div class="form-group">
             <label for="snies" class="col-form-label">SNIES</label>

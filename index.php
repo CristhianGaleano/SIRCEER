@@ -5,7 +5,8 @@
     require_once 'php/funciones.php';
 
     #var_dump($bd_config);
-    
+    // $_SESSION['usuario'] = [];
+    // var_dump($_SESSION);
 
     /*Comprobamos methodo de envio*/
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
