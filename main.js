@@ -20,7 +20,33 @@
 
 
 
+ function obtenerDataEditarPrograma(id){
+        
+    console.log(id);
+    fetch('../php/getDataEditarPrograma.php?id='+id)
+    .then(res => res.json())
+    .then( data => {
 
+        // console.log( data) ;
+
+        // 
+        tsnies.value = data.snies
+        tnombre.value = data.nombre
+        tvalor.value = data.costo_semestre
+        tsemestres.value = data.cantidad_semestre
+        
+        // setOptionNA(selectNAaca,data.nivel_academico,tnaca)
+        // setOptionNA(selectJornada,data.jornada,tjornada)
+        tnaca.selectedIndex= data.nivel_academico - 1
+        tjornada.selectedIndex = data.jornada - 1
+        tuniversity.selectedIndex = data.universidad_id -1
+
+
+    })
+    .catch(error => {
+        console.log(error)
+    })
+}
 
 
 
@@ -30,8 +56,8 @@
 $( document ).ready(function() {
 
     
-const selectNAaca = tnaca.options
-const selectJornada = tjornada.options
+// const selectNAaca = tnaca.options
+// const selectJornada = tjornada.options
 // selectJornada = document.getElementById('e-pro-jornada')
 
 
@@ -154,44 +180,20 @@ function setSuccessFor(input, message) {
     console.log('success');
 }
 
-function obtenerDataEditarPrograma(id){
+
+
+// function setOptionNA(object, na,tnaca) {
+//     console.log('valor: ' +na);
+//     for (const key in object) {
         
-    console.log(id);
-    fetch('../php/getDataEditarPrograma.php?id='+id)
-    .then(res => res.json())
-    .then( data => {
-
-        console.log( data) ;
-
-        // 
-        tsnies.value = data.snies
-        tnombre.value = data.nombre
-        tvalor.value = data.costo_semestre
-        tsemestres.value = data.cantidad_semestre
-        
-        setOptionNA(selectNAaca,data.nivel_academico,tnaca)
-        setOptionNA(selectJornada,data.jornada,tjornada)
-        tuniversity.selectedIndex = data.universidad_id -1
-
-
-    })
-    .catch(error => {
-        console.log(errors)
-    })
-}
-
-function setOptionNA(object, na,tnaca) {
-    console.log('valor: ' +na);
-    for (const key in object) {
-        
-        console.log(object[key].text);
-            if(object[key].text == na) {
-                console.log('is true');
-                tnaca.selectedIndex = key
-                return;
-            }
-    }
-}
+//         console.log(object[key].text);
+//             if(object[key].text == na) {
+//                 console.log('is true');
+//                 tnaca.selectedIndex = key
+//                 return;
+//             }
+//     }
+// }
 
 let errors = 0
 
@@ -209,24 +211,24 @@ let errors = 0
     //******************************************************************************************************* */ 
     $('table.display').DataTable();
 
-    // $('table.display').DataTable({
+    $('table.display').DataTable({
     //para cambiar el lenguaje a español
-    //     "language": {
-    //             "lengthMenu": "Mostrar _MENU_ registros",
-    //             "zeroRecords": "No se encontraron resultados",
-    //             "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-    //             "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-    //             "infoFiltered": "(filtrado de un total de _MAX_ registros)",
-    //             "sSearch": "Buscar:",
-    //             "oPaginate": {
-    //                 "sFirst": "Primero",
-    //                 "sLast":"Último",
-    //                 "sNext":"Siguiente",
-    //                 "sPrevious": "Anterior"
-    //              },
-    //              "sProcessing":"Procesando...",
-    //         }
-    // });     
+        "language": {
+                "lengthMenu": "Mostrar _MENU_ registros",
+                "zeroRecords": "No se encontraron resultados",
+                "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                "sSearch": "Buscar:",
+                "oPaginate": {
+                    "sFirst": "Primero",
+                    "sLast":"Último",
+                    "sNext":"Siguiente",
+                    "sPrevious": "Anterior"
+                 },
+                 "sProcessing":"Procesando...",
+            }
+    });     
 
 
 

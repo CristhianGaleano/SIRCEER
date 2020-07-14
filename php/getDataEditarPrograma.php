@@ -7,6 +7,7 @@ require_once 'Conexion.php';
 
 
 validateSession();
+
 $cn = getConexion($bd_config);
 comprobarConexion($cn);
 
@@ -14,8 +15,8 @@ comprobarConexion($cn);
 
 $id = $_GET['id'];
 
-$data = getSubjectByValue('programas',$id,'id',$cn);
-// var_dump($data);
-echo json_encode($data)
+$data =  getSubjectByValue('programas',$id,'id',$cn);
+var_dump($data);
+echo json_encode( $data)
 // return $data
 ?>
