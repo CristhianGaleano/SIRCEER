@@ -194,9 +194,10 @@
             <spam class="" id="spam-n-success">No puede dejar el argumento vacio<i id="icon-n-success" class="fas fa-check"></i></spam> 
             <spam class="" id="spam-success">Argumento validado<i class="fas fa-check-circle"></i></spam> 
         </div>
+      
           <div class="form-group">
             <label class="col-form-label" for="num_semestres">Semestres</label>
-            <input class="form-control" type="number" name="num_semestres" id="e-pro-semestres" value="<?php echo $result['cantidad_semestre']; ?>">
+            <input class="form-control" type="number" name="num_semestres" id="e-pro-semestres" value="">
         </div>
         <div class="form-group">
         <label class="form-label" for="nivel_academico">Nivel academico</label>

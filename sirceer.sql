@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Mar 19, 2020 at 01:13 PM
--- Server version: 10.3.15-MariaDB
--- PHP Version: 7.3.5
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 13-07-2020 a las 22:58:42
+-- Versión del servidor: 10.4.11-MariaDB
+-- Versión de PHP: 7.2.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `sirceer`
+-- Base de datos: `sirceer`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `acudiente`
+-- Estructura de tabla para la tabla `acudiente`
 --
 
 CREATE TABLE `acudiente` (
@@ -34,10 +34,10 @@ CREATE TABLE `acudiente` (
   `nombres` varchar(50) NOT NULL COMMENT 'Primer y segundo nombre del acudiente',
   `telefono` varchar(15) DEFAULT NULL,
   `ocupacion` varchar(100) DEFAULT NULL COMMENT 'Ocupacion acudiente'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `acudiente`
+-- Volcado de datos para la tabla `acudiente`
 --
 
 INSERT INTO `acudiente` (`id`, `documento`, `nombres`, `telefono`, `ocupacion`) VALUES
@@ -558,7 +558,7 @@ INSERT INTO `acudiente` (`id`, `documento`, `nombres`, `telefono`, `ocupacion`) 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `alianzas`
+-- Estructura de tabla para la tabla `alianzas`
 --
 
 CREATE TABLE `alianzas` (
@@ -569,68 +569,95 @@ CREATE TABLE `alianzas` (
   `cupos` int(5) DEFAULT NULL,
   `estado` varchar(20) DEFAULT NULL COMMENT 'ABIERTA / CERRADA ',
   `fecha_sistema` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cartera_universidades`
+-- Estructura de tabla para la tabla `cartera_universidades`
 --
 
 CREATE TABLE `cartera_universidades` (
-  `id` int(11) NOT NULL COMMENT 'ID cartera_universidades\r\n',
+  `id` int(11) NOT NULL COMMENT 'ID cartera_universidades\\r\\n',
   `cuenta` varchar(20) NOT NULL DEFAULT '0' COMMENT 'Numero de cuenta de la universidad',
   `codigo_universdidad` varchar(20) DEFAULT NULL COMMENT 'Codigo que identifica a la universidad',
   `universidad` varchar(100) NOT NULL COMMENT 'Nombre de la entidad prestadora del servicio',
   `valor` decimal(10,2) DEFAULT 0.00 COMMENT 'Valor de la factura',
   `saldo` decimal(10,2) DEFAULT 0.00 COMMENT 'Abonado',
   `fecha_sistema` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `consecutivo_factura`
+-- Estructura de tabla para la tabla `clientes`
+--
+
+CREATE TABLE `clientes` (
+  `id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `clientes`
+--
+
+INSERT INTO `clientes` (`id`) VALUES
+(1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `consecutivo_factura`
 --
 
 CREATE TABLE `consecutivo_factura` (
-  `consecutivo` int(10) NOT NULL DEFAULT 0 COMMENT 'Consecutivo de la factura',
+  `consecutivo` int(15) NOT NULL DEFAULT 0 COMMENT 'Consecutivo de la factura',
   `prefijo` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `consecutivo_factura`
+-- Volcado de datos para la tabla `consecutivo_factura`
 --
 
 INSERT INTO `consecutivo_factura` (`consecutivo`, `prefijo`) VALUES
-(4, 'FACT-');
+(3, 'FACT-');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `detalle_factura`
+-- Estructura de tabla para la tabla `detalle_factura`
 --
 
 CREATE TABLE `detalle_factura` (
+  `iid` int(11) NOT NULL,
   `id_matricula` int(11) NOT NULL,
   `id_factura` int(11) NOT NULL,
+  `valor` double NOT NULL,
   `fecha_sistema` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `detalle_factura`
+--
+
+INSERT INTO `detalle_factura` (`iid`, `id_matricula`, `id_factura`, `valor`, `fecha_sistema`) VALUES
+(2, 479, 10, 993739, '2020-04-22 02:31:55'),
+(3, 480, 11, 621087, '2020-05-05 02:09:09');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `eps`
+-- Estructura de tabla para la tabla `eps`
 --
 
 CREATE TABLE `eps` (
   `id` int(11) NOT NULL,
   `nombre` varchar(100) DEFAULT NULL COMMENT 'Nombre de la entidad prestadora de salud',
   `descripcion` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `eps`
+-- Volcado de datos para la tabla `eps`
 --
 
 INSERT INTO `eps` (`id`, `nombre`, `descripcion`) VALUES
@@ -682,7 +709,7 @@ INSERT INTO `eps` (`id`, `nombre`, `descripcion`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `estudiantes`
+-- Estructura de tabla para la tabla `estudiantes`
 --
 
 CREATE TABLE `estudiantes` (
@@ -710,7 +737,7 @@ CREATE TABLE `estudiantes` (
   `lugar_servicio_social` varchar(100) DEFAULT NULL,
   `estado` varchar(50) NOT NULL DEFAULT 'INACTIVO' COMMENT 'Estado academico',
   `tipo_doc` varchar(50) NOT NULL COMMENT 'Tipo de documento',
-  `genero` varchar(50) NOT NULL COMMENT 'sexo estudiante\r\n',
+  `genero` varchar(50) NOT NULL COMMENT 'sexo estudiante\\r\\n',
   `estado_civil` varchar(50) NOT NULL,
   `grado` varchar(5) NOT NULL COMMENT 'Grado que cursa',
   `servicio_social` varchar(60) NOT NULL COMMENT 'EN CURSO / APROBADO / NO APROBADO ',
@@ -724,21 +751,21 @@ CREATE TABLE `estudiantes` (
   `tipo_estrategia_id` int(11) NOT NULL COMMENT 'Foreng key of strategy type',
   `acudiente_id` int(11) NOT NULL COMMENT 'PK of acudiente',
   `fecha_sistema` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `estudiantes`
+-- Volcado de datos para la tabla `estudiantes`
 --
 
 INSERT INTO `estudiantes` (`id`, `documento`, `primer_nombre`, `segundo_nombre`, `primer_apellido`, `segundo_apellido`, `telefono_contacto`, `email`, `fecha_nacimiento`, `edad`, `direccion_residencia`, `estrato`, `fecha_inicio`, `fecha_fin`, `observacion`, `foto`, `media_notas`, `condonacion_credito`, `siben`, `puntaje_sisben`, `num_acta_grado`, `lugar_servicio_social`, `estado`, `tipo_doc`, `genero`, `estado_civil`, `grado`, `servicio_social`, `muni_naci`, `muni_resi`, `fecha_grado`, `prioritaria`, `eps_id`, `zona_id`, `sede_id`, `tipo_estrategia_id`, `acudiente_id`, `fecha_sistema`) VALUES
-(2, 'C.C', 'Cris', 'Ale', 'Gal', 'Ruiz', '3117767484', 'titiruizah@gmail.com', '2002-02-17 00:00:00', '29', 'cra 6 # 5 - 34', 1, '2019-06-26 00:00:00', '0000-00-00 00:00:00', '', 'pordefecto.png', '0.00', 'SI', 'SI', '300', '45464', 'PEREIRA', 'MATRICULADO', 'C.C', 'FEMENINO', 'SOLTERO', '11', 'NO', 'MISTRATO', 'MISTRATO', NULL, 'vitcima', 1, 1, 2, 2, 3, '2020-03-17 20:22:54'),
-(3, '1092915462', 'CRISTIAN', 'CAMILO', 'PEREZ', 'CASTRILLON', '3172749371', 'ccpclgcastri@gmail.com', '1996-04-14 00:00:00', '23', 'vereda pinar del rio', 1, '2019-06-26 00:00:00', NULL, '', 'pordefecto.png', '0.00', 'NO', 'SI', '389', '46', 'N.A ', 'MATRICULADO', 'C.C', 'MASCULINO', 'SOLTERO', '11', 'APROBADO', 'MISTRATO', 'MISTRATO', NULL, 'NINGUNO', 1, 1, 2, 2, 4, '2019-06-27 14:29:15'),
-(4, '1004793165', 'DEISY ', 'JOHANA ', 'GUAPACHA ', 'PADIERNA', '3235881306', 'deicyp85@gmail.com', '2001-05-03 00:00:00', '18', 'arkakay - corregimiento san antonio del chami ', 1, '2019-06-26 00:00:00', NULL, '', 'pordefecto.png', '0.00', 'NO', 'SI', '248', '11', 'N.A ', 'MATRICULADO', 'T.I', 'FEMENINO', 'SOLTERO', '11', 'APROBADO', 'MISTRATO', 'MISTRATO', NULL, 'NINGUNO', 1, 1, 2, 2, 5, '2019-06-27 14:29:28'),
-(5, '1092912131', 'FABER', 'HAMILTON', 'ALZATE', 'LUNA', '3105355631', 'gfssdafg@gmail.com', '1991-02-23 00:00:00', '28', 'vereda pinar del rio', 1, '2019-06-26 00:00:00', NULL, '', 'pordefecto.png', '0.00', 'NO', 'SI', '25', '055', 'N.A ', 'MATRICULADO', 'C.C', 'MASCULINO', 'SOLTERO', '11', 'APROBADO', 'MISTRATO', 'MISTRATO', NULL, 'NINGUNO', 1, 1, 2, 2, 6, '2019-06-27 14:29:45'),
+(2, 'C.C', 'Cris', 'Ale', 'Gal', 'Ruiz', '3117767484', 'titiruizah@gmail.com', '2002-02-17 00:00:00', '29', 'cra 6 # 5 - 34', 1, '2019-06-26 00:00:00', '0000-00-00 00:00:00', '', 'pordefecto.png', '0.00', 'SI', 'SI', '300', '45464', 'PEREIRA', 'MATRICULADO', 'C.C', 'FEMENINO', 'SOLTERO', '11', 'NO', 'MISTRATO', 'MISTRATO', NULL, 'vitcima', 1, 1, 2, 2, 3, '2020-04-17 16:45:44'),
+(3, '1092915462', 'CRISTIAN', 'CAMILO', 'PEREZ', 'CASTRILLON', '3172749371', 'ccpclgcastri@gmail.com', '1996-04-14 00:00:00', '23', 'vereda pinar del rio', 1, '2019-06-26 00:00:00', NULL, '', 'pordefecto.png', '0.00', 'NO', 'SI', '389', '46', 'N.A ', 'MATRICULADO', 'C.C', 'MASCULINO', 'SOLTERO', '11', 'APROBADO', 'MISTRATO', 'MISTRATO', NULL, 'NINGUNO', 1, 1, 2, 2, 4, '2020-04-17 16:46:40'),
+(4, '1004793165', 'DEISY ', 'JOHANA ', 'GUAPACHA ', 'PADIERNA', '3235881306', 'deicyp85@gmail.com', '2001-05-03 00:00:00', '18', 'arkakay - corregimiento san antonio del chami ', 1, '2019-06-26 00:00:00', NULL, '', 'pordefecto.png', '0.00', 'NO', 'SI', '248', '11', 'N.A ', 'MATRICULADO', 'T.I', 'FEMENINO', 'SOLTERO', '11', 'APROBADO', 'MISTRATO', 'MISTRATO', NULL, 'NINGUNO', 1, 1, 2, 2, 5, '2020-04-17 16:48:08'),
+(5, '1092912131', 'FABER', 'HAMILTON', 'ALZATE', 'LUNA', '3105355631', 'gfssdafg@gmail.com', '1991-02-23 00:00:00', '28', 'vereda pinar del rio', 1, '2019-06-26 00:00:00', NULL, '', 'pordefecto.png', '0.00', 'NO', 'SI', '25', '055', 'N.A ', 'MATRICULADO', 'C.C', 'MASCULINO', 'SOLTERO', '11', 'APROBADO', 'MISTRATO', 'MISTRATO', NULL, 'NINGUNO', 1, 1, 2, 2, 6, '2020-04-17 16:49:30'),
 (6, '1092914944', 'INGRI', 'CARINA', 'TREJOS', 'VELASCO', '3124052370', 'SCHARIDLVANE@HOTMAIL.COM', '1995-04-17 00:00:00', '24', 'CRA 4 # 4-10', 1, '2019-07-02 00:00:00', NULL, '', 'pordefecto.png', '0.00', 'NO', 'NO', '0', '090', 'NA', 'MATRICULADO', 'C.C', 'FEMENINO', 'SOLTERO', '11', 'APROBADO', 'QUINCHIA', 'MISTRATO', NULL, 'VICTIMA', 1, 1, 2, 2, 9, '2019-08-29 13:47:35'),
 (7, '1092916937', 'JAIRO', 'ESTEBAN', 'CARVAJAL', 'GARCIA', '3122227092', 'JAIROESTEBANCARVAJAL456@GMAIL.COM', '1999-04-06 00:00:00', '20', 'VDA DOSQUEBRADAS', 1, '2019-07-02 00:00:00', NULL, '', 'pordefecto.png', '0.00', 'NO', 'SI', '24', '077', 'NA', 'MATRICULADO', 'C.C', 'MASCULINO', 'SOLTERO', '11', 'APROBADO', 'PEREIRA', 'MISTRATO', NULL, 'NINGUNO', 1, 1, 2, 2, 10, '2019-08-29 13:47:50'),
-(8, '1090096008', 'ANGIE', 'PAOLA', 'LONDOÃ‘O', 'VILLADA', '3128886930', 'PAO97767@HOTMAIL.COM', '2003-12-13 00:00:00', '16', 'FINCA LOS NARANJOS', 1, '2019-08-12 00:00:00', NULL, 'NA', 'pordefecto.png', '0.00', 'SI', 'SI', '17', 'NA', 'NA', 'INACTIVO', 'T.I', 'FEMENINO', 'SOLTERO', '9', 'EN CURSO', 'LA CELIA', 'LA CELIA', NULL, 'NINGUNO', 1, 1, 4, 2, 14, '2020-02-21 20:02:53'),
-(9, '1004791761', 'SANTIAGO', '', 'CASTRO', 'GALLEGO', '3137485997', 'SANGALL@GMAIL.COM', '2003-05-23 00:00:00', '16', 'barrio papelucho M 4 CASA 28', 1, '2019-08-12 00:00:00', NULL, 'NA', 'pordefecto.png', '0.00', 'SI', 'SI', '52', 'NA', 'NA', 'INACTIVO', 'T.I', 'MASCULINO', 'SOLTERO', '9', 'EN CURSO', 'LA CELIA', 'LA CELIA', NULL, 'NINGUNO', 1, 1, 4, 2, 15, '2020-02-21 20:02:53'),
+(8, '1090096008', 'ANGIE', 'PAOLA', 'LONDOÃ‘O', 'VILLADA', '3128886930', 'PAO97767@HOTMAIL.COM', '2003-12-13 00:00:00', '16', 'FINCA LOS NARANJOS', 1, '2019-08-12 00:00:00', NULL, 'NA', 'pordefecto.png', '0.00', 'SI', 'SI', '17', 'NA', 'NA', 'MATRICULADO', 'T.I', 'FEMENINO', 'SOLTERO', '9', 'EN CURSO', 'LA CELIA', 'LA CELIA', NULL, 'NINGUNO', 1, 1, 4, 2, 14, '2020-03-28 03:33:21'),
+(9, '1004791761', 'SANTIAGO', '', 'CASTRO', 'GALLEGO', '3137485997', 'SANGALL@GMAIL.COM', '2003-05-23 00:00:00', '16', 'barrio papelucho M 4 CASA 28', 1, '2019-08-12 00:00:00', NULL, 'NA', 'pordefecto.png', '0.00', 'SI', 'SI', '52', 'NA', 'NA', 'MATRICULADO', 'T.I', 'MASCULINO', 'SOLTERO', '9', 'EN CURSO', 'LA CELIA', 'LA CELIA', NULL, 'NINGUNO', 1, 1, 4, 2, 15, '2020-05-05 02:09:09'),
 (10, '1004791703', 'STEFAMIA', '', 'COPETE', 'TORO', '3222389285', 'SFANIACOPETE@GMAIL.COM', '2002-08-29 00:00:00', '17', 'PAPELUCHO M 1 C 7', 2, '2019-08-12 00:00:00', NULL, 'NA', 'pordefecto.png', '0.00', 'SI', 'SI', '20', 'NA', 'NA', 'INACTIVO', 'T.I', 'FEMENINO', 'SOLTERO', '9', 'EN CURSO', 'LA CELIA', 'LA CELIA', NULL, 'NINGUNO', 1, 1, 4, 2, 16, '2020-02-21 20:02:53'),
 (11, '1089931190', 'SANTIAGO', '', 'ECHEVERRY', 'TORRES', '3147711120', 'SATORRES@HOTMAIL.COM', '2004-07-17 00:00:00', '15', 'VEREDA MONOS', 2, '2019-08-12 00:00:00', NULL, 'NA', 'pordefecto.png', '0.00', 'SI', 'SI', '56', 'NA', 'NA', 'INACTIVO', 'T.I', 'MASCULINO', 'SOLTERO', '9', 'EN CURSO', 'LA CELIA', 'LA CELIA', NULL, 'NINGUNO', 1, 1, 4, 2, 17, '2020-02-21 20:02:53'),
 (12, '10047383328', 'JHON', 'JAIDER', 'GRISALES', 'TORRES', '3136787658', 'JAIDERGRIS@GMAIL.COM', '2003-08-20 00:00:00', '16', 'CARREA 4 N 4-11', 2, '2019-08-12 00:00:00', NULL, 'NA', 'pordefecto.png', '0.00', 'SI', 'SI', '28', 'NA', 'NA', 'INACTIVO', 'T.I', 'MASCULINO', 'SOLTERO', '9', 'EN CURSO', 'LA CELIA', 'LA CELIA', NULL, 'NINGUNO', 1, 1, 4, 2, 18, '2020-02-21 20:02:53'),
@@ -766,11 +793,11 @@ INSERT INTO `estudiantes` (`id`, `documento`, `primer_nombre`, `segundo_nombre`,
 (34, '1004683782', 'JULIAN', 'DAVID', 'MUÃ‘OZ', 'MUÃ‘OZ', '3235990389', 'MUNOZJULIAN322@GMAIL.COM', '2002-06-11 00:00:00', '17', 'SANTA TERESA', 2, '2019-08-14 00:00:00', NULL, 'NA', 'pordefecto.png', '0.00', 'SI', 'SI', '22', 'NA', '', 'MATRICULADO', 'T.I', 'MASCULINO', 'SOLTERO', '9', 'EN CURSO', 'GUATICA', 'GUATICA', NULL, 'NINGUNO', 1, 2, 5, 2, 40, '2019-08-16 14:33:14'),
 (35, '1090122045', 'JORGE', 'LUIS', 'BAÃ‘OL', 'GUERRERO', '3104217561', 'JORGEGUERRERO1800@GMAIL.COM', '2004-03-05 00:00:00', '15', 'SANTA ANA', 1, '2019-08-14 00:00:00', NULL, 'NA', 'pordefecto.png', '0.00', 'SI', 'SI', '30', 'NA', 'NA', 'MATRICULADO', 'T.I', 'MASCULINO', 'SOLTERO', '9', 'EN CURSO', 'GUATICA', 'GUATICA', NULL, 'INDIGENA', 1, 2, 5, 2, 41, '2019-08-16 14:32:58'),
 (36, '1087546504', 'CRISTIAN', 'CAMILO', 'GRAJALES', 'ALZATE', '3103797686', 'CISGRAJALES@HOTMAIL.COM', '2004-03-30 00:00:00', '15', 'TRAVECIAS', 2, '2019-08-15 00:00:00', NULL, 'NA', 'pordefecto.png', '0.00', 'SI', 'SI', '15', 'NA', 'NA', 'MATRICULADO', 'T.I', 'MASCULINO', 'SOLTERO', '9', 'EN CURSO', 'GUATICA', 'GUATICA', NULL, 'VICTIMA', 1, 2, 5, 2, 42, '2019-08-16 14:31:04'),
-(37, '1006523675', 'CRISTIAN', 'CAMILO', 'RODRIGUEZ', 'VILLANUEVA', '3122294874', 'CAMILORODRIGUEZ1380@GMAIL.COM', '2002-10-01 00:00:00', '17', 'SANTA ANA', 1, '2019-08-15 00:00:00', NULL, 'NA', 'pordefecto.png', '0.00', 'SI', 'SI', '30', 'NA', 'NA', 'MATRICULADO', 'T.I', 'MASCULINO', 'SOLTERO', '9', 'EN CURSO', 'GUATICA', 'GUATICA', NULL, 'VICTIMA', 1, 1, 5, 2, 43, '2019-08-16 14:30:31'),
-(38, '1089718002', 'JAIDER', 'DANIEL', 'MUÃ‘OZ', 'MUÃ‘OZ', '3145276194', 'JAIDERDANIEL@GMAIL.COM', '2003-09-30 00:00:00', '16', 'VDA SANTA TERESA', 1, '2019-08-15 00:00:00', NULL, 'NA', 'pordefecto.png', '0.00', 'SI', 'SI', '25', 'NA', 'NA', 'MATRICULADO', 'T.I', 'MASCULINO', 'SOLTERO', '9', 'EN CURSO', 'GUATICA', 'GUATICA', NULL, 'NINGUNO', 1, 1, 5, 2, 44, '2019-08-16 14:30:18'),
-(39, '1004766879', 'LUZ', 'MERY', 'MOTATO', 'FLOREZ', '3113318879', 'LUZMOTATO@HOTMAIL.COM', '2003-07-21 00:00:00', '16', 'VDA BUENOS AIRES', 1, '2019-08-15 00:00:00', NULL, 'NA', 'pordefecto.png', '0.00', 'SI', 'SI', '30', 'NA', 'NA', 'MATRICULADO', 'T.I', 'FEMENINO', 'SOLTERO', '9', 'EN CURSO', 'GUATICA', 'GUATICA', NULL, 'INDIGENA', 1, 2, 5, 2, 45, '2019-08-16 14:30:10'),
-(40, '1088236239', 'JHOANI', '', 'CASTAÃ‘EDA', 'TONUZCO', '3167165768', '3155043011JHOANI@GMAIL.COM', '2003-11-06 00:00:00', '16', 'SANTA ANA', 1, '2019-08-15 00:00:00', NULL, 'NA', 'pordefecto.png', '0.00', 'SI', 'SI', '30', 'NA', 'NA', 'MATRICULADO', 'T.I', 'MASCULINO', 'SOLTERO', '9', 'EN CURSO', 'GUATICA', 'GUATICA', NULL, 'INDIGENA', 1, 2, 5, 2, 46, '2019-08-16 14:30:03'),
-(41, '1088241396', 'LISBET', 'DAHIANA', 'GUARIN', 'MONTOYA', '3117717882|', 'DAHINA0210Q@HOTMAIL.COM', '2004-07-26 00:00:00', '15', 'VDA EL DIAMANTE', 1, '2019-08-15 00:00:00', NULL, 'NA', 'pordefecto.png', '0.00', 'SI', 'SI', '30', 'NA', 'NA', 'MATRICULADO', 'T.I', 'FEMENINO', 'SOLTERO', '9', 'EN CURSO', 'GUATICA', 'GUATICA', NULL, 'INDIGENA', 1, 2, 5, 2, 47, '2019-08-16 14:29:55'),
+(37, '1006523675', 'CRISTIAN', 'CAMILO', 'RODRIGUEZ', 'VILLANUEVA', '3122294874', 'CAMILORODRIGUEZ1380@GMAIL.COM', '2002-10-01 00:00:00', '17', 'SANTA ANA', 1, '2019-08-15 00:00:00', NULL, 'NA', 'pordefecto.png', '0.00', 'SI', 'SI', '30', 'NA', 'NA', 'MATRICULADO', 'T.I', 'MASCULINO', 'SOLTERO', '9', 'EN CURSO', 'GUATICA', 'GUATICA', NULL, 'VICTIMA', 1, 1, 5, 2, 43, '2020-04-22 02:31:55'),
+(38, '1089718002', 'JAIDER', 'DANIEL', 'MUÃ‘OZ', 'MUÃ‘OZ', '3145276194', 'JAIDERDANIEL@GMAIL.COM', '2003-09-30 00:00:00', '16', 'VDA SANTA TERESA', 1, '2019-08-15 00:00:00', NULL, 'NA', 'pordefecto.png', '0.00', 'SI', 'SI', '25', 'NA', 'NA', 'MATRICULADO', 'T.I', 'MASCULINO', 'SOLTERO', '9', 'EN CURSO', 'GUATICA', 'GUATICA', NULL, 'NINGUNO', 1, 1, 5, 2, 44, '2020-04-17 17:37:20'),
+(39, '1004766879', 'LUZ', 'MERY', 'MOTATO', 'FLOREZ', '3113318879', 'LUZMOTATO@HOTMAIL.COM', '2003-07-21 00:00:00', '16', 'VDA BUENOS AIRES', 1, '2019-08-15 00:00:00', NULL, 'NA', 'pordefecto.png', '0.00', 'SI', 'SI', '30', 'NA', 'NA', 'MATRICULADO', 'T.I', 'FEMENINO', 'SOLTERO', '9', 'EN CURSO', 'GUATICA', 'GUATICA', NULL, 'INDIGENA', 1, 2, 5, 2, 45, '2020-04-17 17:26:37'),
+(40, '1088236239', 'JHOANI', '', 'CASTAÃ‘EDA', 'TONUZCO', '3167165768', '3155043011JHOANI@GMAIL.COM', '2003-11-06 00:00:00', '16', 'SANTA ANA', 1, '2019-08-15 00:00:00', NULL, 'NA', 'pordefecto.png', '0.00', 'SI', 'SI', '30', 'NA', 'NA', 'MATRICULADO', 'T.I', 'MASCULINO', 'SOLTERO', '9', 'EN CURSO', 'GUATICA', 'GUATICA', NULL, 'INDIGENA', 1, 2, 5, 2, 46, '2020-04-17 17:20:27'),
+(41, '1088241396', 'LISBET', 'DAHIANA', 'GUARIN', 'MONTOYA', '3117717882|', 'DAHINA0210Q@HOTMAIL.COM', '2004-07-26 00:00:00', '15', 'VDA EL DIAMANTE', 1, '2019-08-15 00:00:00', NULL, 'NA', 'pordefecto.png', '0.00', 'SI', 'SI', '30', 'NA', 'NA', 'MATRICULADO', 'T.I', 'FEMENINO', 'SOLTERO', '9', 'EN CURSO', 'GUATICA', 'GUATICA', NULL, 'INDIGENA', 1, 2, 5, 2, 47, '2020-04-17 17:18:01'),
 (42, '1087486143|', 'YULIANA', 'ANDREA', 'GARCIA', 'GARCIA', '3127170503', 'YULIANDREA@HOTMAIL.COM', '2002-01-16 00:00:00', '17', 'VDA SUAIVA', 1, '2019-08-15 00:00:00', NULL, 'NA', 'pordefecto.png', '0.00', 'SI', 'SI', '15', 'NA', 'NA', 'MATRICULADO', 'T.I', 'FEMENINO', 'SOLTERO', '9', 'EN CURSO', 'GUATICA', 'GUATICA', NULL, 'VICTIMA', 1, 2, 5, 2, 48, '2019-08-16 14:31:17'),
 (43, '1089718092', 'JUNIOR', 'STIVEN', 'TABORDA', 'LARGO', '31259366317', 'JUNIORSTIVENT@GMAIL.COM', '2004-03-04 00:00:00', '15', 'SANTA ANA', 1, '2019-08-15 00:00:00', NULL, 'NA', 'pordefecto.png', '0.00', 'SI', 'SI', '40', 'NA', 'NA', 'MATRICULADO', 'T.I', 'MASCULINO', 'SOLTERO', '9', 'EN CURSO', 'GUATICA', 'GUATICA', NULL, 'NINGUNO', 1, 2, 5, 2, 49, '2019-08-16 14:31:31'),
 (44, '1085816004', 'CAMILA', '', 'ARICAPA', 'MUÃ‘OZ', '3215748810', 'CAMILARICAPA7@GMAIL.COM', '2003-11-26 00:00:00', '16', 'BARRIO EL CRUCERO', 1, '2019-08-15 00:00:00', NULL, 'NA', 'pordefecto.png', '0.00', 'SI', 'SI', '12', 'NA', 'NA', 'MATRICULADO', 'T.I', 'FEMENINO', 'SOLTERO', '9', 'EN CURSO', 'GUATICA', 'GUATICA', NULL, 'VICTIMA', 1, 2, 5, 2, 50, '2019-08-16 14:32:48'),
@@ -779,15 +806,15 @@ INSERT INTO `estudiantes` (`id`, `documento`, `primer_nombre`, `segundo_nombre`,
 (47, '1085816003', 'CAROLINA', '', 'ARCIPA', 'MUÃ‘OZ', '3215748810', 'CAROARICAPA6@GMAIL.COM', '2003-11-26 00:00:00', '16', 'BARRIO EL CRUCERO', 1, '2019-08-15 00:00:00', NULL, 'NA', 'pordefecto.png', '0.00', 'SI', 'SI', '12', 'NA', 'NA', 'MATRICULADO', 'T.I', 'FEMENINO', 'SOLTERO', '9', 'EN CURSO', 'GUATICA', 'GUATICA', NULL, 'VICTIMA', 1, 2, 5, 2, 53, '2019-08-16 14:32:08'),
 (48, '1088562007', 'YEFERSON', 'DAVID', 'BUENO', 'MOTATO', '3175194477', 'YEFERSONDAVID816@GMAIL.COM', '2004-01-07 00:00:00', '15', 'VDA SUAIVA', 2, '2019-08-15 00:00:00', NULL, 'NA', 'pordefecto.png', '0.00', 'SI', 'SI', '13', 'NA', 'NA', 'MATRICULADO', 'T.I', 'MASCULINO', 'SOLTERO', '9', 'EN CURSO', 'GUATICA', 'GUATICA', NULL, 'NINGUNO', 1, 2, 5, 2, 54, '2019-08-16 14:31:54'),
 (49, '1089718023', 'DEICY', 'VIVIANA', 'ESCUDERO', 'LOPEZ', '3148834168', 'DEICYLOPEZ@HOTMAIL.COM', '2003-12-15 00:00:00', '16', 'TARQUI', 1, '2019-08-15 00:00:00', NULL, 'NA', 'pordefecto.png', '0.00', 'SI', 'SI', '27', 'NA', 'NA', 'MATRICULADO', 'T.I', 'FEMENINO', 'SOLTERO', '9', 'EN CURSO', 'GUATICA', 'GUATICA', NULL, 'NINGUNO', 1, 2, 5, 2, 55, '2019-08-16 14:31:42'),
-(50, '1004685926', 'LUISA', 'FERNANDA', 'MONTOYA', 'PUERTA', '3059080704', 'LUISAPUERTA@HOTMAIL.COM', '2003-07-23 00:00:00', '16', 'VDA TAUMA', 1, '2019-08-16 00:00:00', NULL, 'NA', 'pordefecto.png', '0.00', 'SI', 'SI', '27', 'NA', 'NA', 'MATRICULADO', 'T.I', 'FEMENINO', 'SOLTERO', '9', 'EN CURSO', 'GUATICA', 'GUATICA', NULL, 'NINGUNO', 1, 2, 5, 2, 56, '2019-08-16 14:28:15'),
-(51, '1004766916', 'DIANA', 'LORENA', 'TONUZCO', 'GUERRER', '3132780481', 'DIANATONUZCO@GMAIL.COM', '2003-11-26 00:00:00', '16', 'SANTA ANA', 1, '2019-08-16 00:00:00', NULL, 'NA', 'pordefecto.png', '0.00', 'SI', 'SI', '49', 'NA', 'NA', 'MATRICULADO', 'T.I', 'FEMENINO', 'SOLTERO', '9', 'EN CURSO', 'GUATICA', 'GUATICA', NULL, 'NINGUNO', 1, 2, 5, 2, 57, '2019-08-16 14:28:29'),
-(52, '1089718135', 'LIZETH', 'JIMENA', 'MOTATO', 'GOMEZ', '3145415411602', 'JIMENAMOTATO2004@GMAIL.COM', '2004-02-15 00:00:00', '15', 'SANTA ANA', 1, '2019-08-16 00:00:00', NULL, 'NA', 'pordefecto.png', '0.00', 'SI', 'SI', '19', 'NA', 'NA', 'MATRICULADO', 'T.I', 'FEMENINO', 'SOLTERO', '9', 'EN CURSO', 'GUATICA', 'GUATICA', NULL, 'INDIGENA', 1, 2, 5, 2, 58, '2019-08-16 14:28:38'),
-(53, '1004625774', 'LAIDY', 'YOBANA', 'GUAPACHA', 'TONUZCO', '3212013588', 'LAIDYTONUCZO@HOTMAIL.COM', '2003-07-03 00:00:00', '16', 'BARRIO EL CRUCERO', 1, '2019-08-16 00:00:00', NULL, 'NA', 'pordefecto.png', '0.00', 'SI', 'SI', '34', 'NA', 'NA', 'MATRICULADO', 'T.I', 'FEMENINO', 'SOLTERO', '9', 'EN CURSO', 'GUATICA', 'GUATICA', NULL, 'VICTIMA', 1, 2, 5, 2, 59, '2019-08-16 14:28:51'),
-(54, '1085816024', 'GELLI', 'YASMIN', 'RAMIREZ', 'CARVAJAL', '3126328198', 'YASMINRAMIREZ@GMAIL.COM', '2003-10-11 00:00:00', '16', 'SANTA ANA', 1, '2019-08-16 00:00:00', NULL, 'NA', 'pordefecto.png', '0.00', 'SI', 'SI', '17', 'NA', 'NA', 'MATRICULADO', 'T.I', 'FEMENINO', 'SOLTERO', '9', 'EN CURSO', 'GUATICA', 'GUATICA', NULL, 'NINGUNO', 1, 2, 5, 2, 60, '2019-08-16 14:29:02'),
-(55, '1004689012', 'NEIDER', 'ANDRES', 'ESCOBAR', 'SUAZA', '3024575229', 'ABDRESESCOBAR@HOTMAIL.COM', '2003-08-20 00:00:00', '16', 'SANTA ANA', 1, '2019-08-16 00:00:00', NULL, 'NA', 'pordefecto.png', '0.00', 'SI', 'SI', '30', 'NA', 'NA', 'MATRICULADO', 'T.I', 'MASCULINO', 'SOLTERO', '9', 'EN CURSO', 'GUATICA', 'GUATICA', NULL, 'NINGUNO', 1, 2, 5, 2, 61, '2019-08-16 14:29:22'),
-(56, '1004793249', 'HUGO', 'ALBERTO', 'CARDENAS', 'MOSCOSO', '3148609696', 'HUGOALBERTOCARDENASMOSCOSO@GMAIL.COM', '2002-11-26 00:00:00', '17', 'SIRGUI ALTO', 2, '2019-08-16 00:00:00', NULL, 'NA', 'pordefecto.png', '0.00', 'SI', 'SI', '28', 'NA', '', 'MATRICULADO', 'T.I', 'MASCULINO', 'SOLTERO', '9', 'EN CURSO', 'GUATICA', 'GUATICA', NULL, 'NINGUNO', 1, 2, 5, 2, 62, '2019-08-16 14:29:31'),
-(57, '1004766901', 'KAREN', 'JULIETH', 'SANCHEZ', 'LARGO', '3102945978', 'KARENSANCHEZ@HOTMAIL.COM', '2003-09-27 00:00:00', '16', 'VDA TARQUI', 1, '2019-08-16 00:00:00', NULL, 'NA', 'pordefecto.png', '0.00', 'SI', 'SI', '29', 'NA', 'NA', 'MATRICULADO', 'T.I', 'FEMENINO', 'SOLTERO', '9', 'EN CURSO', 'GUATICA', 'GUATICA', NULL, 'NINGUNO', 1, 2, 5, 2, 63, '2019-08-16 14:29:42'),
-(58, '1004766904', 'JHON', 'ALEXANDER', 'VELASQUEZ', 'GARCIA', '3217370220', 'JHONGARCIA@HOTMAIL.COM', '2003-09-26 00:00:00', '16', 'SANTA ANA', 1, '2019-08-16 00:00:00', NULL, 'NA', 'pordefecto.png', '0.00', 'SI', 'SI', '30', 'NA', 'NA', 'MATRICULADO', 'T.I', 'MASCULINO', 'SOLTERO', '9', 'EN CURSO', 'GUATICA', 'GUATICA', NULL, 'VICTIMA', 1, 2, 5, 2, 64, '2019-08-16 14:28:05'),
+(50, '1004685926', 'LUISA', 'FERNANDA', 'MONTOYA', 'PUERTA', '3059080704', 'LUISAPUERTA@HOTMAIL.COM', '2003-07-23 00:00:00', '16', 'VDA TAUMA', 1, '2019-08-16 00:00:00', NULL, 'NA', 'pordefecto.png', '0.00', 'SI', 'SI', '27', 'NA', 'NA', 'MATRICULADO', 'T.I', 'FEMENINO', 'SOLTERO', '9', 'EN CURSO', 'GUATICA', 'GUATICA', NULL, 'NINGUNO', 1, 2, 5, 2, 56, '2020-04-17 16:50:08'),
+(51, '1004766916', 'DIANA', 'LORENA', 'TONUZCO', 'GUERRER', '3132780481', 'DIANATONUZCO@GMAIL.COM', '2003-11-26 00:00:00', '16', 'SANTA ANA', 1, '2019-08-16 00:00:00', NULL, 'NA', 'pordefecto.png', '0.00', 'SI', 'SI', '49', 'NA', 'NA', 'MATRICULADO', 'T.I', 'FEMENINO', 'SOLTERO', '9', 'EN CURSO', 'GUATICA', 'GUATICA', NULL, 'NINGUNO', 1, 2, 5, 2, 57, '2020-04-16 03:32:57'),
+(52, '1089718135', 'LIZETH', 'JIMENA', 'MOTATO', 'GOMEZ', '3145415411602', 'JIMENAMOTATO2004@GMAIL.COM', '2004-02-15 00:00:00', '15', 'SANTA ANA', 1, '2019-08-16 00:00:00', NULL, 'NA', 'pordefecto.png', '0.00', 'SI', 'SI', '19', 'NA', 'NA', 'MATRICULADO', 'T.I', 'FEMENINO', 'SOLTERO', '9', 'EN CURSO', 'GUATICA', 'GUATICA', NULL, 'INDIGENA', 1, 2, 5, 2, 58, '2020-04-17 16:52:31'),
+(53, '1004625774', 'LAIDY', 'YOBANA', 'GUAPACHA', 'TONUZCO', '3212013588', 'LAIDYTONUCZO@HOTMAIL.COM', '2003-07-03 00:00:00', '16', 'BARRIO EL CRUCERO', 1, '2019-08-16 00:00:00', NULL, 'NA', 'pordefecto.png', '0.00', 'SI', 'SI', '34', 'NA', 'NA', 'MATRICULADO', 'T.I', 'FEMENINO', 'SOLTERO', '9', 'EN CURSO', 'GUATICA', 'GUATICA', NULL, 'VICTIMA', 1, 2, 5, 2, 59, '2020-04-17 16:53:09'),
+(54, '1085816024', 'GELLI', 'YASMIN', 'RAMIREZ', 'CARVAJAL', '3126328198', 'YASMINRAMIREZ@GMAIL.COM', '2003-10-11 00:00:00', '16', 'SANTA ANA', 1, '2019-08-16 00:00:00', NULL, 'NA', 'pordefecto.png', '0.00', 'SI', 'SI', '17', 'NA', 'NA', 'MATRICULADO', 'T.I', 'FEMENINO', 'SOLTERO', '9', 'EN CURSO', 'GUATICA', 'GUATICA', NULL, 'NINGUNO', 1, 2, 5, 2, 60, '2020-04-17 16:56:14'),
+(55, '1004689012', 'NEIDER', 'ANDRES', 'ESCOBAR', 'SUAZA', '3024575229', 'ABDRESESCOBAR@HOTMAIL.COM', '2003-08-20 00:00:00', '16', 'SANTA ANA', 1, '2019-08-16 00:00:00', NULL, 'NA', 'pordefecto.png', '0.00', 'SI', 'SI', '30', 'NA', 'NA', 'MATRICULADO', 'T.I', 'MASCULINO', 'SOLTERO', '9', 'EN CURSO', 'GUATICA', 'GUATICA', NULL, 'NINGUNO', 1, 2, 5, 2, 61, '2020-04-17 17:13:00'),
+(56, '1004793249', 'HUGO', 'ALBERTO', 'CARDENAS', 'MOSCOSO', '3148609696', 'HUGOALBERTOCARDENASMOSCOSO@GMAIL.COM', '2002-11-26 00:00:00', '17', 'SIRGUI ALTO', 2, '2019-08-16 00:00:00', NULL, 'NA', 'pordefecto.png', '0.00', 'SI', 'SI', '28', 'NA', '', 'MATRICULADO', 'T.I', 'MASCULINO', 'SOLTERO', '9', 'EN CURSO', 'GUATICA', 'GUATICA', NULL, 'NINGUNO', 1, 2, 5, 2, 62, '2020-04-17 17:14:19'),
+(57, '1004766901', 'KAREN', 'JULIETH', 'SANCHEZ', 'LARGO', '3102945978', 'KARENSANCHEZ@HOTMAIL.COM', '2003-09-27 00:00:00', '16', 'VDA TARQUI', 1, '2019-08-16 00:00:00', NULL, 'NA', 'pordefecto.png', '0.00', 'SI', 'SI', '29', 'NA', 'NA', 'MATRICULADO', 'T.I', 'FEMENINO', 'SOLTERO', '9', 'EN CURSO', 'GUATICA', 'GUATICA', NULL, 'NINGUNO', 1, 2, 5, 2, 63, '2020-04-17 17:16:28'),
+(58, '1004766904', 'JHON', 'ALEXANDER', 'VELASQUEZ', 'GARCIA', '3217370220', 'JHONGARCIA@HOTMAIL.COM', '2003-09-26 00:00:00', '16', 'SANTA ANA', 1, '2019-08-16 00:00:00', NULL, 'NA', 'pordefecto.png', '0.00', 'SI', 'SI', '30', 'NA', 'NA', 'MATRICULADO', 'T.I', 'MASCULINO', 'SOLTERO', '9', 'EN CURSO', 'GUATICA', 'GUATICA', NULL, 'VICTIMA', 1, 2, 5, 2, 64, '2020-04-17 16:51:40'),
 (59, '1193530088', 'MAYERLY', 'ELISETH', 'ARICAPA', 'CHIQUITO', '3126586579', 'MAYEARICAPA@HOTMAIL.COM', '2002-09-07 00:00:00', '17', 'SAN JOSE', 1, '2019-08-20 00:00:00', NULL, 'NA', 'pordefecto.png', '0.00', 'SI', 'SI', '20', 'NA', 'NA', 'MATRICULADO', 'T.I', 'FEMENINO', 'SOLTERO', '9', 'EN CURSO', 'QUINCHIA', 'QUINCHIA', NULL, 'VICTIMA', 1, 2, 6, 2, 65, '2019-08-20 14:24:02'),
 (60, '1093984073', 'YADDI', 'ALEJANDRA', 'MANZO', 'IBARRA', '3128092877', 'ALEJAMANZO@HOTMAIL.COM', '2003-07-15 00:00:00', '16', 'VDA PRIMAVERA', 1, '2019-08-20 00:00:00', NULL, 'ALIANZA ', 'pordefecto.png', '0.00', 'SI', 'SI', '30', 'NA', 'NA', 'MATRICULADO', 'T.I', 'FEMENINO', 'SOLTERO', '9', 'EN CURSO', 'QUINCHIA', 'QUINCHIA', NULL, 'INDIGENA', 1, 2, 6, 2, 66, '2019-08-20 14:24:44'),
 (61, '3148269050', 'YURANI', 'MARCELA', 'NAVARRETE', 'HERNANDEZ', '3148269050', 'MARCELANAVARRETE@HOTMAIL.COM', '2002-06-06 00:00:00', '17', 'SAN JOSE', 1, '2019-08-20 00:00:00', NULL, 'NA', 'pordefecto.png', '0.00', 'SI', 'SI', '31', 'NA', 'NA', 'MATRICULADO', 'T.I', 'FEMENINO', 'SOLTERO', '9', 'EN CURSO', 'PEREIRA', 'QUINCHIA', NULL, 'VICTIMA', 1, 2, 6, 2, 67, '2019-08-20 14:24:34'),
@@ -922,7 +949,7 @@ INSERT INTO `estudiantes` (`id`, `documento`, `primer_nombre`, `segundo_nombre`,
 (189, '1004791559', 'JAIDER', 'ALBERTO', 'SUAREZ', 'ALAPE', '3203900532', 'JAIDERALAPE@GMAIL.COM', '1998-12-21 00:00:00', '21', 'VDA LA ESTRELLA', 1, '2019-09-19 00:00:00', NULL, 'NA', 'pordefecto.png', '0.00', 'SI', 'SI', '23', 'NA', 'NA', 'MATRICULADO', 'C.C', 'MASCULINO', 'SOLTERO', '11', 'EN CURSO', 'LA CELIA', 'BALBOA', NULL, 'NINGUNO', 1, 2, 7, 2, 195, '2019-09-19 14:49:19'),
 (190, '1192802871', 'ANYI', 'MARCELA', 'VIDAL', 'RODRIGUEZ', '3145806045', 'ANRYVIDAL.RODRI@GMAIL.COM', '2000-01-20 00:00:00', '19', 'TAMBORES', 1, '2019-09-19 00:00:00', NULL, 'NO CUMPLE', 'pordefecto.png', '0.00', 'SI', 'SI', '15', '11', '', 'MATRICULADO', 'C.C', 'FEMENINO', 'SOLTERO', '11', 'EN CURSO', 'BALBOA', 'BALBOA', NULL, 'MUJER CABEZA DE HOGAR', 1, 2, 7, 2, 196, '2019-09-19 14:50:06'),
 (191, '1090077508', 'ARACELY', '', 'CERQUERA', 'ALVAREZ', '3214740195', 'LAMONAALVAREZ@GMAIL.COM', '1999-06-11 00:00:00', '20', 'BARRIO LA CRUZ', 1, '2019-09-19 00:00:00', NULL, 'NO CUMPLE', 'pordefecto.png', '0.00', 'SI', 'SI', '18', '13', 'NA', 'MATRICULADO', 'C.C', 'FEMENINO', 'SOLTERO', '11', 'EN CURSO', 'BALBOA', 'BALBOA', NULL, 'NINGUNO', 1, 2, 7, 2, 197, '2019-09-19 14:49:57'),
-(192, '1000297500', 'JONATHAN', '', 'MONTES', 'MACHADO', '3148529327', 'MONTESJMM21@GMAIL.COM', '2001-09-15 00:00:00', '18', 'VDA LA ESTRELLA', 1, '2019-09-19 00:00:00', NULL, 'NO CUMPLE', 'pordefecto.png', '0.00', 'SI', 'SI', '11', '15', 'NA', 'MATRICULADO', 'C.C', 'MASCULINO', 'SOLTERO', '11', 'EN CURSO', 'BALBOA', 'BALBOA', NULL, 'NINGUNO', 1, 2, 7, 2, 198, '2019-09-19 14:49:43'),
+(192, '1000297500', 'JONATHAN', '', 'MONTES', 'MACHADO', '3148529327', 'MONTESJMM21@GMAIL.COM', '2001-09-15 00:00:00', '18', 'VDA LA ESTRELLA', 1, '2019-09-19 00:00:00', '0000-00-00 00:00:00', 'NO CUMPLE', 'pordefecto.png', '0.00', 'SI', 'SI', '11', '15', 'NA', 'MATRICULADO', 'T.I', 'MASCULINO', 'SOLTERO', '11', 'EN CURSO', 'BALBOA', 'BALBOA', NULL, 'NINGUNO', 1, 2, 7, 2, 198, '2020-03-20 02:35:28'),
 (193, '1005964519', 'YUDI', 'VANESSA', 'HERNANDEZ', 'AGUIRRE', '3186874409', 'YUDIAGUIRRE816@GMAIL.COM', '2000-03-31 00:00:00', '19', 'VDA LA FLORESTA', 1, '2019-09-19 00:00:00', NULL, 'NO CUMPLE', 'pordefecto.png', '0.00', 'SI', 'SI', '31', '15', 'NA', 'MATRICULADO', 'C.C', 'FEMENINO', 'SOLTERO', '11', 'EN CURSO', 'BALBOA', 'BALBOA', NULL, 'NINGUNO', 1, 2, 7, 2, 199, '2019-09-19 14:49:34'),
 (194, '1193147508', 'LINA', 'MARIA', 'YEPES', 'MEDINA', '3103900184', 'FRESITALIAA.2000@GMAIL.COM', '2001-02-23 00:00:00', '18', 'VDA LA MARGARITA', 1, '2019-09-19 00:00:00', NULL, 'NO CUMPLE', 'pordefecto.png', '0.00', 'SI', 'SI', '05', '15', 'NA', 'MATRICULADO', 'C.C', 'FEMENINO', 'SOLTERO', '11', 'EN CURSO', 'APIA', 'BALBOA', NULL, 'NINGUNO', 1, 2, 7, 2, 200, '2019-09-19 14:50:17'),
 (195, '1088236245', 'JUAN', 'JOSE', 'CARDONA', 'GUEVARA', '3208508053', 'ELGUERRI.2004@GMAIL.COM', '2004-01-06 00:00:00', '15', 'VDA EL TERRERO', 1, '2019-09-19 00:00:00', NULL, 'NA', 'pordefecto.png', '0.00', 'SI', 'SI', '30', 'NA', 'NA', 'MATRICULADO', 'T.I', 'MASCULINO', 'SOLTERO', '9', 'EN CURSO', 'PEREIRA', 'MISTRATO', NULL, 'NINGUNO', 1, 2, 2, 2, 201, '2019-09-27 15:19:20'),
@@ -992,7 +1019,7 @@ INSERT INTO `estudiantes` (`id`, `documento`, `primer_nombre`, `segundo_nombre`,
 (258, '1004626544', 'KAREN', 'FERNANDA', 'SERNA', 'MOSCOSO', '3136273548', 'KAREN.FER@HOTMAIL.COM', '2002-03-19 00:00:00', '17', 'CRA 16 # 17-66', 1, '2019-10-01 00:00:00', NULL, 'NA', 'pordefecto.png', '0.00', 'SI', 'SI', '30', 'NA', 'NA', 'MATRICULADO', 'T.I', 'FEMENINO', 'SOLTERO', '11', 'EN CURSO', 'BELEN DE UMBRIA', 'SANTA ROSA DE CABAL', NULL, 'NINGUNO', 1, 1, 11, 2, 265, '2019-10-01 17:12:58'),
 (259, '1004995759', 'STEFANY', '', 'PAROLO', 'MOMPOS', '3207138633', 'NANISXT26@HOTMAIL.COM', '2002-09-13 00:00:00', '17', 'CRA 25 # 27', 1, '2019-10-01 00:00:00', NULL, 'NA', 'pordefecto.png', '0.00', 'SI', 'SI', '30', 'NA', 'NA', 'MATRICULADO', 'T.I', 'FEMENINO', 'SOLTERO', '11', 'EN CURSO', 'SANTA ROSA DE CABAL', 'SANTA ROSA DE CABAL', NULL, 'NINGUNO', 1, 1, 11, 2, 266, '2019-10-01 17:13:08'),
 (260, '1004995193', 'TATIANA', '', 'FRANCO', 'GARCIA', '3143525235', 'TATIANAFRANCO565@GMAIL.COM', '2001-07-08 00:00:00', '18', 'CRA 44 # 12-36', 1, '2019-10-01 00:00:00', NULL, 'NA', 'pordefecto.png', '0.00', 'SI', 'SI', '30', 'NA', 'NA', 'MATRICULADO', 'C.C', 'MASCULINO', 'SOLTERO', '11', 'EN CURSO', 'SANTA ROSA DE CABAL', 'SANTA ROSA DE CABAL', NULL, 'NINGUNO', 1, 1, 11, 2, 267, '2019-10-01 17:13:15'),
-(261, '1000225743', 'LISSETH', 'DANIELA', 'MUÑOZ', 'GALEANO', '3225255060', 'DANIMUZ003@GMAIL.COM', '2002-02-17 00:00:00', '17', 'ALAMOS', 1, '2019-10-01 00:00:00', '0000-00-00 00:00:00', 'Prueba', 'pordefecto.png', NULL, 'SI', 'SI', '30', 'NA', 'NA', 'INACTIVO', 'T.I', 'FEMENINO', 'SOLTERO', '11', 'EN CURSO', 'SANTA ROSA DE CABAL', 'SANTA ROSA DE CABAL', NULL, 'NINGUNO', 1, 1, 11, 2, 268, '2020-03-17 19:54:50'),
+(261, '1000225743', 'LISSETH', 'DANIELA', 'MUÑOZ', 'GALEANO', '3225255060', 'DANIMUZ003@GMAIL.COM', '2002-02-17 00:00:00', '17', 'ALAMOSAAAA', 2, '2019-10-01 00:00:00', '2020-08-04 00:00:00', 'Prueba', 'pordefecto.png', NULL, 'SI', 'SI', '30', 'NA', 'NA', 'MATRICULADO', 'T.I', 'FEMENINO', 'CASADO', '11', 'EN CURSO', 'SANTA ROSA DE CABAL', 'SANTA ROSA DE CABAL', NULL, 'NINGUNO', 1, 1, 11, 2, 268, '2020-06-07 20:50:25'),
 (262, '1004776630', 'TANIA', 'MICHEL', 'CHICA', 'GIRALDO', '3143535349', 'TANIAMICHELCHICA05@GMAIL.COM', '2000-07-09 00:00:00', '19', 'CALLE 25 B # 25-27', 1, '2019-10-01 00:00:00', NULL, 'NA', 'pordefecto.png', '0.00', 'SI', 'SI', '30', 'NA', 'NA', 'MATRICULADO', 'C.C', 'FEMENINO', 'SOLTERO', '11', 'EN CURSO', 'PEREIRA', 'SANTA ROSA DE CABAL', NULL, 'NINGUNO', 1, 1, 11, 2, 269, '2019-10-01 17:13:32'),
 (263, '1004521112', 'DANNA', '', 'BARON', 'MESA', '3216161137', 'MAILMESA322@HOTMAIL.COM', '2001-03-22 00:00:00', '18', 'CALLE 9 BIS #10-16', 1, '2019-10-01 00:00:00', NULL, 'NA', 'pordefecto.png', '0.00', 'SI', 'SI', '30', 'NA', 'NA', 'MATRICULADO', 'C.C', 'FEMENINO', 'SOLTERO', '11', 'EN CURSO', 'SANTA ROSA DE CABAL', 'SANTA ROSA DE CABAL', NULL, 'NINGUNO', 1, 1, 11, 2, 270, '2019-10-01 17:11:58'),
 (264, '1004520089', 'MELISA', '', 'HERNANDEZ', 'OSSA', '3145365101', 'MELISAHO204@GMAIL.COM', '2002-02-04 00:00:00', '17', 'CALLE 15 # 9-18', 1, '2019-10-01 00:00:00', NULL, 'NA', 'pordefecto.png', '0.00', 'SI', 'SI', '30', 'NA', 'NA', 'MATRICULADO', 'T.I', 'FEMENINO', 'SOLTERO', '11', 'EN CURSO', 'PEREIRA', 'SANTA ROSA DE CABAL', NULL, 'NINGUNO', 1, 1, 11, 2, 271, '2019-10-01 17:13:51'),
@@ -1240,32 +1267,44 @@ INSERT INTO `estudiantes` (`id`, `documento`, `primer_nombre`, `segundo_nombre`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `factura`
+-- Estructura de tabla para la tabla `factura`
 --
 
 CREATE TABLE `factura` (
-  `id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
+  `id` int(15) NOT NULL,
+  `consecutivo` varchar(45) NOT NULL,
+  `fecha` date NOT NULL,
+  `fecha_sistema` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `factura`
+--
+
+INSERT INTO `factura` (`id`, `consecutivo`, `fecha`, `fecha_sistema`) VALUES
+(9, '1', '2020-04-17', '2020-04-17 17:37:20'),
+(10, '2', '2020-04-22', '2020-04-22 02:31:55'),
+(11, '3', '2020-05-05', '2020-05-05 02:09:09');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `instituciones`
+-- Estructura de tabla para la tabla `instituciones`
 --
 
 CREATE TABLE `instituciones` (
   `id` int(11) NOT NULL COMMENT 'Id colegio',
   `nombre` varchar(100) NOT NULL COMMENT 'Nombre del colegio',
   `telefono` varchar(12) DEFAULT NULL,
-  `calendario` varchar(2) NOT NULL COMMENT 'Calendario al que pertence la institucion\r\n',
+  `calendario` varchar(2) NOT NULL COMMENT 'Calendario al que pertence la institucion\\r\\n',
   `DANE` varchar(50) DEFAULT NULL COMMENT 'Codigo dane',
   `municipio` varchar(100) NOT NULL,
   `sector_id` int(11) NOT NULL COMMENT 'Id de sectores',
   `zona_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `instituciones`
+-- Volcado de datos para la tabla `instituciones`
 --
 
 INSERT INTO `instituciones` (`id`, `nombre`, `telefono`, `calendario`, `DANE`, `municipio`, `sector_id`, `zona_id`) VALUES
@@ -1289,28 +1328,7 @@ INSERT INTO `instituciones` (`id`, `nombre`, `telefono`, `calendario`, `DANE`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `jornadas`
---
-
-CREATE TABLE `jornadas` (
-  `id` int(11) NOT NULL,
-  `nombre` varchar(50) NOT NULL COMMENT 'Jornada: Mañana, tarde y noche',
-  `descripcion` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
-
---
--- Dumping data for table `jornadas`
---
-
-INSERT INTO `jornadas` (`id`, `nombre`, `descripcion`) VALUES
-(1, 'MAÑANA', ''),
-(2, 'TARDE', ''),
-(3, 'NOCHE', '');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `matriculas`
+-- Estructura de tabla para la tabla `matriculas`
 --
 
 CREATE TABLE `matriculas` (
@@ -1324,32 +1342,32 @@ CREATE TABLE `matriculas` (
   `fecha_modificacion` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `estudiante_id` int(11) NOT NULL COMMENT 'FK estudiante',
   `programa_id` int(11) NOT NULL COMMENT 'FK Programa'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `matriculas`
+-- Volcado de datos para la tabla `matriculas`
 --
 
 INSERT INTO `matriculas` (`id`, `fecha`, `anio`, `semestre`, `periodo`, `promedio`, `estado`, `fecha_modificacion`, `estudiante_id`, `programa_id`) VALUES
 (1, '2019-06-27', '2019', 1, 2, '3.0', 'APROBADO', '2019-07-02 14:20:38', 2, 3),
-(2, '2019-06-27', '2019', 1, 2, '0.0', 'ACTIVO', '2019-06-27 14:29:15', 3, 3),
-(3, '2019-06-27', '2019', 1, 2, '0.0', 'ACTIVO', '2019-06-27 14:29:28', 4, 3),
-(4, '2019-06-27', '2019', 1, 2, '0.0', 'ACTIVO', '2019-06-27 14:29:45', 5, 3),
-(7, '2019-07-02', '2019', 2, 1, '0.0', 'ACTIVO', '2019-07-02 14:20:54', 2, 3),
-(8, '2019-08-16', '2019', 1, 1, '0.0', 'ACTIVO', '2019-08-16 14:28:05', 58, 11),
-(9, '2019-08-16', '2019', 1, 1, '0.0', 'ACTIVO', '2019-08-16 14:28:15', 50, 11),
-(10, '2019-08-16', '2019', 1, 1, '0.0', 'ACTIVO', '2019-08-16 14:28:29', 51, 11),
-(11, '2019-08-16', '2019', 1, 1, '0.0', 'ACTIVO', '2019-08-16 14:28:38', 52, 11),
-(12, '2019-08-16', '2019', 1, 1, '0.0', 'ACTIVO', '2019-08-16 14:28:51', 53, 11),
-(13, '2019-08-16', '2019', 1, 1, '0.0', 'ACTIVO', '2019-08-16 14:29:02', 54, 11),
-(14, '2019-08-16', '2019', 1, 1, '0.0', 'ACTIVO', '2019-08-16 14:29:22', 55, 11),
-(15, '2019-08-16', '2019', 1, 1, '0.0', 'ACTIVO', '2019-08-16 14:29:31', 56, 11),
-(16, '2019-08-16', '2019', 1, 1, '0.0', 'ACTIVO', '2019-08-16 14:29:42', 57, 11),
-(17, '2019-08-16', '2019', 1, 1, '0.0', 'ACTIVO', '2019-08-16 14:29:55', 41, 11),
-(18, '2019-08-16', '2019', 1, 1, '0.0', 'ACTIVO', '2019-08-16 14:30:03', 40, 11),
-(19, '2019-08-16', '2019', 1, 1, '0.0', 'ACTIVO', '2019-08-16 14:30:10', 39, 11),
-(20, '2019-08-16', '2019', 1, 1, '0.0', 'ACTIVO', '2019-08-16 14:30:18', 38, 11),
-(21, '2019-08-16', '2019', 1, 1, '0.0', 'ACTIVO', '2019-08-16 14:30:31', 37, 11),
+(2, '2019-06-27', '2019', 1, 2, '4.5', 'APROBADO', '2020-03-24 02:38:19', 3, 3),
+(3, '2019-06-27', '2019', 1, 2, '5.6', 'APROBADO', '2020-03-24 02:49:55', 4, 3),
+(4, '2019-06-27', '2019', 1, 2, '3.5', 'APROBADO', '2020-03-24 02:59:29', 5, 3),
+(7, '2019-07-02', '2019', 2, 1, '3.5', 'APROBADO', '2020-03-24 02:47:00', 2, 3),
+(8, '2019-08-16', '2019', 1, 1, '5.6', 'APROBADO', '2020-03-24 02:54:12', 58, 11),
+(9, '2019-08-16', '2019', 1, 1, '4.5', 'APROBADO', '2020-03-24 03:07:41', 50, 11),
+(10, '2019-08-16', '2019', 1, 1, '4.5', 'APROBADO', '2020-04-16 03:09:05', 51, 11),
+(11, '2019-08-16', '2019', 1, 1, '3.5', 'APROBADO', '2020-04-17 16:52:14', 52, 11),
+(12, '2019-08-16', '2019', 1, 1, '5.6', 'APROBADO', '2020-04-17 16:52:51', 53, 11),
+(13, '2019-08-16', '2019', 1, 1, '3.5', 'APROBADO', '2020-04-17 16:55:57', 54, 11),
+(14, '2019-08-16', '2019', 1, 1, '4.5', 'APROBADO', '2020-04-17 17:12:43', 55, 11),
+(15, '2019-08-16', '2019', 1, 1, '4.5', 'APROBADO', '2020-04-17 17:14:03', 56, 11),
+(16, '2019-08-16', '2019', 1, 1, '4.5', 'APROBADO', '2020-04-17 17:16:10', 57, 11),
+(17, '2019-08-16', '2019', 1, 1, '3.5', 'APROBADO', '2020-04-17 17:17:43', 41, 11),
+(18, '2019-08-16', '2019', 1, 1, '3.5', 'APROBADO', '2020-04-17 17:20:06', 40, 11),
+(19, '2019-08-16', '2019', 1, 1, '4.5', 'APROBADO', '2020-04-17 17:26:16', 39, 11),
+(20, '2019-08-16', '2019', 1, 1, '4.5', 'APROBADO', '2020-04-17 17:37:04', 38, 11),
+(21, '2019-08-16', '2019', 1, 1, '4.5', 'APROBADO', '2020-04-22 02:31:33', 37, 11),
 (22, '2019-08-16', '2019', 1, 1, '0.0', 'ACTIVO', '2019-08-16 14:31:04', 36, 11),
 (23, '2019-08-16', '2019', 1, 1, '0.0', 'ACTIVO', '2019-08-16 14:31:17', 42, 11),
 (24, '2019-08-16', '2019', 1, 1, '0.0', 'ACTIVO', '2019-08-16 14:31:31', 43, 11),
@@ -1769,55 +1787,69 @@ INSERT INTO `matriculas` (`id`, `fecha`, `anio`, `semestre`, `periodo`, `promedi
 (452, '2019-11-25', '2019', 1, 1, '0.0', 'ACTIVO', '2019-11-25 16:07:05', 486, 27),
 (453, '2019-11-25', '2019', 1, 1, '0.0', 'ACTIVO', '2019-11-25 16:07:12', 491, 27),
 (454, '2020-02-07', '2020', 2, 2, '0.0', 'ACTIVO', '2020-02-07 19:57:11', 484, 27),
-(455, '2020-02-21', '2020', 1, 2, '3.7', 'APROBADO', '2020-02-21 20:29:06', 506, 27);
+(455, '2020-02-21', '2020', 1, 2, '3.7', 'APROBADO', '2020-02-21 20:29:06', 506, 27),
+(456, '2020-03-27', '2020', 3, 2, '0.0', 'ACTIVO', '2020-03-28 03:33:21', 8, 26),
+(457, '2020-04-15', '2020', 2, 2, '0.0', 'ACTIVO', '2020-04-16 03:32:57', 51, 25),
+(458, '2020-04-17', '2020', 2, 1, '0.0', 'ACTIVO', '2020-04-17 16:41:24', 2, 27),
+(459, '2020-04-17', '2020', 2, 1, '0.0', 'ACTIVO', '2020-04-17 16:41:41', 2, 27),
+(460, '2020-04-08', '2020', 3, 1, '0.0', 'ACTIVO', '2020-04-17 16:43:37', 2, 22),
+(461, '2020-04-08', '2020', 3, 1, '0.0', 'ACTIVO', '2020-04-17 16:44:38', 2, 20),
+(462, '2020-04-08', '2020', 2, 1, '0.0', 'ACTIVO', '2020-04-17 16:45:16', 2, 22),
+(463, '2020-04-07', '2020', 4, 1, '0.0', 'ACTIVO', '2020-04-17 16:45:44', 2, 20),
+(464, '2020-04-14', '2020', 3, 2, '0.0', 'ACTIVO', '2020-04-17 16:46:40', 3, 19),
+(465, '2020-04-15', '2020', 4, 2, '0.0', 'ACTIVO', '2020-04-17 16:48:08', 4, 23),
+(466, '2020-04-15', '2020', 4, 2, '0.0', 'ACTIVO', '2020-04-17 16:49:30', 5, 22),
+(467, '2020-04-14', '2020', 3, 1, '0.0', 'ACTIVO', '2020-04-17 16:50:08', 50, 23),
+(468, '2020-04-15', '2020', 2, 2, '0.0', 'ACTIVO', '2020-04-17 16:51:39', 58, 21),
+(469, '2020-04-15', '2020', 2, 1, '0.0', 'ACTIVO', '2020-04-17 16:52:31', 52, 21),
+(470, '2020-04-14', '2020', 3, 1, '0.0', 'ACTIVO', '2020-04-17 16:53:09', 53, 19),
+(471, '2020-04-14', '2020', 4, 2, '0.0', 'ACTIVO', '2020-04-17 16:56:14', 54, 22),
+(472, '2020-04-15', '2020', 4, 2, '0.0', 'ACTIVO', '2020-04-17 17:13:00', 55, 22),
+(473, '2020-04-15', '2020', 4, 1, '0.0', 'ACTIVO', '2020-04-17 17:14:19', 56, 17),
+(474, '2020-04-14', '2020', 4, 2, '0.0', 'ACTIVO', '2020-04-17 17:16:28', 57, 22),
+(475, '2020-04-16', '2020', 4, 2, '0.0', 'ACTIVO', '2020-04-17 17:18:01', 41, 19),
+(476, '2020-04-17', '2020', 4, 1, '0.0', 'ACTIVO', '2020-04-17 17:20:27', 40, 20),
+(477, '2020-04-17', '2020', 3, 2, '0.0', 'ACTIVO', '2020-04-17 17:26:36', 39, 22),
+(478, '2020-04-16', '2020', 4, 2, '0.0', 'ACTIVO', '2020-04-17 17:37:20', 38, 21),
+(479, '2020-04-21', '2020', 2, 2, '0.0', 'ACTIVO', '2020-04-22 02:31:55', 37, 24),
+(480, '2020-05-04', '2020', 1, 2, '0.0', 'ACTIVO', '2020-05-05 02:09:09', 9, 26);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `modelos`
+-- Estructura de tabla para la tabla `medios_pago`
+--
+
+CREATE TABLE `medios_pago` (
+  `id` int(11) NOT NULL,
+  `cod_tipo_pago` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `modelos`
 --
 
 CREATE TABLE `modelos` (
   `id` int(11) NOT NULL,
-  `nombre` varchar(50) NOT NULL COMMENT 'EDUCACIÓN TRADICIONAL\r\nSAT PRESENCIAL\r\nPOST PRIMARIA\r\n',
+  `nombre` varchar(50) NOT NULL COMMENT 'EDUCACIÓN TRADICIONAL\\r\\nSAT PRESENCIAL\\r\\nPOST PRIMARIA\\r\\n',
   `descripcion` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `modelos`
+-- Volcado de datos para la tabla `modelos`
 --
 
 INSERT INTO `modelos` (`id`, `nombre`, `descripcion`) VALUES
-(1, 'EDUCACION TRADICIONAL', ''),
+(1, 'EDUCACIÓN TRADICIONAL', ''),
 (2, 'SAT PRESENCIAL', ''),
 (3, 'POST PRIMARIA', '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `nivel_academico`
---
-
-CREATE TABLE `nivel_academico` (
-  `id` int(11) NOT NULL,
-  `nombre` varchar(20) NOT NULL,
-  `descripcion` varchar(100) DEFAULT NULL COMMENT 'Descripcion del nivel academico del programa'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
-
---
--- Dumping data for table `nivel_academico`
---
-
-INSERT INTO `nivel_academico` (`id`, `nombre`, `descripcion`) VALUES
-(1, 'TECNICA PROFESIONAL', ''),
-(2, 'TECNOLOGIA', ''),
-(3, 'CICLO PROFESIONAL', ''),
-(4, 'OTRO', 'SIN REGISTRO');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pagos`
+-- Estructura de tabla para la tabla `pagos`
 --
 
 CREATE TABLE `pagos` (
@@ -1827,12 +1859,12 @@ CREATE TABLE `pagos` (
   `fecha_pago` date DEFAULT NULL COMMENT 'Fecha del pago',
   `comprobante` varchar(100) DEFAULT NULL COMMENT 'Nombre de la imagen del comprobante',
   `fecha_sistema` datetime DEFAULT NULL COMMENT 'Fecha del sistema'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `programas`
+-- Estructura de tabla para la tabla `programas`
 --
 
 CREATE TABLE `programas` (
@@ -1840,40 +1872,40 @@ CREATE TABLE `programas` (
   `snies` varchar(30) NOT NULL COMMENT 'Codigo representativo de la institucion superior',
   `nombre` varchar(50) NOT NULL COMMENT 'Nombre del programa',
   `cantidad_semestre` varchar(10) NOT NULL COMMENT 'Numero de semestre que contiene el programa',
-  `costo_semestre` double(10,2) NOT NULL COMMENT 'Valor por semestre',
-  `nivel_academico_id` int(11) NOT NULL,
-  `universidad_id` int(11) NOT NULL,
-  `jornada_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
+  `costo_semestre` double NOT NULL COMMENT 'Valor por semestre',
+  `nivel_academico` varchar(50) NOT NULL,
+  `jornada` varchar(50) NOT NULL,
+  `universidad_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `programas`
+-- Volcado de datos para la tabla `programas`
 --
 
-INSERT INTO `programas` (`id`, `snies`, `nombre`, `cantidad_semestre`, `costo_semestre`, `nivel_academico_id`, `universidad_id`, `jornada_id`) VALUES
-(3, '2028', 'TECNOLOGÃA AGRO INDUSTRIAL ', '4', 937490.00, 2, 2, 2),
-(11, '1111', 'TECNICA PROFESIONAL EN PRODUCCIÃ“N CAFETERA ', '1', 621087.00, 1, 1, 1),
-(12, '1113', 'TECNICO PROFESIONAL EN SANEAMIENTO AMBIENTAL', '1', 621087.00, 1, 1, 1),
-(13, '1114', 'T.P EN PRODUCCION AGRICOLA', '1', 621087.00, 1, 1, 1),
-(14, '1115', 'TECNOLOGIA EN GESTTION DE EMPRESAS AGROPECUARIAS ', '1', 621087.00, 2, 1, 1),
-(15, '1116', 'T.P EN IMPLEMENTACION DE PROYECTOS AGROPECUARIOS ', '1', 621087.00, 1, 1, 1),
-(16, '1117', 'TECNOLOGIA EN PRODUCCION AGRICOLA', '1', 993739.00, 2, 1, 1),
-(17, '1118', 'TECNICO PROFESIONAL EN PRODUCCION CAFETERA', '1', 621087.00, 1, 1, 1),
-(18, '1726', 'TECNOLOGIA EN GESTION DE EMPRESAS AGROINDUSTRIALES', '2', 993739.00, 2, 1, 2),
-(19, '2029', 'TECNOLOGIA EN GESTION FINANCIERA', '1', 993739.00, 2, 3, 1),
-(20, '2030', 'TECNOLOGÃA EN GESTIÃ“N EMPRESARIAL', '1', 993739.00, 2, 3, 1),
-(21, '1725', 'TECNOLOLOGIA EN GESTION TURISTICA Y DEL PATRIMONIO', '1', 993739.00, 2, 2, 2),
-(22, '1122', 'TECNOLOGIA EN PRODUCCIÃ“N FORESTAL ', '1', 993739.00, 2, 5, 1),
-(23, '2031', 'TP EN SISTEMAS DE COMPUTO ', '1', 621087.00, 1, 3, 1),
-(24, '1110', 'TECNOLOGIA EN GESTION AMBIENTAL', '1', 993739.00, 2, 1, 1),
-(25, '2026', 'T.P EN CONTABILIDAD Y FINANZAS ', '1', 621087.00, 1, 3, 1),
-(26, '2025', 'T.P EN MERCADEO Y VENTAS ', '1', 621087.00, 1, 3, 1),
-(27, '116', 'TECNOLOGÃA EN PRODUCCIÃ“N CAFETERA ', '1', 993739.00, 2, 1, 1);
+INSERT INTO `programas` (`id`, `snies`, `nombre`, `cantidad_semestre`, `costo_semestre`, `nivel_academico`, `jornada`, `universidad_id`) VALUES
+(3, '2028', 'TECNOLOGÃA AGRO INDUSTRIAL', '4', 9374900000, 'Tecnología', 'Noche', 2),
+(11, '1111', 'TECNICA PROFESIONAL EN PRODUCCIÃ“N CAFETERA ', '1', 621087, 'Técnica Profesional', 'Mañana', 1),
+(12, '1113', 'TECNICO PROFESIONAL EN SANEAMIENTO AMBIENTAL', '1', 621087, 'Técnica Profesional', 'Mañana', 1),
+(13, '1114', 'T.P EN PRODUCCION AGRICOLA', '1', 621087, 'Técnica Profesional', 'Mañana', 1),
+(14, '1115', 'TECNOLOGIA EN GESTTION DE EMPRESAS AGROPECUARIAS ', '1', 621087, 'Tecnología', 'Mañana', 1),
+(15, '1116', 'T.P EN IMPLEMENTACION DE PROYECTOS AGROPECUARIOS ', '1', 621087, 'Técnica Profesional', 'Mañana', 1),
+(16, '1117', 'TECNOLOGIA EN PRODUCCION AGRICOLA', '1', 993739, 'Tecnología', 'Mañana', 1),
+(17, '1118', 'TECNICO PROFESIONAL EN PRODUCCION CAFETERA', '1', 621087, 'Técnica Profesional', 'Mañana', 1),
+(18, '1726', 'TECNOLOGIA EN GESTION DE EMPRESAS AGROINDUSTRIALES', '2', 993739, 'Tecnología', 'Tarde', 1),
+(19, '2029', 'TECNOLOGIA EN GESTION FINANCIERA', '1', 993739, 'Tecnología', 'Mañana', 3),
+(20, '2030', 'TECNOLOGÃA EN GESTIÃ“N EMPRESARIAL', '1', 993739, 'Tecnología', 'Mañana', 3),
+(21, '1725', 'TECNOLOLOGIA EN GESTION TURISTICA Y DEL PATRIMONIO', '1', 993739, 'Tecnología', 'Tarde', 2),
+(22, '1122', 'TECNOLOGIA EN PRODUCCIÃ“N FORESTAL ', '1', 993739, 'Tecnología', 'Mañana', 5),
+(23, '2031', 'TP EN SISTEMAS DE COMPUTO ', '1', 621087, 'Técnica Profesional', 'Mañana', 3),
+(24, '1110', 'TECNOLOGIA EN GESTION AMBIENTAL', '1', 993739, 'Tecnología', 'Mañana', 1),
+(25, '2026', 'T.P EN CONTABILIDAD Y FINANZAS ', '1', 621087, 'Técnica Profesional', 'Mañana', 3),
+(26, '2025', 'T.P EN MERCADEO Y VENTAS', '3', 621087, 'Técnica Profesional', 'Mañana', 1),
+(27, '116', 'TECNOLOGÃA EN PRODUCCIÃ“N CAFETERA ', '1', 993739, 'Tecnología', 'Mañana', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `roles`
+-- Estructura de tabla para la tabla `roles`
 --
 
 CREATE TABLE `roles` (
@@ -1881,10 +1913,10 @@ CREATE TABLE `roles` (
   `nombre` varchar(100) NOT NULL,
   `descripcion` varchar(100) NOT NULL,
   `estado` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `roles`
+-- Volcado de datos para la tabla `roles`
 --
 
 INSERT INTO `roles` (`id`, `nombre`, `descripcion`, `estado`) VALUES
@@ -1895,7 +1927,7 @@ INSERT INTO `roles` (`id`, `nombre`, `descripcion`, `estado`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `roles_opciones`
+-- Estructura de tabla para la tabla `roles_opciones`
 --
 
 CREATE TABLE `roles_opciones` (
@@ -1903,10 +1935,10 @@ CREATE TABLE `roles_opciones` (
   `opcion` int(11) NOT NULL,
   `estado` int(11) NOT NULL,
   `rol_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `roles_opciones`
+-- Volcado de datos para la tabla `roles_opciones`
 --
 
 INSERT INTO `roles_opciones` (`id`, `opcion`, `estado`, `rol_id`) VALUES
@@ -1924,17 +1956,17 @@ INSERT INTO `roles_opciones` (`id`, `opcion`, `estado`, `rol_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sectores`
+-- Estructura de tabla para la tabla `sectores`
 --
 
 CREATE TABLE `sectores` (
   `id` int(11) NOT NULL COMMENT 'Id de sectores',
-  `nombre` varchar(100) NOT NULL COMMENT 'Nombre del sector:\r\nOficial, No oficial',
+  `nombre` varchar(100) NOT NULL COMMENT 'Nombre del sector:\\r\\nOficial, No oficial',
   `descripcion` varchar(255) DEFAULT NULL COMMENT 'Descripcion del sector'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `sectores`
+-- Volcado de datos para la tabla `sectores`
 --
 
 INSERT INTO `sectores` (`id`, `nombre`, `descripcion`) VALUES
@@ -1944,7 +1976,7 @@ INSERT INTO `sectores` (`id`, `nombre`, `descripcion`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sedes`
+-- Estructura de tabla para la tabla `sedes`
 --
 
 CREATE TABLE `sedes` (
@@ -1954,47 +1986,46 @@ CREATE TABLE `sedes` (
   `consecutivo` varchar(100) DEFAULT NULL,
   `municipio` varchar(100) NOT NULL,
   `zona_id` int(11) NOT NULL COMMENT 'Zona rural o urbana de la sede',
-  `modelo_id` int(11) NOT NULL COMMENT 'Modelo de la sede',
-  `institucion_id` int(11) NOT NULL COMMENT 'Institucion a la que pertenece la sede'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
+  `modelo_id` int(11) NOT NULL COMMENT 'Modelo de la sede'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `sedes`
+-- Volcado de datos para la tabla `sedes`
 --
 
-INSERT INTO `sedes` (`id`, `nombre`, `codigo_dane_sede`, `consecutivo`, `municipio`, `zona_id`, `modelo_id`, `institucion_id`) VALUES
-(2, 'INSTITUTO MISTRATO  ', '166456000393', '', 'MISTRATO', 1, 1, 3),
-(3, 'NUESTRA SEÃ‘ORA DE LA PRESENTACIÃ“N ', '166400000315', 'NSP', 'LA VIRGINIA', 1, 1, 4),
-(4, 'I.E LICEO DE OCCIDENTE ', '166383000012', 'LDO', 'LA CELIA', 1, 1, 5),
-(5, 'I.E SANTA ANA', '266318000468', 'SA', 'GUATICA', 2, 1, 6),
-(6, 'SAN JOSE ', '266594001214', 'SJ', 'QUINCHIA', 2, 1, 7),
-(7, 'I.E TAMBORES', '266075000022', 'TB', 'BALBOA', 2, 1, 8),
-(8, 'I.E SAGRADA FAMILIA SEDE LA FLORESTA', '166045000686', 'SFSF', 'APIA', 2, 1, 9),
-(9, 'MIRACAMPOS', '266594001079', 'MC', 'QUINCHIA', 2, 1, 10),
-(10, 'I.E NUESTRA SEÃ±ORA DEL ROSARIO', '166088000027', 'NSP', 'BELEN DE UMBRIA', 1, 1, 11),
-(11, 'I.E LABOURE ', '166682000444', 'LB', 'SANTA ROSA DE CABAL', 1, 1, 12),
-(12, 'I.A VERACRUZ', '266682000457', 'IAV', 'SANTA ROSA DE CABAL', 1, 1, 13),
-(13, 'I.E PEDRO PABLO BELLO', '166400000358', 'PB', 'LA VIRGINIA', 1, 1, 14),
-(14, 'I.E NARANJAL ', '266594001109', 'NA', 'QUINCHIA', 2, 1, 15),
-(15, 'LA CEIBA E ISAMBRA', '166594000213', 'NER', 'QUINCHIA', 2, 1, 16),
-(16, 'ALTO PUEBLO RICO', '166456000393', 'APR', 'MISTRATO', 2, 1, 3),
-(17, 'I.E TAPARCAL', '266088000528', 'TPC', 'BELEN DE UMBRIA', 2, 1, 17),
-(18, 'PEDRO PABLO BELLO', '166400000358', 'PPB', 'LA VIRGINIA', 1, 1, 20);
+INSERT INTO `sedes` (`id`, `nombre`, `codigo_dane_sede`, `consecutivo`, `municipio`, `zona_id`, `modelo_id`) VALUES
+(2, 'INSTITUTO MISTRATO  ', '166456000393', '', 'MISTRATO', 1, 1),
+(3, 'NUESTRA SEÃ‘ORA DE LA PRESENTACIÃ“N ', '166400000315', 'NSP', 'LA VIRGINIA', 1, 1),
+(4, 'I.E LICEO DE OCCIDENTE ', '166383000012', 'LDO', 'LA CELIA', 1, 1),
+(5, 'I.E SANTA ANA', '266318000468', 'SA', 'GUATICA', 2, 1),
+(6, 'SAN JOSE ', '266594001214', 'SJ', 'QUINCHIA', 2, 1),
+(7, 'I.E TAMBORES', '266075000022', 'TB', 'BALBOA', 2, 1),
+(8, 'I.E SAGRADA FAMILIA SEDE LA FLORESTA', '166045000686', 'SFSF', 'APIA', 2, 1),
+(9, 'MIRACAMPOS', '266594001079', 'MC', 'QUINCHIA', 2, 1),
+(10, 'I.E NUESTRA SEÃ±ORA DEL ROSARIO', '166088000027', 'NSP', 'BELEN DE UMBRIA', 1, 1),
+(11, 'I.E LABOURE ', '166682000444', 'LB', 'SANTA ROSA DE CABAL', 1, 1),
+(12, 'I.A VERACRUZ', '266682000457', 'IAV', 'SANTA ROSA DE CABAL', 1, 1),
+(13, 'I.E PEDRO PABLO BELLO', '166400000358', 'PB', 'LA VIRGINIA', 1, 1),
+(14, 'I.E NARANJAL ', '266594001109', 'NA', 'QUINCHIA', 2, 1),
+(15, 'LA CEIBA E ISAMBRA', '166594000213', 'NER', 'QUINCHIA', 2, 1),
+(16, 'ALTO PUEBLO RICO', '166456000393', 'APR', 'MISTRATO', 2, 1),
+(17, 'I.E TAPARCAL', '266088000528', 'TPC', 'BELEN DE UMBRIA', 2, 1),
+(18, 'PEDRO PABLO BELLO', '166400000358', 'PPB', 'LA VIRGINIA', 1, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tipos_estrategias`
+-- Estructura de tabla para la tabla `tipos_estrategias`
 --
 
 CREATE TABLE `tipos_estrategias` (
   `id` int(11) NOT NULL COMMENT 'Primary key',
   `nombre` varchar(100) DEFAULT NULL COMMENT 'Nombre del tipo de estrategia a la cual pertenece el estudiante',
   `descripcion` varchar(255) DEFAULT NULL COMMENT 'Descripcion de la estrategia'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tipos_estrategias`
+-- Volcado de datos para la tabla `tipos_estrategias`
 --
 
 INSERT INTO `tipos_estrategias` (`id`, `nombre`, `descripcion`) VALUES
@@ -2006,29 +2037,39 @@ INSERT INTO `tipos_estrategias` (`id`, `nombre`, `descripcion`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tipos_universidades`
+-- Estructura de tabla para la tabla `tipos_pago`
+--
+
+CREATE TABLE `tipos_pago` (
+  `id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tipos_universidades`
 --
 
 CREATE TABLE `tipos_universidades` (
   `id` int(11) NOT NULL COMMENT 'Primary key tipos universidades',
   `nombre` varchar(100) DEFAULT NULL,
   `descripcion` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tipos_universidades`
+-- Volcado de datos para la tabla `tipos_universidades`
 --
 
 INSERT INTO `tipos_universidades` (`id`, `nombre`, `descripcion`) VALUES
-(1, 'FUNDACION UNIVERSITARIA', ''),
-(2, 'CENTRO DE INVESTIGACION', ''),
+(1, 'FUNDACIÓN UNIVERSITARIA', ''),
+(2, 'CENTRO DE INVESTIGACIÓN', ''),
 (3, 'UNIVERSIDAD', ''),
 (4, 'OTRAS', '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `universidades`
+-- Estructura de tabla para la tabla `universidades`
 --
 
 CREATE TABLE `universidades` (
@@ -2039,23 +2080,26 @@ CREATE TABLE `universidades` (
   `direccion` varchar(50) DEFAULT NULL COMMENT 'Direccion de la institucion',
   `municipio` varchar(100) NOT NULL,
   `tipo_universidad_id` int(11) NOT NULL COMMENT 'Primary key tipos universidades'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `universidades`
+-- Volcado de datos para la tabla `universidades`
 --
 
 INSERT INTO `universidades` (`id`, `nombre`, `telefono`, `email`, `direccion`, `municipio`, `tipo_universidad_id`) VALUES
 (1, 'UNIVERSIDAD DE CALDAS', ' (6) 8781500', 'ucaldas@ucaldas.edu.co', ' CALLE 65 NO 26 - 10', 'LA CELIA', 3),
 (2, 'UNISARC', '3633548', 'unisarc@unisarc.edu.co', 'KILÃ³METRO 4 VÃ­A SANTA ROSA DE CABAL - CHINCHINÃ¡', 'MISTRATO', 3),
-(3, 'FUNDACION UNIVERSITARIA COMFAMILIAR ', '3172400', 'ECASTANO@UC.EDU.CO', 'CARRERA 5 # 21 - 30 PEREIRA, COLOMBIA', 'PEREIRA', 1),
+(3, 'FUNDACION UNIVERSITARIA COMFAMILIAR ', '31724001', 'ECASTANO@UC.EDU.CO', 'CARRERA 5 # 21 - 30 PEREIRA, COLOMBIA', 'PEREIRA', 1),
 (4, 'UNIVERSIDAD CATOLICA', '3124000', 'UNIVERSIDADCATOLICA@UCP.EDU.CO', 'AV LAS AMERICAS NO 49 - 95 ', 'PEREIRA', 3),
-(5, 'UNIVERSIDAD TECNOLÃ“GICA DE PEREIRA ', '(6) 3137300', 'rector@utp.edu.co', ' CRA. 27 ##10-02, PEREIRA', 'PEREIRA', 3);
+(5, 'UNIVERSIDAD TECNOLÃ“GICA DE PEREIRA ', '(6) 3137300', 'rector@utp.edu.co', ' CRA. 27 ##10-02, PEREIRA', 'PEREIRA', 3),
+(6, 'PRUEBA UNIVERSIDAD', '3124000', 'cristian@gmail.com', 'cra28', 'PEREIRA', 3),
+(7, 'PRUEBA UNIVERSIDAD 2', '3124000', 'cristian@gmail.com', 'cra28', 'BALBOA', 2),
+(8, 'PRUEBA UNIVERSIDAD 3', '3124000', 'cristian@gmail', 'cra28', 'SANTA ROSA DE CABAL', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `universidad_alianza`
+-- Estructura de tabla para la tabla `universidad_alianza`
 --
 
 CREATE TABLE `universidad_alianza` (
@@ -2065,12 +2109,12 @@ CREATE TABLE `universidad_alianza` (
   `universidad_id` int(11) NOT NULL COMMENT 'FK university',
   `alianza_id` int(11) NOT NULL COMMENT 'FK alianza',
   `fecha_sistema` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp() COMMENT 'Fecha inclusion universidad'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usuarios`
+-- Estructura de tabla para la tabla `usuarios`
 --
 
 CREATE TABLE `usuarios` (
@@ -2082,10 +2126,10 @@ CREATE TABLE `usuarios` (
   `img` varchar(100) DEFAULT 'pordefecto.png' COMMENT 'Imagen',
   `fecha_ingreso` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `rol_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `usuarios`
+-- Volcado de datos para la tabla `usuarios`
 --
 
 INSERT INTO `usuarios` (`id`, `estado`, `nombre`, `codigo`, `clave`, `img`, `fecha_ingreso`, `rol_id`) VALUES
@@ -2096,17 +2140,17 @@ INSERT INTO `usuarios` (`id`, `estado`, `nombre`, `codigo`, `clave`, `img`, `fec
 -- --------------------------------------------------------
 
 --
--- Table structure for table `zonas`
+-- Estructura de tabla para la tabla `zonas`
 --
 
 CREATE TABLE `zonas` (
   `id` int(11) NOT NULL,
   `nombre` varchar(10) NOT NULL,
   `descripcion` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `zonas`
+-- Volcado de datos para la tabla `zonas`
 --
 
 INSERT INTO `zonas` (`id`, `nombre`, `descripcion`) VALUES
@@ -2114,350 +2158,349 @@ INSERT INTO `zonas` (`id`, `nombre`, `descripcion`) VALUES
 (2, 'RURAL', 'GRANJAS Y EXTENSIONES DE TIERRA');
 
 --
--- Indexes for dumped tables
+-- Índices para tablas volcadas
 --
 
 --
--- Indexes for table `acudiente`
+-- Indices de la tabla `acudiente`
 --
 ALTER TABLE `acudiente`
-  ADD PRIMARY KEY (`id`) USING BTREE;
+  ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `alianzas`
+-- Indices de la tabla `alianzas`
 --
 ALTER TABLE `alianzas`
-  ADD PRIMARY KEY (`id`) USING BTREE,
-  ADD UNIQUE KEY `un_alianza_nombre` (`nombre`) USING BTREE;
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `un_alianza_nombre` (`nombre`);
 
 --
--- Indexes for table `cartera_universidades`
+-- Indices de la tabla `cartera_universidades`
 --
 ALTER TABLE `cartera_universidades`
-  ADD PRIMARY KEY (`id`) USING BTREE;
+  ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `consecutivo_factura`
+-- Indices de la tabla `clientes`
+--
+ALTER TABLE `clientes`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `consecutivo_factura`
 --
 ALTER TABLE `consecutivo_factura`
-  ADD UNIQUE KEY `consecutivo` (`consecutivo`) USING BTREE,
-  ADD UNIQUE KEY `prefijo` (`prefijo`) USING BTREE;
+  ADD UNIQUE KEY `consecutivo` (`consecutivo`),
+  ADD UNIQUE KEY `prefijo` (`prefijo`);
 
 --
--- Indexes for table `detalle_factura`
+-- Indices de la tabla `detalle_factura`
 --
 ALTER TABLE `detalle_factura`
-  ADD KEY `id_factura` (`id_factura`) USING BTREE,
-  ADD KEY `id_matricula` (`id_matricula`) USING BTREE;
+  ADD PRIMARY KEY (`iid`),
+  ADD UNIQUE KEY `iid_UNIQUE` (`iid`),
+  ADD KEY `id_factura` (`id_factura`),
+  ADD KEY `id_matricula` (`id_matricula`);
 
 --
--- Indexes for table `eps`
+-- Indices de la tabla `eps`
 --
 ALTER TABLE `eps`
-  ADD PRIMARY KEY (`id`) USING BTREE,
-  ADD UNIQUE KEY `unq_nombre_eps` (`nombre`) USING BTREE;
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `unq_nombre_eps` (`nombre`);
 
 --
--- Indexes for table `estudiantes`
+-- Indices de la tabla `estudiantes`
 --
 ALTER TABLE `estudiantes`
-  ADD PRIMARY KEY (`id`) USING BTREE,
-  ADD UNIQUE KEY `unq_estudiante_documento` (`documento`) USING BTREE,
-  ADD KEY `acudiente_id` (`acudiente_id`) USING BTREE,
-  ADD KEY `eps_id` (`eps_id`) USING BTREE,
-  ADD KEY `sede_id` (`sede_id`) USING BTREE,
-  ADD KEY `tipo_estrategia_id` (`tipo_estrategia_id`) USING BTREE,
-  ADD KEY `zona_id` (`zona_id`) USING BTREE;
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `unq_estudiante_documento` (`documento`),
+  ADD KEY `acudiente_id` (`acudiente_id`),
+  ADD KEY `eps_id` (`eps_id`),
+  ADD KEY `sede_id` (`sede_id`),
+  ADD KEY `tipo_estrategia_id` (`tipo_estrategia_id`),
+  ADD KEY `zona_id` (`zona_id`);
 
 --
--- Indexes for table `factura`
+-- Indices de la tabla `factura`
 --
 ALTER TABLE `factura`
-  ADD PRIMARY KEY (`id`) USING BTREE;
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `consecutivo_UNIQUE` (`consecutivo`);
 
 --
--- Indexes for table `instituciones`
+-- Indices de la tabla `instituciones`
 --
 ALTER TABLE `instituciones`
-  ADD PRIMARY KEY (`id`) USING BTREE,
-  ADD UNIQUE KEY `unq_colegio_nombre` (`nombre`) USING BTREE,
-  ADD KEY `sector_id` (`sector_id`) USING BTREE,
-  ADD KEY `zona_id` (`zona_id`) USING BTREE;
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `unq_colegio_nombre` (`nombre`),
+  ADD KEY `sector_id` (`sector_id`),
+  ADD KEY `zona_id` (`zona_id`);
 
 --
--- Indexes for table `jornadas`
---
-ALTER TABLE `jornadas`
-  ADD PRIMARY KEY (`id`) USING BTREE,
-  ADD UNIQUE KEY `unq_jornadas_nombre` (`nombre`) USING BTREE;
-
---
--- Indexes for table `matriculas`
+-- Indices de la tabla `matriculas`
 --
 ALTER TABLE `matriculas`
-  ADD PRIMARY KEY (`id`) USING BTREE,
-  ADD KEY `estudiante_id` (`estudiante_id`) USING BTREE,
-  ADD KEY `programa_id` (`programa_id`) USING BTREE;
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `estudiante_id` (`estudiante_id`),
+  ADD KEY `programa_id` (`programa_id`);
 
 --
--- Indexes for table `modelos`
+-- Indices de la tabla `medios_pago`
+--
+ALTER TABLE `medios_pago`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_medios_pago_tipos_pago1_idx` (`cod_tipo_pago`);
+
+--
+-- Indices de la tabla `modelos`
 --
 ALTER TABLE `modelos`
-  ADD PRIMARY KEY (`id`) USING BTREE,
-  ADD UNIQUE KEY `unq_modelos_nombre` (`nombre`) USING BTREE;
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `unq_modelos_nombre` (`nombre`);
 
 --
--- Indexes for table `nivel_academico`
---
-ALTER TABLE `nivel_academico`
-  ADD PRIMARY KEY (`id`) USING BTREE,
-  ADD UNIQUE KEY `unq_nivel_academico_nombre` (`nombre`) USING BTREE;
-
---
--- Indexes for table `pagos`
+-- Indices de la tabla `pagos`
 --
 ALTER TABLE `pagos`
-  ADD PRIMARY KEY (`id`) USING BTREE;
+  ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `programas`
+-- Indices de la tabla `programas`
 --
 ALTER TABLE `programas`
-  ADD PRIMARY KEY (`id`) USING BTREE,
-  ADD UNIQUE KEY `unq_programa_snies` (`snies`) USING BTREE,
-  ADD KEY `jornada_id` (`jornada_id`) USING BTREE,
-  ADD KEY `nivel_academico_id` (`nivel_academico_id`) USING BTREE,
-  ADD KEY `universidad_id` (`universidad_id`) USING BTREE;
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `unq_programa_snies` (`snies`),
+  ADD KEY `universidad_id` (`universidad_id`);
 
 --
--- Indexes for table `roles`
+-- Indices de la tabla `roles`
 --
 ALTER TABLE `roles`
-  ADD PRIMARY KEY (`id`) USING BTREE,
-  ADD UNIQUE KEY `unq_roles_codigo` (`nombre`) USING BTREE;
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `unq_roles_codigo` (`nombre`);
 
 --
--- Indexes for table `roles_opciones`
+-- Indices de la tabla `roles_opciones`
 --
 ALTER TABLE `roles_opciones`
-  ADD PRIMARY KEY (`id`) USING BTREE,
-  ADD KEY `rol_id` (`rol_id`) USING BTREE;
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `rol_id` (`rol_id`);
 
 --
--- Indexes for table `sectores`
+-- Indices de la tabla `sectores`
 --
 ALTER TABLE `sectores`
-  ADD PRIMARY KEY (`id`) USING BTREE,
-  ADD UNIQUE KEY `unq_nombre_sectores` (`nombre`) USING BTREE;
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `unq_nombre_sectores` (`nombre`);
 
 --
--- Indexes for table `sedes`
+-- Indices de la tabla `sedes`
 --
 ALTER TABLE `sedes`
-  ADD PRIMARY KEY (`id`) USING BTREE,
-  ADD KEY `institucion_id` (`institucion_id`) USING BTREE,
-  ADD KEY `modelo_id` (`modelo_id`) USING BTREE,
-  ADD KEY `zona_id` (`zona_id`) USING BTREE;
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `modelo_id` (`modelo_id`),
+  ADD KEY `zona_id` (`zona_id`);
 
 --
--- Indexes for table `tipos_estrategias`
+-- Indices de la tabla `tipos_estrategias`
 --
 ALTER TABLE `tipos_estrategias`
-  ADD PRIMARY KEY (`id`) USING BTREE;
+  ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `tipos_universidades`
+-- Indices de la tabla `tipos_pago`
+--
+ALTER TABLE `tipos_pago`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `tipos_universidades`
 --
 ALTER TABLE `tipos_universidades`
-  ADD PRIMARY KEY (`id`) USING BTREE;
+  ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `universidades`
+-- Indices de la tabla `universidades`
 --
 ALTER TABLE `universidades`
-  ADD PRIMARY KEY (`id`) USING BTREE,
-  ADD UNIQUE KEY `unq_institucion_nombre` (`nombre`) USING BTREE,
-  ADD KEY `tipo_universidad_id` (`tipo_universidad_id`) USING BTREE;
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `unq_institucion_nombre` (`nombre`),
+  ADD KEY `tipo_universidad_id` (`tipo_universidad_id`);
 
 --
--- Indexes for table `universidad_alianza`
+-- Indices de la tabla `universidad_alianza`
 --
 ALTER TABLE `universidad_alianza`
-  ADD PRIMARY KEY (`id`) USING BTREE,
-  ADD UNIQUE KEY `id` (`id`) USING BTREE,
-  ADD KEY `alianza_id` (`alianza_id`) USING BTREE,
-  ADD KEY `universidad_id` (`universidad_id`) USING BTREE;
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id` (`id`),
+  ADD KEY `alianza_id` (`alianza_id`),
+  ADD KEY `universidad_id` (`universidad_id`);
 
 --
--- Indexes for table `usuarios`
+-- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`id`) USING BTREE,
-  ADD UNIQUE KEY `codigo` (`codigo`) USING BTREE,
-  ADD KEY `rol_id` (`rol_id`) USING BTREE;
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `codigo` (`codigo`),
+  ADD KEY `rol_id` (`rol_id`);
 
 --
--- Indexes for table `zonas`
+-- Indices de la tabla `zonas`
 --
 ALTER TABLE `zonas`
-  ADD PRIMARY KEY (`id`) USING BTREE,
-  ADD UNIQUE KEY `unq_zonas_nombre` (`nombre`) USING BTREE;
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `unq_zonas_nombre` (`nombre`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT for table `acudiente`
+-- AUTO_INCREMENT de la tabla `acudiente`
 --
 ALTER TABLE `acudiente`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'PK of acudiente', AUTO_INCREMENT=514;
 
 --
--- AUTO_INCREMENT for table `alianzas`
+-- AUTO_INCREMENT de la tabla `alianzas`
 --
 ALTER TABLE `alianzas`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `cartera_universidades`
+-- AUTO_INCREMENT de la tabla `cartera_universidades`
 --
 ALTER TABLE `cartera_universidades`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID cartera_universidades\r\n';
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID cartera_universidades\\r\\n';
 
 --
--- AUTO_INCREMENT for table `eps`
+-- AUTO_INCREMENT de la tabla `detalle_factura`
+--
+ALTER TABLE `detalle_factura`
+  MODIFY `iid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `eps`
 --
 ALTER TABLE `eps`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
--- AUTO_INCREMENT for table `estudiantes`
+-- AUTO_INCREMENT de la tabla `estudiantes`
 --
 ALTER TABLE `estudiantes`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Incrementable, no key', AUTO_INCREMENT=507;
 
 --
--- AUTO_INCREMENT for table `factura`
+-- AUTO_INCREMENT de la tabla `factura`
 --
 ALTER TABLE `factura`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT for table `instituciones`
+-- AUTO_INCREMENT de la tabla `instituciones`
 --
 ALTER TABLE `instituciones`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Id colegio', AUTO_INCREMENT=21;
 
 --
--- AUTO_INCREMENT for table `jornadas`
---
-ALTER TABLE `jornadas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `matriculas`
+-- AUTO_INCREMENT de la tabla `matriculas`
 --
 ALTER TABLE `matriculas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=456;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=481;
 
 --
--- AUTO_INCREMENT for table `modelos`
+-- AUTO_INCREMENT de la tabla `modelos`
 --
 ALTER TABLE `modelos`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `nivel_academico`
---
-ALTER TABLE `nivel_academico`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `pagos`
+-- AUTO_INCREMENT de la tabla `pagos`
 --
 ALTER TABLE `pagos`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID pagos universidades';
 
 --
--- AUTO_INCREMENT for table `programas`
+-- AUTO_INCREMENT de la tabla `programas`
 --
 ALTER TABLE `programas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
--- AUTO_INCREMENT for table `roles`
+-- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `roles_opciones`
+-- AUTO_INCREMENT de la tabla `roles_opciones`
 --
 ALTER TABLE `roles_opciones`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `sectores`
+-- AUTO_INCREMENT de la tabla `sectores`
 --
 ALTER TABLE `sectores`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Id de sectores', AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `sedes`
+-- AUTO_INCREMENT de la tabla `sedes`
 --
 ALTER TABLE `sedes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
--- AUTO_INCREMENT for table `tipos_estrategias`
+-- AUTO_INCREMENT de la tabla `tipos_estrategias`
 --
 ALTER TABLE `tipos_estrategias`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary key', AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `tipos_universidades`
+-- AUTO_INCREMENT de la tabla `tipos_universidades`
 --
 ALTER TABLE `tipos_universidades`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary key tipos universidades', AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `universidades`
+-- AUTO_INCREMENT de la tabla `universidades`
 --
 ALTER TABLE `universidades`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `universidad_alianza`
+-- AUTO_INCREMENT de la tabla `universidad_alianza`
 --
 ALTER TABLE `universidad_alianza`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `usuarios`
+-- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `zonas`
+-- AUTO_INCREMENT de la tabla `zonas`
 --
 ALTER TABLE `zonas`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- Constraints for dumped tables
+-- Restricciones para tablas volcadas
 --
 
 --
--- Constraints for table `detalle_factura`
+-- Filtros para la tabla `detalle_factura`
 --
 ALTER TABLE `detalle_factura`
   ADD CONSTRAINT `detalle_factura_ibfk_1` FOREIGN KEY (`id_factura`) REFERENCES `factura` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `detalle_factura_ibfk_2` FOREIGN KEY (`id_matricula`) REFERENCES `matriculas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `estudiantes`
+-- Filtros para la tabla `estudiantes`
 --
 ALTER TABLE `estudiantes`
   ADD CONSTRAINT `estudiantes_ibfk_1` FOREIGN KEY (`acudiente_id`) REFERENCES `acudiente` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
@@ -2467,56 +2510,59 @@ ALTER TABLE `estudiantes`
   ADD CONSTRAINT `estudiantes_ibfk_5` FOREIGN KEY (`zona_id`) REFERENCES `zonas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `instituciones`
+-- Filtros para la tabla `instituciones`
 --
 ALTER TABLE `instituciones`
   ADD CONSTRAINT `instituciones_ibfk_1` FOREIGN KEY (`sector_id`) REFERENCES `sectores` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `instituciones_ibfk_2` FOREIGN KEY (`zona_id`) REFERENCES `zonas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `matriculas`
+-- Filtros para la tabla `matriculas`
 --
 ALTER TABLE `matriculas`
   ADD CONSTRAINT `matriculas_ibfk_1` FOREIGN KEY (`estudiante_id`) REFERENCES `estudiantes` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `matriculas_ibfk_2` FOREIGN KEY (`programa_id`) REFERENCES `programas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `programas`
+-- Filtros para la tabla `medios_pago`
+--
+ALTER TABLE `medios_pago`
+  ADD CONSTRAINT `fk_medios_pago_tipos_pago1` FOREIGN KEY (`cod_tipo_pago`) REFERENCES `tipos_pago` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `programas`
 --
 ALTER TABLE `programas`
-  ADD CONSTRAINT `programas_ibfk_1` FOREIGN KEY (`jornada_id`) REFERENCES `jornadas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `programas_ibfk_2` FOREIGN KEY (`nivel_academico_id`) REFERENCES `nivel_academico` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `programas_ibfk_3` FOREIGN KEY (`universidad_id`) REFERENCES `universidades` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `roles_opciones`
+-- Filtros para la tabla `roles_opciones`
 --
 ALTER TABLE `roles_opciones`
   ADD CONSTRAINT `roles_opciones_ibfk_1` FOREIGN KEY (`rol_id`) REFERENCES `roles` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `sedes`
+-- Filtros para la tabla `sedes`
 --
 ALTER TABLE `sedes`
-  ADD CONSTRAINT `sedes_ibfk_1` FOREIGN KEY (`institucion_id`) REFERENCES `instituciones` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `sedes_ibfk_2` FOREIGN KEY (`modelo_id`) REFERENCES `modelos` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `sedes_ibfk_3` FOREIGN KEY (`zona_id`) REFERENCES `zonas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `universidades`
+-- Filtros para la tabla `universidades`
 --
 ALTER TABLE `universidades`
   ADD CONSTRAINT `universidades_ibfk_1` FOREIGN KEY (`tipo_universidad_id`) REFERENCES `tipos_universidades` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `universidad_alianza`
+-- Filtros para la tabla `universidad_alianza`
 --
 ALTER TABLE `universidad_alianza`
   ADD CONSTRAINT `universidad_alianza_ibfk_1` FOREIGN KEY (`alianza_id`) REFERENCES `alianzas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `universidad_alianza_ibfk_2` FOREIGN KEY (`universidad_id`) REFERENCES `universidades` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `usuarios`
+-- Filtros para la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`rol_id`) REFERENCES `roles` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;

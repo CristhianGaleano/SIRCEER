@@ -2,18 +2,37 @@
 // get elements
 
 // save to edit programa
-const tsnies = document.querySelector('#e-pro-snies')
-const tnombre = document.querySelector('#e-pro-nombre')
-const tvalor = document.querySelector('#e-pro-valor_semestre')
-const tsemestres = document.querySelector('#e-pro-semestres')
-const tnaca = document.querySelector('#e-pro-nivel_academico')
-const tjornada = document.querySelector('#e-pro-jornada')
-const tuniversity = document.querySelector('#e-pro-university')
-const formEditarPrograma = document.querySelector('#formEditarPrograma')
+ tsnies = document.querySelector('#e-pro-snies')
+ tnombre = document.querySelector('#e-pro-nombre')
+ tvalor = document.querySelector('#e-pro-valor_semestre')
+ tsemestres = document.querySelector('#e-pro-semestres')
+ tnaca = document.querySelector('#e-pro-nivel_academico')
+ tjornada = document.querySelector('#e-pro-jornada')
+ tuniversity = document.querySelector('#e-pro-university')
+ formEditarPrograma = document.querySelector('#formEditarPrograma')
 
 
-selectNAaca = document.getElementById('e-pro-nivel_academico').options
-selectJornada = document.getElementById('e-pro-jornada').options
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+$( document ).ready(function() {
+
+    
+const selectNAaca = tnaca.options
+const selectJornada = tjornada.options
+// selectJornada = document.getElementById('e-pro-jornada')
 
 
 
@@ -84,10 +103,10 @@ function saveRecordEditoPrograma() {
         data.append('snies',vtsnies)        
         data.append('programa',vtnombre)        
         data.append('valor_semestre',vtvalor)        
-        data.append('semestres',vsemestres)        
-        data.append('nivel_aca',vnaca)        
-        data.append('university',vuniversity)        
-        data.append('jornada',vjornada)
+        data.append('semestres',vtsemestres)        
+        data.append('nivel_aca',vtnaca)        
+        data.append('university',vtuniversity)        
+        data.append('jornada',vtjornada)
         
         fetch('../php/editar-programa.php', {
             method: 'POST',
@@ -152,6 +171,7 @@ function obtenerDataEditarPrograma(id){
         
         setOptionNA(selectNAaca,data.nivel_academico,tnaca)
         setOptionNA(selectJornada,data.jornada,tjornada)
+        tuniversity.selectedIndex = data.universidad_id -1
 
 
     })
@@ -177,26 +197,7 @@ let errors = 0
 
         // 
 
-        $('table.display').DataTable();
-
-        $('#example').DataTable({
-        //para cambiar el lenguaje a español
-            "language": {
-                    "lengthMenu": "Mostrar _MENU_ registros",
-                    "zeroRecords": "No se encontraron resultados",
-                    "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                    "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-                    "infoFiltered": "(filtrado de un total de _MAX_ registros)",
-                    "sSearch": "Buscar:",
-                    "oPaginate": {
-                        "sFirst": "Primero",
-                        "sLast":"Último",
-                        "sNext":"Siguiente",
-                        "sPrevious": "Anterior"
-                     },
-                     "sProcessing":"Procesando...",
-                }
-        });     
+      
 
 
 
@@ -205,24 +206,27 @@ let errors = 0
 
 
 
+    //******************************************************************************************************* */ 
+    $('table.display').DataTable();
 
-
-
-
-
-
-
-
-    
-
-$(document).ready(function() {
-
-        
-
-
-
-
-
+    // $('table.display').DataTable({
+    //para cambiar el lenguaje a español
+    //     "language": {
+    //             "lengthMenu": "Mostrar _MENU_ registros",
+    //             "zeroRecords": "No se encontraron resultados",
+    //             "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+    //             "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+    //             "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+    //             "sSearch": "Buscar:",
+    //             "oPaginate": {
+    //                 "sFirst": "Primero",
+    //                 "sLast":"Último",
+    //                 "sNext":"Siguiente",
+    //                 "sPrevious": "Anterior"
+    //              },
+    //              "sProcessing":"Procesando...",
+    //         }
+    // });     
 
 
 

@@ -1,7 +1,12 @@
-var formsaldo = document.getElementById("form-saldo-estudiante");
-var respuesta = document.getElementById("respuesta");
-var showdocu = document.getElementById("show-docu");
-var contenidoSaldo = document.getElementById("contenido-saldo");
+
+
+$( function() {
+    
+    
+    var formsaldo = document.getElementById("form-saldo-estudiante");
+    var respuesta = document.getElementById("respuesta");
+    var showdocu = document.getElementById("show-docu");
+    var contenidoSaldo = document.getElementById("contenido-saldo");
 
 
 formsaldo.addEventListener( 'submit', function(e){
@@ -46,3 +51,6 @@ formsaldo.addEventListener( 'submit', function(e){
         }
     } )
 } )
+
+
+});
