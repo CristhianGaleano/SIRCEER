@@ -48,7 +48,7 @@
 			<td ><?php echo $value['costo_semestre'] ?></td>
 			<td ><?php echo utf8_encode( $value['nivel_academico'] ) ?></td>
 			<td ><?php echo utf8_encode( $value['name_universidad'] ) ?></td>
-			<!-- <td ><?php #echo utf8_encode($value['jornada']) ?></td> -->
+			<td ><?php echo utf8_encode($value['jornada']) ?></td>
 				
 			<td >
       <button type="button" id="btn-editar-programa" onclick="obtenerDataEditarPrograma('<?php echo $value['id_programa'] ?>')" class="btn btn-primary" data-toggle="modal" data-target="#editarPrograma" data-whatever="@mdo"><i class="fas fa-edit"></i></button>

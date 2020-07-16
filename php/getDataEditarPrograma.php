@@ -11,12 +11,11 @@ validateSession();
 $cn = getConexion($bd_config);
 comprobarConexion($cn);
 
-// header('Content-Type: application/json');
+// header('Content-Type: application/json; charset=utf-8');
 
 $id = $_GET['id'];
 
-$data =  getSubjectByValue('programas',$id,'id',$cn);
-var_dump($data);
-echo json_encode( $data)
-// return $data
+$data =  GetDatosProgramaById($id,$cn);
+// var_dump($data);
+echo json_decode($data);
 ?>

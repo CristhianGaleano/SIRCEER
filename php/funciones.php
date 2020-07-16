@@ -1503,6 +1503,22 @@ matriculas.id ,matriculas.fecha,matriculas.fecha_modificacion,matriculas.semestr
 
 	}
 
+	function GetDatosProgramaById($value,$con)
+	{
+		
+		$sql = "SELECT id,snies,cantidad_semestre,costo_semestre,universidad_id,jornada FROM programas WHERE id=$value LIMIT 1";
+		$ps = $con->prepare($sql);
+		
+		$ps->execute();
+		
+		$resul = $ps->fetch();
+		//var_dump($resul);
+		
+		return $resul;
+
+		
+
+	}
 	function getSubjectByValue($table,$value,$nameColumn,$con)
 	{
 		#Used by Estudiante
@@ -1761,12 +1777,12 @@ matriculas.id ,matriculas.fecha,matriculas.fecha_modificacion,matriculas.semestr
 			$sql = "INSERT INTO programas(snies, nombre, cantidad_semestre, costo_semestre, nivel_academico, universidad_id, jornada) VALUES(  :snies,:nombre,:num_semestres,:costo_semestre,:nivel_academico,:universidad_id,:jornada)";
 			$stp = $cn->prepare($sql);
 			$stp->bindParam( ':snies' , $codigo_snies);
-			$stp->bindParam( ':nombre' , $nombre);
+			$stp->bindParam( ':nombre' , utf8_encode( $nombre));
 			$stp->bindParam( ':num_semestres' , $semestres);
 			$stp->bindParam( ':costo_semestre' , $valor_semestre);
-			$stp->bindParam( ':nivel_academico' , $nivel_academico);
+			$stp->bindParam( ':nivel_academico' , utf8_encode( $nivel_academico ));
 			$stp->bindParam( ':universidad_id' , $universidad);
-			$stp->bindParam( ':jornada' , $jornada);
+			$stp->bindParam( ':jornada' , utf8_encode( $jornada ));
 			#var_dump($stp);
 			$result= $stp->execute();
 			#var_dump($result);
