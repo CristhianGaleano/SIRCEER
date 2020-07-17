@@ -1506,7 +1506,7 @@ matriculas.id ,matriculas.fecha,matriculas.fecha_modificacion,matriculas.semestr
 	function GetDatosProgramaById($value,$con)
 	{
 		
-		$sql = "SELECT id,snies,cantidad_semestre,costo_semestre,universidad_id,jornada FROM programas WHERE id=$value LIMIT 1";
+		$sql = "SELECT id,snies,cantidad_semestre,costo_semestre,universidad_id,jornada,nombre FROM programas WHERE id=$value LIMIT 1";
 		$ps = $con->prepare($sql);
 		
 		$ps->execute();

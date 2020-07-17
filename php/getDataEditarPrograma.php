@@ -17,5 +17,5 @@ $id = $_GET['id'];
 
 $data =  GetDatosProgramaById($id,$cn);
 // var_dump($data);
-echo json_decode($data);
+echo json_encode($data);
 ?>
