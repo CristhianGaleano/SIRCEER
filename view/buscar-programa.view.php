@@ -21,7 +21,7 @@
     
                 <div class="col-md-12 mt-3">
                     <div class="table-responsive-md">        
-                        <table id="example" class="table  table-bordered table-hover">
+                    <table id="example" class="table display table-bordered table-hover">
                         <thead class="thead-light"> 
                             <tr>
                             	<!-- <th>Id</th> -->
@@ -32,6 +32,7 @@
                                 <th>Valor</th>
                                 <th>Nivel</th>
                                 <th>IES</th>
+                                <th>Jornada</th>
                                 <!-- <th>Jornada</th> -->
                                 <th>-</th>
                                 <th>-</th>

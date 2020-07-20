@@ -38,6 +38,8 @@
 
 
 <?php require 'piedepagina-admin.php' ?>
+<script src="<?php echo URL; ?>js/appsaldos.js"></script>
+
 
 
 

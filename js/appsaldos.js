@@ -1,6 +1,6 @@
 
 
-$( function() {
+$( document ).ready(function() {
     
     
     var formsaldo = document.getElementById("form-saldo-estudiante");

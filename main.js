@@ -1,18 +1,4 @@
 
-// get elements
-
-// save to edit programa
- tsnies = document.querySelector('#e-pro-snies')
- tnombre = document.querySelector('#e-pro-nombre')
- tvalor = document.querySelector('#e-pro-valor_semestre')
- tsemestres = document.querySelector('#e-pro-semestres')
- tnaca = document.querySelector('#e-pro-nivel_academico')
- tjornada = document.querySelector('#e-pro-jornada')
- tuniversity = document.querySelector('#e-pro-university')
- formEditarPrograma = document.querySelector('#formEditarPrograma')
-
-
-
 
 
 
@@ -34,12 +20,13 @@
         tnombre.value = data.nombre
         tvalor.value = data.costo_semestre
         tsemestres.value = data.cantidad_semestre
+        console.log(data.nivel_academico);
         
         // setOptionNA(selectNAaca,data.nivel_academico,tnaca)
         // setOptionNA(selectJornada,data.jornada,tjornada)
-        tnaca.selectedIndex= data.nivel_academico - 1
-        tjornada.selectedIndex = data.jornada - 1
-        tuniversity.selectedIndex = data.universidad_id -1
+        tnaca.selectedIndex= data.nivel_academico
+        tjornada.selectedIndex = data.jornada
+        tuniversity.selectedIndex = data.universidad_id - 1
 
 
     })
@@ -49,37 +36,50 @@
 }
 
 
-
-
     
 
-$( document ).ready(function() {
+$(document).ready(function() {
 
     
 // const selectNAaca = tnaca.options
 // const selectJornada = tjornada.options
 // selectJornada = document.getElementById('e-pro-jornada')
 
+// get elements
+
+// save to edit programa
+tsnies = document.querySelector('#e-pro-snies')
+tnombre = document.querySelector('#e-pro-nombre')
+tvalor = document.querySelector('#e-pro-valor_semestre')
+tsemestres = document.querySelector('#e-pro-semestres')
+tnaca = document.querySelector('#e-pro-nivel_academico')
+tjornada = document.querySelector('#e-pro-jornada')
+tuniversity = document.querySelector('#e-pro-university')
+
+let formEditarPrograma = document.querySelector('#formEditarPrograma')
 
 
 
 
-formEditarPrograma.addEventListener('submit', e => {
-    e.preventDefault();
-    console.log('intro listener');
 
-    vtsnies = tsnies.value.trim()
-    vtnombre = tnombre.value.trim()
-    vtvalor = tvalor.value.trim()
-    vtsemestres = tsemestres.value.trim()
-    vtnaca = tnaca.value.trim()
-    vtjornada = tjornada.value.trim()
-    vtuniversity = tuniversity.value.trim()
-
-    checkInputs( );
-    saveRecordEditoPrograma()
-    errors = 0
-})
+    if (formEditarPrograma) {
+        formEditarPrograma.addEventListener('submit', e => {
+            e.preventDefault();
+            console.log('intro listener');
+        
+            vtsnies = tsnies.value.trim()
+            vtnombre = tnombre.value.trim()
+            vtvalor = tvalor.value.trim()
+            vtsemestres = tsemestres.value.trim()
+            vtnaca = tnaca.value.trim()
+            vtjornada = tjornada.value.trim()
+            vtuniversity = tuniversity.value.trim()
+        
+            checkInputs( );
+            saveRecordEditoPrograma()
+            errors = 0
+        })
+    }
 
 
 function checkInputs( ) {
@@ -208,10 +208,14 @@ let errors = 0
 
 
 
-    //******************************************************************************************************* */ 
-    $('table.display').DataTable();
 
-    $('table.display').DataTable({
+
+
+    //******************************************************************************************************* */ 
+
+
+    $('#example').DataTable({
+        // "scrollX": true,
     //para cambiar el lenguaje a español
         "language": {
                 "lengthMenu": "Mostrar _MENU_ registros",
