@@ -1,4 +1,19 @@
 
+// get elements
+
+// save to edit programa
+tsnies = document.querySelector('#e-pro-snies')
+tnombre = document.querySelector('#e-pro-nombre')
+tvalor = document.querySelector('#e-pro-valor_semestre')
+tsemestres = document.querySelector('#e-pro-semestres')
+tnaca = document.querySelector('#e-pro-nivel_academico')
+tjornada = document.querySelector('#e-pro-jornada')
+tuniversity = document.querySelector('#e-pro-university')
+
+let formEditarPrograma = document.querySelector('#formEditarPrograma')
+
+const selectNAaca = tnaca.options
+const selectJornada = tjornada.options
 
 
 
@@ -20,12 +35,13 @@
         tnombre.value = data.nombre
         tvalor.value = data.costo_semestre
         tsemestres.value = data.cantidad_semestre
-        console.log(data.nivel_academico);
+        console.log('U: ',data.universidad_id);
         
-        // setOptionNA(selectNAaca,data.nivel_academico,tnaca)
-        // setOptionNA(selectJornada,data.jornada,tjornada)
-        tnaca.selectedIndex= data.nivel_academico
-        tjornada.selectedIndex = data.jornada
+        setOptionNA(selectNAaca,data.nivel_academico,tnaca)
+        setOptionNA(selectJornada,data.jornada,tjornada)
+        // tnaca.selectedIndex= data.nivel_academico
+        // tjornada.selectedIndex = data.jornada
+        // entero
         tuniversity.selectedIndex = data.universidad_id - 1
 
 
@@ -35,28 +51,27 @@
     })
 }
 
+function setOptionNA(object, na,tnaca) {
+    console.log('valor: ' +na);
+    for (const key in object) {
+        
+        console.log(object[key].text);
+            if(object[key].text == na) {
+                console.log('is true');
+                tnaca.selectedIndex = key
+                return;
+            }
+    }
+}
 
     
 
 $(document).ready(function() {
 
     
-// const selectNAaca = tnaca.options
-// const selectJornada = tjornada.options
-// selectJornada = document.getElementById('e-pro-jornada')
 
-// get elements
 
-// save to edit programa
-tsnies = document.querySelector('#e-pro-snies')
-tnombre = document.querySelector('#e-pro-nombre')
-tvalor = document.querySelector('#e-pro-valor_semestre')
-tsemestres = document.querySelector('#e-pro-semestres')
-tnaca = document.querySelector('#e-pro-nivel_academico')
-tjornada = document.querySelector('#e-pro-jornada')
-tuniversity = document.querySelector('#e-pro-university')
 
-let formEditarPrograma = document.querySelector('#formEditarPrograma')
 
 
 
@@ -182,18 +197,7 @@ function setSuccessFor(input, message) {
 
 
 
-// function setOptionNA(object, na,tnaca) {
-//     console.log('valor: ' +na);
-//     for (const key in object) {
-        
-//         console.log(object[key].text);
-//             if(object[key].text == na) {
-//                 console.log('is true');
-//                 tnaca.selectedIndex = key
-//                 return;
-//             }
-//     }
-// }
+
 
 let errors = 0
 
