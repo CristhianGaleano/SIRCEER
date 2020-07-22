@@ -20,12 +20,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
 		$codigo_snies = ucwords( strtolower( $_POST['codigo_snies']));
-		$nombre = ucwords(  strtolower( $_POST['nombre'] ));
+		$nombre =  utf8_decode( $_POST['nombre'] );
 		$semestres = $_POST['semestres'];
 		$valor_semestre =   $_POST['valor_semestre'];
-		$nivel_academico = $_POST['nivel_academico'];
-		$universidad = $_POST['universidad'];
-		$jornada = $_POST['jornada'];
+		$nivel_academico = utf8_decode( $_POST['nivel_academico']);
+		$universidad = utf8_decode( $_POST['universidad']);
+		$jornada = utf8_decode( $_POST['jornada']);
 
 
 /*

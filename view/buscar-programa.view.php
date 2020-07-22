@@ -43,7 +43,7 @@
 	<?php foreach ($rows as $value) {?>
 		<tr>
 			<!-- <td ><?php #echo $value['id_programa'] ?></td> -->
-			<td ><?php echo ucwords( strtolower( $value['name_programa'] )) ?></td>
+			<td ><?php echo  $value['name_programa'] ?></td>
 			<td ><?php echo $value['snies'] ?></td>
 			<td ><?php echo $value['num_semestres'] ?></td>
 			<td ><?php echo number_format( $value['costo_semestre'], 2,",","." )?></td>

@@ -1512,7 +1512,7 @@ matriculas.id ,matriculas.fecha,matriculas.fecha_modificacion,matriculas.semestr
 		$ps->execute();
 		
 		$resul = $ps->fetch();
-		//var_dump($resul);
+		// var_dump($resul);
 		
 		return $resul;
 
