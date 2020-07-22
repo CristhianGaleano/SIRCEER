@@ -34,7 +34,7 @@
   $pdf->SetFont('Arial','B',8);
   $pdf->Cell(20,6,'Nombre',1,0,'C',1);
   $pdf->SetFont('Arial','',7);
-  $pdf->Cell(100,6, utf8_decode( $programa['programa']),1,0,'C',0);
+  $pdf->Cell(100,6, utf8_decode( ucwords( strtolower( $programa['programa']))),1,0,'C',0);
   $pdf->SetFont('Arial','B',8);
   $pdf->Cell(20,6,'SNIES',1,0,'C',1);
   $pdf->SetFont('Arial','',7);
@@ -58,7 +58,7 @@
   $pdf->SetFont('Arial','B',8);
   $pdf->Cell(30,6, utf8_decode('IES'),1,0,'C',1);
   $pdf->SetFont('Arial','',7);
-  $pdf->Cell(0,6, utf8_decode( $programa['universidad']),1,0,'C',0);
+  $pdf->Cell(0,6, utf8_decode( ucwords( strtolower( $programa['universidad']))),1,0,'C',0);
   
   
   // Envio del fichero

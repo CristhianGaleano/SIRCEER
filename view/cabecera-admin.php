@@ -25,7 +25,7 @@
     <!--datables estilo bootstrap 4 CSS-->  
     <link rel="stylesheet"  type="text/css" href="<?php echo URL; ?>datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
 
-	<!-- <link rel="stylesheet" type="text/css" href="<?php echo URL; ?>/css/overhang.min.css" /> -->
+	<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>/css/overhang.min.css" />
 	
 	<link href="<?php echo URL; ?>assets/fontawesome-free-5.13.0-web/css/fontawesome.css" rel="stylesheet">
     <link href="<?php echo URL; ?>assets/fontawesome-free-5.13.0-web/css/brands.css" rel="stylesheet">

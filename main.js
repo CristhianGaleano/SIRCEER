@@ -6,14 +6,14 @@ tsnies = document.querySelector('#e-pro-snies')
 tnombre = document.querySelector('#e-pro-nombre')
 tvalor = document.querySelector('#e-pro-valor_semestre')
 tsemestres = document.querySelector('#e-pro-semestres')
-tnaca = document.querySelector('#e-pro-nivel_academico')
-tjornada = document.querySelector('#e-pro-jornada')
+let tnaca = document.querySelector('#e-pro-nivel_academico')
+let tjornada = document.querySelector('#e-pro-jornada')
 tuniversity = document.querySelector('#e-pro-university')
 
 let formEditarPrograma = document.querySelector('#formEditarPrograma')
 
-const selectNAaca = tnaca.options
-const selectJornada = tjornada.options
+
+
 
 
 
@@ -37,8 +37,8 @@ const selectJornada = tjornada.options
         tsemestres.value = data.cantidad_semestre
         console.log('U: ',data.universidad_id);
         
-        setOptionNA(selectNAaca,data.nivel_academico,tnaca)
-        setOptionNA(selectJornada,data.jornada,tjornada)
+        setOptionNA(tnaca.options,data.nivel_academico,tnaca)
+        setOptionNA(tjornada,data.jornada,tjornada)
         // tnaca.selectedIndex= data.nivel_academico
         // tjornada.selectedIndex = data.jornada
         // entero

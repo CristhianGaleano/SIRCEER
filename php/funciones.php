@@ -1777,12 +1777,12 @@ matriculas.id ,matriculas.fecha,matriculas.fecha_modificacion,matriculas.semestr
 			$sql = "INSERT INTO programas(snies, nombre, cantidad_semestre, costo_semestre, nivel_academico, universidad_id, jornada) VALUES(  :snies,:nombre,:num_semestres,:costo_semestre,:nivel_academico,:universidad_id,:jornada)";
 			$stp = $cn->prepare($sql);
 			$stp->bindParam( ':snies' , $codigo_snies);
-			$stp->bindParam( ':nombre' , utf8_encode( $nombre));
+			$stp->bindParam( ':nombre' ,  $nombre);
 			$stp->bindParam( ':num_semestres' , $semestres);
 			$stp->bindParam( ':costo_semestre' , $valor_semestre);
-			$stp->bindParam( ':nivel_academico' , utf8_encode( $nivel_academico ));
+			$stp->bindParam( ':nivel_academico' ,  $nivel_academico );
 			$stp->bindParam( ':universidad_id' , $universidad);
-			$stp->bindParam( ':jornada' , utf8_encode( $jornada ));
+			$stp->bindParam( ':jornada' ,  $jornada );
 			#var_dump($stp);
 			$result= $stp->execute();
 			#var_dump($result);
