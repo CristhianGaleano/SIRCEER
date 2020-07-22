@@ -11,6 +11,24 @@
 <!--Fila para +-->
 
 
+
+<ul class="nav nav-tabs mb-3" id="pills-tab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active">Institución IEB <span class="badge badge-light"></span></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="<?php echo URL ?>gestion/buscar-universidad.php">Institución IES<span class="badge badge-light"></span></a>
+  </li>
+
+  
+</ul>
+
+<div class="tab-content" id="pills-tabContent">
+  <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+    
+
+
+
 <div class="row main_wraper">
 		<div class="col-md-12">
 			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Nuevo</button>
@@ -43,7 +61,7 @@
 	<?php foreach ($rows as $value) {?>
 		<tr>
 			<!-- <td><?php #echo $value['id_sede'] ?></td> -->
-			<td><?php echo $value['sede'] ?></td>
+			<td><?php echo ucwords( strtolower( $value['sede'] ))?></td>
 			<!--<td><?php echo $value['codigo_dane_sede'] ?></td>-->
 			<td><?php echo $value['consecutivo_sede'] ?></td>
 			<td><?php echo $value['zona'] ?></td>
@@ -58,11 +76,11 @@
 			</td>
 		-->
 			<td>
-				<a class="btn btn-warning btn-sm" href="<?php echo URL ?>gestion/editar-sede.php?id=<?php echo urlencode($value['id_sede'])?>">Editar</a>
+				<a class="btn btn-secondary btn-sm" href="<?php echo URL ?>gestion/editar-sede.php?id=<?php echo urlencode($value['id_sede'])?>">Editar</a>
 			</td>
 
 			<td>
-				<a class="btn btn-danger btn-sm" href="<?php echo URL ?>php/eliminarSede.php?id=<?php echo urlencode($value['id_sede'])?>">Eliminar</a>
+				<a class="btn btn-light btn-sm" href="<?php echo URL ?>php/eliminarSede.php?id=<?php echo urlencode($value['id_sede'])?>">Eliminar</a>
 			</td>
 				<!--
 			<td>

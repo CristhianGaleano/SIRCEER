@@ -54,8 +54,8 @@
 					<a href="<?php echo URL ?>gestion/mod-matricula.php"><i class="fab fa-accusoft"></i><span>Matriculas</span></a>
 					<a href="<?php echo URL ?>gestion/buscar-programa.php"><i class="fas fa-chalkboard-teacher"></i><span>Programas</span></a>
 					<!-- <a href="<?php echo URL ?>gestion/buscar-institucion.php"><i class="fas fa-school"></i><span>Institución EB</span></a> -->
-					<a href="<?php echo URL ?>gestion/buscar-sede.php"><i class="fas fa-school"></i><span>Institución EB</span></a>
-					<a href="<?php echo URL ?>gestion/buscar-universidad.php"><i class="fas fa-university"></i><span>Institución ES</span></a>
+					<a href="<?php echo URL ?>gestion/buscar-sede.php" title="Institución de Educación Básica"><i class="fas fa-school"></i><span>Educación</span></a>
+					<!-- <a href="<?php echo URL ?>gestion/buscar-universidad.php" title="Institución de Educación Superior"><i class="fas fa-university"></i><span>Institución ES</span></a> -->
 					<!-- <a href="<?php echo URL ?>gestion/buscar-alianza.php"><i class="fas fa-handshake"></i><span>Alianza</span></a> -->
 					<a href="<?php echo URL ?>gestion/saldos-estudiante.php"><i class="fas fa-money-check-alt"></i><span>Saldos</span></a>
 					<?php }else {?>

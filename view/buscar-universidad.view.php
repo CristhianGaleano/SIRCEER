@@ -5,9 +5,24 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="<?php echo URL ?>">Home</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Listado IES</li>
+    <li class="breadcrumb-item active" aria-current="page">Listado Instituciones de Educacación Superior</li>
   </ol>
 </nav>
+
+
+<ul class="nav nav-tabs mb-3" id="pills-tab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link" href="<?php echo URL ?>gestion/buscar-sede.php">Institución IEB<span class="badge badge-light"></span></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active">Institución IES <span class="badge badge-light"></span></a>
+  </li>
+
+  
+</ul>
+
+<div class="tab-content" id="pills-tabContent">
+  <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
 
 
 <div class="row main_wraper">
@@ -58,13 +73,13 @@
 			</td>
 		-->
 			<td >
-				<a class="btn btn-warning btn-sm" href="<?php echo URL ?>gestion/editar-universidad.php?id=<?php echo urlencode($value['id_universidad'])?>&select=u">Editar</a>
+				<a class="btn btn-secondary btn-sm" href="<?php echo URL ?>gestion/editar-universidad.php?id=<?php echo urlencode($value['id_universidad'])?>&select=u">Editar</a>
 			</td>
 			<td >
-				<a class="btn btn-danger btn-sm" href="<?php echo URL ?>php/eliminarUniversidad.php?id=<?php echo urlencode($value['id_universidad'])?>">Eliminar</a>
+				<a type="button" class="btn btn-light btn-sm" href="<?php echo URL ?>php/eliminarUniversidad.php?id=<?php echo urlencode($value['id_universidad'])?>">Eliminar</a>
 			</td>
 			<td >
-				<a class="btn btn-success btn-sm" href="<?php echo URL ?>view/ver-universidad.view.php?id=<?php echo urlencode($value['id_universidad'])?>">Ver</a>
+				<a class="btn btn-info btn-sm" href="<?php echo URL ?>view/ver-universidad.view.php?id=<?php echo urlencode($value['id_universidad'])?>">Ver</a>
 			</td>
 			
 		<?php

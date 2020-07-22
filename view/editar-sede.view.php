@@ -4,14 +4,14 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="<?php echo URL ?>">Home</a></li>
-	<li class="breadcrumb-item"><a href="<?php echo URL ?>gestion/buscar-sede.php">Listado Sedes</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Editar Sede</li>
+	<li class="breadcrumb-item"><a href="<?php echo URL ?>gestion/buscar-sede.php">Listado IEB</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Editar IEB</li>
   </ol>
 </nav>
 
 <div class="formulario-editar-user main_wraper">
 	<div class="wra_titulo">
-		<h2>Editar sede</h2>
+		<h2>Editar IEB</h2>
 	</div>
 	<hr>
 	<form  action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="POST">

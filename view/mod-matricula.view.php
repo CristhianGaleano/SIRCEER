@@ -2,6 +2,7 @@
 
 
 
+
 <ul class="nav nav-tabs mb-3" id="pills-tab" role="tablist">
   <li class="nav-item">
     <a class="nav-link" href="<?php echo URL ?>gestion/mod-matricula-pendientes.php">Matriculas pendientes<span class="badge badge-light"><?php echo $num_matri_pendientes; ?></span></a>
