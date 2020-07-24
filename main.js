@@ -35,7 +35,7 @@ let formEditarPrograma = document.querySelector('#formEditarPrograma')
         tnombre.value = data.nombre
         tvalor.value = data.costo_semestre
         tsemestres.value = data.cantidad_semestre
-        console.log('U: ',data.universidad_id);
+        console.log('U: ',data.cantidad_semestre);
         
         setOptionNA(tnaca.options,data.nivel_academico,tnaca)
         setOptionNA(tjornada,data.jornada,tjornada)
