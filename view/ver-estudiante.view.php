@@ -115,7 +115,7 @@
   $pdf->SetFont('Arial','',7);
   $pdf->Cell(0,6,$estudiante['estado'],1,1,'L',1);
   $pdf->SetFont('Arial','B',8);
-  $pdf->Cell(20,6,'Sede',1,0,'L',1);
+  $pdf->Cell(20,6,'IEB',1,0,'L',1);
   $pdf->SetFont('Arial','',7);
   $pdf->Cell(65,6,$estudiante['sede'],1,0,'L',1);
   $pdf->SetFont('Arial','B',8);

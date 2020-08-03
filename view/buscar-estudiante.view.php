@@ -46,7 +46,7 @@
 								<!-- <td><?php #echo $value['id'] ?></td>	 -->
 								<td><?php echo $value['doc_estudiante'] ?></td>
 								<td><?php echo $value['primer_nombre']. " " .$value['segundo_nombre'] ?></td>
-								<td><?php echo utf8_decode( $value['primer_apellido']. " " .$value['segundo_apellido']) ?></td>
+								<td><?php echo $value['primer_apellido']. " " .$value['segundo_apellido'] ?></td>
 								<!--<td><?php echo $value['telefono_contacto'] ?></td>-->
 								<!-- <td><?php #echo $value['edad'] ?></td> -->
 								<!-- <td><?php #echo $value['siben'] ?></td> -->

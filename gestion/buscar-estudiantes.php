@@ -5,6 +5,7 @@ require_once '../php/funciones.php';
 require_once '../php/Conexion.php';
 
 
+
 validateSession();
 $cn = getConexion($bd_config);
 comprobarConexion($cn);

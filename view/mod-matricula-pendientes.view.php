@@ -4,14 +4,14 @@
 
 <ul class="nav nav-tabs mb-3" id="pills-tab" role="tablist">
   <li class="nav-item">
-    <a class="nav-link active" href="<?php echo URL ?>gestion/mod-matricula-pendientes.php">Matriculas pendientes <span class="badge badge-light"><?php echo $num_matri_pendientes; ?></span></a>
-  </li>
-  <li class="nav-item">
     <a class="nav-link" href="<?php echo URL ?>gestion/mod-matricula.php" >Matriculas <span class="badge badge-light"> <?php echo $num_matritriculas; ?></span></a>
   </li>
-   <li class="nav-item">
-    <a class="nav-link" href="<?php echo URL ?>gestion/consultar-historia-aca.php">Historial</a>
+  <li class="nav-item">
+    <a class="nav-link active" href="<?php echo URL ?>gestion/mod-matricula-pendientes.php">Matriculas pendientes <span class="badge badge-light"><?php echo $num_matri_pendientes; ?></span></a>
   </li>
+   <!-- <li class="nav-item">
+    <a class="nav-link" href="<?php echo URL ?>gestion/consultar-historia-aca.php">Historial</a>
+  </li> -->
   
 </ul>
 
@@ -19,7 +19,7 @@
 
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item active" aria-current="page">Para matricular</li>
+        <li class="breadcrumb-item active" aria-current="page">Este listado corresponde a los estudiantes pendietes por matricular</li>
         <!--<li class="breadcrumb-item active" aria-current="page">Matricular</li>-->
     </ol>
 </nav>
@@ -33,25 +33,23 @@
          <table id="example" class="table table-bordered table-hover">
             <thead class="thead-light"> 
               <tr>
-                              <th>Id</th>
+                              <!-- <th>Id</th> -->
                                 <th>Documento</th>
-                                <th>Nombres</th>
-                                <th>Apellidos</th>
-                                <th>Sede</th>
+                                <th>Nombre</th>
+                                <th>IEB</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody >
                           <?php foreach ($rs as $value) {?>
                            <tr>
-                <td><?php echo $value['id'] ?></td> 
+                <!-- <td><?php #echo $value['id'] ?></td>  -->
                 <td><?php echo $value['documento'] ?></td>
-                <td><?php echo $value['primer_nombre']. " " .$value['segundo_nombre'] ?></td>
-                <td><?php echo $value['primer_apellido']. " " .$value['segundo_apellido'] ?></td>
+                <td><?php echo $value['primer_nombre']. " " .$value['segundo_nombre'] . " " . $value['primer_apellido']. " " .$value['segundo_apellido']?></td>
                 <td><?php echo $value['sede']?></td>
 
                                 <td>
-                  <button class="btn btn-info btn-sm" type="button" name="matricular" value="<?php echo urlencode($value['id'])?>" onclick="capturar_id(<?php echo $value['id']?>, <?php $value['primer_nombre'] ?>)"   data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"  id="matricular">Matricular</button>
+                  <button class="btn btn-info btn-sm" type="button" name="matricular" onclick="setDataFormNewMatricula(<?php echo $value['documento']?>)"   data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"  id="matricular">Matricular</button>
                 </td>
                             </tr>
                         <?php } ?>
@@ -119,13 +117,13 @@
           <div class="form-group">
             <input type="hidden" name="id_estudiante" id="id_estudiante">
 
-            <!-- <label for="nombre" class="col-form-label">Estudiante</label>
-            <input type="text" class="form-control" readonly="" name="nombre_estudiante" id="nombre_estudiante"> -->
+            <label for="nombre" class="col-form-label">Estudiante</label>
+            <input type="text" class="form-control" readonly="" name="nombre_estudiante" id="txtEditNameEstudiante">
           </div>
 
           <div class="form-group">
             <label class="col-form-label" for="semestre">Semestre</label>
-                <select class="form-control" name="semestre" id="semestre" required="">
+                <select class="form-control" name="semestre" id="txtEditSemestre" required="">
                     <option value="">Seleccione una opción</option>
                     <option value="1">1</option>
                     <option value="2">2</option>

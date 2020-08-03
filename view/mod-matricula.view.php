@@ -5,14 +5,14 @@
 
 <ul class="nav nav-tabs mb-3" id="pills-tab" role="tablist">
   <li class="nav-item">
-    <a class="nav-link" href="<?php echo URL ?>gestion/mod-matricula-pendientes.php">Matriculas pendientes<span class="badge badge-light"><?php echo $num_matri_pendientes; ?></span></a>
-  </li>
-  <li class="nav-item">
     <a class="nav-link active">Matriculas <span class="badge badge-light"> <?php echo $num_matritriculas; ?></span></a>
   </li>
-   <li class="nav-item">
-    <a class="nav-link" href="<?php echo URL ?>gestion/consultar-historia-aca.php">Historial <span class="badge badge-light">4</span></a>
+  <li class="nav-item">
+    <a class="nav-link" href="<?php echo URL ?>gestion/mod-matricula-pendientes.php">Matriculas pendientes<span class="badge badge-light"><?php echo $num_matri_pendientes; ?></span></a>
   </li>
+   <!-- <li class="nav-item">
+    <a class="nav-link" href="<?php echo URL ?>gestion/consultar-historia-aca.php">Historial <span class="badge badge-light">4</span></a>
+  </li> -->
   
 </ul>
 
@@ -61,7 +61,7 @@
                               <!-- <td><?php #echo $value['promedio'] ?></td> -->
                               <!-- <td><?php #echo $value['estado'] ?></td> -->
                               <td><?php echo $value['documento'] ?></td>
-                              <td><?php echo $value['primer_nombre'] ?></td>
+                              <td><?php echo $value['primer_nombre'] . " " . $value['segundo_nombre'] . " " . $value['primer_apellido'] . " " . $value['primer_apellido']?></td>
                               <!-- <td><?php echo $value['programa_nombre'] ?></td> -->
                               <td>
                                 <button class="btn btn-info btn-sm" type="button" name="asignarNota" value="<?php echo urlencode($value['id'])?>" onclick="capturar_id_matri(<?php echo  $value['id'] ?>,<?php echo  $value['id_estudiante'] ?>)"   data-toggle="modal" data-target="#actualizarNota" data-whatever="@mdo"  id="asignarNota">Nota</button>

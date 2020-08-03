@@ -13,6 +13,10 @@ tuniversity = document.querySelector('#e-pro-university')
 let formEditarPrograma = document.querySelector('#formEditarPrograma')
 
 
+let txtNameEstudiante = document.querySelector('#txtEditNameEstudiante')
+let txtEditSemestre = document.querySelector('#txtEditSemestre')
+
+
 
 
 
@@ -43,6 +47,24 @@ let formEditarPrograma = document.querySelector('#formEditarPrograma')
         // tjornada.selectedIndex = data.jornada
         // entero
         tuniversity.selectedIndex = data.universidad_id - 1
+
+
+    })
+    .catch(error => {
+        console.log(error)
+    })
+}
+ function setDataFormNewMatricula(id){
+        
+    console.log(id);
+    fetch('../php/setDataFormNewMatricula.php?documento='+id)
+    .then(res => res.json())
+    .then( data => {
+
+        // console.log( data) ;
+    txtNameEstudiante.value = data.primer_nombre +" " + data.segundo_nombre +" "+ data.primer_apellido +" "+data.segundo_apellido
+    // txtEditSemestre
+        
 
 
     })
@@ -459,7 +481,7 @@ let errors = 0
     //En caso de fallar el insert
                     }else{
                         console.log("It's false");
-    
+     
     $("body").overhang({
       type: "error",
       message: "Lo siento ha ocurrido un error! Es posible que haya incrongruencia de los datos...",

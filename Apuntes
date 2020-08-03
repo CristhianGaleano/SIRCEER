@@ -7,6 +7,7 @@ Igualmente en esta tabla el campo 'puntaje_sisben' a decimal de 4 enteros y 3 de
 
 Quitar en editar estudiante: Situacion acedemica
 
+POR VERIFICAR: Es importante que en matriuculas pendientes solo se filtre a los que su estado es diferente de graduados o suspendido/cancelado
 
 
 --------------
@@ -16,7 +17,10 @@ https://programacion8253.wordpress.com/
 ----------------------------
 Correcciones para la nueva version
 
-23/06/2020 como se delete table -jornadas y nivel aca.. se debe pasar los registros correctamente
+* 15/07/2020 se cambia cotejacion a utf8mb4_unicode_520_ci toda la BD
+* 24/07/2020 Corregir manualmente los acentos y ñ en la BD
+
+* 23/06/2020 como se delete table -jornadas y nivel aca.. se debe pasar los registros correctamente
 	una vez sincronice el modelo
 	N-A:
 	UPDATE programas SET nivel_academico='Técnica Profesional' WHERE nivel_academico='1';

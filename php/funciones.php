@@ -765,7 +765,7 @@ $rs = $ps->execute();
 		// quitar consulta prefijo
 		$consecutivo_factura = consultar_consecutivo($cn);
 		$fecha = Date("Y-m-d");
-		echo "<br> $fecha <br> $consecutivo_factura <br>";
+		// echo "<br> $fecha <br> $consecutivo_factura <br>";
 
 		$sql = "INSERT INTO factura (consecutivo, fecha) VALUES (:consecutivo,:fecha)";
 		$ps=$cn->prepare($sql);
@@ -773,14 +773,14 @@ $rs = $ps->execute();
 		// $ps->bindParam(':cod_cliente',1);
 		$ps->bindParam(':fecha', $fecha);
 		$rs=$ps->execute();
-		var_dump($rs);
+		// var_dump($rs);
 
 		return $cn->lastInsertId();
 
 	}
 
 	function saveDetalleFactura($id_matricula, $id_factura, $valor,$cn){
-		echo "<br>On sadetalle<br>";
+		// echo "<br>On sadetalle<br>";
 		$sql = "INSERT INTO detalle_factura(id_matricula,id_factura, valor) VALUES (:id_matricula,:id_factura,:valor)";
 		$ps=$cn->prepare($sql);
 		$ps->bindParam(':id_matricula',$id_matricula);
@@ -989,7 +989,7 @@ $rs = $ps->execute();
 	function  getHistorialEstudiante($documento,$cn)
 	{
 		#echo "Matricula: $matricula";
-		$sql = "SELECT matriculas.anio,matriculas.semestre,matriculas.periodo,matriculas.promedio,matriculas.estado AS estado_matricula, matriculas.fecha_modificacion FROM matriculas,estudiantes WHERE matriculas.estudiante_id=estudiantes.id AND estudiantes.documento=$documento";
+		$sql = "SELECT matriculas.anio,matriculas.semestre,matriculas.periodo,matriculas.promedio,matriculas.estado AS estado_matricula, matriculas.fecha_modificacion, estudiantes.primer_nombre, estudiantes.segundo_nombre, estudiantes.primer_apellido, estudiantes.segundo_apellido FROM matriculas,estudiantes WHERE matriculas.estudiante_id=estudiantes.id AND estudiantes.documento=$documento";
 		#var_dump($sql);
 		$ps = $cn->prepare($sql);
 		$ps->execute();
