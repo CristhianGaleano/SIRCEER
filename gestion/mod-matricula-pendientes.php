@@ -27,19 +27,25 @@ $response = array('estado' => "false" );
 #var_dump( $_SERVER );
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-#	var_dump($_POST);
+	// var_dump($_POST);
 	header('Content-Type: application/json');
 
 	
 	$anio = $_POST['anio'];
+	// echo $anio;
 	$semestre = $_POST['semestre'];
+	// echo $semestre;
 	$periodo = $_POST['periodo'];
+	// echo $periodo;
 	$estudiante_id = $_POST['id_estudiante'];
+	// echo $estudiante_id;
 	$programa_id = $_POST['programa'];
+	// echo $programa_id;
 	$fecha = $_POST['fecha'];
+	// echo $fecha;
 
 	$estado = saveMatricula($anio,$semestre,$periodo,$estudiante_id,$programa_id,$fecha,$cn);
-
+// var_dump($estado);
 	if ($estado) {
 		
 		$response = array('estado' => "true" );

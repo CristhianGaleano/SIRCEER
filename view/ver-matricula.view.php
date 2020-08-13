@@ -52,7 +52,7 @@
   $pdf->SetFont('Arial','',7);
   $pdf->Cell(0,6, utf8_decode( $datos_matricula['periodo']),1,1,'C',0);
   $pdf->SetFont('Arial','B',8);
-  $pdf->Cell(25,6,' de la sede ',1,0,'L',1);
+  $pdf->Cell(25,6,utf8_decode(' Institución EB '),1,0,'L',1);
   $pdf->SetFont('Arial','',7);
   $pdf->Cell(0,6, utf8_decode( $datos_matricula['sede']),1,1,'C',0);
   $pdf->SetFont('Arial','B',8);

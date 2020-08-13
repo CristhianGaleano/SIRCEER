@@ -55,15 +55,16 @@ let txtEditSemestre = document.querySelector('#txtEditSemestre')
     })
 }
  function setDataFormNewMatricula(id){
-        
+      
     console.log(id);
     fetch('../php/setDataFormNewMatricula.php?documento='+id)
     .then(res => res.json())
     .then( data => {
 
         // console.log( data) ;
+    txtIdEstudianteNewMatri.value=data.id
     txtNameEstudiante.value = data.primer_nombre +" " + data.segundo_nombre +" "+ data.primer_apellido +" "+data.segundo_apellido
-    // txtEditSemestre
+    txtEditSemestre.selectedIndex = (data.semestre == null) ? 1 : data.semestre + 1; 
         
 
 

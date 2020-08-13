@@ -113,9 +113,9 @@
         <!--<?php #echo htmlspecialchars($_SERVER['PHP_SELF']) ?>-->
 
         <form method="POST" id="formulario-m-matricular" role="form" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>">
-          
+      
           <div class="form-group">
-            <input type="hidden" name="id_estudiante" id="id_estudiante">
+            <input type="hidden" name="id_estudiante" id="txtIdEstudianteNewMatri">
 
             <label for="nombre" class="col-form-label">Estudiante</label>
             <input type="text" class="form-control" readonly="" name="nombre_estudiante" id="txtEditNameEstudiante">

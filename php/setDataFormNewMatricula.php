@@ -17,10 +17,12 @@ comprobarConexion($cn);
 $resultado = array();
 
     $documento = $_GET['documento'];
-    $data = getHistorialEstudiante($documento,$cn);
+
+    // trae nombre, semestre, periodo, deseable programa
+    $data = getDatosForNewMatri($documento,$cn);
     // echo count( $data );
     // var_dump($data);
     // echo json_encode( $data[count($data) -1]  );
-    echo json_encode( end( $data  ));
+    echo json_encode( $data );
 
 ?>

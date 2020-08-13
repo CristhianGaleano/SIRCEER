@@ -984,12 +984,31 @@ $rs = $ps->execute();
 		return $value;
 	}
 
+	// obtiene los datos para llenar el form para nueva matricula
+	function  getDatosForNewMatri($documento,$cn)
+	{
+		#echo "Matricula: $matricula";
+		$sql = "SELECT E.id, E.primer_nombre, E.segundo_nombre, E.segundo_apellido, E.primer_apellido, M.semestre, M.periodo FROM estudiantes E
+		LEFT JOIN matriculas M
+		ON E.id=M.estudiante_id
+		WHERE E.documento=$documento";
+		// var_dump($sql);
+		$ps = $cn->prepare($sql);
+		$ps->execute();
+		$resul = $ps->fetch();
+		// var_dump($resul);
+		return $resul;
 
-
+	}
 	function  getHistorialEstudiante($documento,$cn)
 	{
 		#echo "Matricula: $matricula";
-		$sql = "SELECT matriculas.anio,matriculas.semestre,matriculas.periodo,matriculas.promedio,matriculas.estado AS estado_matricula, matriculas.fecha_modificacion, estudiantes.primer_nombre, estudiantes.segundo_nombre, estudiantes.primer_apellido, estudiantes.segundo_apellido FROM matriculas,estudiantes WHERE matriculas.estudiante_id=estudiantes.id AND estudiantes.documento=$documento";
+		$sql = "SELECT matriculas.anio,matriculas.semestre,matriculas.periodo,matriculas.promedio,matriculas.estado AS estado_matricula, matriculas.fecha_modificacion, estudiantes.primer_nombre, estudiantes.segundo_nombre, estudiantes.primer_apellido, estudiantes.segundo_apellido 
+		FROM 
+		matriculas,
+		estudiantes 
+		WHERE 
+		matriculas.estudiante_id=estudiantes.id AND estudiantes.documento=$documento";
 		#var_dump($sql);
 		$ps = $cn->prepare($sql);
 		$ps->execute();
