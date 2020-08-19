@@ -213,7 +213,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Asignando nota, semestre en curso</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Asigne nota o modifique el semestre en curso</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -228,7 +228,7 @@
             <input type="hidden" name="id_estudiante_nota" id="id_estudiante_nota">
 
             <label for="Nota" class="col-form-label">Nota</label>
-            <input type="text" class="form-control" required="" name="nota" id="nota">
+            <input type="text" class="form-control" name="nota" id="nota">
           </div>
 
           <div class="form-group">
@@ -237,6 +237,7 @@
                     <option value="#">Seleccione una opción</option>
                     <option value="APROBADO">Aprobado</option>
                     <option value="NO APROBADO">No aprobado</option>
+                    <option value="CANCELADO">Cancelar</option>
         </select>
           </div>
 

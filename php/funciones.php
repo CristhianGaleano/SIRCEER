@@ -1020,7 +1020,7 @@ $rs = $ps->execute();
 
 
 	/**
-	 * Description: Muestra el listado de matriculas actuales, es decir las que aun no tengan nota final
+	 * Description: Muestra el listado de matriculas actuales(en estado activo), es decir las que aun no tengan nota final
 	 */
 	function getAllMatriculas($cn)
 	{
@@ -1033,7 +1033,7 @@ $rs = $ps->execute();
 		LEFT JOIN estudiantes ON matriculas.estudiante_id=estudiantes.id 
 		LEFT JOIN programas ON matriculas.programa_id=programas.id 
 		WHERE 
-		matriculas.estado='ACTIVO'";
+		matriculas.estado='ACTIVO' AND estudiantes.estado='MATRICULADO'";
 		#var_dump($sql);
 		$ps = $cn->prepare($sql);
 		$ps->execute();
