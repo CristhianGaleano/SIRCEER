@@ -61,12 +61,11 @@ let txtEditSemestre = document.querySelector('#txtEditSemestre')
     .then(res => res.json())
     .then( data => {
 
-        // console.log( data) ;
+    console.log( data) ;
     txtIdEstudianteNewMatri.value=data.id
     txtNameEstudiante.value = data.primer_nombre +" " + data.segundo_nombre +" "+ data.primer_apellido +" "+data.segundo_apellido
-    txtEditSemestre.selectedIndex = (data.semestre == null) ? 1 : data.semestre + 1; 
+    txtEditSemestre.selectedIndex = (data.semestre == null) ? 1 : data.semestre; 
         
-
 
     })
     .catch(error => {
