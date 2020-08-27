@@ -49,7 +49,7 @@
                 <td><?php echo $value['sede']?></td>
 
                                 <td>
-                  <button class="btn btn-info btn-sm" type="button" name="matricular" onclick="setDataFormNewMatricula(<?php echo $value['documento']?>)"   data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"  id="matricular">Matricular</button>
+                  <button class="btn btn-primary btn-sm" type="button" name="matricular" onclick="setDataFormNewMatricula(<?php echo $value['documento']?>)"   data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"  id="matricular">Matricular</button>
                 </td>
                             </tr>
                         <?php } ?>

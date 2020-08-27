@@ -64,10 +64,10 @@
                               <td><?php echo $value['primer_nombre'] . " " . $value['segundo_nombre'] . " " . $value['primer_apellido'] . " " . $value['primer_apellido']?></td>
                               <!-- <td><?php echo $value['programa_nombre'] ?></td> -->
                               <td>
-                                <button class="btn btn-info btn-sm" type="button" name="asignarNota" value="<?php echo urlencode($value['id'])?>" onclick="capturar_id_matri(<?php echo  $value['id'] ?>,<?php echo  $value['id_estudiante'] ?>)"   data-toggle="modal" data-target="#actualizarNota" data-whatever="@mdo"  id="asignarNota">Nota</button>
+                                <button class="btn btn-primary btn-sm" type="button" name="asignarNota" value="<?php echo urlencode($value['id'])?>" onclick="capturar_id_matri(<?php echo  $value['id'] ?>,<?php echo  $value['id_estudiante'] ?>)"   data-toggle="modal" data-target="#actualizarNota" data-whatever="@mdo"  id="asignarNota">Nota</button>
                               </td>
                               <td>
-                                <a href="<?php echo URL ?>view/ver-matricula.view.php?id=<?php echo $value['id'] ?>"  class="btn btn-warning btn-sm" target="_blank">Ver</a>
+                                <a href="<?php echo URL ?>view/ver-matricula.view.php?id=<?php echo $value['id'] ?>"  class="btn btn-secondary btn-sm" target="_blank">Ver</a>
                               </td>
                             </tr>
                           <?php endforeach ?>
@@ -239,6 +239,11 @@
                     <option value="NO APROBADO">No aprobado</option>
                     <option value="CANCELADO">Cancelar</option>
         </select>
+          </div>
+
+
+          <div class="form-group">
+              <textarea class="form-control no-display" name="txtObservacionResoSemes" id="txtObservacionResoSemes" cols="30" rows="5" placeholder="Detalle"></textarea>
           </div>
 
           

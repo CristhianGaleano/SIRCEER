@@ -328,6 +328,8 @@ body{
 		margin: 5px;
 	}
 
+	.no-display { display: none !important; }	
+
 
 
 

@@ -1,5 +1,7 @@
 
 // get elements
+let txtObservacionResoSemes = document.querySelector('#txtObservacionResoSemes')
+let estado_semestre = document.querySelector('#estado_semestre')
 
 // save to edit programa
 tsnies = document.querySelector('#e-pro-snies')
@@ -17,6 +19,18 @@ let txtNameEstudiante = document.querySelector('#txtEditNameEstudiante')
 let txtEditSemestre = document.querySelector('#txtEditSemestre')
 
 
+
+
+// mod-matricula
+if(estado_semestre) {
+    console.log(estado_semestre.selectedIndex)
+    if(estado_semestre.selectedIndex == 3){
+        console.log("selected ")
+        txtObservacionResoSemes.classList = 'form-control'
+    }
+}
+
+// end mod-matricula
 
 
 
