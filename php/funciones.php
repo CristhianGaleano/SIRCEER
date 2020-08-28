@@ -86,7 +86,7 @@ function getProgramaAndUniversidadNivelAcaAndJornada($id,$cn)
  * @param  [type] $cn            [description]
  * @return [type]                [description]
  */
-function asignar_nota($id_matricula,$id_estudiante,$promedio,$estado,$cn){
+function asignar_nota($id_matricula,$id_estudiante,$promedio,$estado,$observacion,$cn){
 
 
 	#echo 'Entra asignar notas';
@@ -94,10 +94,11 @@ function asignar_nota($id_matricula,$id_estudiante,$promedio,$estado,$cn){
 		if (obtener_estado_estudiante($id_estudiante,$cn))
 		 {
 			#echo 'Entra a estado';
-			$sql = "UPDATE matriculas SET promedio=:promedio, estado=:estado WHERE id=:id";
+			$sql = "UPDATE matriculas SET promedio=:promedio, estado=:estado, observacion=:observacion WHERE id=:id";
 			$ps = $cn->prepare($sql);
 			$ps->bindParam(':promedio',$promedio);
 			$ps->bindParam(':estado',$estado);
+			$ps->bindParam(':observacion',$observacion);
 			$ps->bindParam(':id',$id_matricula);
 			$rs = $ps->execute();
 			#var_dump($rs);

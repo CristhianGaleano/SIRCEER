@@ -24,7 +24,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 	$id_estudiante = $_POST['id_estudiante_nota'];
 	$nota = $_POST['nota'];
 	$estado_semestre = $_POST['estado_semestre'];
-	$rs=asignar_nota($id_matricula,$id_estudiante,$nota,$estado_semestre,$cn);
+	$observacion = $_POST['txtObservacionResoSemes'];
+	$rs=asignar_nota($id_matricula,$id_estudiante,$nota,$estado_semestre,$observacion,$cn);
 
 	if ($rs) {
 		$response = array("estado" => "true");

@@ -9,6 +9,7 @@ validateSession();
 $cn = getConexion($bd_config);
 comprobarConexion($cn);
 
+
 // matrículas
 $matriculas = getAllMatriculas($cn);
 $programas = getAllSubject('programas',$cn);

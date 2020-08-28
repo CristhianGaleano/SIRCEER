@@ -22,13 +22,18 @@ let txtEditSemestre = document.querySelector('#txtEditSemestre')
 
 
 // mod-matricula
-if(estado_semestre) {
-    console.log(estado_semestre.selectedIndex)
-    if(estado_semestre.selectedIndex == 3){
-        console.log("selected ")
-        txtObservacionResoSemes.classList = 'form-control'
-    }
+if (estado_semestre) {
+    
+    estado_semestre.addEventListener('change', function(){
+        console.log(estado_semestre.value)
+        if(estado_semestre.value == 'CANCELADO'){
+            txtObservacionResoSemes.classList = 'form-control'
+        }else{
+            txtObservacionResoSemes.classList = 'form-control no-display'
+        }
+    });
 }
+    
 
 // end mod-matricula
 

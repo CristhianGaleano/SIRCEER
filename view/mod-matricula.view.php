@@ -241,7 +241,6 @@
         </select>
           </div>
 
-
           <div class="form-group">
               <textarea class="form-control no-display" name="txtObservacionResoSemes" id="txtObservacionResoSemes" cols="30" rows="5" placeholder="Detalle"></textarea>
           </div>

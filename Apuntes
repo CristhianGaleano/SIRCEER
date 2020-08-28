@@ -17,6 +17,8 @@ https://programacion8253.wordpress.com/
 ----------------------------
 Correcciones para la nueva version
 
+* 27/08/2020 al cancelar estudiante el estado del estudiante debería ser inactivo: evaluar, aunque los inactivos son individuos que nunca han interactuado con el sistema, para no cargar en matri pendientes, o crear un alerta, o las más facil y que esta estipulada es marcarlo como CANCELADO
+
 * 15/07/2020 se cambia cotejacion a utf8mb4_unicode_520_ci toda la BD
 * 24/07/2020 Corregir manualmente los acentos y ñ en la BD
 
