@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -11,7 +11,7 @@
 <body>
 	<div class="contenedor">
 		<div class="contenedor_img_loguin">
-			<img class="img_loguin" src="imagenes/sumaleUno.jpg"/>
+			<img class="img_loguin" src="assets/imagenes/sumaleUno.jpg"/>
 		</div>
 		<div class="contenedor-login">
 				
@@ -27,7 +27,7 @@
 						<i class="fa fa-unlock-alt" aria-hidden="true"></i>
 						</div>
 						<br>
-						<input type="submit" class="btn" value="Iniciar Session">
+						<input type="submit" class="btn" value="Ingresar">
 				</form>
 			</div>
 		
