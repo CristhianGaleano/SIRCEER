@@ -35,18 +35,7 @@ formsaldo.addEventListener( 'submit', function(e){
              console.log(data.documento);
              respuesta.innerHTML = ``,
              contenidoSaldo.innerHTML = `
-             <div class="col-md-3 mt-3">
-                <label class="form-gorup" for="documento">Documento</label>
-                <input class="form-control" type="text" value="${data.documento}" placeholder="Numero de documento" name="documento" readonly="">
-             </div>
-             <div class="col-md-4 mt-3">
-                <label class="form-gorup" for="nombre">Nombre</label>
-                <input class="form-control" type="text" value="${data.primer_nombre}  ${data.segundo_nombre} ${data.primer_apellido} ${data.segundo_apellido} " placeholder="Nombre" name="nombre" readonly="">
-             </div>
-             <div class="col-md-6 mt-3">
-                <label class="form-gorup" for="saldo">Saldo</label>
-                <input class="form-control" type="text" value="${data.saldo}" placeholder="Saldo" name="saldo" readonly="">
-             </div>
+             
              `
         }
     } )

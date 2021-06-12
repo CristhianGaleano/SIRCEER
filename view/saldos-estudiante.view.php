@@ -24,8 +24,42 @@
             </div>
             <button type="submit" class="btn btn-primary mb-2">Mostrar saldos</button>
           </form>
-          <div id="respuesta">
-            
+          <!--  -->
+          <div class="row" id="respuesta">
+          <div class="col-md-3 mt-3">
+                <label class="form-gorup" for="documento">Documento</label>
+                <input class="form-control" type="text" value="1088264375" name="documento" readonly="">
+             </div>
+             <div class="col-md-4 mt-3">
+                <label class="form-gorup" for="nombre">Nombre</label>
+                <input class="form-control" type="text" value="Cristhian Alexis Galeano Ruiz" name="nombre" readonly="">
+             </div>
+             <div class="col-md-3 mt-3">
+                <label class="form-gorup" for="saldo">Saldo</label>
+                <input class="form-control" type="text" value="1.250.000" name="saldo" readonly="">
+             </div>
+             <div class="col-md-2 mt-3">
+                <label class="form-gorup" for="saldo">Pagar</label>
+                <input class="form-control" type="checkbox" value="" name="saldo">
+             </div>
+          </div>
+          <div class="row" id="respuesta">
+          <div class="col-md-3 mt-3">
+                <label class="form-gorup" for="documento">Documento</label>
+                <input class="form-control" type="text" value="1088264375" name="documento" readonly="">
+             </div>
+             <div class="col-md-4 mt-3">
+                <label class="form-gorup" for="nombre">Nombre</label>
+                <input class="form-control" type="text" value="Cristhian Alexis Galeano Ruiz" name="nombre" readonly="">
+             </div>
+             <div class="col-md-3 mt-3">
+                <label class="form-gorup" for="saldo">Saldo</label>
+                <input class="form-control" type="text" value="1.250.000" name="saldo" readonly="">
+             </div>
+             <div class="col-md-2 mt-3">
+                <label class="form-gorup" for="saldo">Pagar</label>
+                <input class="form-control" type="checkbox" value="" name="saldo">
+             </div>
           </div>
     </div>
 </div><!--row -->

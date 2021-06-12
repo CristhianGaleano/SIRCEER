@@ -27,7 +27,7 @@
 						<i class="fa fa-unlock-alt" aria-hidden="true"></i>
 						</div>
 						<br>
-						<input type="submit" class="btn" value="Ingresar">
+						<input type="submit" class="btn" value="Ingresar	">
 				</form>
 			</div>
 		
